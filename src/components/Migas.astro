@@ -1,0 +1,28 @@
+---
+const { ruta = '/', titulo = '' } = Astro.props;
+
+const trozos = ruta.split('/').filter(Boolean);
+const migas = [{ texto: 'Inicio', url: '/' }];
+let acumulada = '';
+trozos.forEach((t, i) => {
+  acumulada += `/${t}`;
+  migas.push({
+    texto: i === trozos.length - 1 ? titulo : t.replace(/-/g, ' '),
+    url: `${acumulada}/`,
+  });
+});
+---
+
+{migas.length > 1 && (
+  <nav class="migas contenedor" aria-label="Migas de pan">
+    <ol>
+      {migas.map((m, i) => (
+        <li>
+          {i === migas.length - 1
+            ? <span aria-current="page">{m.texto}</span>
+            : <a href={m.url}>{m.texto}</a>}
+        </li>
+      ))}
+    </ol>
+  </nav>
+)}

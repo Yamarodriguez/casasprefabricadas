@@ -1,0 +1,7 @@
+# FASE 2 — al apuntar el dominio propio.
+#
+# Descomenta la linea de abajo cambiando NOMBRE-DEL-SITIO por el subdominio
+# que te haya dado Netlify. Manda con un 301 todo el trafico de la URL
+# .netlify.app al dominio bueno, para que nunca compitan entre si.
+#
+# https://NOMBRE-DEL-SITIO.netlify.app/*  https://prefabricadascasas.es/:splat  301!

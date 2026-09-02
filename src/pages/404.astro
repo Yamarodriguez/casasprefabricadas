@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  ruta="/404/"
+  titulo="Página no encontrada - Casas Prefabricadas"
+  descripcion="La página que buscas no existe. Vuelve al inicio o consulta los modelos de casas prefabricadas."
+  encabezado="Esta página no existe"
+  entradilla="Puede que el enlace esté anticuado o que la dirección tenga una errata."
+  noindex={true}
+>
+  <div class="contenido contenedor">
+    <p>Prueba con alguna de estas:</p>
+    <ul class="zonas">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/precios/">Precios</a></li>
+      <li><a href="/modelos/">Modelos</a></li>
+      <li><a href="/catalogo/">Catálogo</a></li>
+      <li><a href="/madera/">Casas de madera</a></li>
+      <li><a href="/hormigon/">Casas de hormigón</a></li>
+      <li><a href="/steel-framing/">Steel framing</a></li>
+      <li><a href="/presupuesto/">Presupuesto</a></li>
+    </ul>
+  </div>
+</Base>

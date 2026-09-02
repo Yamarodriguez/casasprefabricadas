@@ -1,0 +1,85 @@
+---
+import site from '../data/site.json';
+
+const { ruta = '/' } = Astro.props;
+
+/** Menú de la sección a la que pertenece la URL (regla del playbook: menú propio por sección). */
+function menuDe(url) {
+  for (const seccion of site.secciones) {
+    if (seccion.prefijos.some((p) => url === p || url.startsWith(p))) {
+      return site.navegacion[seccion.menu] ?? site.navegacion[site.menuPorDefecto];
+    }
+  }
+  return site.navegacion[site.menuPorDefecto];
+}
+
+const menu = menuDe(ruta);
+const activo = (url) => (url === ruta ? 'page' : undefined);
+
+/* Los items que en WordPress eran solo cabecera de desplegable venian con
+   href="#". Se pintan como texto: un enlace a "#" no lleva a ninguna parte. */
+const esEnlace = (url) => Boolean(url) && url !== '#';
+---
+
+<div class="barra">
+  <div class="contenedor barra__fila">
+    <span>Construcción de casas prefabricadas en <strong>toda España</strong></span>
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+  </div>
+</div>
+
+<header class="cabecera" data-abierto="0">
+  <div class="contenedor cabecera__fila">
+    <a class="cabecera__marca" href="/">Casas <span>Prefabricadas</span></a>
+
+    <button class="menu__boton" type="button" aria-expanded="false" aria-controls="menu-principal">
+      Menú
+    </button>
+
+    <nav class="menu" id="menu-principal" aria-label="Navegación principal">
+      <ul>
+        {menu.map((n) => (
+          <li>
+            {esEnlace(n.url)
+              ? <a href={n.url} aria-current={activo(n.url)}>{n.texto}</a>
+              : <span class="menu__rotulo">{n.texto}</span>}
+            {n.hijos && (
+              <ul>
+                {n.hijos.map((h) => (
+                  <li>
+                    {esEnlace(h.url)
+                      ? <a href={h.url} aria-current={activo(h.url)}>{h.texto}</a>
+                      : <span class="menu__rotulo">{h.texto}</span>}
+                    {h.hijos && (
+                      <ul>
+                        {h.hijos.map((n3) => (
+                          <li>
+                            {esEnlace(n3.url)
+                              ? <a href={n3.url} aria-current={activo(n3.url)}>{n3.texto}</a>
+                              : <span class="menu__rotulo">{n3.texto}</span>}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <a class="boton boton--pequeno cabecera__cta" href="/presupuesto/">Presupuesto</a>
+  </div>
+</header>
+
+<script>
+  const cabecera = document.querySelector('.cabecera');
+  const boton = cabecera?.querySelector('.menu__boton');
+  boton?.addEventListener('click', () => {
+    const abierto = cabecera.dataset.abierto === '1';
+    cabecera.dataset.abierto = abierto ? '0' : '1';
+    boton.setAttribute('aria-expanded', String(!abierto));
+  });
+</script>

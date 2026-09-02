@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import Formulario from '../components/Formulario.astro';
+import { sanearImagenes } from '../utils/imagenes.js';
+
+export async function getStaticPaths() {
+  const modulos = import.meta.glob('../content/pages/*.json', { eager: true });
+  return Object.values(modulos).map((m) => {
+    const pagina = m.default ?? m;
+    const slug = pagina.ruta === '/' ? undefined : pagina.ruta.replace(/^\/|\/$/g, '');
+    return { params: { slug }, props: { pagina } };
+  });
+}
+
+const { pagina } = Astro.props;
+
+/* Sustituye por un marcador solo lo que falte en public/. Las rutas
+   /wp-content/uploads/ que existen no se tocan nunca. */
+const { html: cuerpo } = sanearImagenes(pagina.cuerpo);
+
+/* El cuerpo trae <aside data-formulario="1"></aside> donde estaba el
+   Contact Form 7. Se parte por ahí para intercalar el componente. */
+const trozos = cuerpo.split(/<aside[^>]*data-formulario="1"[^>]*>\s*<\/aside>/i);
+
+const entradilla = pagina.descripcion || '';
+---
+
+<Base
+  ruta={pagina.ruta}
+  titulo={pagina.tituloSeo || pagina.titulo}
+  descripcion={pagina.descripcion}
+  encabezado={pagina.h1}
+  entradilla={entradilla}
+  hero={pagina.hero}
+  faq={pagina.faq}
+  noindex={pagina.noindex}
+>
+  <div class="contenido contenedor">
+    {trozos.map((trozo, i) => (
+      <>
+        <Fragment set:html={trozo} />
+        {i < trozos.length - 1 && (
+          <Formulario asunto={`Consulta desde ${pagina.ruta}`} />
+        )}
+      </>
+    ))}
+
+    {pagina.faq?.length > 0 && (
+      <section class="faq">
+        <h2>Preguntas frecuentes</h2>
+        {pagina.faq.map((f) => (
+          <details>
+            <summary>{f.pregunta}</summary>
+            <p>{f.respuesta}</p>
+          </details>
+        ))}
+      </section>
+    )}
+  </div>
+</Base>

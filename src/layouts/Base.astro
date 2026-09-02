@@ -1,0 +1,181 @@
+---
+import '../styles/global.css';
+import site from '../data/site.json';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Migas from '../components/Migas.astro';
+import { existe, marcador } from '../utils/imagenes.js';
+
+const {
+  ruta = '/',
+  titulo = site.nombre,
+  descripcion = site.descripcion,
+  encabezado = '',
+  entradilla = '',
+  hero = null,
+  faq = [],
+  noindex = false,
+} = Astro.props;
+
+const canonica = new URL(ruta, site.dominio).href;
+const ga4 = site.analytics?.ga4;
+
+const heroOk = hero?.src && existe(hero.src);
+const heroSrc = heroOk ? hero.src : hero?.src ? marcador(hero.ancho || 1600, hero.alto || 700, '') : null;
+const imagenSocial = heroOk ? new URL(hero.src, site.dominio).href : null;
+
+/* ---------------------------------------------------------------- JSON-LD */
+const grafo = [
+  {
+    '@type': 'WebSite',
+    '@id': `${site.dominio}/#sitio`,
+    url: `${site.dominio}/`,
+    name: site.nombre,
+    inLanguage: 'es-ES',
+  },
+  {
+    '@type': 'Organization',
+    '@id': `${site.dominio}/#organizacion`,
+    name: site.nombre,
+    url: `${site.dominio}/`,
+    email: site.email,
+    areaServed: { '@type': 'Country', name: 'España' },
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonica}#pagina`,
+    url: canonica,
+    name: titulo,
+    description: descripcion,
+    isPartOf: { '@id': `${site.dominio}/#sitio` },
+    inLanguage: 'es-ES',
+  },
+];
+
+if (ruta !== '/') {
+  grafo.push({
+    '@type': 'BreadcrumbList',
+    '@id': `${canonica}#migas`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${site.dominio}/` },
+      { '@type': 'ListItem', position: 2, name: encabezado || titulo, item: canonica },
+    ],
+  });
+}
+
+if (faq.length) {
+  grafo.push({
+    '@type': 'FAQPage',
+    '@id': `${canonica}#faq`,
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.pregunta,
+      acceptedAnswer: { '@type': 'Answer', text: f.respuesta },
+    })),
+  });
+}
+
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grafo });
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonica} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    {site.verificaciones?.google && (
+      <meta name="google-site-verification" content={site.verificaciones.google} />
+    )}
+    {site.verificaciones?.bing && (
+      <meta name="msvalidate.01" content={site.verificaciones.bing} />
+    )}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content={site.nombre} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonica} />
+    {imagenSocial && <meta property="og:image" content={imagenSocial} />}
+    <meta name="twitter:card" content={imagenSocial ? 'summary_large_image' : 'summary'} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;700&family=Roboto:wght@400;500;700&display=swap"
+    />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+    {ga4 && (
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`}></script>
+    )}
+    {ga4 && (
+      <script is:inline define:vars={{ ga4 }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', ga4);
+      </script>
+    )}
+  </head>
+
+  <body>
+    <a class="visualmente-oculto saltar" href="#principal">Saltar al contenido</a>
+
+    <Header ruta={ruta} />
+
+    <section class:list={['hero', !heroSrc && 'hero--liso']}>
+      {heroSrc && (
+        <figure class="hero__fondo">
+          <img
+            src={heroSrc}
+            alt={hero.alt || encabezado}
+            width={hero.ancho || undefined}
+            height={hero.alto || undefined}
+            fetchpriority="high"
+            decoding="async"
+          />
+        </figure>
+      )}
+      <div class="contenedor hero__caja">
+        <h1>{encabezado || titulo}</h1>
+        {entradilla && <p>{entradilla}</p>}
+        <div class="hero__acciones">
+          <a class="boton" href="/presupuesto/">Pedir presupuesto</a>
+          <a class="boton boton--fantasma" href="/catalogo/">Ver catálogo</a>
+        </div>
+      </div>
+    </section>
+
+    <Migas ruta={ruta} titulo={encabezado || titulo} />
+
+    <main id="principal">
+      <slot />
+    </main>
+
+    <section class="cierre">
+      <div class="contenedor cierre__fila">
+        <div>
+          <h2>¿Hablamos de tu casa prefabricada?</h2>
+          <p>Te damos precio y plazos sin compromiso.</p>
+        </div>
+        <a class="boton" href="/presupuesto/">Pedir presupuesto</a>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>

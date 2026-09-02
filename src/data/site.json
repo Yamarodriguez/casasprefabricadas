@@ -1,0 +1,4092 @@
+{
+ "nombre": "Casas Prefabricadas",
+ "dominio": "https://prefabricadascasas.es",
+ "descripcion": "Construcción de casas prefabricadas de madera, hormigón y steel framing en toda España. Precios, modelos, planos y presupuesto sin compromiso.",
+ "email": "casasprefabricadas@prefabricadascasas.es",
+ "telefono": "",
+ "logo": "/wp-content/uploads/2021/09/cropped-casa-prefabricadas-32x32.png",
+ "analytics": {
+  "ga4": ""
+ },
+ "verificaciones": {
+  "google": "FJvEXdW9dmjrjt4_S-km7bf_Vb3smGjTusaotFC9BS4",
+  "bing": ""
+ },
+ "formulario": {
+  "proveedor": "web3forms",
+  "accessKey": "",
+  "destino": "",
+  "paginaGracias": "/gracias/"
+ },
+ "secciones": [
+  {
+   "id": "madera",
+   "prefijos": [
+    "/madera/",
+    "/casas-de-madera-",
+    "/de-madera-",
+    "/casetas-de-madera/",
+    "/cabanas-de-madera/",
+    "/cocheras-de-madera/",
+    "/cobertizos-de-madera/",
+    "/pergolas-de-madera/",
+    "/modelos-de-casas-madera/",
+    "/planos-casas-de-madera/",
+    "/catalogo-casas-de-madera/",
+    "/venta-casas-de-madera/",
+    "/imagenes-casas-de-madera/",
+    "/construccion-casas-de-madera/",
+    "/precios-casas-de-madera-prefabricadas/"
+   ],
+   "menu": "casas-prefabricadas-de-madera"
+  },
+  {
+   "id": "hormigon",
+   "prefijos": [
+    "/hormigon/",
+    "/hormigon-",
+    "/construccion-casas-hormigon/",
+    "/casetas-hormigon-prefabricadas/",
+    "/venta-casas-prefabricadas-de-hormigon/"
+   ],
+   "menu": "casas-de-hormigon"
+  },
+  {
+   "id": "steel",
+   "prefijos": [
+    "/steel-framing/",
+    "/steel-framing-",
+    "/casas-steel-framing/",
+    "/construcciones-steel-framing/",
+    "/modelos-casas-steel-framing/",
+    "/perfiles-steel-framing/"
+   ],
+   "menu": "casas-steel-framing"
+  },
+  {
+   "id": "casetas",
+   "prefijos": [
+    "/casetas/",
+    "/casetas-",
+    "/alquiler-casetas/",
+    "/catalogo-casetas/",
+    "/construccion-de-casetas/",
+    "/imagenes-de-casetas/",
+    "/modelos-de-casetas/",
+    "/planos-de-casetas/",
+    "/precios-de-casetas/"
+   ],
+   "menu": "casetas"
+  }
+ ],
+ "menuPorDefecto": "casas-prefabricadas",
+ "navegacion": {
+  "casas-prefabricadas": [
+   {
+    "texto": "Home",
+    "url": "/"
+   },
+   {
+    "texto": "Precios",
+    "url": "/precios/",
+    "hijos": [
+     {
+      "texto": "Precios casas de madera",
+      "url": "/precios-casas-de-madera-prefabricadas/"
+     },
+     {
+      "texto": "Precios casas de hormigón",
+      "url": "/hormigon-precios/"
+     },
+     {
+      "texto": "Precios Steel Framing",
+      "url": "/steel-framing-precios/"
+     },
+     {
+      "texto": "Precios de Casetas",
+      "url": "/precios-de-casetas/"
+     },
+     {
+      "texto": "Financiación",
+      "url": "/financiacion/"
+     }
+    ]
+   },
+   {
+    "texto": "Modelos",
+    "url": "/modelos/",
+    "hijos": [
+     {
+      "texto": "Casas Prefabricadas de Madera",
+      "url": "/madera/",
+      "hijos": [
+       {
+        "texto": "Modelos de casas madera",
+        "url": "/modelos-de-casas-madera/"
+       },
+       {
+        "texto": "Casas de madera a medida",
+        "url": "/casas-de-madera-a-medida/"
+       },
+       {
+        "texto": "Casas de madera modernas",
+        "url": "/casas-de-madera-modernas/"
+       },
+       {
+        "texto": "Casas de madera jardín",
+        "url": "/casas-de-madera-jardin/"
+       },
+       {
+        "texto": "Cabañas de madera",
+        "url": "/cabanas-de-madera/"
+       },
+       {
+        "texto": "Casetas de madera",
+        "url": "/casetas-de-madera/"
+       },
+       {
+        "texto": "Cocheras de madera",
+        "url": "/cocheras-de-madera/"
+       },
+       {
+        "texto": "Cobertizos de madera",
+        "url": "/cobertizos-de-madera/"
+       },
+       {
+        "texto": "Casas de madera grandes",
+        "url": "/casas-de-madera-grandes/"
+       },
+       {
+        "texto": "Casas de madera pequeñas",
+        "url": "/casas-de-madera-pequenas/"
+       },
+       {
+        "texto": "Pérgolas de madera",
+        "url": "/pergolas-de-madera/"
+       },
+       {
+        "texto": "Casas de madera para perros",
+        "url": "/casas-de-madera-para-perros/"
+       },
+       {
+        "texto": "Casas de madera para gatos",
+        "url": "/casas-de-madera-para-gatos/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Hormigón",
+      "url": "/hormigon/"
+     },
+     {
+      "texto": "Steel Framing",
+      "url": "/steel-framing/",
+      "hijos": [
+       {
+        "texto": "Casas Steel Framing",
+        "url": "/casas-steel-framing/"
+       },
+       {
+        "texto": "Perfiles Steel Framing",
+        "url": "/perfiles-steel-framing/"
+       },
+       {
+        "texto": "Modelos casas steel framing",
+        "url": "/modelos-casas-steel-framing/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas mediterráneas",
+      "url": "/mediterraneas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modernas",
+      "url": "/modernas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modulares",
+      "url": "/modulares/"
+     },
+     {
+      "texto": "Casas Prefabricadas Cube",
+      "url": "/cube/"
+     },
+     {
+      "texto": "Casetas",
+      "url": "/casetas/",
+      "hijos": [
+       {
+        "texto": "Modelos de casetas",
+        "url": "/modelos-de-casetas/"
+       },
+       {
+        "texto": "Casetas de madera",
+        "url": "/casetas-de-madera/"
+       },
+       {
+        "texto": "Casetas de Jardín",
+        "url": "/casetas-de-jardin/"
+       },
+       {
+        "texto": "Casetas Prefabricadas",
+        "url": "/casetas-prefabricadas/"
+       },
+       {
+        "texto": "Casetas de obra",
+        "url": "/casetas-de-obra/"
+       },
+       {
+        "texto": "Casetas de campo",
+        "url": "/casetas-de-campo/"
+       },
+       {
+        "texto": "Casetas de vigilancia",
+        "url": "/casetas-de-vigilancia/"
+       },
+       {
+        "texto": "Casetas Metálicas",
+        "url": "/casetas-metalicas/"
+       },
+       {
+        "texto": "Casetas de aperos",
+        "url": "/casetas-de-aperos/"
+       },
+       {
+        "texto": "Casetas de Resina",
+        "url": "/casetas-de-resina/"
+       },
+       {
+        "texto": "Casetas para negocio",
+        "url": "/casetas-para-negocio/"
+       },
+       {
+        "texto": "Casetas de ferias",
+        "url": "/casetas-de-ferias/"
+       },
+       {
+        "texto": "Casetas hormigón",
+        "url": "/casetas-hormigon-prefabricadas/"
+       },
+       {
+        "texto": "Casetas de plástico",
+        "url": "/casetas-de-plastico/"
+       },
+       {
+        "texto": "Casetas para bicicletas",
+        "url": "/casetas-para-bicicletas/"
+       },
+       {
+        "texto": "Casetas para perros",
+        "url": "/casetas-para-perros/"
+       },
+       {
+        "texto": "Casetas para gatos",
+        "url": "/casetas-para-gatos/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Contenedores",
+      "url": "/contenedores/"
+     },
+     {
+      "texto": "Casas Prefabricadas Minimalistas",
+      "url": "/minimalistas/"
+     },
+     {
+      "texto": "Casas Prefabricadas de lujo",
+      "url": "/de-lujo/"
+     },
+     {
+      "texto": "Casas Prefabricadas Móviles",
+      "url": "/moviles/"
+     },
+     {
+      "texto": "Casas Prefabricadas pasivas",
+      "url": "/pasivas/"
+     },
+     {
+      "texto": "Casas Prefabricadas a medida",
+      "url": "/a-medida/"
+     }
+    ]
+   },
+   {
+    "texto": "Catalogos",
+    "url": "/catalogo/",
+    "hijos": [
+     {
+      "texto": "Catálogo casas de madera",
+      "url": "/catalogo-casas-de-madera/"
+     },
+     {
+      "texto": "Catalogo Casas Hormigón",
+      "url": "/hormigon-catalogo/"
+     },
+     {
+      "texto": "Catalogo Steel Framing",
+      "url": "/steel-framing-catalogo/"
+     },
+     {
+      "texto": "Catálogo Casetas",
+      "url": "/catalogo-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Planos",
+    "url": "/planos/",
+    "hijos": [
+     {
+      "texto": "Planos casas de madera",
+      "url": "/planos-casas-de-madera/"
+     },
+     {
+      "texto": "Planos casas hormigón",
+      "url": "/hormigon-planos/"
+     },
+     {
+      "texto": "Planos Steel Framing",
+      "url": "/steel-framing-planos/"
+     },
+     {
+      "texto": "Planos de casetas",
+      "url": "/planos-de-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Venta",
+    "url": "/venta/",
+    "hijos": [
+     {
+      "texto": "Venta casas de madera",
+      "url": "/venta-casas-de-madera/"
+     },
+     {
+      "texto": "Venta casas de hormigón",
+      "url": "/venta-casas-prefabricadas-de-hormigon/"
+     },
+     {
+      "texto": "Venta Steel Framing",
+      "url": "/steel-framing-venta/"
+     },
+     {
+      "texto": "Casetas en venta",
+      "url": "/casetas-en-venta/"
+     }
+    ]
+   },
+   {
+    "texto": "Ofertas",
+    "url": "/baratas/",
+    "hijos": [
+     {
+      "texto": "Casas de madera ofertas",
+      "url": "/casas-de-madera-baratas/"
+     },
+     {
+      "texto": "Casas hormigón Ofertas",
+      "url": "/hormigon-baratas/"
+     },
+     {
+      "texto": "Steel Framing Ofertas",
+      "url": "/steel-framing-ofertas/"
+     },
+     {
+      "texto": "Casetas Ofertas",
+      "url": "/casetas-baratas/"
+     }
+    ]
+   },
+   {
+    "texto": "Llave en mano",
+    "url": "/llave-en-mano/",
+    "hijos": [
+     {
+      "texto": "Casas de madera llave en mano",
+      "url": "/casas-de-madera-llave-en-mano/"
+     },
+     {
+      "texto": "Casas Hormigón llave en mano",
+      "url": "/hormigon-llave-en-mano/"
+     },
+     {
+      "texto": "Steel Framing llave en mano",
+      "url": "/steel-framing-llave-en-mano/"
+     },
+     {
+      "texto": "Casetas llave en mano",
+      "url": "/casetas-llave-en-mano/"
+     }
+    ]
+   },
+   {
+    "texto": "Imágenes",
+    "url": "/imagenes/",
+    "hijos": [
+     {
+      "texto": "Imágenes casas de madera",
+      "url": "/imagenes-casas-de-madera/"
+     },
+     {
+      "texto": "Imágenes casas de hormigón",
+      "url": "/hormigon-fotos/"
+     },
+     {
+      "texto": "Imagenes Stee Framing",
+      "url": "/steel-framing-imagenes/"
+     },
+     {
+      "texto": "Imágenes de casetas",
+      "url": "/imagenes-de-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Construcción",
+    "url": "/construccion/",
+    "hijos": [
+     {
+      "texto": "Construcción casas de madera",
+      "url": "/construccion-casas-de-madera/"
+     },
+     {
+      "texto": "Construcción casas hormigón",
+      "url": "/construccion-casas-hormigon/"
+     },
+     {
+      "texto": "Construccion Steel Framing",
+      "url": "/construcciones-steel-framing/"
+     },
+     {
+      "texto": "Construcción de Casetas",
+      "url": "/construccion-de-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Provincias",
+    "url": "#",
+    "hijos": [
+     {
+      "texto": "Casas Prefabricadas Galicia",
+      "url": "/galicia/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Galicia",
+        "url": "/casas-de-madera-galicia/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Galicia",
+        "url": "/hormigon-galicia/"
+       },
+       {
+        "texto": "Steel Framing Galicia",
+        "url": "/steel-framing-galicia/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Madrid",
+      "url": "/madrid/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Madrid",
+        "url": "/casas-de-madera-madrid/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Madrid",
+        "url": "/hormigon-madrid/"
+       },
+       {
+        "texto": "Steel Framing Madrid",
+        "url": "/steel-framing-madrid/"
+       },
+       {
+        "texto": "Casetas Madrid",
+        "url": "/casetas-madrid/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Valencia",
+      "url": "/valencia/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Valencia",
+        "url": "/de-madera-valencia/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Valencia",
+        "url": "/hormigon-valencia/"
+       },
+       {
+        "texto": "Steel Framing Valencia",
+        "url": "/steel-framing-valencia/"
+       },
+       {
+        "texto": "Casetas valencia",
+        "url": "/casetas-valencia/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Córdoba",
+      "url": "/cordoba/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Córdoba",
+        "url": "/casas-de-madera-cordoba/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Córdoba",
+        "url": "/hormigon-cordoba/"
+       },
+       {
+        "texto": "Steel Framing Córdoba",
+        "url": "/steel-framing-cordoba/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Murcia",
+      "url": "/murcia/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Murcia",
+        "url": "/casas-de-madera-murcia/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Murcia",
+        "url": "/hormigon-murcia/"
+       },
+       {
+        "texto": "Steel Framing Murcia",
+        "url": "/steel-framing-murcia/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Asturias",
+      "url": "/asturias/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Asturias",
+        "url": "/casas-de-madera-asturias/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Asturias",
+        "url": "/hormigon-asturias/"
+       },
+       {
+        "texto": "Steel Framing Asturias",
+        "url": "/steel-framing-asturias/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Barcelona",
+      "url": "/barcelona/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Barcelona",
+        "url": "/casas-de-madera-barcelona/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Barcelona",
+        "url": "/hormigon-barcelona/"
+       },
+       {
+        "texto": "Steel Framing Barcelona",
+        "url": "/steel-framing-barcelona/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Sevilla",
+      "url": "/sevilla/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Sevilla",
+        "url": "/de-madera-sevilla/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Sevilla",
+        "url": "/hormigon-sevilla/"
+       },
+       {
+        "texto": "Steel Framing Sevilla",
+        "url": "/steel-framing-sevilla/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Canarias",
+      "url": "/canarias/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Canarias",
+        "url": "/casas-de-madera-canarias/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Canarias",
+        "url": "/hormigon-canarias/"
+       },
+       {
+        "texto": "Steel Framing Canarias",
+        "url": "/steel-framing-canarias/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Catalunya",
+      "url": "/catalunya/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Cataluña",
+        "url": "/casas-de-madera-cataluna/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Catalunya",
+        "url": "/hormigon-catalunya/"
+       },
+       {
+        "texto": "Steel Framing Catalunya",
+        "url": "/steel-framing-catalunya/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Tenerife",
+      "url": "/tenerife/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Tenerife",
+        "url": "/de-madera-tenerife/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Tenerife",
+        "url": "/hormigon-tenerife/"
+       },
+       {
+        "texto": "Steel Framing Tenerife",
+        "url": "/steel-framing-tenerife/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Alicante",
+      "url": "/alicante/",
+      "hijos": [
+       {
+        "texto": "Casas prefabricadas de Madera Alicante",
+        "url": "/casas-de-madera-alicante/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Alicante",
+        "url": "/hormigon-alicante/"
+       },
+       {
+        "texto": "Steel Framing Alicante",
+        "url": "/steel-framing-alicante/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Cantabria",
+      "url": "/cantabria/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Cantabria",
+        "url": "/casas-de-madera-cantabria/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Cantabria",
+        "url": "/hormigon-cantabria/"
+       },
+       {
+        "texto": "Steel Framing Cantabria",
+        "url": "/steel-framing-cantabria/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Burgos",
+      "url": "/burgos/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Burgos",
+        "url": "/casas-de-madera-burgos/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Burgos",
+        "url": "/hormigon-burgos/"
+       },
+       {
+        "texto": "Steel Framing Burgos",
+        "url": "/steel-framing-burgos/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Málaga",
+      "url": "/malaga/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Málaga",
+        "url": "/casas-de-madera-malaga/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Málaga",
+        "url": "/hormigon-malaga/"
+       },
+       {
+        "texto": "Steel Framing Málaga",
+        "url": "/steel-framing-malaga/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Mallorca",
+      "url": "/mallorca/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Mallorca",
+        "url": "/casas-de-madera-mallorca/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Mallorca",
+        "url": "/hormigon-mallorca/"
+       },
+       {
+        "texto": "Steel Framing Mallorca",
+        "url": "/steel-framing-mallorca/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Navarra",
+      "url": "/navarra/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Navarra",
+        "url": "/casas-de-madera-navarra/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Navarra",
+        "url": "/hormigon-navarra/"
+       },
+       {
+        "texto": "Steel Framing Navarra",
+        "url": "/steel-framing-navarra/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Zaragoza",
+      "url": "/zaragoza/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Zaragoza",
+        "url": "/de-madera-zaragoza/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Zaragoza",
+        "url": "/hormigon-zaragoza/"
+       },
+       {
+        "texto": "Steel Framing Zaragoza",
+        "url": "/steel-framing-zaragoza/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Cádiz",
+      "url": "/cadiz/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Cádiz",
+        "url": "/casas-de-madera-cadiz/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Cádiz",
+        "url": "/hormigon-cadiz/"
+       },
+       {
+        "texto": "Steel Framing Cádiz",
+        "url": "/steel-framing-cadiz/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Bizkaia",
+      "url": "/bizkaia/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Vizcaya",
+        "url": "/casas-de-madera-vizcaya/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Bizkaia",
+        "url": "/hormigon-bizkaia/"
+       },
+       {
+        "texto": "Steel Framing Bizkaia",
+        "url": "/steel-framing-bizkaia/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Extremadura",
+      "url": "/extremadura/",
+      "hijos": [
+       {
+        "texto": "Casas de Madera Extremadura",
+        "url": "/casas-de-madera-extremadura/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Extremadura",
+        "url": "/hormigon-extremadura/"
+       },
+       {
+        "texto": "Steel Framing Extremadura",
+        "url": "/steel-framing-extremadura/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas La Rioja",
+      "url": "/la-rioja/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera La Rioja",
+        "url": "/de-madera-la-rioja/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón La Rioja",
+        "url": "/hormigon-la-rioja/"
+       },
+       {
+        "texto": "Steel Framing La Rioja",
+        "url": "/steel-framing-la-rioja/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Valladolid",
+      "url": "/valladolid/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Valladolid",
+        "url": "/de-madera-valladolid/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Valladolid",
+        "url": "/hormigon-valladolid/"
+       },
+       {
+        "texto": "Steel Framing Valladolid",
+        "url": "/steel-framing-valladolid/"
+       },
+       {
+        "texto": "Casetas Valladolid",
+        "url": "/casetas-valladolid/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas León",
+      "url": "/leon/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera León",
+        "url": "/casas-de-madera-leon/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón León",
+        "url": "/hormigon-leon/"
+       },
+       {
+        "texto": "Steel Framing León",
+        "url": "/steel-framing-leon/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Tarragona",
+      "url": "/tarragona/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Tarragona",
+        "url": "/de-madera-tarragona/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Tarragona",
+        "url": "/hormigon-tarragona/"
+       },
+       {
+        "texto": "Steel Framing Tarragona",
+        "url": "/steel-framing-tarragona/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Girona",
+      "url": "/girona/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas Hormigón Granada",
+        "url": "/hormigon-granada/"
+       },
+       {
+        "texto": "Steel Framing Girona",
+        "url": "/steel-framing-girona/"
+       },
+       {
+        "texto": "Casas Prefabricadas de Madera Girona",
+        "url": "/casas-de-madera-girona/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Granada",
+      "url": "/granada/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Granada",
+        "url": "/casas-de-madera-granada/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Girona",
+        "url": "/hormigon-girona/"
+       },
+       {
+        "texto": "Steel Framing Granada",
+        "url": "/steel-framing-granada/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Almería",
+      "url": "/almeria/",
+      "hijos": [
+       {
+        "texto": "Casas prefabricadas de Madera Almería",
+        "url": "/casas-de-madera-almeria/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Almería",
+        "url": "/hormigon-almeria/"
+       },
+       {
+        "texto": "Steel Framing Almería",
+        "url": "/steel-framing-almeria/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Álava",
+      "url": "/alava/"
+     },
+     {
+      "texto": "Casas Prefabricadas Castellón",
+      "url": "/castellon/"
+     },
+     {
+      "texto": "Casas Prefabricadas Guadalajara",
+      "url": "/guadalajara/"
+     },
+     {
+      "texto": "Casas Prefabricadas Las Palmas",
+      "url": "/las-palmas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Salamanca",
+      "url": "/salamanca/"
+     },
+     {
+      "texto": "Casas Prefabricadas Soria",
+      "url": "/soria/"
+     },
+     {
+      "texto": "Casas Prefabricadas Toledo",
+      "url": "/toledo/"
+     },
+     {
+      "texto": "Casas Prefabricadas Ourense",
+      "url": "/ourense/"
+     },
+     {
+      "texto": "Casas Prefabricadas Santander",
+      "url": "/santander/"
+     },
+     {
+      "texto": "Casas Prefabricadas Vigo",
+      "url": "/vigo/"
+     },
+     {
+      "texto": "Casas Prefabricadas Vitoria Gasteiz",
+      "url": "/vitoria/"
+     },
+     {
+      "texto": "Casas Prefabricadas Badajoz",
+      "url": "/badajoz/"
+     },
+     {
+      "texto": "Casas Prefabricadas Lleida",
+      "url": "/lleida/"
+     },
+     {
+      "texto": "Casas Prefabricadas Pontevedra",
+      "url": "/pontevedra/"
+     },
+     {
+      "texto": "Casas Prefabricadas Segovia",
+      "url": "/segovia/"
+     },
+     {
+      "texto": "Casas Prefabricadas Guipúzcoa",
+      "url": "/guipuzcoa/"
+     },
+     {
+      "texto": "Casas Prefabricadas Jaén",
+      "url": "/jaen/"
+     },
+     {
+      "texto": "Casas Prefabricadas Lugo",
+      "url": "/lugo/"
+     },
+     {
+      "texto": "Casas Prefabricadas Gijón",
+      "url": "/gijon/"
+     },
+     {
+      "texto": "Casas Prefabricadas Ibiza",
+      "url": "/ibiza/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Ibiza",
+        "url": "/casas-de-madera-ibiza/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Ibiza",
+        "url": "/hormigon-ibiza/"
+       },
+       {
+        "texto": "Steel Framing Ibiza",
+        "url": "/steel-framing-ibiza/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Santiago de Compostela",
+      "url": "/santiago-de-compostela/"
+     },
+     {
+      "texto": "Casas Prefabricadas Pamplona",
+      "url": "/pamplona/"
+     },
+     {
+      "texto": "Casas Prefabricadas Terrassa",
+      "url": "/terrassa/"
+     },
+     {
+      "texto": "Casas Prefabricadas Teruel",
+      "url": "/teruel/"
+     },
+     {
+      "texto": "Casas Prefabricadas Albacete",
+      "url": "/albacete/",
+      "hijos": [
+       {
+        "texto": "Casas Prefabricadas de Madera Albacete",
+        "url": "/casas-de-madera-albacete/"
+       },
+       {
+        "texto": "Casas Prefabricadas Hormigón Albacete",
+        "url": "/hormigon-albacete/"
+       },
+       {
+        "texto": "Steel Framing Albacete",
+        "url": "/steel-framing-albacete/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Ávila",
+      "url": "/avila/"
+     },
+     {
+      "texto": "Casas Prefabricadas Avilés",
+      "url": "/aviles/"
+     },
+     {
+      "texto": "Casas Prefabricadas Badalona",
+      "url": "/badalona/"
+     },
+     {
+      "texto": "Casas Prefabricadas Huelva",
+      "url": "/huelva/"
+     },
+     {
+      "texto": "Casas Prefabricadas Cuenca",
+      "url": "/cuenca/"
+     },
+     {
+      "texto": "Casas Prefabricadas La Coruña",
+      "url": "/la-coruna/"
+     },
+     {
+      "texto": "Casas Prefabricadas Ciudad Real",
+      "url": "/ciudad-real/"
+     },
+     {
+      "texto": "Casas Prefabricadas Cartagena",
+      "url": "/cartagena/"
+     },
+     {
+      "texto": "Casas Prefabricadas Cáceres",
+      "url": "/caceres/"
+     },
+     {
+      "texto": "Casas Prefabricadas Huesca",
+      "url": "/huesca/"
+     },
+     {
+      "texto": "Casas Prefabricadas Palencia",
+      "url": "/palencia/"
+     },
+     {
+      "texto": "Casas Prefabricadas Baleares",
+      "url": "/baleares/"
+     },
+     {
+      "texto": "Casas Prefabricadas Elche",
+      "url": "/elche/"
+     },
+     {
+      "texto": "Casas Prefabricadas Andalucía",
+      "url": "/andalucia/"
+     },
+     {
+      "texto": "Casas Prefabricadas San Sebastián",
+      "url": "/san-sebastian/"
+     },
+     {
+      "texto": "Casas Prefabricadas Zamora",
+      "url": "/zamora/"
+     },
+     {
+      "texto": "Casas Prefabricadas Crevillente",
+      "url": "/crevillente/"
+     },
+     {
+      "texto": "Casas Prefabricadas Pais Vasco",
+      "url": "/pais-vasco/"
+     },
+     {
+      "texto": "Casas Prefabricadas Euskadi",
+      "url": "/euskadi/"
+     },
+     {
+      "texto": "Casas Prefabricadas Bilbao",
+      "url": "/bilbao/"
+     },
+     {
+      "texto": "Casas Prefabricadas Marbella",
+      "url": "/marbella/"
+     },
+     {
+      "texto": "Casas Prefabricadas Ponferrada",
+      "url": "/ponferrada/"
+     },
+     {
+      "texto": "Casas Prefabricadas Oviedo",
+      "url": "/oviedo/"
+     },
+     {
+      "texto": "Casas Prefabricadas en el puerto de Santa María",
+      "url": "/santa-maria/"
+     },
+     {
+      "texto": "Casas Prefabricadas San Fernando",
+      "url": "/san-fernando/"
+     },
+     {
+      "texto": "Casas Prefabricadas Alcorcón",
+      "url": "/alcorcon/"
+     },
+     {
+      "texto": "Casas Prefabricadas Chiclana",
+      "url": "/chiclana/"
+     },
+     {
+      "texto": "Casas Prefabricadas Móstoles",
+      "url": "/mostoles/"
+     },
+     {
+      "texto": "Casas Prefabricadas Torrelavega",
+      "url": "/torrelavega/"
+     },
+     {
+      "texto": "Casas Prefabricadas Linares",
+      "url": "/linares/"
+     },
+     {
+      "texto": "Casas Prefabricadas Sueca",
+      "url": "/sueca/"
+     },
+     {
+      "texto": "Casas Prefabricadas Molina de Segura",
+      "url": "/molina/"
+     },
+     {
+      "texto": "Casas Prefabricadas Castro urdiales",
+      "url": "/castro/"
+     },
+     {
+      "texto": "Casas Prefabricadas Azuqueca de Henares",
+      "url": "/azuqueca-de-henares/"
+     },
+     {
+      "texto": "Casas Prefabricadas Utrera",
+      "url": "/utrera/"
+     },
+     {
+      "texto": "Casas Prefabricadas Aranda de Duero",
+      "url": "/aranda-de-duero/"
+     },
+     {
+      "texto": "Casas Prefabricadas Chipiona",
+      "url": "/chipiona/"
+     },
+     {
+      "texto": "Casas Prefabricadas Lorca",
+      "url": "/lorca/"
+     },
+     {
+      "texto": "Casas Prefabricadas Reus",
+      "url": "/reus/"
+     },
+     {
+      "texto": "Casas Prefabricadas Andújar",
+      "url": "/andujar/"
+     },
+     {
+      "texto": "Casas Prefabricadas Arganda del Rey",
+      "url": "/arganda-del-rey/"
+     },
+     {
+      "texto": "Casas Prefabricadas Algeciras",
+      "url": "/algeciras/"
+     },
+     {
+      "texto": "Casas Prefabricadas Mérida",
+      "url": "/merida/"
+     },
+     {
+      "texto": "Casas Prefabricadas Gandía",
+      "url": "/gandia/"
+     },
+     {
+      "texto": "Casas Prefabricadas Aranjuez",
+      "url": "/aranjuez/"
+     }
+    ]
+   },
+   {
+    "texto": "Empresas",
+    "url": "/empresas/",
+    "hijos": [
+     {
+      "texto": "Fabricantes",
+      "url": "/fabricantes/"
+     }
+    ]
+   },
+   {
+    "texto": "Presupuesto",
+    "url": "/presupuesto/"
+   }
+  ],
+  "textos-legales-adapta-rgpd": [
+   {
+    "texto": "Política de Cookies",
+    "url": "/politica-de-cookies/"
+   },
+   {
+    "texto": "Política de Privacidad",
+    "url": "/politica-de-privacidad/"
+   },
+   {
+    "texto": "Aviso Legal",
+    "url": "/aviso-legal/"
+   }
+  ],
+  "casas-prefabricadas-de-madera": [
+   {
+    "texto": "Home",
+    "url": "/"
+   },
+   {
+    "texto": "Precios",
+    "url": "/precios/",
+    "hijos": [
+     {
+      "texto": "Precios casas de madera",
+      "url": "/precios-casas-de-madera-prefabricadas/"
+     }
+    ]
+   },
+   {
+    "texto": "Modelos",
+    "url": "/modelos/",
+    "hijos": [
+     {
+      "texto": "Casas Prefabricadas de Madera",
+      "url": "/madera/",
+      "hijos": [
+       {
+        "texto": "Modelos de casas madera",
+        "url": "/modelos-de-casas-madera/"
+       },
+       {
+        "texto": "Casas de madera a medida",
+        "url": "/casas-de-madera-a-medida/"
+       },
+       {
+        "texto": "Casas de madera modernas",
+        "url": "/casas-de-madera-modernas/"
+       },
+       {
+        "texto": "Casas de madera jardín",
+        "url": "/casas-de-madera-jardin/"
+       },
+       {
+        "texto": "Cabañas de madera",
+        "url": "/cabanas-de-madera/"
+       },
+       {
+        "texto": "Casetas de madera",
+        "url": "/casetas-de-madera/"
+       },
+       {
+        "texto": "Cocheras de madera",
+        "url": "/cocheras-de-madera/"
+       },
+       {
+        "texto": "Cobertizos de madera",
+        "url": "/cobertizos-de-madera/"
+       },
+       {
+        "texto": "Casas de madera grandes",
+        "url": "/casas-de-madera-grandes/"
+       },
+       {
+        "texto": "Casas de madera pequeñas",
+        "url": "/casas-de-madera-pequenas/"
+       },
+       {
+        "texto": "Pérgolas de madera",
+        "url": "/pergolas-de-madera/"
+       },
+       {
+        "texto": "Casas de madera para perros",
+        "url": "/casas-de-madera-para-perros/"
+       },
+       {
+        "texto": "Casas de madera para gatos",
+        "url": "/casas-de-madera-para-gatos/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Hormigón",
+      "url": "/hormigon/"
+     },
+     {
+      "texto": "Steel Framing",
+      "url": "/steel-framing/"
+     },
+     {
+      "texto": "Casas Prefabricadas de lujo",
+      "url": "/de-lujo/"
+     },
+     {
+      "texto": "Casetas",
+      "url": "/casetas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Minimalistas",
+      "url": "/minimalistas/"
+     },
+     {
+      "texto": "Casas Prefabricadas mediterráneas",
+      "url": "/mediterraneas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Contenedores",
+      "url": "/contenedores/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modernas",
+      "url": "/modernas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modulares",
+      "url": "/modulares/"
+     },
+     {
+      "texto": "Casas Prefabricadas Móviles",
+      "url": "/moviles/"
+     },
+     {
+      "texto": "Casas Prefabricadas pasivas",
+      "url": "/pasivas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Cube",
+      "url": "/cube/"
+     },
+     {
+      "texto": "Casas Prefabricadas a medida",
+      "url": "/a-medida/"
+     }
+    ]
+   },
+   {
+    "texto": "Catalogo",
+    "url": "/catalogo/",
+    "hijos": [
+     {
+      "texto": "Catálogo casas de madera",
+      "url": "/catalogo-casas-de-madera/"
+     }
+    ]
+   },
+   {
+    "texto": "Planos",
+    "url": "/planos/",
+    "hijos": [
+     {
+      "texto": "Planos casas de madera",
+      "url": "/planos-casas-de-madera/"
+     }
+    ]
+   },
+   {
+    "texto": "Venta",
+    "url": "/venta/",
+    "hijos": [
+     {
+      "texto": "Venta casas de madera",
+      "url": "/venta-casas-de-madera/"
+     }
+    ]
+   },
+   {
+    "texto": "Ofertas",
+    "url": "/baratas/",
+    "hijos": [
+     {
+      "texto": "Ofertas Casas de madera",
+      "url": "/casas-de-madera-baratas/"
+     }
+    ]
+   },
+   {
+    "texto": "llave en mano",
+    "url": "/llave-en-mano/",
+    "hijos": [
+     {
+      "texto": "Casas de madera llave en mano",
+      "url": "/casas-de-madera-llave-en-mano/"
+     }
+    ]
+   },
+   {
+    "texto": "Imágenes",
+    "url": "/imagenes/",
+    "hijos": [
+     {
+      "texto": "Imágenes casas de madera",
+      "url": "/imagenes-casas-de-madera/"
+     }
+    ]
+   },
+   {
+    "texto": "Construcción",
+    "url": "/construccion/",
+    "hijos": [
+     {
+      "texto": "Construcción casas de madera",
+      "url": "/construccion-casas-de-madera/"
+     }
+    ]
+   },
+   {
+    "texto": "Provincias",
+    "url": "#",
+    "hijos": [
+     {
+      "texto": "Casas de Madera Madrid",
+      "url": "/casas-de-madera-madrid/"
+     },
+     {
+      "texto": "Casas de Madera Barcelona",
+      "url": "/casas-de-madera-barcelona/"
+     },
+     {
+      "texto": "Casas de Madera Valencia",
+      "url": "/de-madera-valencia/"
+     },
+     {
+      "texto": "Casas de Madera Galicia",
+      "url": "/casas-de-madera-galicia/"
+     },
+     {
+      "texto": "Casas de Madera Asturias",
+      "url": "/casas-de-madera-asturias/"
+     },
+     {
+      "texto": "Casas de Madera Murcia",
+      "url": "/casas-de-madera-murcia/"
+     },
+     {
+      "texto": "Casas de Madera Málaga",
+      "url": "/casas-de-madera-malaga/"
+     },
+     {
+      "texto": "Casas de Madera Albacete",
+      "url": "/casas-de-madera-albacete/"
+     },
+     {
+      "texto": "Casas de Madera Almería",
+      "url": "/casas-de-madera-almeria/"
+     },
+     {
+      "texto": "Casas de Madera Alicante",
+      "url": "/casas-de-madera-alicante/"
+     },
+     {
+      "texto": "Casas de Madera Álava",
+      "url": "/casas-de-madera-alava/"
+     },
+     {
+      "texto": "Casas de Madera Ávila",
+      "url": "/casas-de-madera-avila/"
+     },
+     {
+      "texto": "Casas de Madera Avilés",
+      "url": "/casas-de-madera-aviles/"
+     },
+     {
+      "texto": "Casas de Madera Burgos",
+      "url": "/casas-de-madera-burgos/"
+     },
+     {
+      "texto": "Casas de Madera Vizcaya",
+      "url": "/casas-de-madera-vizcaya/"
+     },
+     {
+      "texto": "Casas de Madera Badalona",
+      "url": "/casas-de-madera-badalona/"
+     },
+     {
+      "texto": "Casas de Madera Badajoz",
+      "url": "/casas-de-madera-badajoz/"
+     },
+     {
+      "texto": "Casas de Madera Cáceres",
+      "url": "/casas-de-madera-caceres/"
+     },
+     {
+      "texto": "Casas de Madera Cádiz",
+      "url": "/casas-de-madera-cadiz/"
+     },
+     {
+      "texto": "Casas de Madera Canarias",
+      "url": "/casas-de-madera-canarias/"
+     },
+     {
+      "texto": "Casas de Madera Cataluña",
+      "url": "/casas-de-madera-cataluna/"
+     },
+     {
+      "texto": "Casas de Madera Cartagena",
+      "url": "/casas-de-madera-cartagena/"
+     },
+     {
+      "texto": "Casas de Madera Cantabria",
+      "url": "/casas-de-madera-cantabria/"
+     },
+     {
+      "texto": "Casas de Madera Castellón",
+      "url": "/casas-de-madera-castellon/"
+     },
+     {
+      "texto": "Casas de Madera Ciudad Real",
+      "url": "/casas-de-madera-ciudad-real/"
+     },
+     {
+      "texto": "Casas de Madera Córdoba",
+      "url": "/casas-de-madera-cordoba/"
+     },
+     {
+      "texto": "Casas de Madera Cuenca",
+      "url": "/casas-de-madera-cuenca/"
+     },
+     {
+      "texto": "Casas de Madera Extremadura",
+      "url": "/casas-de-madera-extremadura/"
+     },
+     {
+      "texto": "Casas de Madera La Coruña",
+      "url": "/casas-de-madera-la-coruna/"
+     },
+     {
+      "texto": "Casas de Madera Gijón",
+      "url": "/casas-de-madera-gijon/"
+     },
+     {
+      "texto": "Casas de Madera Guipúzcoa",
+      "url": "/casas-de-madera-guipuzcoa/"
+     },
+     {
+      "texto": "Casas de Madera Girona",
+      "url": "/casas-de-madera-girona/"
+     },
+     {
+      "texto": "Casas de Madera Granada",
+      "url": "/casas-de-madera-granada/"
+     },
+     {
+      "texto": "Casas de Madera Guadalajara",
+      "url": "/casas-de-madera-guadalajara/"
+     },
+     {
+      "texto": "Casas de Madera Huelva",
+      "url": "/casas-de-madera-huelva/"
+     },
+     {
+      "texto": "Casas de Madera Huesca",
+      "url": "/casas-de-madera-huesca/"
+     },
+     {
+      "texto": "Casas de Madera Ibiza",
+      "url": "/casas-de-madera-ibiza/"
+     },
+     {
+      "texto": "Casas de Madera Jaén",
+      "url": "/casas-de-madera-jaen/"
+     },
+     {
+      "texto": "Casas de Madera León",
+      "url": "/casas-de-madera-leon/"
+     },
+     {
+      "texto": "Casas de Madera Lleida",
+      "url": "/casas-de-madera-lleida/"
+     },
+     {
+      "texto": "Casas de Madera Lugo",
+      "url": "/casas-de-madera-lugo/"
+     },
+     {
+      "texto": "Casas de Madera Mallorca",
+      "url": "/casas-de-madera-mallorca/"
+     },
+     {
+      "texto": "Casas de Madera Navarra",
+      "url": "/casas-de-madera-navarra/"
+     },
+     {
+      "texto": "Casas de Madera Ourense",
+      "url": "/de-madera-ourense/"
+     },
+     {
+      "texto": "Casas de Madera Palancia",
+      "url": "/de-madera-palancia/"
+     },
+     {
+      "texto": "Casas de Madera Las Palmas",
+      "url": "/de-madera-las-palmas/"
+     },
+     {
+      "texto": "Casas de Madera Pamplona",
+      "url": "/de-madera-pamplona/"
+     },
+     {
+      "texto": "Casas de Madera Pontevedra",
+      "url": "/de-madera-pontevedra/"
+     },
+     {
+      "texto": "Casas de Madera La Rioja",
+      "url": "/de-madera-la-rioja/"
+     },
+     {
+      "texto": "Casas de Madera Salamanca",
+      "url": "/de-madera-salamanca/"
+     },
+     {
+      "texto": "Casas de Madera Santiago de Compostela",
+      "url": "/de-madera-santiago-de-compostela/"
+     },
+     {
+      "texto": "Casas de Madera Tenerife",
+      "url": "/de-madera-tenerife/"
+     },
+     {
+      "texto": "Casas de Madera Santander",
+      "url": "/de-madera-santander/"
+     },
+     {
+      "texto": "Casas de Madera Segovia",
+      "url": "/casas-de-madera-segovia/"
+     },
+     {
+      "texto": "Casas de Madera Sevilla",
+      "url": "/de-madera-sevilla/"
+     },
+     {
+      "texto": "Casas de Madera Soria",
+      "url": "/de-madera-soria/"
+     },
+     {
+      "texto": "Casas de Madera Teruel",
+      "url": "/de-madera-teruel/"
+     },
+     {
+      "texto": "Casas de Madera Terrassa",
+      "url": "/de-madera-terrassa/"
+     },
+     {
+      "texto": "Casas de Madera Toledo",
+      "url": "/de-madera-toledo/"
+     },
+     {
+      "texto": "Casas de Madera Vigo",
+      "url": "/de-madera-vigo/"
+     },
+     {
+      "texto": "Casas de Madera Vitoria",
+      "url": "/de-madera-vitoria/"
+     },
+     {
+      "texto": "Casas de Madera Valladolid",
+      "url": "/de-madera-valladolid/"
+     },
+     {
+      "texto": "Casas de Madera Tarragona",
+      "url": "/de-madera-tarragona/"
+     },
+     {
+      "texto": "Casas de Madera Elche",
+      "url": "/casas-de-madera-elche/"
+     },
+     {
+      "texto": "Casas de Madera San Sebastián",
+      "url": "/casas-de-madera-san-sebastian/"
+     },
+     {
+      "texto": "Casas de Madera Andalucía",
+      "url": "/casas-de-madera-andalucia/"
+     },
+     {
+      "texto": "Casas de Madera Baleares",
+      "url": "/casas-de-madera-baleares/"
+     },
+     {
+      "texto": "Casas de Madera Zamora",
+      "url": "/casas-de-madera-zamora/"
+     },
+     {
+      "texto": "Casas de Madera Oviedo",
+      "url": "/casas-de-madera-oviedo/"
+     },
+     {
+      "texto": "Casas de Madera Ponferrada",
+      "url": "/casas-de-madera-ponferrada/"
+     },
+     {
+      "texto": "Casas de Madera Marbella",
+      "url": "/casas-de-madera-marbella/"
+     },
+     {
+      "texto": "Casas de Madera Euskadi",
+      "url": "/casas-de-madera-euskadi/"
+     },
+     {
+      "texto": "Casas de Madera País Vasco",
+      "url": "/casas-de-madera-pais-vasco/"
+     },
+     {
+      "texto": "Casas de Madera Bilbao",
+      "url": "/casas-de-madera-bilbao/"
+     },
+     {
+      "texto": "Casas de Madera Crevillente",
+      "url": "/casas-de-madera-crevillente/"
+     },
+     {
+      "texto": "Casas de Madera Chiclana de la frontera",
+      "url": "/casas-de-madera-chiclana-de-la-frontera/"
+     },
+     {
+      "texto": "Casas de Madera Móstoles",
+      "url": "/casas-de-madera-mostoles/"
+     },
+     {
+      "texto": "Casas de Madera Torrelavega",
+      "url": "/casas-de-madera-torrelavega/"
+     },
+     {
+      "texto": "Casas de Madera Santa maría",
+      "url": "/casas-de-madera-santa-maria/"
+     },
+     {
+      "texto": "Casas de Madera San Fernando",
+      "url": "/casas-de-madera-san-fernando/"
+     },
+     {
+      "texto": "Casas de Madera Alcorcón",
+      "url": "/casas-de-madera-alcorcon/"
+     },
+     {
+      "texto": "Casas de Madera Linares",
+      "url": "/casas-de-madera-linares/"
+     },
+     {
+      "texto": "Casas de Madera Azuqueca de Henares",
+      "url": "/casas-de-madera-azuqueca-de-henares/"
+     },
+     {
+      "texto": "Casas de Madera Castro Urdiales",
+      "url": "/casas-de-madera-castro-urdiales/"
+     },
+     {
+      "texto": "Casas de Madera Molina de Segura",
+      "url": "/casas-de-madera-molina-de-segura/"
+     },
+     {
+      "texto": "Casas de Madera Sueca",
+      "url": "/casas-de-madera-sueca/"
+     },
+     {
+      "texto": "Casas de Madera Lorca",
+      "url": "/casas-de-madera-lorca/"
+     },
+     {
+      "texto": "Casas de Madera Utrera",
+      "url": "/casas-de-madera-utrera/"
+     },
+     {
+      "texto": "Casas de Madera Aranda de Duero",
+      "url": "/casas-de-madera-aranda-de-duero/"
+     },
+     {
+      "texto": "Casas de Madera Reus",
+      "url": "/casas-de-madera-reus/"
+     },
+     {
+      "texto": "Casas de Madera Andújar",
+      "url": "/casas-de-madera-andujar/"
+     },
+     {
+      "texto": "Casas de Madera Chipiona",
+      "url": "/casas-de-madera-chipiona/"
+     },
+     {
+      "texto": "Casas de Madera Algeciras",
+      "url": "/casas-de-madera-algeciras/"
+     },
+     {
+      "texto": "Casas de Madera Mérida",
+      "url": "/casas-de-madera-merida/"
+     },
+     {
+      "texto": "Casas de Madera Gandía",
+      "url": "/casas-de-madera-gandia/"
+     },
+     {
+      "texto": "Casas de Madera Aranjuez",
+      "url": "/casas-de-madera-aranjuez/"
+     }
+    ]
+   },
+   {
+    "texto": "Presupuesto",
+    "url": "/presupuesto/"
+   }
+  ],
+  "casas-de-hormigon": [
+   {
+    "texto": "Home",
+    "url": "/"
+   },
+   {
+    "texto": "Precios",
+    "url": "/precios/",
+    "hijos": [
+     {
+      "texto": "Precios casas Hormigón",
+      "url": "/hormigon-precios/"
+     }
+    ]
+   },
+   {
+    "texto": "Modelos",
+    "url": "/modelos/",
+    "hijos": [
+     {
+      "texto": "Casas Prefabricadas Hormigón",
+      "url": "/hormigon/"
+     },
+     {
+      "texto": "Casas Prefabricadas de Madera",
+      "url": "/madera/"
+     },
+     {
+      "texto": "Steel Framing",
+      "url": "/steel-framing/"
+     },
+     {
+      "texto": "Casas Prefabricadas Minimalistas",
+      "url": "/minimalistas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modernas",
+      "url": "/modernas/"
+     },
+     {
+      "texto": "Casas Prefabricadas mediterráneas",
+      "url": "/mediterraneas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modulares",
+      "url": "/modulares/"
+     },
+     {
+      "texto": "Casas Prefabricadas de lujo",
+      "url": "/de-lujo/"
+     },
+     {
+      "texto": "Casas Prefabricadas Cube",
+      "url": "/cube/"
+     },
+     {
+      "texto": "Casetas",
+      "url": "/casetas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Contenedores",
+      "url": "/contenedores/"
+     },
+     {
+      "texto": "Casas Prefabricadas pasivas",
+      "url": "/pasivas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Móviles",
+      "url": "/moviles/"
+     },
+     {
+      "texto": "Casas Prefabricadas a medida",
+      "url": "/a-medida/"
+     }
+    ]
+   },
+   {
+    "texto": "Catálogos",
+    "url": "/catalogo/",
+    "hijos": [
+     {
+      "texto": "Catalogo casas de Hormigón",
+      "url": "/hormigon-catalogo/"
+     }
+    ]
+   },
+   {
+    "texto": "Planos",
+    "url": "/planos-de-casas-prefabricadas/",
+    "hijos": [
+     {
+      "texto": "Planos casas Hormigón",
+      "url": "/hormigon-planos/"
+     }
+    ]
+   },
+   {
+    "texto": "Venta",
+    "url": "/venta/",
+    "hijos": [
+     {
+      "texto": "Venta casas Hormigón",
+      "url": "/venta-casas-prefabricadas-de-hormigon/"
+     }
+    ]
+   },
+   {
+    "texto": "Ofertas",
+    "url": "/baratas/",
+    "hijos": [
+     {
+      "texto": "Ofertas casas Hormigón",
+      "url": "/hormigon-baratas/"
+     }
+    ]
+   },
+   {
+    "texto": "llave en mano",
+    "url": "/llave-en-mano/",
+    "hijos": [
+     {
+      "texto": "casas Hormigón llave en mano",
+      "url": "/hormigon-llave-en-mano/"
+     }
+    ]
+   },
+   {
+    "texto": "Imágenes",
+    "url": "/imagenes/",
+    "hijos": [
+     {
+      "texto": "Fotos casas Hormigón",
+      "url": "/hormigon-fotos/"
+     }
+    ]
+   },
+   {
+    "texto": "Construcción",
+    "url": "/construccion/",
+    "hijos": [
+     {
+      "texto": "Construcción casas Hormigón",
+      "url": "/construccion-casas-hormigon/"
+     }
+    ]
+   },
+   {
+    "texto": "Provincias",
+    "url": "#",
+    "hijos": [
+     {
+      "texto": "Casas Hormigón Madrid",
+      "url": "/hormigon-madrid/"
+     },
+     {
+      "texto": "Casas Hormigón Barcelona",
+      "url": "/hormigon-barcelona/"
+     },
+     {
+      "texto": "Casas Hormigón Valencia",
+      "url": "/hormigon-valencia/"
+     },
+     {
+      "texto": "Casas Hormigón Galicia",
+      "url": "/hormigon-galicia/"
+     },
+     {
+      "texto": "Casas Hormigón Murcia",
+      "url": "/hormigon-murcia/"
+     },
+     {
+      "texto": "Casas Hormigón Málaga",
+      "url": "/hormigon-malaga/"
+     },
+     {
+      "texto": "Casas Hormigón Mallorca",
+      "url": "/hormigon-mallorca/"
+     },
+     {
+      "texto": "Casas Hormigón Albacete",
+      "url": "/hormigon-albacete/"
+     },
+     {
+      "texto": "Casas Hormigón Alicante",
+      "url": "/hormigon-alicante/"
+     },
+     {
+      "texto": "Casas Hormigón Almería",
+      "url": "/hormigon-almeria/"
+     },
+     {
+      "texto": "Casas Hormigón Álava",
+      "url": "/hormigon-alava/"
+     },
+     {
+      "texto": "Casas Hormigón Asturias",
+      "url": "/hormigon-asturias/"
+     },
+     {
+      "texto": "Casas Hormigón Ávila",
+      "url": "/hormigon-avila/"
+     },
+     {
+      "texto": "Casas Hormigón Avilés",
+      "url": "/hormigon-aviles/"
+     },
+     {
+      "texto": "Casas Hormigón Badajoz",
+      "url": "/hormigon-badajoz/"
+     },
+     {
+      "texto": "Casas Hormigón Badalona",
+      "url": "/hormigon-badalona/"
+     },
+     {
+      "texto": "Casas Hormigón Bizkaia",
+      "url": "/hormigon-bizkaia/"
+     },
+     {
+      "texto": "Casas Hormigón Burgos",
+      "url": "/hormigon-burgos/"
+     },
+     {
+      "texto": "Casas Hormigón Cáceres",
+      "url": "/hormigon-caceres/"
+     },
+     {
+      "texto": "Casas Hormigón Cádiz",
+      "url": "/hormigon-cadiz/"
+     },
+     {
+      "texto": "Casas Hormigón Cantabria",
+      "url": "/hormigon-cantabria/"
+     },
+     {
+      "texto": "Casas Hormigón Canarias",
+      "url": "/hormigon-canarias/"
+     },
+     {
+      "texto": "Casas Hormigón Catalunya",
+      "url": "/hormigon-catalunya/"
+     },
+     {
+      "texto": "Casas Hormigón Cartagena",
+      "url": "/hormigon-cartagena/"
+     },
+     {
+      "texto": "Casas Hormigón Castellón",
+      "url": "/hormigon-castellon/"
+     },
+     {
+      "texto": "Casas Hormigón Ciudad Real",
+      "url": "/hormigon-ciudad-real/"
+     },
+     {
+      "texto": "Casas Hormigón Córdoba",
+      "url": "/hormigon-cordoba/"
+     },
+     {
+      "texto": "Casas Hormigón La Coruña",
+      "url": "/hormigon-la-coruna/"
+     },
+     {
+      "texto": "Casas Hormigón Cuenca",
+      "url": "/hormigon-cuenca/"
+     },
+     {
+      "texto": "Casas Hormigón Extremadura",
+      "url": "/hormigon-extremadura/"
+     },
+     {
+      "texto": "Casas Hormigón Gijón",
+      "url": "/hormigon-gijon/"
+     },
+     {
+      "texto": "Casas Hormigón Huesca",
+      "url": "/hormigon-huesca/"
+     },
+     {
+      "texto": "Casas Hormigón Ibiza",
+      "url": "/hormigon-ibiza/"
+     },
+     {
+      "texto": "Casas Hormigón Jaén",
+      "url": "/hormigon-jaen/"
+     },
+     {
+      "texto": "Casas Hormigón León",
+      "url": "/hormigon-leon/"
+     },
+     {
+      "texto": "Casas Hormigón Lleida",
+      "url": "/hormigon-lleida/"
+     },
+     {
+      "texto": "Casas Hormigón Lugo",
+      "url": "/hormigon-lugo/"
+     },
+     {
+      "texto": "Casas Hormigón Ourense",
+      "url": "/hormigon-ourense/"
+     },
+     {
+      "texto": "Casas Hormigón Las Palmas",
+      "url": "/hormigon-las-palmas/"
+     },
+     {
+      "texto": "Casas Hormigón Pamplona",
+      "url": "/hormigon-pamplona/"
+     },
+     {
+      "texto": "Casas Hormigón Pontevedra",
+      "url": "/hormigon-pontevedra/"
+     },
+     {
+      "texto": "Casas Hormigón Navarra",
+      "url": "/hormigon-navarra/"
+     },
+     {
+      "texto": "Casas Hormigón Palencia",
+      "url": "/hormigon-palencia/"
+     },
+     {
+      "texto": "Casas Hormigón La Rioja",
+      "url": "/hormigon-la-rioja/"
+     },
+     {
+      "texto": "Casas Hormigón Salamanca",
+      "url": "/hormigon-salamanca/"
+     },
+     {
+      "texto": "Casas Hormigón Compostela",
+      "url": "/hormigon-compostela/"
+     },
+     {
+      "texto": "Casas Hormigón Tenerife",
+      "url": "/hormigon-tenerife/"
+     },
+     {
+      "texto": "Casas Hormigón Santander",
+      "url": "/hormigon-santander/"
+     },
+     {
+      "texto": "Casas Hormigón Segovia",
+      "url": "/hormigon-segovia/"
+     },
+     {
+      "texto": "Casas Hormigón Sevilla",
+      "url": "/hormigon-sevilla/"
+     },
+     {
+      "texto": "Casas Hormigón Soria",
+      "url": "/hormigon-soria/"
+     },
+     {
+      "texto": "Casas Hormigón Tarragona",
+      "url": "/hormigon-tarragona/"
+     },
+     {
+      "texto": "Casas Hormigón Teruel",
+      "url": "/hormigon-teruel/"
+     },
+     {
+      "texto": "Casas Hormigón Terrassa",
+      "url": "/hormigon-terrassa/"
+     },
+     {
+      "texto": "Casas Hormigón Toledo",
+      "url": "/hormigon-toledo/"
+     },
+     {
+      "texto": "Casas Hormigón Vigo",
+      "url": "/hormigon-vigo/"
+     },
+     {
+      "texto": "Casas Hormigón Vitoria Gasteiz",
+      "url": "/hormigon-vitoria-gasteiz/"
+     },
+     {
+      "texto": "Casas Hormigón Valladolid",
+      "url": "/hormigon-valladolid/"
+     },
+     {
+      "texto": "Casas Hormigón Zaragoza",
+      "url": "/hormigon-zaragoza/"
+     },
+     {
+      "texto": "Casas Hormigón Elche",
+      "url": "/hormigon-elche/"
+     },
+     {
+      "texto": "Casas Hormigón Andalucía",
+      "url": "/hormigon-andalucia/"
+     },
+     {
+      "texto": "Casas Hormigón San Sebastián",
+      "url": "/hormigon-san-sebastian/"
+     },
+     {
+      "texto": "Casas Hormigón Baleares",
+      "url": "/hormigon-baleares/"
+     },
+     {
+      "texto": "Casas Hormigón Crevillente",
+      "url": "/hormigon-crevillente/"
+     },
+     {
+      "texto": "Casas Hormigón Zamora",
+      "url": "/hormigon-zamora/"
+     },
+     {
+      "texto": "Casas Hormigón Bilbao",
+      "url": "/hormigon-bilbao/"
+     },
+     {
+      "texto": "Casas Hormigón País Vasco",
+      "url": "/hormigon-pais-vasco/"
+     },
+     {
+      "texto": "Casas Hormigón Euskadi",
+      "url": "/hormigon-euskadi/"
+     },
+     {
+      "texto": "Casas Hormigón Marbella",
+      "url": "/hormigon-marbella/"
+     },
+     {
+      "texto": "Casas Hormigón Ponferrada",
+      "url": "/hormigon-ponferrada/"
+     },
+     {
+      "texto": "Casas Hormigón Oviedo",
+      "url": "/hormigon-oviedo/"
+     },
+     {
+      "texto": "Casas Hormigón Móstoles",
+      "url": "/hormigon-mostoles/"
+     },
+     {
+      "texto": "Casas Hormigón Chiclana",
+      "url": "/hormigon-chiclana/"
+     },
+     {
+      "texto": "Casas Hormigón Torrelavega",
+      "url": "/hormigon-torrelavega/"
+     },
+     {
+      "texto": "Casas Hormigón Santa María",
+      "url": "/hormigon-puerto-de-santa-maria/"
+     },
+     {
+      "texto": "Casas Hormigón San Fernando",
+      "url": "/hormigon-san-fernando/"
+     },
+     {
+      "texto": "Casas Hormigón Alarcón",
+      "url": "/hormigon-alarcon/"
+     },
+     {
+      "texto": "Casas Hormigón Linares",
+      "url": "/hormigon-linares/"
+     },
+     {
+      "texto": "Casas Hormigón Azuqueca de Henares",
+      "url": "/hormigon-azuqueca-de-henares/"
+     },
+     {
+      "texto": "Casas Hormigón Castro Urdiales",
+      "url": "/hormigon-castro-urdiales/"
+     },
+     {
+      "texto": "Casas Hormigón Molina de segura",
+      "url": "/hormigon-molina-de-segura/"
+     },
+     {
+      "texto": "Casas Hormigón Sueca",
+      "url": "/hormigon-sueca/"
+     },
+     {
+      "texto": "Casas Hormigón Lorca",
+      "url": "/hormigon-lorca/"
+     },
+     {
+      "texto": "Casas Hormigón Aranjuez",
+      "url": "/hormigon-aranjuez/"
+     },
+     {
+      "texto": "Casas Hormigón Gandía",
+      "url": "/hormigon-gandia/"
+     },
+     {
+      "texto": "Casas Hormigón Mérida",
+      "url": "/hormigon-merida/"
+     },
+     {
+      "texto": "Casas Hormigón Algeciras",
+      "url": "/hormigon-algeciras/"
+     },
+     {
+      "texto": "Casas Hormigón Utrera",
+      "url": "/hormigon-utrera/"
+     },
+     {
+      "texto": "Casas Hormigón Chipiona",
+      "url": "/hormigon-chipiona/"
+     },
+     {
+      "texto": "Casas Hormigón Aranada de Duero",
+      "url": "/hormigon-aranda-de-duero/"
+     },
+     {
+      "texto": "Casas Hormigón Reus",
+      "url": "/hormigon-reus/"
+     },
+     {
+      "texto": "Casas Hormigón Andújar",
+      "url": "/hormigon-andujar/"
+     },
+     {
+      "texto": "Casas Hormigón Mérida",
+      "url": "/hormigon-merida/"
+     },
+     {
+      "texto": "Casas  Hormigón Gandía",
+      "url": "/hormigon-gandia/"
+     },
+     {
+      "texto": "Casas Hormigón Algeciras",
+      "url": "/hormigon-algeciras/"
+     },
+     {
+      "texto": "Casas Hormigón Aranjuez",
+      "url": "/hormigon-aranjuez/"
+     }
+    ]
+   },
+   {
+    "texto": "Presupuesto",
+    "url": "/presupuesto/"
+   }
+  ],
+  "casas-prefabricadas-provincias": [
+   {
+    "texto": "Home",
+    "url": "/"
+   },
+   {
+    "texto": "Precios",
+    "url": "/precios/",
+    "hijos": [
+     {
+      "texto": "Precios casas de madera",
+      "url": "/precios-casas-de-madera-prefabricadas/"
+     },
+     {
+      "texto": "Precios casas de hormigón",
+      "url": "/hormigon-precios/"
+     },
+     {
+      "texto": "Precios Steel Framing",
+      "url": "/steel-framing-precios/"
+     },
+     {
+      "texto": "Precios de Casetas",
+      "url": "/precios-de-casetas/"
+     },
+     {
+      "texto": "Financiación",
+      "url": "/financiacion/"
+     }
+    ]
+   },
+   {
+    "texto": "Modelos",
+    "url": "/modelos/",
+    "hijos": [
+     {
+      "texto": "Casas Prefabricadas de Madera",
+      "url": "/madera/",
+      "hijos": [
+       {
+        "texto": "Modelos de casas madera",
+        "url": "/modelos-de-casas-madera/"
+       },
+       {
+        "texto": "Casas de madera a medida",
+        "url": "/casas-de-madera-a-medida/"
+       },
+       {
+        "texto": "Casas de madera modernas",
+        "url": "/casas-de-madera-modernas/"
+       },
+       {
+        "texto": "Casas de madera jardín",
+        "url": "/casas-de-madera-jardin/"
+       },
+       {
+        "texto": "Cabañas de madera",
+        "url": "/cabanas-de-madera/"
+       },
+       {
+        "texto": "Casetas de madera",
+        "url": "/casetas-de-madera/"
+       },
+       {
+        "texto": "Cocheras de madera",
+        "url": "/cocheras-de-madera/"
+       },
+       {
+        "texto": "Cobertizos de madera",
+        "url": "/cobertizos-de-madera/"
+       },
+       {
+        "texto": "Casas de madera grandes",
+        "url": "/casas-de-madera-grandes/"
+       },
+       {
+        "texto": "Casas de madera pequeñas",
+        "url": "/casas-de-madera-pequenas/"
+       },
+       {
+        "texto": "Pérgolas de madera",
+        "url": "/pergolas-de-madera/"
+       },
+       {
+        "texto": "Casas de madera para perros",
+        "url": "/casas-de-madera-para-perros/"
+       },
+       {
+        "texto": "Casas de madera para gatos",
+        "url": "/casas-de-madera-para-gatos/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Hormigón",
+      "url": "/hormigon/"
+     },
+     {
+      "texto": "Steel Framing",
+      "url": "/steel-framing/",
+      "hijos": [
+       {
+        "texto": "Casas Steel Framing",
+        "url": "/casas-steel-framing/"
+       },
+       {
+        "texto": "Perfiles Steel Framing",
+        "url": "/perfiles-steel-framing/"
+       },
+       {
+        "texto": "Modelos casas steel framing",
+        "url": "/modelos-casas-steel-framing/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas mediterráneas",
+      "url": "/mediterraneas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modernas",
+      "url": "/modernas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modulares",
+      "url": "/modulares/"
+     },
+     {
+      "texto": "Casas Prefabricadas Cube",
+      "url": "/cube/"
+     },
+     {
+      "texto": "Casetas",
+      "url": "/casetas/",
+      "hijos": [
+       {
+        "texto": "Modelos de casetas",
+        "url": "/modelos-de-casetas/"
+       },
+       {
+        "texto": "Casetas Prefabricadas",
+        "url": "/casetas-prefabricadas/"
+       },
+       {
+        "texto": "Casetas de obra",
+        "url": "/casetas-de-obra/"
+       },
+       {
+        "texto": "Casetas de campo",
+        "url": "/casetas-de-campo/"
+       },
+       {
+        "texto": "Casetas de Jardín",
+        "url": "/casetas-de-jardin/"
+       },
+       {
+        "texto": "Casetas de madera",
+        "url": "/casetas-de-madera/"
+       },
+       {
+        "texto": "Casetas de plástico",
+        "url": "/casetas-de-plastico/"
+       },
+       {
+        "texto": "Casetas de Resina",
+        "url": "/casetas-de-resina/"
+       },
+       {
+        "texto": "Casetas de ferias",
+        "url": "/casetas-de-ferias/"
+       },
+       {
+        "texto": "Casetas de aperos",
+        "url": "/casetas-de-aperos/"
+       },
+       {
+        "texto": "Casetas para negocio",
+        "url": "/casetas-para-negocio/"
+       },
+       {
+        "texto": "Casetas hormigón prefabricadas",
+        "url": "/casetas-hormigon-prefabricadas/"
+       },
+       {
+        "texto": "Casetas Metálicas",
+        "url": "/casetas-metalicas/"
+       },
+       {
+        "texto": "Casetas de vigilancia",
+        "url": "/casetas-de-vigilancia/"
+       },
+       {
+        "texto": "Casetas para bicicletas",
+        "url": "/casetas-para-bicicletas/"
+       },
+       {
+        "texto": "Casetas para gatos",
+        "url": "/casetas-para-gatos/"
+       },
+       {
+        "texto": "Casetas para perros",
+        "url": "/casetas-para-perros/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Contenedores",
+      "url": "/contenedores/"
+     },
+     {
+      "texto": "Casas Prefabricadas Minimalistas",
+      "url": "/minimalistas/"
+     },
+     {
+      "texto": "Casas Prefabricadas de lujo",
+      "url": "/de-lujo/"
+     },
+     {
+      "texto": "Casas Prefabricadas Móviles",
+      "url": "/moviles/"
+     },
+     {
+      "texto": "Casas Prefabricadas pasivas",
+      "url": "/pasivas/"
+     },
+     {
+      "texto": "Casas Prefabricadas a medida",
+      "url": "/a-medida/"
+     }
+    ]
+   },
+   {
+    "texto": "Catalogos",
+    "url": "/catalogo/",
+    "hijos": [
+     {
+      "texto": "Catálogo casas de madera",
+      "url": "/catalogo-casas-de-madera/"
+     },
+     {
+      "texto": "Catalogo Casas Hormigón",
+      "url": "/hormigon-catalogo/"
+     },
+     {
+      "texto": "Catalogo Steel Framing",
+      "url": "/steel-framing-catalogo/"
+     },
+     {
+      "texto": "Catálogo Casetas",
+      "url": "/catalogo-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Planos",
+    "url": "/planos/",
+    "hijos": [
+     {
+      "texto": "Planos casas de madera",
+      "url": "/planos-casas-de-madera/"
+     },
+     {
+      "texto": "Planos casas hormigón",
+      "url": "/hormigon-planos/"
+     },
+     {
+      "texto": "Planos Steel Framing",
+      "url": "/steel-framing-planos/"
+     },
+     {
+      "texto": "Planos de casetas",
+      "url": "/planos-de-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Venta",
+    "url": "/venta/",
+    "hijos": [
+     {
+      "texto": "Venta casas de madera",
+      "url": "/venta-casas-de-madera/"
+     },
+     {
+      "texto": "Venta casas de hormigón",
+      "url": "/venta-casas-prefabricadas-de-hormigon/"
+     },
+     {
+      "texto": "Venta Steel Framing",
+      "url": "/steel-framing-venta/"
+     },
+     {
+      "texto": "Venta de casetas",
+      "url": "/casetas-en-venta/"
+     }
+    ]
+   },
+   {
+    "texto": "Ofertas",
+    "url": "/baratas/",
+    "hijos": [
+     {
+      "texto": "Casas de madera ofertas",
+      "url": "/casas-de-madera-baratas/"
+     },
+     {
+      "texto": "Casas hormigón Ofertas",
+      "url": "/hormigon-baratas/"
+     },
+     {
+      "texto": "Steel Framing Ofertas",
+      "url": "/steel-framing-ofertas/"
+     },
+     {
+      "texto": "Casetas Ofertas",
+      "url": "/casetas-baratas/"
+     }
+    ]
+   },
+   {
+    "texto": "Llave en mano",
+    "url": "/llave-en-mano/",
+    "hijos": [
+     {
+      "texto": "Casas de madera llave en mano",
+      "url": "/casas-de-madera-llave-en-mano/"
+     },
+     {
+      "texto": "Casas Hormigón llave en mano",
+      "url": "/hormigon-llave-en-mano/"
+     },
+     {
+      "texto": "Steel Framing llave en mano",
+      "url": "/steel-framing-llave-en-mano/"
+     },
+     {
+      "texto": "Casetas llave en mano",
+      "url": "/casetas-llave-en-mano/"
+     }
+    ]
+   },
+   {
+    "texto": "Imágenes",
+    "url": "/imagenes/",
+    "hijos": [
+     {
+      "texto": "Imágenes casas de madera",
+      "url": "/imagenes-casas-de-madera/"
+     },
+     {
+      "texto": "Imágenes casas de hormigón",
+      "url": "/hormigon-fotos/"
+     },
+     {
+      "texto": "imágenes Steel Framing",
+      "url": "/steel-framing-imagenes/"
+     },
+     {
+      "texto": "Imágenes de casetas",
+      "url": "/imagenes-de-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Construcción",
+    "url": "/construccion/",
+    "hijos": [
+     {
+      "texto": "Construcción casas de madera",
+      "url": "/construccion-casas-de-madera/"
+     },
+     {
+      "texto": "Construcción casas hormigón",
+      "url": "/construccion-casas-hormigon/"
+     },
+     {
+      "texto": "Construcciones Steel Framing",
+      "url": "/construcciones-steel-framing/"
+     },
+     {
+      "texto": "Construcción de Casetas",
+      "url": "/construccion-de-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Presupuesto",
+    "url": "/presupuesto/"
+   },
+   {
+    "texto": "Empresas",
+    "url": "/empresas/",
+    "hijos": [
+     {
+      "texto": "Fabricantes",
+      "url": "/fabricantes/"
+     }
+    ]
+   }
+  ],
+  "casas-steel-framing": [
+   {
+    "texto": "Home",
+    "url": "/"
+   },
+   {
+    "texto": "Precios",
+    "url": "/precios/",
+    "hijos": [
+     {
+      "texto": "Precios Steel Framing",
+      "url": "/steel-framing-precios/"
+     }
+    ]
+   },
+   {
+    "texto": "Modelos",
+    "url": "/modelos/",
+    "hijos": [
+     {
+      "texto": "Steel Framing",
+      "url": "/steel-framing/",
+      "hijos": [
+       {
+        "texto": "Casas Steel Framing",
+        "url": "/casas-steel-framing/"
+       },
+       {
+        "texto": "Perfiles Steel Framing",
+        "url": "/perfiles-steel-framing/"
+       },
+       {
+        "texto": "Modelos casas steel framing",
+        "url": "/modelos-casas-steel-framing/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas de Madera",
+      "url": "/madera/",
+      "hijos": [
+       {
+        "texto": "Modelos de casas madera",
+        "url": "/modelos-de-casas-madera/"
+       },
+       {
+        "texto": "Casas de madera a medida",
+        "url": "/casas-de-madera-a-medida/"
+       },
+       {
+        "texto": "Casas de madera modernas",
+        "url": "/casas-de-madera-modernas/"
+       },
+       {
+        "texto": "Casas de madera jardín",
+        "url": "/casas-de-madera-jardin/"
+       },
+       {
+        "texto": "Cabañas de madera",
+        "url": "/cabanas-de-madera/"
+       },
+       {
+        "texto": "Casetas de madera",
+        "url": "/casetas-de-madera/"
+       },
+       {
+        "texto": "Cocheras de madera",
+        "url": "/cocheras-de-madera/"
+       },
+       {
+        "texto": "Cobertizos de madera",
+        "url": "/cobertizos-de-madera/"
+       },
+       {
+        "texto": "Casas de madera grandes",
+        "url": "/casas-de-madera-grandes/"
+       },
+       {
+        "texto": "Casas de madera pequeñas",
+        "url": "/casas-de-madera-pequenas/"
+       },
+       {
+        "texto": "Pérgolas de madera",
+        "url": "/pergolas-de-madera/"
+       },
+       {
+        "texto": "Casas de madera para perros",
+        "url": "/casas-de-madera-para-perros/"
+       },
+       {
+        "texto": "Casas de madera para gatos",
+        "url": "/casas-de-madera-para-gatos/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Hormigón",
+      "url": "/hormigon/"
+     },
+     {
+      "texto": "Casass Prefabricadas mediterráneas",
+      "url": "/mediterraneas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modernas",
+      "url": "/modernas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modulares",
+      "url": "/modulares/"
+     },
+     {
+      "texto": "Casas Prefabricadas Cube",
+      "url": "/cube/"
+     },
+     {
+      "texto": "Casetas",
+      "url": "/casetas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Contenedores",
+      "url": "/contenedores/"
+     },
+     {
+      "texto": "Casas Prefabricadas Minimalistas",
+      "url": "/minimalistas/"
+     },
+     {
+      "texto": "Casas Prefabricadas de lujo",
+      "url": "/de-lujo/"
+     },
+     {
+      "texto": "Casas Prefabricadas Móviles",
+      "url": "/moviles/"
+     },
+     {
+      "texto": "Casas Prefabricadas pasivas",
+      "url": "/pasivas/"
+     },
+     {
+      "texto": "Casas Prefabricadas a medida",
+      "url": "/a-medida/"
+     }
+    ]
+   },
+   {
+    "texto": "Catalogos",
+    "url": "/catalogo/",
+    "hijos": [
+     {
+      "texto": "Catalogo Steel Framing",
+      "url": "/steel-framing-catalogo/"
+     }
+    ]
+   },
+   {
+    "texto": "Planos",
+    "url": "/planos/",
+    "hijos": [
+     {
+      "texto": "Planos Steel Framing",
+      "url": "/steel-framing-planos/"
+     }
+    ]
+   },
+   {
+    "texto": "Venta",
+    "url": "/venta/",
+    "hijos": [
+     {
+      "texto": "Venta Steel Framing",
+      "url": "/steel-framing-venta/"
+     }
+    ]
+   },
+   {
+    "texto": "Ofertas",
+    "url": "/baratas/",
+    "hijos": [
+     {
+      "texto": "Steel Framing Ofertas",
+      "url": "/steel-framing-ofertas/"
+     }
+    ]
+   },
+   {
+    "texto": "Llave en mano",
+    "url": "/llave-en-mano/",
+    "hijos": [
+     {
+      "texto": "Steel Framing llave en mano",
+      "url": "/steel-framing-llave-en-mano/"
+     }
+    ]
+   },
+   {
+    "texto": "Imágenes",
+    "url": "/imagenes/",
+    "hijos": [
+     {
+      "texto": "Imagenes Stee Framing",
+      "url": "/steel-framing-imagenes/"
+     }
+    ]
+   },
+   {
+    "texto": "Construcción",
+    "url": "/construccion/",
+    "hijos": [
+     {
+      "texto": "Construccion Steel Framing",
+      "url": "/construcciones-steel-framing/"
+     }
+    ]
+   },
+   {
+    "texto": "Provincias",
+    "url": "#",
+    "hijos": [
+     {
+      "texto": "Steel Framing Galicia",
+      "url": "/steel-framing-galicia/"
+     },
+     {
+      "texto": "Steel Framing Barcelona",
+      "url": "/steel-framing-barcelona/"
+     },
+     {
+      "texto": "Steel Framing Madrid",
+      "url": "/steel-framing-madrid/"
+     },
+     {
+      "texto": "Steel Framing Córdoba",
+      "url": "/steel-framing-cordoba/"
+     },
+     {
+      "texto": "Steel Framing Valencia",
+      "url": "/steel-framing-valencia/"
+     },
+     {
+      "texto": "Steel Framing Murcia",
+      "url": "/steel-framing-murcia/"
+     },
+     {
+      "texto": "Steel Framing Albacete",
+      "url": "/steel-framing-albacete/"
+     },
+     {
+      "texto": "Steel Framing Alicante",
+      "url": "/steel-framing-alicante/"
+     },
+     {
+      "texto": "Steel Framing Almería",
+      "url": "/steel-framing-almeria/"
+     },
+     {
+      "texto": "Steel Framing Álava",
+      "url": "/steel-framing-alava/"
+     },
+     {
+      "texto": "Steel Framing Asturias",
+      "url": "/steel-framing-asturias/"
+     },
+     {
+      "texto": "Steel Framing Ávila",
+      "url": "/steel-framing-avila/"
+     },
+     {
+      "texto": "Steel Framing Avilés",
+      "url": "/steel-framing-aviles/"
+     },
+     {
+      "texto": "Steel Framing Badajoz",
+      "url": "/steel-framing-badajoz/"
+     },
+     {
+      "texto": "Steel Framing Badalona",
+      "url": "/steel-framing-badalona/"
+     },
+     {
+      "texto": "Steel Framing Bizkaia",
+      "url": "/steel-framing-bizkaia/"
+     },
+     {
+      "texto": "Steel Framing Burgos",
+      "url": "/steel-framing-burgos/"
+     },
+     {
+      "texto": "Steel Framing Cáceres",
+      "url": "/steel-framing-caceres/"
+     },
+     {
+      "texto": "Steel Framing Cádiz",
+      "url": "/steel-framing-cadiz/"
+     },
+     {
+      "texto": "Steel Framing Cantabria",
+      "url": "/steel-framing-cantabria/"
+     },
+     {
+      "texto": "Steel Framing Canarias",
+      "url": "/steel-framing-canarias/"
+     },
+     {
+      "texto": "Steel Framing Catalunya",
+      "url": "/steel-framing-catalunya/"
+     },
+     {
+      "texto": "Steel Framing Cartagena",
+      "url": "/steel-framing-cartagena/"
+     },
+     {
+      "texto": "Steel Framing Castellón",
+      "url": "/steel-framing-castellon/"
+     },
+     {
+      "texto": "Steel Framing Ciudad Real",
+      "url": "/steel-framing-ciudad-real/"
+     },
+     {
+      "texto": "Steel Framing La Coruña",
+      "url": "/steel-framing-la-coruna/"
+     },
+     {
+      "texto": "Steel Framing Cuenca",
+      "url": "/steel-framing-cuenca/"
+     },
+     {
+      "texto": "Steel Framing Extremadura",
+      "url": "/steel-framing-extremadura/"
+     },
+     {
+      "texto": "Steel Framing Gijón",
+      "url": "/steel-framing-gijon/"
+     },
+     {
+      "texto": "Steel Framing Gipuzkoa",
+      "url": "/steel-framing-gipuzkoa/"
+     },
+     {
+      "texto": "Steel Framing Girona",
+      "url": "/steel-framing-girona/"
+     },
+     {
+      "texto": "Steel Framing Granada",
+      "url": "/steel-framing-granada/"
+     },
+     {
+      "texto": "Steel Framing Huelva",
+      "url": "/steel-framing-huelva/"
+     },
+     {
+      "texto": "Steel Framing Huesca",
+      "url": "/steel-framing-huesca/"
+     },
+     {
+      "texto": "Steel Framing Ibiza",
+      "url": "/steel-framing-ibiza/"
+     },
+     {
+      "texto": "Steel Framing Guadalajara",
+      "url": "/steel-framing-guadalajara/"
+     },
+     {
+      "texto": "Steel Framing Jaén",
+      "url": "/steel-framing-jaen/"
+     },
+     {
+      "texto": "Steel Framing León",
+      "url": "/steel-framing-leon/"
+     },
+     {
+      "texto": "Steel Framing Lleida",
+      "url": "/steel-framing-lleida/"
+     },
+     {
+      "texto": "Steel Framing Lugo",
+      "url": "/steel-framing-lugo/"
+     },
+     {
+      "texto": "Steel Framing Málaga",
+      "url": "/steel-framing-malaga/"
+     },
+     {
+      "texto": "Steel Framing Mallorca",
+      "url": "/steel-framing-mallorca/"
+     },
+     {
+      "texto": "Steel Framing Navarra",
+      "url": "/steel-framing-navarra/"
+     },
+     {
+      "texto": "Steel Framing Ourense",
+      "url": "/steel-framing-ourense/"
+     },
+     {
+      "texto": "Steel Framing Palencia",
+      "url": "/steel-framing-palencia/"
+     },
+     {
+      "texto": "Steel Framing Las Palmas",
+      "url": "/steel-framing-las-palmas/"
+     },
+     {
+      "texto": "Steel Framing Pamplona",
+      "url": "/steel-framing-pamplona/"
+     },
+     {
+      "texto": "Steel Framing Pontevedra",
+      "url": "/steel-framing-pontevedra/"
+     },
+     {
+      "texto": "Steel Framing La Rioja",
+      "url": "/steel-framing-la-rioja/"
+     },
+     {
+      "texto": "Steel Framing Santander",
+      "url": "/steel-framing-santander/"
+     },
+     {
+      "texto": "Steel Framing Salamanca",
+      "url": "/steel-framing-salamanca/"
+     },
+     {
+      "texto": "Steel Framing Santiago de Compostela",
+      "url": "/steel-framing-compostela/"
+     },
+     {
+      "texto": "Steel Framing Tenerife",
+      "url": "/steel-framing-tenerife/"
+     },
+     {
+      "texto": "Steel Framing Segovia",
+      "url": "/steel-framing-segovia/"
+     },
+     {
+      "texto": "Steel Framing Sevilla",
+      "url": "/steel-framing-sevilla/"
+     },
+     {
+      "texto": "Steel Framing Soria",
+      "url": "/steel-framing-soria/"
+     },
+     {
+      "texto": "Steel Framing Tarragona",
+      "url": "/steel-framing-tarragona/"
+     },
+     {
+      "texto": "Steel Framing Teruel",
+      "url": "/steel-framing-teruel/"
+     },
+     {
+      "texto": "Steel Framing Terrassa",
+      "url": "/steel-framing-terrassa/"
+     },
+     {
+      "texto": "Steel Framing Toledo",
+      "url": "/steel-framing-toledo/"
+     },
+     {
+      "texto": "Steel Framing Vigo",
+      "url": "/steel-framing-vigo/"
+     },
+     {
+      "texto": "Steel Framing Vitoria Gasteiz",
+      "url": "/steel-framing-vitoria-gasteiz/"
+     },
+     {
+      "texto": "Steel Framing Valladolid",
+      "url": "/steel-framing-valladolid/"
+     },
+     {
+      "texto": "Steel Framing Zaragoza",
+      "url": "/steel-framing-zaragoza/"
+     },
+     {
+      "texto": "Steel Framing Oviedo",
+      "url": "/steel-framing-oviedo/"
+     },
+     {
+      "texto": "Steel Framing Elche",
+      "url": "/steel-framing-elche/"
+     },
+     {
+      "texto": "Steel Framing Ponferrada",
+      "url": "/steel-framing-ponferrada/"
+     },
+     {
+      "texto": "Steel Framing Marbella",
+      "url": "/steel-framing-marbella/"
+     },
+     {
+      "texto": "Steel Framing Euskadi",
+      "url": "/steel-framing-euskadi/"
+     },
+     {
+      "texto": "Steel Framing País Vasco",
+      "url": "/steel-framing-pais-vasco/"
+     },
+     {
+      "texto": "Steel Framing Bilbao",
+      "url": "/steel-framing-bilbao/"
+     },
+     {
+      "texto": "Steel Framing Crevillente",
+      "url": "/steel-framing-crevillente/"
+     },
+     {
+      "texto": "Steel Framing Zamora",
+      "url": "/steel-framing-zamora/"
+     },
+     {
+      "texto": "Steel Framing Baleares",
+      "url": "/steel-framing-baleares/"
+     },
+     {
+      "texto": "Steel Framing San Sebastián",
+      "url": "/steel-framing-san-sebastian/"
+     },
+     {
+      "texto": "Steel Framing Andalucía",
+      "url": "/steel-framing-andalucia/"
+     },
+     {
+      "texto": "Steel Framing Chiclana de la frontera",
+      "url": "/steel-framing-chiclana-de-la-frontera/"
+     },
+     {
+      "texto": "Steel Framing Móstoles",
+      "url": "/steel-framing-mostoles/"
+     },
+     {
+      "texto": "Steel Framing Santa maría",
+      "url": "/steel-framing-santa-maria/"
+     },
+     {
+      "texto": "Steel Framing Torrelavega",
+      "url": "/steel-framing-torrelavega/"
+     },
+     {
+      "texto": "Steel Framing San Fernando",
+      "url": "/steel-framing-san-fernando/"
+     },
+     {
+      "texto": "Steel Framing Alarcón",
+      "url": "/steel-framing-alarcon/"
+     },
+     {
+      "texto": "Steel Framing Linares",
+      "url": "/steel-framing-linares/"
+     },
+     {
+      "texto": "Steel Framing Azuqueca de Henares",
+      "url": "/steel-framing-azuqueca-de-henares/"
+     },
+     {
+      "texto": "Steel Framing Castro Urdiales",
+      "url": "/steel-framing-castro-urdiales/"
+     },
+     {
+      "texto": "Steel Framing Molina de segura",
+      "url": "/steel-framing-molina-de-segura/"
+     },
+     {
+      "texto": "Steel Framing Sueca",
+      "url": "/steel-framing-sueca/"
+     },
+     {
+      "texto": "Steel Framing Lorca",
+      "url": "/steel-framing-lorca/"
+     },
+     {
+      "texto": "Steel Framing Utrera",
+      "url": "/steel-framing-utrera/"
+     },
+     {
+      "texto": "Steel Framing Aranda de Duero",
+      "url": "/steel-framing-aranda-de-duero/"
+     },
+     {
+      "texto": "Steel Framing Reus",
+      "url": "/steel-framing-reus/"
+     },
+     {
+      "texto": "Steel Framing Chipiona",
+      "url": "/steel-framing-chipiona/"
+     },
+     {
+      "texto": "Steel Framing Andújar",
+      "url": "/steel-framing-andujar/"
+     },
+     {
+      "texto": "Steel Framing Algeciras",
+      "url": "/steel-framing-algeciras/"
+     },
+     {
+      "texto": "Steel Framing Mérida",
+      "url": "/steel-framing-merida/"
+     },
+     {
+      "texto": "Steel Framing Gandía",
+      "url": "/steel-framing-gandia/"
+     },
+     {
+      "texto": "Steel Framing Aranjuez",
+      "url": "/steel-framing-aranjuez/"
+     }
+    ]
+   },
+   {
+    "texto": "Presupuesto",
+    "url": "/presupuesto/"
+   }
+  ],
+  "casetas": [
+   {
+    "texto": "Home",
+    "url": "/"
+   },
+   {
+    "texto": "Precios",
+    "url": "/precios/",
+    "hijos": [
+     {
+      "texto": "Precios de Casetas",
+      "url": "/precios-de-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Modelos",
+    "url": "/modelos/",
+    "hijos": [
+     {
+      "texto": "Casetas",
+      "url": "/casetas/",
+      "hijos": [
+       {
+        "texto": "Modelos de casetas",
+        "url": "/modelos-de-casetas/"
+       },
+       {
+        "texto": "Casetas de madera",
+        "url": "/casetas-de-madera/"
+       },
+       {
+        "texto": "Casetas de Jardín",
+        "url": "/casetas-de-jardin/"
+       },
+       {
+        "texto": "Casetas Prefabricadas",
+        "url": "/casetas-prefabricadas/"
+       },
+       {
+        "texto": "Casetas de obra",
+        "url": "/casetas-de-obra/"
+       },
+       {
+        "texto": "Casetas de campo",
+        "url": "/casetas-de-campo/"
+       },
+       {
+        "texto": "Casetas de vigilancia",
+        "url": "/casetas-de-vigilancia/"
+       },
+       {
+        "texto": "Casetas Metálicas",
+        "url": "/casetas-metalicas/"
+       },
+       {
+        "texto": "Casetas de aperos",
+        "url": "/casetas-de-aperos/"
+       },
+       {
+        "texto": "Casetas de Resina",
+        "url": "/casetas-de-resina/"
+       },
+       {
+        "texto": "Casetas para negocio",
+        "url": "/casetas-para-negocio/"
+       },
+       {
+        "texto": "Casetas de ferias",
+        "url": "/casetas-de-ferias/"
+       },
+       {
+        "texto": "Casetas para bicicletas",
+        "url": "/casetas-para-bicicletas/"
+       },
+       {
+        "texto": "Casetas hormigón",
+        "url": "/casetas-hormigon-prefabricadas/"
+       },
+       {
+        "texto": "Casetas de plástico",
+        "url": "/casetas-de-plastico/"
+       },
+       {
+        "texto": "Casetas para perros",
+        "url": "/casetas-para-perros/"
+       },
+       {
+        "texto": "Casetas para gatos",
+        "url": "/casetas-para-gatos/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas de Madera",
+      "url": "/madera/",
+      "hijos": [
+       {
+        "texto": "Modelos de casas madera",
+        "url": "/modelos-de-casas-madera/"
+       },
+       {
+        "texto": "Casas de madera a medida",
+        "url": "/casas-de-madera-a-medida/"
+       },
+       {
+        "texto": "Casas de madera modernas",
+        "url": "/casas-de-madera-modernas/"
+       },
+       {
+        "texto": "Casas de madera jardín",
+        "url": "/casas-de-madera-jardin/"
+       },
+       {
+        "texto": "Cabañas de madera",
+        "url": "/cabanas-de-madera/"
+       },
+       {
+        "texto": "Casetas de madera",
+        "url": "/casetas-de-madera/"
+       },
+       {
+        "texto": "Cocheras de madera",
+        "url": "/cocheras-de-madera/"
+       },
+       {
+        "texto": "Cobertizos de madera",
+        "url": "/cobertizos-de-madera/"
+       },
+       {
+        "texto": "Casas de madera grandes",
+        "url": "/casas-de-madera-grandes/"
+       },
+       {
+        "texto": "Casas de madera pequeñas",
+        "url": "/casas-de-madera-pequenas/"
+       },
+       {
+        "texto": "Pérgolas de madera",
+        "url": "/pergolas-de-madera/"
+       },
+       {
+        "texto": "Casas de madera para perros",
+        "url": "/casas-de-madera-para-perros/"
+       },
+       {
+        "texto": "Casas de madera para gatos",
+        "url": "/casas-de-madera-para-gatos/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Hormigón",
+      "url": "/hormigon/"
+     },
+     {
+      "texto": "Steel Framing",
+      "url": "/steel-framing/",
+      "hijos": [
+       {
+        "texto": "Casas Steel Framing",
+        "url": "/casas-steel-framing/"
+       },
+       {
+        "texto": "Perfiles Steel Framing",
+        "url": "/perfiles-steel-framing/"
+       },
+       {
+        "texto": "Modelos casas steel framing",
+        "url": "/modelos-casas-steel-framing/"
+       }
+      ]
+     },
+     {
+      "texto": "Casass Prefabricadas mediterráneas",
+      "url": "/mediterraneas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modernas",
+      "url": "/modernas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modulares",
+      "url": "/modulares/"
+     },
+     {
+      "texto": "Casas Prefabricadas Cube",
+      "url": "/cube/"
+     },
+     {
+      "texto": "Casas Prefabricadas Contenedores",
+      "url": "/contenedores/"
+     },
+     {
+      "texto": "Casas Prefabricadas Minimalistas",
+      "url": "/minimalistas/"
+     },
+     {
+      "texto": "Casas Prefabricadas de lujo",
+      "url": "/de-lujo/"
+     },
+     {
+      "texto": "Casas Prefabricadas Móviles",
+      "url": "/moviles/"
+     },
+     {
+      "texto": "Casas Prefabricadas pasivas",
+      "url": "/pasivas/"
+     }
+    ]
+   },
+   {
+    "texto": "Catalogos",
+    "url": "/catalogo/",
+    "hijos": [
+     {
+      "texto": "Catálogo de Casetas",
+      "url": "/catalogo-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Planos",
+    "url": "/planos/",
+    "hijos": [
+     {
+      "texto": "Planos de casetas",
+      "url": "/planos-de-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Venta",
+    "url": "/venta/",
+    "hijos": [
+     {
+      "texto": "Casetas en venta",
+      "url": "/casetas-en-venta/"
+     }
+    ]
+   },
+   {
+    "texto": "Ofertas",
+    "url": "/baratas/",
+    "hijos": [
+     {
+      "texto": "Casetas Ofertas",
+      "url": "/casetas-baratas/"
+     }
+    ]
+   },
+   {
+    "texto": "Llave en mano",
+    "url": "/llave-en-mano/",
+    "hijos": [
+     {
+      "texto": "Casetas llave en mano",
+      "url": "/casetas-llave-en-mano/"
+     }
+    ]
+   },
+   {
+    "texto": "Imágenes",
+    "url": "/imagenes/",
+    "hijos": [
+     {
+      "texto": "Imágenes de casetas",
+      "url": "/imagenes-de-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Construcción",
+    "url": "/construccion/",
+    "hijos": [
+     {
+      "texto": "Construcción de Casetas",
+      "url": "/construccion-de-casetas/"
+     }
+    ]
+   },
+   {
+    "texto": "Provincias",
+    "url": "#",
+    "hijos": [
+     {
+      "texto": "Casetas Madrid",
+      "url": "/casetas-madrid/"
+     },
+     {
+      "texto": "Casetas valencia",
+      "url": "/casetas-valencia/"
+     },
+     {
+      "texto": "Casetas Valladolid",
+      "url": "/casetas-valladolid/"
+     },
+     {
+      "texto": "Casetas Málaga",
+      "url": "/casetas-malaga/"
+     }
+    ]
+   },
+   {
+    "texto": "Presupuesto",
+    "url": "/presupuesto/"
+   }
+  ],
+  "casas-de-madera-provincias": [
+   {
+    "texto": "Home",
+    "url": "/"
+   },
+   {
+    "texto": "Precios",
+    "url": "/precios/",
+    "hijos": [
+     {
+      "texto": "Precios casas de madera",
+      "url": "/precios-casas-de-madera-prefabricadas/"
+     }
+    ]
+   },
+   {
+    "texto": "Modelos",
+    "url": "/modelos/",
+    "hijos": [
+     {
+      "texto": "Casas Prefabricadas de Madera",
+      "url": "/madera/",
+      "hijos": [
+       {
+        "texto": "Modelos de casas madera",
+        "url": "/modelos-de-casas-madera/"
+       },
+       {
+        "texto": "Casas de madera a medida",
+        "url": "/casas-de-madera-a-medida/"
+       },
+       {
+        "texto": "Casas de madera modernas",
+        "url": "/casas-de-madera-modernas/"
+       },
+       {
+        "texto": "Casas de madera jardín",
+        "url": "/casas-de-madera-jardin/"
+       },
+       {
+        "texto": "Cabañas de madera",
+        "url": "/cabanas-de-madera/"
+       },
+       {
+        "texto": "Casetas de madera",
+        "url": "/casetas-de-madera/"
+       },
+       {
+        "texto": "Cocheras de madera",
+        "url": "/cocheras-de-madera/"
+       },
+       {
+        "texto": "Cobertizos de madera",
+        "url": "/cobertizos-de-madera/"
+       },
+       {
+        "texto": "Casas de madera grandes",
+        "url": "/casas-de-madera-grandes/"
+       },
+       {
+        "texto": "Casas de madera pequeñas",
+        "url": "/casas-de-madera-pequenas/"
+       },
+       {
+        "texto": "Pérgolas de madera",
+        "url": "/pergolas-de-madera/"
+       },
+       {
+        "texto": "Casas de madera para perros",
+        "url": "/casas-de-madera-para-perros/"
+       },
+       {
+        "texto": "Casas de madera para gatos",
+        "url": "/casas-de-madera-para-gatos/"
+       }
+      ]
+     },
+     {
+      "texto": "Casas Prefabricadas Hormigón",
+      "url": "/hormigon/"
+     },
+     {
+      "texto": "Steel Framing",
+      "url": "/steel-framing/"
+     },
+     {
+      "texto": "Casas Prefabricadas de lujo",
+      "url": "/de-lujo/"
+     },
+     {
+      "texto": "Casetas",
+      "url": "/casetas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Minimalistas",
+      "url": "/minimalistas/"
+     },
+     {
+      "texto": "Casas Prefabricadas mediterráneas",
+      "url": "/mediterraneas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Contenedores",
+      "url": "/contenedores/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modernas",
+      "url": "/modernas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Modulares",
+      "url": "/modulares/"
+     },
+     {
+      "texto": "Casas Prefabricadas Móviles",
+      "url": "/moviles/"
+     },
+     {
+      "texto": "Casas Prefabricadas pasivas",
+      "url": "/pasivas/"
+     },
+     {
+      "texto": "Casas Prefabricadas Cube",
+      "url": "/cube/"
+     },
+     {
+      "texto": "Casas Prefabricadas a medida",
+      "url": "/a-medida/"
+     }
+    ]
+   },
+   {
+    "texto": "Catalogo",
+    "url": "/catalogo/",
+    "hijos": [
+     {
+      "texto": "Catálogo casas de madera",
+      "url": "/catalogo-casas-de-madera/"
+     }
+    ]
+   },
+   {
+    "texto": "Planos",
+    "url": "/planos/",
+    "hijos": [
+     {
+      "texto": "Planos casas de madera",
+      "url": "/planos-casas-de-madera/"
+     }
+    ]
+   },
+   {
+    "texto": "Venta",
+    "url": "/venta/",
+    "hijos": [
+     {
+      "texto": "Venta casas de madera",
+      "url": "/venta-casas-de-madera/"
+     }
+    ]
+   },
+   {
+    "texto": "Ofertas",
+    "url": "/baratas/",
+    "hijos": [
+     {
+      "texto": "Ofertas Casas de madera",
+      "url": "/casas-de-madera-baratas/"
+     }
+    ]
+   },
+   {
+    "texto": "llave en mano",
+    "url": "/llave-en-mano/",
+    "hijos": [
+     {
+      "texto": "Casas de madera llave en mano",
+      "url": "/casas-de-madera-llave-en-mano/"
+     }
+    ]
+   },
+   {
+    "texto": "Imágenes",
+    "url": "/imagenes/",
+    "hijos": [
+     {
+      "texto": "Imágenes casas de madera",
+      "url": "/imagenes-casas-de-madera/"
+     }
+    ]
+   },
+   {
+    "texto": "Construcción",
+    "url": "/construccion/",
+    "hijos": [
+     {
+      "texto": "Construcción casas de madera",
+      "url": "/construccion-casas-de-madera/"
+     }
+    ]
+   },
+   {
+    "texto": "Presupuesto",
+    "url": "/presupuesto/"
+   }
+  ]
+ },
+ "pie": {
+  "columnas": [
+   {
+    "titulo": "Tipos de casa",
+    "enlaces": [
+     {
+      "texto": "Casas de madera",
+      "url": "/madera/"
+     },
+     {
+      "texto": "Casas de hormigón",
+      "url": "/hormigon/"
+     },
+     {
+      "texto": "Steel framing",
+      "url": "/steel-framing/"
+     },
+     {
+      "texto": "Casas modulares",
+      "url": "/modulares/"
+     },
+     {
+      "texto": "Casas con contenedores",
+      "url": "/contenedores/"
+     },
+     {
+      "texto": "Casetas",
+      "url": "/casetas/"
+     }
+    ]
+   },
+   {
+    "titulo": "Información",
+    "enlaces": [
+     {
+      "texto": "Precios",
+      "url": "/precios/"
+     },
+     {
+      "texto": "Modelos",
+      "url": "/modelos/"
+     },
+     {
+      "texto": "Catálogo",
+      "url": "/catalogo/"
+     },
+     {
+      "texto": "Planos",
+      "url": "/planos/"
+     },
+     {
+      "texto": "Llave en mano",
+      "url": "/llave-en-mano/"
+     },
+     {
+      "texto": "Financiación",
+      "url": "/financiacion/"
+     }
+    ]
+   },
+   {
+    "titulo": "Empresa",
+    "enlaces": [
+     {
+      "texto": "Empresas",
+      "url": "/empresas/"
+     },
+     {
+      "texto": "Fabricantes",
+      "url": "/fabricantes/"
+     },
+     {
+      "texto": "Venta",
+      "url": "/venta/"
+     },
+     {
+      "texto": "Presupuesto",
+      "url": "/presupuesto/"
+     }
+    ]
+   }
+  ],
+  "legales": [
+   {
+    "texto": "Aviso legal",
+    "url": "/aviso-legal/"
+   },
+   {
+    "texto": "Política de privacidad",
+    "url": "/politica-de-privacidad/"
+   },
+   {
+    "texto": "Política de cookies",
+    "url": "/politica-de-cookies/"
+   }
+  ]
+ }
+}

@@ -1,0 +1,59 @@
+---
+import site from '../data/site.json';
+
+const { titulo = '¿Te llamamos?', asunto = 'Solicitud desde la web' } = Astro.props;
+const { accessKey, paginaGracias } = site.formulario;
+const configurado = Boolean(accessKey);
+---
+
+<section class="formulario" id="contacto">
+  <h2>{titulo}</h2>
+  <p>Déjanos tu teléfono y te llamamos. Asesoramiento sin compromiso.</p>
+
+  {configurado ? (
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value={accessKey} />
+      <input type="hidden" name="subject" value={asunto} />
+      <input type="hidden" name="from_name" value={site.nombre} />
+      <input type="hidden" name="redirect" value={site.dominio + paginaGracias} />
+      {/* trampa antispam de web3forms */}
+      <input type="checkbox" name="botcheck" class="visualmente-oculto" tabindex="-1" autocomplete="off" />
+
+      <div class="formulario__campos">
+        <div>
+          <label for="f-nombre">Nombre</label>
+          <input id="f-nombre" name="nombre" type="text" required autocomplete="name" />
+        </div>
+        <div>
+          <label for="f-telefono">Teléfono</label>
+          <input id="f-telefono" name="telefono" type="tel" required autocomplete="tel" />
+        </div>
+        <div>
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" />
+        </div>
+        <div>
+          <label for="f-ciudad">Ciudad</label>
+          <input id="f-ciudad" name="ciudad" type="text" autocomplete="address-level2" />
+        </div>
+        <div class="formulario__ancho">
+          <label for="f-mensaje">Cuéntanos tu proyecto</label>
+          <textarea id="f-mensaje" name="mensaje" rows="4"></textarea>
+        </div>
+        <div class="formulario__ancho">
+          <label class="formulario__legal">
+            <input type="checkbox" name="acepto" required style="width:auto;margin-right:.5rem" />
+            He leído y acepto la <a href="/politica-de-privacidad/">política de privacidad</a>.
+          </label>
+        </div>
+        <div class="formulario__ancho">
+          <button class="boton" type="submit">Enviar</button>
+        </div>
+      </div>
+    </form>
+  ) : (
+    <p>
+      Escríbenos a <a href={`mailto:${site.email}`}>{site.email}</a> y te respondemos.
+    </p>
+  )}
+</section>

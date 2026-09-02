@@ -1,0 +1,35 @@
+---
+import site from '../data/site.json';
+const anio = new Date().getFullYear();
+---
+
+<footer class="pie">
+  <div class="contenedor">
+    <div class="pie__rejilla">
+      {site.pie.columnas.map((col) => (
+        <div>
+          <h2>{col.titulo}</h2>
+          <ul>
+            {col.enlaces.map((e) => (
+              <li><a href={e.url}>{e.texto}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      <div>
+        <h2>Contacto</h2>
+        <ul>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href="/presupuesto/">Pedir presupuesto</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pie__base">
+      <p>© {anio} {site.nombre}</p>
+      <nav class="pie__legales" aria-label="Textos legales">
+        {site.pie.legales.map((e) => <a href={e.url}>{e.texto}</a>)}
+      </nav>
+    </div>
+  </div>
+</footer>
