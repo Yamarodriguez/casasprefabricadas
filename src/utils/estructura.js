@@ -17,6 +17,30 @@
 
 import textos from '../data/modelos.json' with { type: 'json' };
 
+/**
+ * Quita el logo de la empresa cuando aparece metido en el cuerpo del
+ * artículo como si fuera una foto más. Es ruido heredado de Elementor
+ * (probablemente un widget "volver al inicio"): mismo título exacto,
+ * mismo destino y la misma imagen del logo en las 223 páginas donde
+ * aparece. El logo real ya está en la cabecera; aquí solo confunde.
+ *
+ * Se quitan el título y la imagen por separado, sin tocar nunca el <p>
+ * que a veces los envuelve: en un puñado de páginas ese mismo <p> trae
+ * además un enlace útil justo detrás de la imagen ("Todos los modelos
+ * Viviendas de madera"). Tocar el <p> ahí reproduce el mismo bug de los
+ * </p> huérfanos que ya salió con la variante de tarjetas sin <p>; no
+ * tocarlo en absoluto lo evita de raíz y de paso conserva ese enlace.
+ */
+const LOGO_TITULO = /<h3\b[^>]*>\s*<a\b[^>]*href="\/"[^>]*>\s*Casas Prefabricadas\s*<\/a>\s*<\/h3>/gi;
+const LOGO_IMAGEN =
+  /<a\b[^>]*href="\/"[^>]*>\s*<img\b[^>]*src="[^"]*casas-prefabricadas--[^"]*"[^>]*>\s*<\/a>/gi;
+const PARRAFO_VACIO = /<p\b[^>]*>\s*<\/p>/gi;
+
+export function quitarLogoDuplicado(html) {
+  if (!html) return html;
+  return html.replace(LOGO_TITULO, '').replace(LOGO_IMAGEN, '').replace(PARRAFO_VACIO, '');
+}
+
 /* Un par = encabezado con (o sin) enlace + imagen, con o sin el <p> que a
    veces la envuelve. Las dos variantes van en ramas separadas (no como
    apertura/cierre opcionales de forma independiente): si el <p> está,
@@ -173,7 +197,45 @@ export function agruparDirectorios(html) {
   return salida;
 }
 
-/** Aplica las tres reconstrucciones en el orden correcto. */
+/**
+ * Junta en chips los subtítulos sueltos que no llevan ni enlace ni foto
+ * ("Casas prefabricadas 20 m2", "...30 m2"...): en el original eran un
+ * filtro rápido por tamaño/plantas/habitaciones; sin el enlace que
+ * llevaban en Elementor, quedan como una torre de encabezados vacíos
+ * apilados. Se repite en 17 páginas (25 series, poco frecuente pero muy
+ * visible donde aparece: hasta 8 seguidos).
+ */
+const H3_PLANO = /<h3\b[^>]*>((?:(?!<\/h3>)(?!<a\b)[\s\S])*?)<\/h3>/gi;
+
+export function agruparEtiquetas(html, minimo = 3) {
+  if (!html) return html;
+
+  const encontrados = [];
+  for (const m of html.matchAll(H3_PLANO)) {
+    const texto = m[1].replace(/<[^>]+>/g, '').trim();
+    if (texto) encontrados.push({ inicio: m.index, fin: m.index + m[0].length, texto });
+  }
+  if (encontrados.length < minimo) return html;
+
+  const series = [];
+  let serie = [encontrados[0]];
+  for (let i = 1; i < encontrados.length; i++) {
+    const enmedio = html.slice(encontrados[i - 1].fin, encontrados[i].inicio);
+    if (enmedio.trim() === '') serie.push(encontrados[i]);
+    else { series.push(serie); serie = [encontrados[i]]; }
+  }
+  series.push(serie);
+
+  let salida = html;
+  for (const s of series.reverse()) {
+    if (s.length < minimo) continue;
+    const chips = `<div class="etiquetas">${s.map((x) => `<span>${escapar(x.texto)}</span>`).join('')}</div>`;
+    salida = salida.slice(0, s[0].inicio) + chips + salida.slice(s[s.length - 1].fin);
+  }
+  return salida;
+}
+
+/** Aplica las reconstrucciones en el orden correcto. */
 export function reconstruir(html) {
-  return agruparDirectorios(convertirEnBotones(agruparModelos(html)));
+  return agruparEtiquetas(agruparDirectorios(convertirEnBotones(agruparModelos(quitarLogoDuplicado(html)))));
 }

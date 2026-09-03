@@ -8,7 +8,11 @@ const configurado = Boolean(accessKey);
 
 <section class="formulario" id="contacto">
   <h2>{titulo}</h2>
-  <p>Déjanos tu teléfono y te llamamos. Asesoramiento sin compromiso.</p>
+  <p>
+    {configurado
+      ? 'Déjanos tu teléfono y te llamamos. Asesoramiento sin compromiso.'
+      : 'Escríbenos y te respondemos con presupuesto y plazos, sin compromiso.'}
+  </p>
 
   {configurado ? (
     <form action="https://api.web3forms.com/submit" method="POST">
@@ -52,8 +56,6 @@ const configurado = Boolean(accessKey);
       </div>
     </form>
   ) : (
-    <p>
-      Escríbenos a <a href={`mailto:${site.email}`}>{site.email}</a> y te respondemos.
-    </p>
+    <a class="boton" href={`mailto:${site.email}`}>Escríbenos a {site.email}</a>
   )}
 </section>

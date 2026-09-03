@@ -344,6 +344,18 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 }
 .zonas a:hover { background: var(--amarillo); border-color: var(--amarillo-oscuro); }
 
+/* etiquetas: mismo aire que .zonas pero sin enlace (filtros por tamaño,
+   plantas, habitaciones...). Gris apagado en vez de verde para que se
+   note que no son clicables. */
+.etiquetas {
+  display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 1.8rem; max-width: none;
+}
+.etiquetas span {
+  display: inline-block; padding: .4rem .85rem; border-radius: 999px;
+  background: var(--fondo-alt); color: var(--tinta-suave); border: 1px solid var(--linea);
+  font-family: var(--titulos); font-size: .9rem; font-weight: 600;
+}
+
 .tarifas { width: 100%; }
 .tarifas td:last-child, .tarifas th:last-child { text-align: right; white-space: nowrap; }
 
