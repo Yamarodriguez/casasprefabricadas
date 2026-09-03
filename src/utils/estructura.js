@@ -16,6 +16,7 @@
  */
 
 import textos from '../data/modelos.json' with { type: 'json' };
+import fotosRecuperadas from '../data/fotos-recuperadas.json' with { type: 'json' };
 
 /**
  * Quita el logo de la empresa cuando aparece metido en el cuerpo del
@@ -287,9 +288,55 @@ export function agruparEtiquetas(html, minimo = 3) {
   return salida;
 }
 
+function escaparRegex(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
+ * Repone las fotos de las cajas de Precios/Ofertas/Planos/Venta/... que en
+ * el original venían puestas por CSS de Elementor (no por <img>) y que la
+ * extracción de WordPress nunca guardó —no había forma de recuperarlas
+ * desde ahí—. Se localizaron por nombre de archivo en una exportación
+ * nueva de la biblioteca de medios (2026-09-03) y se confirmaron a ojo
+ * contra capturas reales del sitio (src/data/fotos-recuperadas.json).
+ * Solo se insertan si esa sección todavía no tiene su propia imagen, para
+ * no duplicar donde sí se conservó.
+ */
+export function reponerFotos(html) {
+  if (!html) return html;
+
+  // 1. localizar todas las inserciones sobre el HTML original, sin tocarlo
+  const inserciones = [];
+  for (const [titulo, foto] of Object.entries(fotosRecuperadas)) {
+    if (titulo.startsWith('_')) continue;
+    const marca = new RegExp(`<h2\\b[^>]*>\\s*${escaparRegex(titulo)}\\s*<\\/h2>`, 'g');
+
+    for (const m of html.matchAll(marca)) {
+      const finTitulo = m.index + m[0].length;
+      const siguienteH2 = html.indexOf('<h2', finTitulo);
+      const limite = siguienteH2 < 0 ? finTitulo + 1200 : Math.min(siguienteH2, finTitulo + 1200);
+      if (/<img\b/i.test(html.slice(finTitulo, limite))) continue; // ya tiene foto propia
+
+      const img = `<img src="${foto.src}" alt="${escapar(foto.alt)}" loading="lazy" width="820" height="380" />`;
+      inserciones.push({ en: finTitulo, img });
+    }
+  }
+  if (!inserciones.length) return html;
+
+  // 2. insertar de atrás hacia delante para que ninguna posición se invalide
+  inserciones.sort((a, b) => b.en - a.en);
+  let salida = html;
+  for (const { en, img } of inserciones) {
+    salida = salida.slice(0, en) + img + salida.slice(en);
+  }
+  return salida;
+}
+
 /** Aplica las reconstrucciones en el orden correcto. */
 export function reconstruir(html) {
   return agruparEtiquetas(
-    agruparDirectorios(agruparVentajas(convertirEnBotones(agruparModelos(quitarLogoDuplicado(html)))))
+    agruparDirectorios(
+      agruparVentajas(convertirEnBotones(agruparModelos(quitarLogoDuplicado(reponerFotos(html)))))
+    )
   );
 }
