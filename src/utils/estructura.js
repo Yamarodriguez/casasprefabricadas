@@ -16,7 +16,7 @@
  */
 
 import textos from '../data/modelos.json' with { type: 'json' };
-import fotosRecuperadas from '../data/fotos-recuperadas.json' with { type: 'json' };
+import { secciones as seccionesDestacadas } from '../data/secciones-destacadas.js';
 
 /**
  * Quita el logo de la empresa cuando aparece metido en el cuerpo del
@@ -288,55 +288,149 @@ export function agruparEtiquetas(html, minimo = 3) {
   return salida;
 }
 
-function escaparRegex(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+/**
+ * Reconstruye las cajas de Precios/Ofertas/Planos/Venta/Fabricantes/
+ * Financiación/Imágenes/Construcción/Presupuesto: en el original son foto
+ * de fondo + capa oscura + título y botón encima (igual que el héroe de
+ * la página), a veces solas a todo el ancho ("banda"), a veces en pareja
+ * de 2 ("tarjeta"), a veces en pareja con la foto a un lado y el texto
+ * aparte, sin superponer ("horizontal") —comprobado contra capturas
+ * reales del sitio, cada tipo es literal, no una aproximación.
+ *
+ * La foto de fondo se recuperó por nombre de archivo desde una
+ * exportación nueva de la biblioteca de medios (2026-09-03): el
+ * Elementor original la ponía por CSS, no por <img>, así que nunca se
+ * guardó en la extracción de WordPress y no había forma de recuperarla
+ * desde el contenido. Se usa solo si esa sección no trae ya su propia
+ * imagen (algunas páginas sí la conservaron; ver src/data/secciones-destacadas.js).
+ *
+ * El título varía por página ("Presupuesto de casas prefabricadas
+ * Albacete", 215 variantes solo para esa sección), así que se reconoce
+ * por un fragmento estable, no por el título completo —y se conserva el
+ * título real de cada página en la tarjeta.
+ */
+function tarjetaDestacado({ titulo, resto, boton }) {
+  return (
+    `<h3>${titulo}</h3>` +
+    resto +
+    (boton || '')
+  );
 }
 
-/**
- * Repone las fotos de las cajas de Precios/Ofertas/Planos/Venta/... que en
- * el original venían puestas por CSS de Elementor (no por <img>) y que la
- * extracción de WordPress nunca guardó —no había forma de recuperarlas
- * desde ahí—. Se localizaron por nombre de archivo en una exportación
- * nueva de la biblioteca de medios (2026-09-03) y se confirmaron a ojo
- * contra capturas reales del sitio (src/data/fotos-recuperadas.json).
- * Solo se insertan si esa sección todavía no tiene su propia imagen, para
- * no duplicar donde sí se conservó.
- */
-export function reponerFotos(html) {
+export function destacarSecciones(html) {
   if (!html) return html;
 
-  // 1. localizar todas las inserciones sobre el HTML original, sin tocarlo
-  const inserciones = [];
-  for (const [titulo, foto] of Object.entries(fotosRecuperadas)) {
-    if (titulo.startsWith('_')) continue;
-    const marca = new RegExp(`<h2\\b[^>]*>\\s*${escaparRegex(titulo)}\\s*<\\/h2>`, 'g');
+  // 1. localizar cada sección conocida, sin tocar el HTML todavía
+  const encontradas = [];
+  for (const m of html.matchAll(/<h2\b[^>]*>([^<]*)<\/h2>/gi)) {
+    const titulo = m[1].trim();
+    const seccion = seccionesDestacadas.find((s) => s.ancla.test(titulo));
+    if (!seccion) continue;
 
-    for (const m of html.matchAll(marca)) {
-      const finTitulo = m.index + m[0].length;
-      const siguienteH2 = html.indexOf('<h2', finTitulo);
-      const limite = siguienteH2 < 0 ? finTitulo + 1200 : Math.min(siguienteH2, finTitulo + 1200);
-      if (/<img\b/i.test(html.slice(finTitulo, limite))) continue; // ya tiene foto propia
+    const inicio = m.index;
+    const finTitulo = m.index + m[0].length;
+    const siguienteH2 = html.indexOf('<h2', finTitulo);
+    const limite = siguienteH2 < 0 ? Math.min(html.length, finTitulo + 2000) : siguienteH2;
+    let cuerpo = html.slice(finTitulo, limite);
 
-      const img = `<img src="${foto.src}" alt="${escapar(foto.alt)}" loading="lazy" width="820" height="380" />`;
-      inserciones.push({ en: finTitulo, img });
+    // si la sección trae su propia foto, se usa esa en vez de la recuperada
+    const imgPropia = cuerpo.match(/<img\b[^>]*>/i);
+    const fotoTag = imgPropia
+      ? imgPropia[0]
+      : `<img src="${seccion.src}" alt="${escapar(seccion.alt)}" loading="lazy" width="820" height="460" />`;
+    if (imgPropia) cuerpo = cuerpo.replace(imgPropia[0], '');
+
+    // el botón ya viene marcado con class="cta" por convertirEnBotones,
+    // que corre antes que esta función; se separa del resto del texto
+    const boton = cuerpo.match(/<p class="cta">[\s\S]*?<\/p>/i);
+    const resto = boton ? cuerpo.replace(boton[0], '') : cuerpo;
+
+    encontradas.push({
+      inicio,
+      fin: limite,
+      tipo: seccion.tipo,
+      grupo: seccion.grupo,
+      titulo,
+      fotoTag,
+      resto: resto.trim(),
+      boton: boton ? boton[0] : '',
+    });
+  }
+  if (!encontradas.length) return html;
+
+  // 2. emparejar las de tipo tarjeta/horizontal cuando van seguidas y
+  //    comparten grupo; el resto (o las que se quedan sin pareja en esta
+  //    página) van solas.
+  const bloques = [];
+  let i = 0;
+  while (i < encontradas.length) {
+    const actual = encontradas[i];
+    const siguiente = encontradas[i + 1];
+    const vanSeguidas = siguiente && html.slice(actual.fin, siguiente.inicio).trim() === '';
+    const sonPareja =
+      actual.tipo !== 'banda' && siguiente && actual.grupo && actual.grupo === siguiente.grupo && vanSeguidas;
+
+    if (sonPareja) {
+      bloques.push({ inicio: actual.inicio, fin: siguiente.fin, tipo: actual.tipo, items: [actual, siguiente] });
+      i += 2;
+    } else {
+      bloques.push({ inicio: actual.inicio, fin: actual.fin, tipo: actual.tipo, items: [actual] });
+      i += 1;
     }
   }
-  if (!inserciones.length) return html;
 
-  // 2. insertar de atrás hacia delante para que ninguna posición se invalide
-  inserciones.sort((a, b) => b.en - a.en);
+  // 3. construir el marcado de cada bloque
+  function unaTarjeta(s) {
+    return (
+      `<article class="destacado destacado--tarjeta">` +
+      `<span class="destacado__foto">${s.fotoTag}</span>` +
+      `<span class="destacado__caja">${tarjetaDestacado(s)}</span>` +
+      `</article>`
+    );
+  }
+  function unaHorizontal(s) {
+    return (
+      `<article class="destacado destacado--horizontal">` +
+      `<span class="destacado__foto">${s.fotoTag}<span class="destacado__superpuesto"><h3>${s.titulo}</h3>${s.boton}</span></span>` +
+      `<span class="destacado__texto">${s.resto}</span>` +
+      `</article>`
+    );
+  }
+
+  function marcadoDeBloque(b) {
+    if (b.tipo === 'banda') {
+      const s = b.items[0];
+      return (
+        `<section class="destacado destacado--banda">` +
+        `<span class="destacado__foto">${s.fotoTag}</span>` +
+        `<span class="destacado__caja">${tarjetaDestacado(s)}</span>` +
+        `</section>`
+      );
+    }
+    if (b.tipo === 'horizontal') {
+      const piezas = b.items.map(unaHorizontal).join('');
+      return b.items.length > 1 ? `<div class="destacados destacados--horizontal">${piezas}</div>` : piezas;
+    }
+    // tarjeta
+    const piezas = b.items.map(unaTarjeta).join('');
+    return b.items.length > 1 ? `<div class="destacados">${piezas}</div>` : piezas;
+  }
+
+  // 4. reescribir de atrás hacia delante
   let salida = html;
-  for (const { en, img } of inserciones) {
-    salida = salida.slice(0, en) + img + salida.slice(en);
+  for (const b of bloques.slice().reverse()) {
+    salida = salida.slice(0, b.inicio) + marcadoDeBloque(b) + salida.slice(b.fin);
   }
   return salida;
 }
 
 /** Aplica las reconstrucciones en el orden correcto. */
 export function reconstruir(html) {
-  return agruparEtiquetas(
-    agruparDirectorios(
-      agruparVentajas(convertirEnBotones(agruparModelos(quitarLogoDuplicado(reponerFotos(html)))))
-    )
-  );
+  const limpio = quitarLogoDuplicado(html);
+  const modelos = agruparModelos(limpio);
+  const botones = convertirEnBotones(modelos); // deja class="cta" para destacarSecciones
+  const destacados = destacarSecciones(botones);
+  const ventajas = agruparVentajas(destacados);
+  const directorios = agruparDirectorios(ventajas);
+  return agruparEtiquetas(directorios);
 }

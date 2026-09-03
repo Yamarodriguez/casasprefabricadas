@@ -329,6 +329,91 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
+/* ---------------------------------------------------------- destacados
+   Las cajas de Precios/Ofertas/Planos/Venta/Fabricantes/Financiación/
+   Imágenes/Construcción/Presupuesto: foto de fondo + capa oscura + texto
+   encima, igual que el héroe de la página (misma firma visual). */
+
+.destacados {
+  display: grid; gap: 1.2rem; margin: 1.8rem 0; max-width: none;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 640px) { .destacados { grid-template-columns: 1fr; } }
+
+.destacado {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: block; border-radius: var(--radio); box-shadow: var(--sombra);
+  margin: 0;
+}
+.destacado__foto { position: absolute; inset: 0; z-index: -2; display: block; }
+.destacado__foto img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  border-radius: 0; margin: 0; max-height: none; box-shadow: none;
+}
+.destacado::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.78) 100%);
+}
+.destacado__caja { display: block; position: relative; padding: 1.2rem 1.3rem; color: #fff; }
+.destacado__caja h3 {
+  color: #fff; font-family: var(--titulos); font-size: 1.15rem; font-weight: 700;
+  margin: 0 0 .5rem; text-shadow: 0 1px 8px rgba(0,0,0,.45);
+}
+.destacado__caja p {
+  color: #f0f0ec; font-size: .92rem; margin: 0 0 .8rem; text-shadow: 0 1px 6px rgba(0,0,0,.4);
+}
+.destacado__caja a:not(.boton) { color: #fff; text-decoration-color: rgba(255,255,255,.7); }
+.destacado__caja .cta { margin: .2rem 0 0; }
+
+/* banda: sola, a todo el ancho, texto grande */
+.destacado--banda { min-height: 320px; display: flex; align-items: flex-end; }
+.destacado--banda .destacado__caja {
+  max-width: 640px; padding: 1.8rem 2.1rem; margin: 1.2rem;
+  /* fondo propio ademas del degradado de la foto: con parrafos largos
+     (la caja de Precios trae 4) el degradado solo no basta para leer. */
+  background: rgba(20, 18, 14, .58); backdrop-filter: blur(2px);
+  border-radius: var(--radio-s);
+}
+.destacado--banda h3 { font-size: 1.5rem; }
+.destacado--banda p { font-size: 1rem; }
+
+/* tarjeta: en pareja de 2, mas compacta */
+.destacado--tarjeta { min-height: 230px; display: flex; align-items: flex-end; }
+
+/* horizontal: foto (con titulo+boton superpuestos) a un lado, texto
+   normal aparte, sin superponer —asi va en el sitio real. */
+.destacados--horizontal { grid-template-columns: 1fr; }
+.destacado--horizontal {
+  display: flex; align-items: stretch; min-height: 190px;
+  background: #fff; border: 1px solid var(--linea);
+}
+.destacado--horizontal::after { display: none; }
+.destacado--horizontal .destacado__foto {
+  position: relative; z-index: auto; flex: 0 0 34%; isolation: isolate;
+}
+.destacado--horizontal .destacado__foto::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.72) 100%);
+}
+.destacado__superpuesto {
+  position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 1rem 1.1rem; color: #fff;
+}
+.destacado__superpuesto h3 {
+  color: #fff; font-family: var(--titulos); font-size: 1.05rem; font-weight: 700;
+  margin: 0 0 .5rem; text-shadow: 0 1px 8px rgba(0,0,0,.45);
+}
+.destacado--horizontal .destacado__texto {
+  flex: 1; padding: 1.2rem 1.4rem; display: flex; flex-direction: column;
+  justify-content: center; color: var(--tinta);
+}
+.destacado--horizontal .destacado__texto p { margin: 0 0 .7rem; font-size: .95rem; }
+.destacado--horizontal .destacado__texto p:last-child { margin-bottom: 0; }
+@media (max-width: 640px) {
+  .destacado--horizontal { flex-direction: column; }
+  .destacado--horizontal .destacado__foto { flex: 0 0 170px; }
+}
+
 .zonas {
   list-style: none; display: flex; flex-wrap: wrap; gap: .5rem;
   padding: 0; margin: 1.3rem 0; max-width: none;
