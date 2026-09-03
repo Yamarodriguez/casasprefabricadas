@@ -333,6 +333,10 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   list-style: none; display: flex; flex-wrap: wrap; gap: .5rem;
   padding: 0; margin: 1.3rem 0; max-width: none;
 }
+/* pisa el padding-left y el margen de .contenido ul/li: son mas
+   especificos por llevar dos clases dentro de .contenido */
+.contenido .zonas { list-style: none; padding-left: 0; }
+.contenido .zonas li { margin-bottom: 0; }
 .zonas a {
   display: inline-block; padding: .4rem .85rem; border-radius: 999px;
   background: var(--fondo-alt); color: var(--carbon); border: 1px solid var(--linea);

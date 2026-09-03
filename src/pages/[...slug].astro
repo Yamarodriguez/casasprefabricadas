@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Formulario from '../components/Formulario.astro';
 import { sanearImagenes } from '../utils/imagenes.js';
-import { agruparModelos } from '../utils/estructura.js';
+import { reconstruir } from '../utils/estructura.js';
 
 export async function getStaticPaths() {
   const modulos = import.meta.glob('../content/pages/*.json', { eager: true });
@@ -17,10 +17,12 @@ const { pagina } = Astro.props;
 
 /* Sustituye por un marcador solo lo que falte en public/. Las rutas
    /wp-content/uploads/ que existen no se tocan nunca. */
-/* Además se reagrupan los pares título+foto en rejillas de tarjetas: al
-   migrar desde Elementor se perdió la maquetación y quedaron apilados. */
+/* Además se reconstruye lo que se perdió al migrar desde Elementor: los
+   pares título+foto vuelven a ser una rejilla de tarjetas, los enlaces
+   sueltos de llamada a la acción vuelven a ser botones, y los directorios
+   de localidades vuelven a ser una nube de enlaces en vez de viñetas. */
 const { html: saneado } = sanearImagenes(pagina.cuerpo);
-const cuerpo = agruparModelos(saneado);
+const cuerpo = reconstruir(saneado);
 
 /* El cuerpo trae <aside data-formulario="1"></aside> donde estaba el
    Contact Form 7. Se parte por ahí para intercalar el componente. */

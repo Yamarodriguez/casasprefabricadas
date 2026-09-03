@@ -8,23 +8,34 @@
  * Patrón que se busca (se repite en 452 de las 493 páginas):
  *   <h3><a href="/madera/">Casas prefabricadas de Madera</a></h3>
  *   <p><a href="/madera/"><img ...></a></p>
+ *
+ * Y una variante sin el <p> (46 páginas más, 420 pares), donde la imagen
+ * cuelga directa del título en vez de venir envuelta en un párrafo:
+ *   <h3>Catalogo casas prefabricadas Modernas</h3>
+ *   <img ...>
  */
 
-import textos from '../data/modelos.json';
+import textos from '../data/modelos.json' with { type: 'json' };
 
-/* Un par = encabezado con (o sin) enlace + párrafo que solo lleva una imagen. */
+/* Un par = encabezado con (o sin) enlace + imagen, con o sin el <p> que a
+   veces la envuelve. Las dos variantes van en ramas separadas (no como
+   apertura/cierre opcionales de forma independiente): si el <p> está,
+   hace falta su </p> justo detrás. Si no, esa rama no encaja y no se
+   toca nada —así una imagen con contenido extra detrás (un enlace más
+   dentro del mismo <p>) se deja intacta en vez de partir el HTML y dejar
+   un </p> huérfano. */
 const PAR = new RegExp(
   '<h3\\b[^>]*>\\s*' +
-    '(?:<a\\b[^>]*href="([^"]*)"[^>]*>)?' + // 1: url del título
-    // 2: texto del título. No puede cruzar otro encabezado: si se deja un
-    // comodín suelto, se traga los <h2>/<h3> intermedios y pierde contenido.
-    '\\s*((?:(?!<\\/h3>)(?!<h[1-6]\\b)[\\s\\S])*?)\\s*' +
-    '(?:<\\/a>)?\\s*<\\/h3>' +
-    '\\s*' +
-    '<p\\b[^>]*>\\s*' +
-    '(?:<a\\b[^>]*href="([^"]*)"[^>]*>)?' + // 3: url de la imagen
-    '\\s*(<img\\b[^>]*>)\\s*' + // 4: la imagen
-    '(?:<\\/a>)?\\s*<\\/p>',
+    '(?:<a\\b[^>]*href="(?<urlTitulo>[^"]*)"[^>]*>)?' +
+    // texto del título: no puede cruzar otro encabezado, o se traga los
+    // <h2>/<h3> intermedios y pierde contenido.
+    '\\s*(?<titulo>(?:(?!<\\/h3>)(?!<h[1-6]\\b)[\\s\\S])*?)\\s*' +
+    '(?:<\\/a>)?\\s*<\\/h3>\\s*' +
+    '(?:' +
+      '<p\\b[^>]*>\\s*(?:<a\\b[^>]*href="(?<urlImgP>[^"]*)"[^>]*>)?\\s*(?<imgP><img\\b[^>]*>)\\s*(?:<\\/a>)?\\s*<\\/p>' +
+      '|' +
+      '(?:<a\\b[^>]*href="(?<urlImgSuelta>[^"]*)"[^>]*>)?\\s*(?<imgSuelta><img\\b[^>]*>)\\s*(?:<\\/a>)?' +
+    ')',
   'gi'
 );
 
@@ -64,14 +75,15 @@ export function agruparModelos(html, minimo = 3) {
   // 1. localizar todos los pares con su posición
   const encontrados = [];
   for (const m of html.matchAll(PAR)) {
-    const titulo = m[2].replace(/<[^>]+>/g, '').trim();
+    const g = m.groups;
+    const titulo = g.titulo.replace(/<[^>]+>/g, '').trim();
     if (!titulo) continue;
     encontrados.push({
       inicio: m.index,
       fin: m.index + m[0].length,
-      url: m[1] || m[3] || '',
+      url: g.urlTitulo || g.urlImgP || g.urlImgSuelta || '',
       titulo,
-      img: m[4],
+      img: g.imgP || g.imgSuelta,
     });
   }
   if (encontrados.length < minimo) return html;
@@ -100,4 +112,68 @@ export function agruparModelos(html, minimo = 3) {
     salida = salida.slice(0, s[0].inicio) + rejilla + salida.slice(s[s.length - 1].fin);
   }
   return salida;
+}
+
+/**
+ * Convierte en botón los párrafos que solo contienen un enlace corto de
+ * llamada a la acción ("Precios!", "Ofertas!", "Haz clic aquí"...). En el
+ * original eran botones de Elementor; al migrar quedaron como texto plano
+ * dentro de un párrafo. Se repite en 487 de las 493 páginas (4168 casos,
+ * solo 21 textos distintos: sin falsos positivos).
+ */
+const CTA = /<p\b[^>]*>\s*<a\b([^>]*href="[^"]*"[^>]*)>\s*([^<]{1,30}?)\s*<\/a>\s*<\/p>/gi;
+
+export function convertirEnBotones(html) {
+  if (!html) return html;
+  return html.replace(CTA, (todo, atributos, texto) => {
+    if (!texto.trim()) return todo; // enlace vacío: se deja tal cual, no hay nada que mostrar
+    return `<p class="cta"><a class="boton boton--pequeno"${atributos}>${texto}</a></p>`;
+  });
+}
+
+/**
+ * Junta en una nube de etiquetas los directorios de enlaces (localidades,
+ * secciones relacionadas...). En el original eran listas en columnas; aquí
+ * llegan como <ul> planos y consecutivos —a veces partidos en 2 o 3 listas
+ * seguidas— que se renderizan como un muro de viñetas. Se repite en 71
+ * páginas (284 listas, 5394 enlaces).
+ */
+function comoListaDeEnlaces(interiorUl) {
+  const items = [...interiorUl.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)];
+  if (items.length < 3) return null;
+  const soloEnlaces = items.every((m) => /^<a\b[^>]*>[\s\S]*<\/a>$/.test(m[1].trim()));
+  return soloEnlaces ? items.map((m) => m[1].trim()) : null;
+}
+
+export function agruparDirectorios(html) {
+  if (!html) return html;
+
+  const encontrados = [];
+  for (const m of html.matchAll(/<ul\b[^>]*>([\s\S]*?)<\/ul>/gi)) {
+    const items = comoListaDeEnlaces(m[1]);
+    if (items) encontrados.push({ inicio: m.index, fin: m.index + m[0].length, items });
+  }
+  if (!encontrados.length) return html;
+
+  const series = [];
+  let serie = [encontrados[0]];
+  for (let i = 1; i < encontrados.length; i++) {
+    const enmedio = html.slice(encontrados[i - 1].fin, encontrados[i].inicio);
+    if (enmedio.trim() === '') serie.push(encontrados[i]);
+    else { series.push(serie); serie = [encontrados[i]]; }
+  }
+  series.push(serie);
+
+  let salida = html;
+  for (const s of series.reverse()) {
+    const items = s.flatMap((x) => x.items);
+    const lista = `<ul class="zonas">${items.map((it) => `<li>${it}</li>`).join('')}</ul>`;
+    salida = salida.slice(0, s[0].inicio) + lista + salida.slice(s[s.length - 1].fin);
+  }
+  return salida;
+}
+
+/** Aplica las tres reconstrucciones en el orden correcto. */
+export function reconstruir(html) {
+  return agruparDirectorios(convertirEnBotones(agruparModelos(html)));
 }
