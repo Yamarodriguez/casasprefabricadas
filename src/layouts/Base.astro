@@ -19,6 +19,7 @@ const {
 
 const canonica = new URL(ruta, site.dominio).href;
 const ga4 = site.analytics?.ga4;
+const adsense = site.adsense;
 
 const heroOk = hero?.src && existe(hero.src);
 const heroSrc = heroOk ? hero.src : hero?.src ? marcador(hero.ancho || 1600, hero.alto || 700, '') : null;
@@ -118,6 +119,15 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graf
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+    {adsense && (
+      <script
+        is:inline
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsense}`}
+        crossorigin="anonymous"
+      ></script>
+    )}
 
     {ga4 && (
       <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`}></script>
