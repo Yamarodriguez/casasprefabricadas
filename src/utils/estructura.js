@@ -49,12 +49,14 @@ export function quitarLogoDuplicado(html) {
    dentro del mismo <p>) se deja intacta en vez de partir el HTML y dejar
    un </p> huérfano. */
 const PAR = new RegExp(
-  '<h3\\b[^>]*>\\s*' +
+  // el título puede venir en <h2> o <h3> según la página (\\k referencia el
+  // mismo nivel capturado en la apertura, para no cerrar un <h2> con </h3>)
+  '<(?<etiqueta>h[23])\\b[^>]*>\\s*' +
     '(?:<a\\b[^>]*href="(?<urlTitulo>[^"]*)"[^>]*>)?' +
     // texto del título: no puede cruzar otro encabezado, o se traga los
     // <h2>/<h3> intermedios y pierde contenido.
-    '\\s*(?<titulo>(?:(?!<\\/h3>)(?!<h[1-6]\\b)[\\s\\S])*?)\\s*' +
-    '(?:<\\/a>)?\\s*<\\/h3>\\s*' +
+    '\\s*(?<titulo>(?:(?!<\\/\\k<etiqueta>>)(?!<h[1-6]\\b)[\\s\\S])*?)\\s*' +
+    '(?:<\\/a>)?\\s*<\\/\\k<etiqueta>>\\s*' +
     '(?:' +
       '<p\\b[^>]*>\\s*(?:<a\\b[^>]*href="(?<urlImgP>[^"]*)"[^>]*>)?\\s*(?<imgP><img\\b[^>]*>)\\s*(?:<\\/a>)?\\s*<\\/p>' +
       '|' +
@@ -144,6 +146,11 @@ export function agruparModelos(html, minimo = 3) {
  * original eran botones de Elementor; al migrar quedaron como texto plano
  * dentro de un párrafo. Se repite en 487 de las 493 páginas (4168 casos,
  * solo 21 textos distintos: sin falsos positivos).
+ *
+ * Van en verde: en capturas reales del sitio original estos botones de
+ * contenido ("Precios!", "Ofertas!", "Planos!"...) son siempre verdes.
+ * El amarillo queda reservado para las llamadas a la acción principales
+ * (las del héroe: "Pedir presupuesto").
  */
 const CTA = /<p\b[^>]*>\s*<a\b([^>]*href="[^"]*"[^>]*)>\s*([^<]{1,30}?)\s*<\/a>\s*<\/p>/gi;
 
@@ -151,8 +158,53 @@ export function convertirEnBotones(html) {
   if (!html) return html;
   return html.replace(CTA, (todo, atributos, texto) => {
     if (!texto.trim()) return todo; // enlace vacío: se deja tal cual, no hay nada que mostrar
-    return `<p class="cta"><a class="boton boton--pequeno"${atributos}>${texto}</a></p>`;
+    return `<p class="cta"><a class="boton boton--verde boton--pequeno"${atributos}>${texto}</a></p>`;
   });
+}
+
+/**
+ * Agrupa en tarjetas la lista fija de ventajas (Ecológicas, Tiempo de
+ * construcción, Economicas, Versatilidad, Movilidad): en el original era
+ * una franja verde con las 5 en rejilla; aquí quedan como <h2> sueltos
+ * apilados. Se identifican por título exacto —no por "3 h2+p seguidos en
+ * general", que en la práctica también engancha secciones sin relación
+ * que casualmente caen justo al lado (comprobado antes de escribir esto:
+ * agrupar por umbral metía la intro y la sección siguiente dentro de la
+ * misma rejilla). Aparecen siempre las 5 juntas, en las mismas 20 páginas.
+ */
+const TITULOS_VENTAJAS = ['Ecológicas', 'Tiempo de construcción', 'Economicas', 'Económicas', 'Versatilidad', 'Movilidad'];
+const VENTAJA = /<h2\b[^>]*>([^<]*)<\/h2>\s*<p\b[^>]*>((?:(?!<\/p>)[\s\S])*?)<\/p>/gi;
+
+export function agruparVentajas(html) {
+  if (!html) return html;
+
+  const encontrados = [];
+  for (const m of html.matchAll(VENTAJA)) {
+    const titulo = m[1].trim();
+    if (TITULOS_VENTAJAS.includes(titulo)) {
+      encontrados.push({ inicio: m.index, fin: m.index + m[0].length, titulo, texto: m[2] });
+    }
+  }
+  if (encontrados.length < 3) return html;
+
+  const series = [];
+  let serie = [encontrados[0]];
+  for (let i = 1; i < encontrados.length; i++) {
+    const enmedio = html.slice(encontrados[i - 1].fin, encontrados[i].inicio);
+    if (enmedio.trim() === '') serie.push(encontrados[i]);
+    else { series.push(serie); serie = [encontrados[i]]; }
+  }
+  series.push(serie);
+
+  let salida = html;
+  for (const s of series.reverse()) {
+    if (s.length < 3) continue;
+    const tarjetas = s
+      .map((v) => `<div class="tarjeta"><h3>${v.titulo}</h3><p>${v.texto}</p></div>`)
+      .join('');
+    salida = salida.slice(0, s[0].inicio) + `<div class="rejilla">${tarjetas}</div>` + salida.slice(s[s.length - 1].fin);
+  }
+  return salida;
 }
 
 /**
@@ -237,5 +289,7 @@ export function agruparEtiquetas(html, minimo = 3) {
 
 /** Aplica las reconstrucciones en el orden correcto. */
 export function reconstruir(html) {
-  return agruparEtiquetas(agruparDirectorios(convertirEnBotones(agruparModelos(quitarLogoDuplicado(html)))));
+  return agruparEtiquetas(
+    agruparDirectorios(agruparVentajas(convertirEnBotones(agruparModelos(quitarLogoDuplicado(html)))))
+  );
 }
