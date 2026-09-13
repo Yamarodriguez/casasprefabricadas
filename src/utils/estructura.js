@@ -42,6 +42,54 @@ export function quitarLogoDuplicado(html) {
   return html.replace(LOGO_TITULO, '').replace(LOGO_IMAGEN, '').replace(PARRAFO_VACIO, '');
 }
 
+/**
+ * Envuelve en <p> el texto que viene suelto, sin párrafo alrededor. En
+ * algunas páginas el contenido detrás de un <h2> llega como texto pelado
+ * con <strong> intercalados, sin un solo <p>. De ahí salían tres
+ * síntomas que parecían independientes y eran el mismo problema:
+ *
+ *   - el texto se partía línea a línea (al ser hijo directo de un
+ *     contenedor flex, cada <strong> se volvía un elemento flex);
+ *   - el enlace de llamada a la acción no se convertía en botón;
+ *   - la foto se quedaba suelta en medio, sin montarse como banner.
+ *
+ * Las tres reglas de más abajo necesitan el <p> para reconocer el
+ * patrón, así que se arregla aquí, en el origen, y no una por una.
+ *
+ * Las imágenes y los iframes se dejan como bloque aparte (no se meten
+ * dentro del párrafo): el resto del archivo los busca así. Y un <a> que
+ * solo envuelve una imagen se trata como una pieza, para no partirlo por
+ * la mitad y dejar el <a> abierto en un párrafo y cerrado en otro.
+ */
+const BLOQUE_O_PIEZA = new RegExp(
+  '<(p|h[1-6]|ul|ol|table|figure|blockquote|iframe|aside)\\b[^>]*>[\\s\\S]*?<\\/\\1>' +
+    '|<a\\b[^>]*>\\s*<img\\b[^>]*>\\s*<\\/a>' +
+    '|<(?:img|br|hr)\\b[^>]*?\\/?>',
+  'gi'
+);
+
+function envolverTrozo(trozo) {
+  if (!trozo) return trozo;
+  const visible = trozo
+    .replace(/<[^>]+>/g, '')
+    .replace(/&(?:nbsp|#160|#xa0);/gi, ' ')
+    .replace(/ /g, ' ')
+    .trim();
+  if (!visible) return trozo; // solo espacios: se deja igual, hay reglas que miran eso
+  return `<p>${trozo.trim()}</p>`;
+}
+
+export function envolverTextoSuelto(html) {
+  if (!html) return html;
+  let salida = '';
+  let ultimo = 0;
+  for (const m of html.matchAll(BLOQUE_O_PIEZA)) {
+    salida += envolverTrozo(html.slice(ultimo, m.index)) + m[0];
+    ultimo = m.index + m[0].length;
+  }
+  return salida + envolverTrozo(html.slice(ultimo));
+}
+
 /* Un par = encabezado con (o sin) enlace + imagen, con o sin el <p> que a
    veces la envuelve. Las dos variantes van en ramas separadas (no como
    apertura/cierre opcionales de forma independiente): si el <p> está,
@@ -344,10 +392,16 @@ export function agruparEtiquetas(html, minimo = 3) {
  * por un fragmento estable, no por el título completo —y se conserva el
  * título real de cada página en la tarjeta.
  */
+/* El cuerpo va envuelto en su propio bloque, no suelto dentro de la
+   caja: la caja es un contenedor flex y en las páginas donde el texto
+   llega sin <p> alrededor (25 casos en 3 páginas) cada <strong> y cada
+   trozo de texto se convertía en un elemento flex y caía en su propia
+   línea, partiendo la frase. Dentro de este bloque el texto fluye
+   normal, venga envuelto o no. */
 function tarjetaDestacado({ titulo, resto, boton }) {
   return (
     `<h3>${titulo}</h3>` +
-    resto +
+    `<div class="destacado__cuerpo">${resto}</div>` +
     (boton || '')
   );
 }
@@ -429,8 +483,8 @@ export function destacarSecciones(html) {
   function unaPieza(s, variante, etiqueta = 'article') {
     return (
       `<${etiqueta} class="destacado destacado--${variante}">` +
-      `<span class="destacado__foto">${s.fotoTag}</span>` +
-      `<span class="destacado__caja">${tarjetaDestacado(s)}</span>` +
+      `<div class="destacado__foto">${s.fotoTag}</div>` +
+      `<div class="destacado__caja">${tarjetaDestacado(s)}</div>` +
       `</${etiqueta}>`
     );
   }
@@ -549,18 +603,18 @@ export function armarBanners(html) {
     }
 
     const caja =
-      `<span class="destacado__caja">` +
+      `<div class="destacado__caja">` +
       (titulo ? `<h3>${escapar(titulo)}</h3>` : '') +
       cuerpo.map((b) => b.html).join('') +
       h.boton +
-      `</span>`;
+      `</div>`;
 
     reemplazos.push({
       inicio: previos.length ? previos[0].ini : h.inicio,
       fin: h.fin,
       html:
         `<section class="destacado destacado--banda">` +
-        `<span class="destacado__foto">${h.foto}</span>` +
+        `<div class="destacado__foto">${h.foto}</div>` +
         caja +
         `</section>`,
     });
@@ -579,7 +633,8 @@ export function armarBanners(html) {
 
 /** Aplica las reconstrucciones en el orden correcto. */
 export function reconstruir(html) {
-  const limpio = quitarLogoDuplicado(html);
+  const envuelto = envolverTextoSuelto(html); // primero: el resto necesita los <p>
+  const limpio = quitarLogoDuplicado(envuelto);
   const modelos = agruparModelos(limpio);
   const botones = convertirEnBotones(modelos); // deja class="cta" para destacarSecciones
   const destacados = destacarSecciones(botones);

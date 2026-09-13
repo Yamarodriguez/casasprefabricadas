@@ -453,9 +453,15 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   content: ""; position: absolute; top: 0; left: 0;
   width: 38px; height: 3px; background: var(--ambar); border-radius: 2px;
 }
+/* el cuerpo es un bloque normal: dentro, el texto fluye aunque llegue
+   sin <p> alrededor (si fuese hijo directo del flex, cada <strong> se
+   iria a su propia linea) */
+.destacado__cuerpo { display: block; }
 .destacado__caja p {
-  margin: 0; font-size: .96rem; color: var(--tinta-suave); max-width: none;
+  margin: 0 0 .6rem; font-size: .96rem; color: var(--tinta-suave); max-width: none;
 }
+.destacado__cuerpo > :last-child { margin-bottom: 0; }
+.destacado__caja .cta p { margin: 0; }
 .destacado__caja strong, .destacado__caja b { color: var(--carbon-medio); font-weight: 600; }
 .destacado__caja a:not(.boton) { color: var(--verde-oscuro); }
 .destacado__caja .cta { margin: .35rem 0 0; padding: 0; }
