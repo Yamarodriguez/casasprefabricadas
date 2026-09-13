@@ -155,12 +155,47 @@ export function agruparModelos(html, minimo = 3) {
  */
 const CTA = /<p\b[^>]*>\s*<a\b([^>]*href="[^"]*"[^>]*)>\s*([^<]{1,30}?)\s*<\/a>\s*<\/p>/gi;
 
+/* Y la otra mitad del mismo caso: el enlace va PEGADO al final del
+   párrafo, con texto delante, en vez de en un párrafo propio
+   (4551 casos en 487 páginas, los mismos 20 textos de siempre:
+   "Haz clic aquí", "Ofertas!", "Llave en mano"...). Ahí el botón se
+   saca a su propio párrafo detrás del texto, para que la pareja de
+   tarjetas no quede descuadrada —una con botón y la otra con un
+   enlace subrayado perdido al final de la frase. */
+/* El texto de delante NO puede cruzar el límite del párrafo: con un
+   comodín suelto, una sola coincidencia se tragaba varios párrafos
+   hasta el siguiente enlace corto, y al bloquearla la guarda de abajo
+   los CTA legítimos que quedaban dentro de ese tramo ya no se
+   convertían (solo 408 de 4551 se promovían). */
+const CTA_PEGADO =
+  /<p\b([^>]*)>((?![\s]*<a)(?:(?!<\/p>)(?!<p\b)[\s\S])*?)<a\b([^>]*href="[^"]*"[^>]*)>\s*([^<]{1,30}?)\s*<\/a>\s*<\/p>/gi;
+
 export function convertirEnBotones(html) {
   if (!html) return html;
-  return html.replace(CTA, (todo, atributos, texto) => {
-    if (!texto.trim()) return todo; // enlace vacío: se deja tal cual, no hay nada que mostrar
-    return `<p class="cta"><a class="boton boton--verde boton--pequeno"${atributos}>${texto}</a></p>`;
-  });
+  return html
+    .replace(CTA, (todo, atributos, texto) => {
+      if (!texto.trim()) return todo; // enlace vacío: nada que mostrar
+      return `<p class="cta"><a class="boton boton--verde boton--pequeno"${atributos}>${texto}</a></p>`;
+    })
+    .replace(CTA_PEGADO, (todo, attrsP, antes, atributos, texto) => {
+      if (!texto.trim()) return todo;
+      // ya convertido por la regla anterior: no volver a envolverlo, o el
+      // <a> acaba con el atributo class duplicado
+      if (/\bcta\b/.test(attrsP) || /\bboton\b/.test(atributos)) return todo;
+      // "sin texto delante" hay que medirlo quitando tambien las entidades:
+      // el contenido viene lleno de &nbsp;, que .trim() no considera espacio
+      // porque es la cadena literal, y colaba parrafos vacios.
+      const soloTexto = antes
+        .replace(/<[^>]+>/g, '')
+        .replace(/&(?:nbsp|#160|#xa0);/gi, ' ')
+        .replace(/ /g, ' ')
+        .trim();
+      if (!soloTexto) return todo; // lo cubre la regla CTA de arriba
+      return (
+        `<p${attrsP}>${antes.trimEnd()}</p>` +
+        `<p class="cta"><a class="boton boton--verde boton--pequeno"${atributos}>${texto}</a></p>`
+      );
+    });
 }
 
 /**
