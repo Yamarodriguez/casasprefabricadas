@@ -16,7 +16,7 @@
  */
 
 import textos from '../data/modelos.json' with { type: 'json' };
-import { secciones as seccionesDestacadas } from '../data/secciones-destacadas.js';
+import { resolverSeccion } from '../data/secciones-destacadas.js';
 
 /**
  * Quita el logo de la empresa cuando aparece metido en el cuerpo del
@@ -359,7 +359,7 @@ export function destacarSecciones(html) {
   const encontradas = [];
   for (const m of html.matchAll(/<h2\b[^>]*>([^<]*)<\/h2>/gi)) {
     const titulo = m[1].trim();
-    const seccion = seccionesDestacadas.find((s) => s.ancla.test(titulo));
+    const seccion = resolverSeccion(titulo);
     if (!seccion) continue;
 
     const inicio = m.index;
@@ -367,6 +367,13 @@ export function destacarSecciones(html) {
     const siguienteH2 = html.indexOf('<h2', finTitulo);
     const limite = siguienteH2 < 0 ? Math.min(html.length, finTitulo + 2000) : siguienteH2;
     let cuerpo = html.slice(finTitulo, limite);
+
+    /* Si debajo del título hay una rejilla o un directorio, ese <h2> no
+       es una caja de llamada a la acción: es el encabezado de la rejilla
+       ("Modelos de Casas Prefabricadas baratas", "Otros tipos de casas
+       llave en mano"...). Envolverlo metía las tarjetas de modelos
+       dentro de una tarjeta con foto. Son 11 casos en 11 páginas. */
+    if (/class="(?:modelos|rejilla|zonas|destacados)"/.test(cuerpo)) continue;
 
     // si la sección trae su propia foto, se usa esa en vez de la recuperada
     const imgPropia = cuerpo.match(/<img\b[^>]*>/i);
@@ -383,7 +390,7 @@ export function destacarSecciones(html) {
     encontradas.push({
       inicio,
       fin: limite,
-      tipo: seccion.tipo,
+      tipo: seccion.vista,
       grupo: seccion.grupo,
       titulo,
       fotoTag,
