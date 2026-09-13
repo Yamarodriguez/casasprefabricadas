@@ -28,6 +28,19 @@ const cuerpo = reconstruir(saneado);
    Contact Form 7. Se parte por ahí para intercalar el componente. */
 const trozos = cuerpo.split(/<aside[^>]*data-formulario="1"[^>]*>\s*<\/aside>/i);
 
+/* La portada del catálogo queda justo detrás del formulario, y su texto
+   justo delante: el corte por el formulario las separa, así que no se
+   pueden unir en reconstruir(). Suelta se veía como un cuadrado de
+   520x520 flotando en medio de un hueco blanco. Aquí se saca del trozo
+   siguiente para ponerla AL LADO del formulario, que es justo la
+   llamada a la acción para pedir el catálogo. */
+const PORTADA = /^\s*<p\b[^>]*>\s*<a\b[^>]*href="[^"]*"[^>]*>\s*<img\b[^>]*>\s*<\/a>\s*<\/p>/i;
+const piezas = trozos.map((t, i) => {
+  if (i === 0) return { html: t, portada: '' };
+  const m = t.match(PORTADA);
+  return m ? { html: t.slice(m[0].length), portada: m[0] } : { html: t, portada: '' };
+});
+
 const entradilla = pagina.descripcion || '';
 ---
 
@@ -42,11 +55,20 @@ const entradilla = pagina.descripcion || '';
   noindex={pagina.noindex}
 >
   <div class="contenido contenedor">
-    {trozos.map((trozo, i) => (
+    {piezas.map((pieza, i) => (
       <>
-        <Fragment set:html={trozo} />
-        {i < trozos.length - 1 && (
-          <Formulario asunto={`Consulta desde ${pagina.ruta}`} />
+        <Fragment set:html={pieza.html} />
+        {i < piezas.length - 1 && (
+          piezas[i + 1].portada ? (
+            <div class="peticion">
+              <div class="peticion__form">
+                <Formulario asunto={`Consulta desde ${pagina.ruta}`} />
+              </div>
+              <Fragment set:html={`<div class="peticion__portada">${piezas[i + 1].portada}</div>`} />
+            </div>
+          ) : (
+            <Formulario asunto={`Consulta desde ${pagina.ruta}`} />
+          )
         )}
       </>
     ))}

@@ -381,6 +381,31 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 .rejilla .tarjeta p { color: var(--tinta-suave); margin: 0; font-size: .93rem; }
 .rejilla .tarjeta strong, .rejilla .tarjeta b { color: var(--carbon-medio); }
 
+/* Banner de peticion de catalogo: el formulario y la portada uno al lado
+   del otro. La portada sola quedaba como un cuadrado de 520x520 flotando
+   en un hueco blanco, y el formulario es justo su llamada a la accion. */
+.peticion {
+  display: grid; gap: 1.4rem; align-items: center; margin: 2.2rem 0;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+}
+.peticion__form > .formulario { margin: 0; max-width: none; }
+.peticion__portada { display: flex; justify-content: center; }
+.peticion__portada p { margin: 0; max-width: none; }
+/* el tope de altura va solo en la <img>: el enlace que la envuelve lleva
+   overflow:hidden, y limitarle la altura a el recortaba la portada */
+.peticion__portada a:has(> img:only-child) { margin: 0; width: auto; height: auto; }
+/* hace falta bajar aqui con .contenido delante: la regla general de
+   imagenes de contenido (.contenido a > img:only-child) es mas
+   especifica y si no, gana ella con su max-height de 520px */
+.contenido .peticion__portada a > img:only-child,
+.contenido .peticion__portada img { margin: 0; max-height: 340px; width: auto; }
+@media (max-width: 760px) {
+  .peticion { grid-template-columns: 1fr; }
+  .peticion__portada { order: -1; }
+  .contenido .peticion__portada a > img:only-child,
+  .contenido .peticion__portada img { max-height: 250px; }
+}
+
 /* ---------------------------------------------------------- destacados
    Precios / Ofertas / Planos / Venta / Fabricantes / Financiacion /
    Imagenes / Construccion / Presupuesto.

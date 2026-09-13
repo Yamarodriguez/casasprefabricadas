@@ -453,13 +453,138 @@ export function destacarSecciones(html) {
   return salida;
 }
 
+/**
+ * Bloques que se quedaban sueltos: el del catálogo ("Descarga GRATIS en
+ * PDF" junto a la portada), el de Diseño 3D y el de Empresas. No los ve
+ * destacarSecciones porque no son un <h2> con su foto debajo: son
+ * párrafos de texto, el botón, y una foto grande detrás o metida en el
+ * mismo párrafo que el enlace. Quedaban como una imagen enorme flotando
+ * centrada. Aquí se montan como banner, con la misma pieza que las
+ * bandas: foto a un lado, texto y botón al otro.
+ */
+
+/* A: un solo <p> con el enlace de texto y el enlace de la imagen. */
+const BANNER_A =
+  /<p\b[^>]*>\s*<a\b([^>]*href="[^"]*"[^>]*)>\s*([^<]{1,40}?)\s*<\/a>\s*<a\b[^>]*href="[^"]*"[^>]*>\s*(<img\b[^>]*>)\s*<\/a>\s*<\/p>/gi;
+
+/* B: el botón ya montado y, justo detrás, una foto suelta. El contenido
+   del <p> no puede cruzar su propio </p>: con un comodín suelto, el
+   botón de una sección se emparejaba con la foto de la tarjeta
+   siguiente (salían 99 falsos de "Precios!" antes de acotarlo). */
+const BANNER_B = /<p class="cta">((?:(?!<\/p>)[\s\S])*?)<\/p>\s*(<img\b[^>]*>)/gi;
+
+/* Bloques de texto de primer nivel, para recoger lo que va delante. */
+const BLOQUE_TEXTO = /<(p|h2|h3)\b[^>]*>(?:(?!<\/\1>)[\s\S])*?<\/\1>/gi;
+
+function soloTexto(s) {
+  return s
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&(?:nbsp|#160|#xa0);/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export function armarBanners(html) {
+  if (!html) return html;
+
+  const hallados = [];
+  for (const m of html.matchAll(BANNER_A)) {
+    hallados.push({
+      inicio: m.index,
+      fin: m.index + m[0].length,
+      foto: m[3],
+      boton: `<p class="cta"><a class="boton boton--verde boton--pequeno"${m[1]}>${m[2]}</a></p>`,
+    });
+  }
+  for (const m of html.matchAll(BANNER_B)) {
+    hallados.push({
+      inicio: m.index,
+      fin: m.index + m[0].length,
+      foto: m[2],
+      boton: `<p class="cta">${m[1]}</p>`,
+    });
+  }
+  if (!hallados.length) return html;
+  hallados.sort((a, b) => a.inicio - b.inicio);
+
+  const bloques = [...html.matchAll(BLOQUE_TEXTO)].map((m) => ({
+    ini: m.index,
+    fin: m.index + m[0].length,
+    html: m[0],
+    etiqueta: m[1].toLowerCase(),
+  }));
+
+  const usados = new Set();
+  const reemplazos = [];
+
+  for (const h of hallados) {
+    /* hacia atrás: los bloques de texto pegados al banner (máximo 3).
+       Se para en cuanto aparece otra cosa —una foto, un botón o
+       marcado de tarjeta— para no morder una sección vecina. */
+    const previos = [];
+    let limite = h.inicio;
+    while (previos.length < 3) {
+      const b = bloques.find(
+        (x) => !usados.has(x.ini) && x.fin <= limite && html.slice(x.fin, limite).trim() === ''
+      );
+      if (!b) break;
+      if (/class="cta"|<img|class="(?:modelo|destacado|rejilla|zonas)/.test(b.html)) break;
+      if (!soloTexto(b.html)) break;
+      previos.unshift(b);
+      usados.add(b.ini);
+      limite = b.ini;
+    }
+
+    /* el primer bloque hace de título si es un encabezado, o un párrafo
+       corto de una sola frase */
+    let titulo = '';
+    let cuerpo = previos;
+    if (previos.length) {
+      const p = previos[0];
+      const t = soloTexto(p.html);
+      if (p.etiqueta !== 'p' || (t.length <= 90 && !/<(?:strong|b|a)\b/i.test(p.html))) {
+        titulo = t;
+        cuerpo = previos.slice(1);
+      }
+    }
+
+    const caja =
+      `<span class="destacado__caja">` +
+      (titulo ? `<h3>${escapar(titulo)}</h3>` : '') +
+      cuerpo.map((b) => b.html).join('') +
+      h.boton +
+      `</span>`;
+
+    reemplazos.push({
+      inicio: previos.length ? previos[0].ini : h.inicio,
+      fin: h.fin,
+      html:
+        `<section class="destacado destacado--banda">` +
+        `<span class="destacado__foto">${h.foto}</span>` +
+        caja +
+        `</section>`,
+    });
+  }
+
+  /* de atrás hacia delante, saltando lo que se solape */
+  let salida = html;
+  let tope = Infinity;
+  for (const r of reemplazos.slice().reverse()) {
+    if (r.fin > tope) continue;
+    salida = salida.slice(0, r.inicio) + r.html + salida.slice(r.fin);
+    tope = r.inicio;
+  }
+  return salida;
+}
+
 /** Aplica las reconstrucciones en el orden correcto. */
 export function reconstruir(html) {
   const limpio = quitarLogoDuplicado(html);
   const modelos = agruparModelos(limpio);
   const botones = convertirEnBotones(modelos); // deja class="cta" para destacarSecciones
   const destacados = destacarSecciones(botones);
-  const ventajas = agruparVentajas(destacados);
+  const banners = armarBanners(destacados); // los sueltos que quedan tras lo anterior
+  const ventajas = agruparVentajas(banners);
   const directorios = agruparDirectorios(ventajas);
   return agruparEtiquetas(directorios);
 }
