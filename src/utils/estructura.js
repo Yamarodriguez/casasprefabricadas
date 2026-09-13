@@ -421,41 +421,28 @@ export function destacarSecciones(html) {
     }
   }
 
-  // 3. construir el marcado de cada bloque
-  function unaTarjeta(s) {
+  /* 3. construir el marcado. Las tres variantes comparten la MISMA
+     estructura (foto + caja); lo único que cambia es la clase, y de la
+     distribución se encarga el CSS. Antes la horizontal tenía su propio
+     marcado con el título superpuesto sobre la foto: ya no, porque el
+     texto va sobre fondo limpio. */
+  function unaPieza(s, variante, etiqueta = 'article') {
     return (
-      `<article class="destacado destacado--tarjeta">` +
+      `<${etiqueta} class="destacado destacado--${variante}">` +
       `<span class="destacado__foto">${s.fotoTag}</span>` +
       `<span class="destacado__caja">${tarjetaDestacado(s)}</span>` +
-      `</article>`
-    );
-  }
-  function unaHorizontal(s) {
-    return (
-      `<article class="destacado destacado--horizontal">` +
-      `<span class="destacado__foto">${s.fotoTag}<span class="destacado__superpuesto"><h3>${s.titulo}</h3>${s.boton}</span></span>` +
-      `<span class="destacado__texto">${s.resto}</span>` +
-      `</article>`
+      `</${etiqueta}>`
     );
   }
 
   function marcadoDeBloque(b) {
-    if (b.tipo === 'banda') {
-      const s = b.items[0];
-      return (
-        `<section class="destacado destacado--banda">` +
-        `<span class="destacado__foto">${s.fotoTag}</span>` +
-        `<span class="destacado__caja">${tarjetaDestacado(s)}</span>` +
-        `</section>`
-      );
-    }
-    if (b.tipo === 'horizontal') {
-      const piezas = b.items.map(unaHorizontal).join('');
-      return b.items.length > 1 ? `<div class="destacados destacados--horizontal">${piezas}</div>` : piezas;
-    }
-    // tarjeta
-    const piezas = b.items.map(unaTarjeta).join('');
-    return b.items.length > 1 ? `<div class="destacados">${piezas}</div>` : piezas;
+    if (b.tipo === 'banda') return unaPieza(b.items[0], 'banda', 'section');
+
+    const variante = b.tipo === 'horizontal' ? 'horizontal' : 'tarjeta';
+    const piezas = b.items.map((s) => unaPieza(s, variante)).join('');
+    if (b.items.length < 2) return piezas;
+    const clase = variante === 'horizontal' ? 'destacados destacados--horizontal' : 'destacados';
+    return `<div class="${clase}">${piezas}</div>`;
   }
 
   // 4. reescribir de atrás hacia delante

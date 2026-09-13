@@ -241,7 +241,10 @@ a:hover { color: var(--carbon); }
   color: var(--carbon-medio);
 }
 .contenido h4 { font-size: 1.15rem; font-weight: 600; margin: 1.5rem auto .5rem; }
-.contenido p { margin: 0 auto 1.2rem; }
+/* Titulares centrados, pero el párrafo alineado a la izquierda: una
+   columna larga de texto centrado cuesta de leer porque cada línea
+   empieza en un sitio distinto. El bloque sí va centrado en la página. */
+.contenido p { margin: 0 auto 1.2rem; text-align: left; }
 .contenido ul, .contenido ol { padding-left: 1.25rem; text-align: left; }
 .contenido li { margin-bottom: .45rem; }
 .contenido li::marker { color: var(--verde); }
@@ -349,137 +352,116 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   padding: 1.2rem 1.3rem; box-shadow: var(--sombra-fina);
 }
 
-/* Rejilla de ventajas (Ecológicas / Tiempo de construcción / Económicas /
-   Versatilidad / Movilidad). En el original es una franja VERDE sólida
-   (#159E00, tal cual del CSS de Elementor) con las ventajas dentro, no
-   tarjetas blancas. Se sangra a los lados para que la franja llegue de
-   borde a borde aunque el contenedor esté centrado. */
+/* Rejilla de ventajas (Ecologicas / Tiempo de construccion / Economicas /
+   Versatilidad / Movilidad). El original la pinta como franja verde
+   solida a sangre; aqui va como panel claro con tarjetas blancas y un
+   filete ambar sobre cada titulo: el verde a toda pantalla con texto
+   encima pesaba mucho y bajaba el contraste del texto. */
 .rejilla {
-  display: grid; gap: 1.6rem 2rem; max-width: none;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  background: var(--verde);
-  margin: 2.6rem calc(50% - 50vw); padding: 2.4rem calc(50vw - 50% + 1.2rem);
-  color: #fff; text-align: left;
+  display: grid; gap: 1.1rem; max-width: none;
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  background: var(--fondo-alt); border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  margin: 2.8rem 0; padding: 1.7rem;
+  text-align: left;
 }
 .rejilla .tarjeta {
-  background: transparent; border: 0; box-shadow: none; padding: 0;
+  background: #fff; border: 1px solid var(--linea); box-shadow: none;
+  border-radius: var(--radio-s); padding: 1.1rem 1.2rem 1.2rem;
 }
 .rejilla .tarjeta h3 {
-  color: #fff; font-family: var(--titulos); font-size: 1.25rem; font-weight: 600;
-  margin: 0 0 .5rem; font-style: italic;
+  color: var(--carbon-medio); font-family: var(--titulos);
+  font-size: 1.08rem; font-weight: 600; font-style: normal;
+  margin: 0 0 .55rem; padding-top: .7rem; position: relative;
 }
-.rejilla .tarjeta p { color: #f2f7f0; margin: 0; font-size: .95rem; }
-.rejilla .tarjeta strong, .rejilla .tarjeta b { color: #fff; }
+.rejilla .tarjeta h3::before {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 32px; height: 3px; background: var(--ambar); border-radius: 2px;
+}
+.rejilla .tarjeta p { color: var(--tinta-suave); margin: 0; font-size: .93rem; }
+.rejilla .tarjeta strong, .rejilla .tarjeta b { color: var(--carbon-medio); }
 
 /* ---------------------------------------------------------- destacados
-   Las cajas de Precios/Ofertas/Planos/Venta/Fabricantes/Financiación/
-   Imágenes/Construcción/Presupuesto: foto de fondo + capa oscura + texto
-   encima, igual que el héroe de la página (misma firma visual). */
+   Precios / Ofertas / Planos / Venta / Fabricantes / Financiacion /
+   Imagenes / Construccion / Presupuesto.
+
+   Diseno propio, no el del original: alli el texto va ENCIMA de la foto
+   con una capa oscura y una barra de color traslucida. Se lee mal (la
+   foto de debajo cambia de claro a oscuro bajo el mismo parrafo) y
+   obliga a meter cuatro colores a la vez. Aqui la foto es foto y el
+   texto va sobre blanco: mas contraste, mas aire, y basta un acento.
+
+   Las tres variantes comparten estructura (foto + caja) y solo cambia
+   como se reparten. */
 
 .destacados {
-  display: grid; gap: 1.2rem; margin: 1.8rem 0; max-width: none;
+  display: grid; gap: 1.4rem; margin: 2rem 0; max-width: none;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-@media (max-width: 640px) { .destacados { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .destacados { grid-template-columns: 1fr; } }
 
 .destacado {
-  position: relative; isolation: isolate; overflow: hidden;
-  display: block; border-radius: var(--radio); box-shadow: var(--sombra);
-  margin: 0;
+  display: flex; flex-direction: column; margin: 0; overflow: hidden;
+  background: #fff; border: 1px solid var(--linea);
+  border-radius: var(--radio); box-shadow: var(--sombra-fina);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
-.destacado__foto { position: absolute; inset: 0; z-index: -2; display: block; }
+.destacado:hover {
+  transform: translateY(-2px); border-color: #d6d6d0;
+  box-shadow: 0 2px 6px rgba(0,0,0,.05), 0 14px 34px rgba(0,0,0,.09);
+}
+.destacado__foto { display: block; position: relative; overflow: hidden; background: var(--fondo-alt); }
 .destacado__foto img {
   width: 100%; height: 100%; object-fit: cover; display: block;
   border-radius: 0; margin: 0; max-height: none; box-shadow: none;
 }
-/* capa oscura PLANA al 48%: es el valor real del original
-   (background-color:#000000; opacity:.45-.5), no un degradado */
-.destacado::after {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: rgba(0, 0, 0, .48);
-}
 .destacado__caja {
-  display: flex; flex-direction: column; height: 100%;
-  position: relative; color: #fff; text-align: center;
+  display: flex; flex-direction: column; gap: .6rem;
+  padding: 1.15rem 1.3rem 1.35rem; text-align: left;
 }
-/* el título va en una barra de color semitransparente arriba de la
-   tarjeta, como en el original (navy #041776 al 57%; la segunda de cada
-   pareja en granate #682323, igual que "¿Financiaciones?") */
 .destacado__caja h3 {
-  color: #fff; font-family: var(--titulos); font-size: 1.18rem; font-weight: 600;
-  line-height: 1.2; margin: 0; padding: .8rem 1.1rem;
-  background: rgba(4, 23, 118, .57);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+  font-family: var(--titulos); font-size: 1.18rem; font-weight: 600;
+  line-height: 1.25; margin: 0; color: var(--carbon-medio);
+  padding-top: .75rem; position: relative;
 }
-.destacados > .destacado:nth-child(even) .destacado__caja h3,
-.destacados > .destacado:nth-child(even) .destacado__superpuesto h3 {
-  background: rgba(104, 35, 35, .62);
+.destacado__caja h3::before {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 38px; height: 3px; background: var(--ambar); border-radius: 2px;
 }
 .destacado__caja p {
-  color: #fff; font-size: .95rem; margin: 0 0 .85rem;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, .55);
+  margin: 0; font-size: .96rem; color: var(--tinta-suave); max-width: none;
 }
-.destacado__caja > p:first-of-type { margin-top: 1.1rem; }
-.destacado__caja a:not(.boton) { color: #fff; text-decoration-color: rgba(255,255,255,.7); }
-/* el <strong> del contenido es gris oscuro: sobre la foto no se lee.
-   Aquí va en blanco (y el ámbar del original para destacar). */
-.destacado__caja strong, .destacado__caja b,
-.destacado__superpuesto strong, .destacado__superpuesto b { color: var(--ambar); }
-.destacado__caja .cta { margin: auto 0 1.1rem; padding: 0 1rem; }
+.destacado__caja strong, .destacado__caja b { color: var(--carbon-medio); font-weight: 600; }
+.destacado__caja a:not(.boton) { color: var(--verde-oscuro); }
+.destacado__caja .cta { margin: .35rem 0 0; padding: 0; }
 
-/* banda: sola, a todo el ancho, texto grande y centrado */
-.destacado--banda { min-height: 340px; display: flex; }
-.destacado--banda .destacado__caja { justify-content: center; flex: 1; }
-.destacado--banda .destacado__caja h3 {
-  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.3rem); padding: 1rem 1.4rem;
-}
-.destacado--banda .destacado__caja > p {
-  max-width: 760px; margin-inline: auto; padding-inline: 1.4rem; font-size: 1rem;
-}
-.destacado--banda .destacado__caja .cta { margin: .4rem 0 1.6rem; }
+/* tarjeta: foto arriba con proporcion fija y el texto debajo, en pareja */
+.destacado--tarjeta .destacado__foto { aspect-ratio: 16 / 10; }
+.destacado--tarjeta .destacado__caja { flex: 1; }
 
-/* tarjeta: en pareja de 2 */
-.destacado--tarjeta { min-height: 280px; display: flex; }
-.destacado--tarjeta .destacado__caja > p { padding-inline: 1.1rem; }
+/* banda: va sola, foto a un lado y texto al otro, mas grande. Alterna
+   el lado para que dos bandas seguidas no se vean calcadas. */
+.destacado--banda { flex-direction: row; align-items: stretch; margin: 2.6rem 0; }
+.destacado--banda .destacado__foto { flex: 0 0 44%; min-height: 310px; }
+.destacado--banda .destacado__caja {
+  flex: 1; justify-content: center; gap: .8rem; padding: 2rem 2.2rem;
+}
+.destacado--banda .destacado__caja h3 { font-size: clamp(1.35rem, 1.1rem + .9vw, 1.95rem); }
+.destacado--banda .destacado__caja p { font-size: 1rem; }
+.destacado--banda:nth-of-type(even) { flex-direction: row-reverse; }
 
-/* horizontal: foto (con título+botón superpuestos) a un lado y el texto
-   normal aparte, sin superponer. El original enmarca estas en negro
-   (border-width:8px; border-color:#000000). */
-.destacados--horizontal { grid-template-columns: 1fr; gap: 1.4rem; }
-.destacado--horizontal {
-  display: flex; align-items: stretch; min-height: 210px;
-  background: #fff; border: 8px solid #000; border-radius: var(--radio-s);
-}
-.destacado--horizontal::after { display: none; }
-.destacado--horizontal .destacado__foto {
-  position: relative; z-index: auto; flex: 0 0 36%; isolation: isolate;
-}
-.destacado--horizontal .destacado__foto::after {
-  content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, .48);
-}
-.destacado__superpuesto {
-  position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column;
-  justify-content: center; align-items: center; gap: .7rem;
-  padding: 1rem; color: #fff; text-align: center;
-}
-.destacado__superpuesto h3 {
-  color: #fff; font-family: var(--titulos); font-size: 1.1rem; font-weight: 600;
-  line-height: 1.2; margin: 0; padding: .55rem .9rem;
-  background: rgba(4, 23, 118, .57);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
-}
-.destacado__superpuesto .cta { margin: 0; }
-.destacado--horizontal .destacado__texto {
-  flex: 1; padding: 1.3rem 1.6rem; display: flex; flex-direction: column;
-  justify-content: center; color: var(--tinta); text-align: left;
-}
-.destacado--horizontal .destacado__texto p {
-  margin: 0 0 .7rem; font-size: .98rem; max-width: none;
-}
-.destacado--horizontal .destacado__texto p:last-child { margin-bottom: 0; }
-@media (max-width: 640px) {
-  .destacado--horizontal { flex-direction: column; }
-  .destacado--horizontal .destacado__foto { flex: 0 0 170px; }
+/* horizontal: mismo reparto que la banda pero compacto, en lista */
+.destacados--horizontal { grid-template-columns: 1fr; gap: 1.2rem; }
+.destacado--horizontal { flex-direction: row; align-items: stretch; }
+.destacado--horizontal .destacado__foto { flex: 0 0 34%; min-height: 215px; }
+.destacado--horizontal .destacado__caja { flex: 1; justify-content: center; padding: 1.3rem 1.6rem; }
+
+@media (max-width: 700px) {
+  .destacado--banda, .destacado--horizontal,
+  .destacado--banda:nth-of-type(even) { flex-direction: column; }
+  .destacado--banda .destacado__foto,
+  .destacado--horizontal .destacado__foto { flex: none; aspect-ratio: 16 / 10; min-height: 0; }
+  .destacado--banda .destacado__caja { padding: 1.3rem 1.4rem 1.5rem; }
 }
 
 .zonas {
