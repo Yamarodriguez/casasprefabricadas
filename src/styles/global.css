@@ -217,11 +217,14 @@ a:hover { color: var(--carbon); }
    y tanto en los titulares como en los párrafos. Los párrafos llevan un
    ancho de lectura cómodo centrado; lo que es rejilla o tarjeta ocupa
    todo el ancho (ver más abajo). */
+/* el texto ocupa TODO el ancho del contenedor (1293px, el del original):
+   una columna estrecha en medio dejaba dos franjas vacias a los lados y
+   se veia pobre */
 .contenido > * { max-width: none; margin-inline: 0; text-align: center; }
 .contenido p,
 .contenido ul,
 .contenido ol {
-  max-width: var(--ancho-texto); margin-inline: auto;
+  max-width: none; margin-inline: 0;
 }
 
 .contenido h2 {
@@ -359,7 +362,9 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
    encima pesaba mucho y bajaba el contraste del texto. */
 .rejilla {
   display: grid; gap: 1.1rem; max-width: none;
-  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  /* 225px para que las 5 ventajas quepan en una fila a 1293px de ancho
+     (con 235 la quinta caia sola a una segunda fila) */
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
   background: var(--fondo-alt); border: 1px solid var(--linea);
   border-radius: var(--radio);
   margin: 2.8rem 0; padding: 1.7rem;
@@ -439,6 +444,19 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 .destacado__foto img {
   width: 100%; height: 100%; object-fit: cover; display: block;
   border-radius: 0; margin: 0; max-height: none; box-shadow: none;
+}
+/* si la foto viene enlazada (Diseño 3D -> /render/), el <a> debe llenar
+   la columna igual que una foto suelta, no dibujarse como la tarjetita
+   con bordes y sombra de .contenido a:has(> img). Selector con la misma
+   especificidad que aquel, para pisarlo. */
+.contenido .destacado__foto > a:has(> img:only-child) {
+  display: block; width: 100%; height: 100%; margin: 0;
+  border-radius: 0; box-shadow: none; overflow: hidden; transform: none;
+}
+.contenido .destacado__foto > a:has(> img:only-child):hover { transform: none; box-shadow: none; }
+.contenido .destacado__foto > a > img:only-child {
+  width: 100%; height: 100%; object-fit: cover; margin: 0;
+  border-radius: 0; max-height: none; box-shadow: none;
 }
 .destacado__caja {
   display: flex; flex-direction: column; gap: .6rem;
@@ -548,8 +566,8 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 .formulario {
   background: var(--fondo-alt); border: 1px solid var(--linea);
   border-top: 4px solid var(--amarillo);
-  border-radius: var(--radio); padding: 1.6rem;
-  margin: 2.4rem 0; max-width: var(--ancho-texto);
+  border-radius: var(--radio); padding: 1.6rem 2rem;
+  margin: 2.4rem 0; max-width: none; /* mismo ancho que el resto del contenido */
 }
 .formulario h2 { margin-top: 0; border: 0; padding-top: 0; }
 .formulario > p:first-of-type { color: var(--tinta-suave); }

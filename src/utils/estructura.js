@@ -68,19 +68,74 @@ const BLOQUE_O_PIEZA = new RegExp(
   'gi'
 );
 
-function envolverTrozo(trozo) {
-  if (!trozo) return trozo;
-  const visible = trozo
+function textoVisible(s) {
+  return s
     .replace(/<[^>]+>/g, '')
     .replace(/&(?:nbsp|#160|#xa0);/gi, ' ')
     .replace(/ /g, ' ')
     .trim();
-  if (!visible) return trozo; // solo espacios: se deja igual, hay reglas que miran eso
-  return `<p>${trozo.trim()}</p>`;
 }
+
+/* El texto suelto trae un salto de línea entre cada bloque lógico
+   (título / subtítulo / descripción eran widgets distintos en Elementor).
+   Cada línea pasa a su propio <p>: así el título del banner se detecta
+   solo y no se pega todo en un único párrafo. Medido antes de hacerlo:
+   de 31 tiradas con saltos, solo 1 partía una frase por la mitad —esa
+   línea empieza en minúscula, y por eso se vuelve a unir a la anterior. */
+/* Parte solo en los saltos que quedan FUERA de cualquier etiqueta abierta.
+   Los enlaces llegan con el salto dentro (<a href="/render/">⏎DISEÑO 3D⏎</a>),
+   y partir ahí dejaba la apertura y el cierre en líneas vacías que se
+   descartaban: el texto se quedaba, pero el enlace desaparecía. Se
+   recorre el texto contando etiquetas abiertas y solo cuenta el salto
+   cuando no hay ninguna. */
+function partirEnLineas(trozo) {
+  const lineas = [];
+  let actual = '';
+  let profundidad = 0;
+  const re = /<\/?([a-z][a-z0-9]*)\b[^>]*>|\n+|[^<\n]+/gi;
+  for (const m of trozo.matchAll(re)) {
+    const t = m[0];
+    if (t[0] === '<') {
+      if (t[1] === '/') profundidad = Math.max(0, profundidad - 1);
+      else if (!/\/>$/.test(t) && !/^<(?:br|hr|img|input|meta|link)\b/i.test(t)) profundidad++;
+      actual += t;
+    } else if (t[0] === '\n') {
+      if (profundidad === 0) { lineas.push(actual); actual = ''; }
+      else actual += ' ';
+    } else {
+      actual += t;
+    }
+  }
+  lineas.push(actual);
+  return lineas;
+}
+
+function envolverTrozo(trozo) {
+  if (!trozo) return trozo;
+  if (!textoVisible(trozo)) return trozo; // solo espacios: se deja igual, hay reglas que miran eso
+
+  const lineas = [];
+  for (const cruda of partirEnLineas(trozo)) {
+    const l = cruda.trim();
+    if (!textoVisible(l)) continue;
+    const empiezaEnMinuscula = /^[a-záéíóúñü]/.test(textoVisible(l));
+    if (empiezaEnMinuscula && lineas.length) lineas[lineas.length - 1] += ' ' + l;
+    else lineas.push(l);
+  }
+  return lineas.map((l) => `<p>${l}</p>`).join('');
+}
+
+/* En 3 páginas (la portada entre ellas) el marcador del formulario viene
+   METIDO en el mismo <p> que el texto del catálogo y su portada. La
+   página parte el cuerpo por ese marcador, así que el <p> se abría en un
+   trozo y se cerraba en el otro: el texto quedaba suelto, el enlace no
+   pasaba a botón y la portada se quedaba flotando. Se saca el marcador
+   fuera del párrafo antes de nada. */
+const ASIDE_DENTRO_DE_P = /<p\b[^>]*>\s*(<aside\b[^>]*data-formulario="1"[^>]*>\s*<\/aside>)\s*/gi;
 
 export function envolverTextoSuelto(html) {
   if (!html) return html;
+  html = html.replace(ASIDE_DENTRO_DE_P, '$1<p>');
   let salida = '';
   let ultimo = 0;
   for (const m of html.matchAll(BLOQUE_O_PIEZA)) {
@@ -257,16 +312,18 @@ export function convertirEnBotones(html) {
  * misma rejilla). Aparecen siempre las 5 juntas, en las mismas 20 páginas.
  */
 const TITULOS_VENTAJAS = ['Ecológicas', 'Tiempo de construcción', 'Economicas', 'Económicas', 'Versatilidad', 'Movilidad'];
-const VENTAJA = /<h2\b[^>]*>([^<]*)<\/h2>\s*<p\b[^>]*>((?:(?!<\/p>)[\s\S])*?)<\/p>/gi;
+/* En la portada y en las páginas de provincia las ventajas van en <h3>,
+   no en <h2>; se aceptan los dos niveles (mismo cierre que apertura). */
+const VENTAJA = /<(h[23])\b[^>]*>([^<]*)<\/\1>\s*<p\b[^>]*>((?:(?!<\/p>)[\s\S])*?)<\/p>/gi;
 
 export function agruparVentajas(html) {
   if (!html) return html;
 
   const encontrados = [];
   for (const m of html.matchAll(VENTAJA)) {
-    const titulo = m[1].trim();
+    const titulo = m[2].trim(); // m[1] es el nivel del encabezado (h2/h3)
     if (TITULOS_VENTAJAS.includes(titulo)) {
-      encontrados.push({ inicio: m.index, fin: m.index + m[0].length, titulo, texto: m[2] });
+      encontrados.push({ inicio: m.index, fin: m.index + m[0].length, titulo, texto: m[3] });
     }
   }
   if (encontrados.length < 3) return html;
@@ -517,15 +574,22 @@ export function destacarSecciones(html) {
  * bandas: foto a un lado, texto y botón al otro.
  */
 
-/* A: un solo <p> con el enlace de texto y el enlace de la imagen. */
+/* A: un solo <p> con el enlace de texto y el enlace de la imagen, con o
+   sin texto delante (en la portada el párrafo lleva delante toda la
+   descripción del catálogo). El texto de delante no puede cruzar el
+   </p>; la cola es tan concreta —enlace corto + enlace con imagen + </p>—
+   que no hay riesgo de coger otra cosa. */
 const BANNER_A =
-  /<p\b[^>]*>\s*<a\b([^>]*href="[^"]*"[^>]*)>\s*([^<]{1,40}?)\s*<\/a>\s*<a\b[^>]*href="[^"]*"[^>]*>\s*(<img\b[^>]*>)\s*<\/a>\s*<\/p>/gi;
+  /<p\b[^>]*>((?:(?!<\/p>)[\s\S])*?)<a\b([^>]*href="[^"]*"[^>]*)>\s*([^<]{1,40}?)\s*<\/a>\s*<a\b[^>]*href="[^"]*"[^>]*>\s*(<img\b[^>]*>)\s*<\/a>\s*<\/p>/gi;
 
 /* B: el botón ya montado y, justo detrás, una foto suelta. El contenido
    del <p> no puede cruzar su propio </p>: con un comodín suelto, el
    botón de una sección se emparejaba con la foto de la tarjeta
    siguiente (salían 99 falsos de "Precios!" antes de acotarlo). */
-const BANNER_B = /<p class="cta">((?:(?!<\/p>)[\s\S])*?)<\/p>\s*(<img\b[^>]*>)/gi;
+/* La foto puede venir envuelta en un <a> (en la portada, el gráfico de
+   Diseño 3D enlaza a /render/). Se conserva el enlace alrededor. */
+const BANNER_B =
+  /<p class="cta">((?:(?!<\/p>)[\s\S])*?)<\/p>\s*(?:(<a\b[^>]*>)\s*)?(<img\b[^>]*>)(?:\s*<\/a>)?/gi;
 
 /* Bloques de texto de primer nivel, para recoger lo que va delante. */
 const BLOQUE_TEXTO = /<(p|h2|h3)\b[^>]*>(?:(?!<\/\1>)[\s\S])*?<\/\1>/gi;
@@ -543,18 +607,20 @@ export function armarBanners(html) {
 
   const hallados = [];
   for (const m of html.matchAll(BANNER_A)) {
+    const delante = soloTexto(m[1]) ? `<p>${m[1].trim()}</p>` : '';
     hallados.push({
       inicio: m.index,
       fin: m.index + m[0].length,
-      foto: m[3],
-      boton: `<p class="cta"><a class="boton boton--verde boton--pequeno"${m[1]}>${m[2]}</a></p>`,
+      foto: m[4],
+      textoPropio: delante, // lo que iba dentro del mismo <p>, delante del enlace
+      boton: `<p class="cta"><a class="boton boton--verde boton--pequeno"${m[2]}>${m[3]}</a></p>`,
     });
   }
   for (const m of html.matchAll(BANNER_B)) {
     hallados.push({
       inicio: m.index,
       fin: m.index + m[0].length,
-      foto: m[2],
+      foto: m[2] ? `${m[2]}${m[3]}</a>` : m[3], // si venía enlazada, sigue enlazada
       boton: `<p class="cta">${m[1]}</p>`,
     });
   }
@@ -601,11 +667,27 @@ export function armarBanners(html) {
         cuerpo = previos.slice(1);
       }
     }
+    /* sin título y con el texto metido en el propio <p> del enlace (la
+       portada): si arranca con una frase corta acabada en "!" o ".", esa
+       frase pasa a título y el resto se queda de cuerpo. */
+    if (!titulo && h.textoPropio) {
+      const m = h.textoPropio.match(/^<p>\s*([^<]{8,90}?[!.])\s*([\s\S]*)<\/p>$/);
+      if (m && soloTexto(m[2])) {
+        titulo = m[1].trim();
+        h.textoPropio = `<p>${m[2].trim()}</p>`;
+      }
+    }
 
+    /* el cuerpo va en su bloque para que el texto fluya aunque llegue
+       sin <p> (si fuera hijo directo del flex, cada <strong> iría a su
+       propia línea) */
     const caja =
       `<div class="destacado__caja">` +
       (titulo ? `<h3>${escapar(titulo)}</h3>` : '') +
+      `<div class="destacado__cuerpo">` +
       cuerpo.map((b) => b.html).join('') +
+      (h.textoPropio || '') +
+      `</div>` +
       h.boton +
       `</div>`;
 
