@@ -297,6 +297,23 @@ a:hover { color: var(--carbon); }
 /* los pies son nombres de archivo ("Renders.es (11)"): no aportan */
 .galeria figcaption { display: none; }
 
+/* enlaces a las paginas hermanas (misma localidad o mismo tema en las
+   otras lineas): fila de chips con borde, antes de las preguntas */
+.hermanas { margin: 2.4rem 0 2.8rem; text-align: left; }
+.contenido .hermanas__titulo {
+  font-family: var(--titulos); font-weight: 600; font-size: 1.08rem;
+  color: var(--carbon-medio); margin: 0 0 .6rem;
+}
+.contenido .hermanas ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .55rem; }
+.contenido .hermanas li { margin: 0; }
+.contenido .hermanas a {
+  display: inline-block; padding: .5rem 1rem; border-radius: 999px;
+  background: #fff; border: 1px solid var(--linea); color: var(--carbon-medio);
+  font-family: var(--titulos); font-weight: 600; font-size: .95rem; text-decoration: none;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.contenido .hermanas a:hover { border-color: var(--verde); color: var(--verde-oscuro); background: #f3fbf1; }
+
 /* boton suelto entre secciones ("Todos los modelos..."): centrado, con
    aire; dentro de las cajas lo coloca cada caja */
 .contenido > p.cta { text-align: center; margin: 1.2rem 0 2.4rem; }
