@@ -591,25 +591,47 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 
 /* ------------------------------------------------------------------- faq */
 
-.faq { margin: 3rem 0; max-width: var(--ancho-texto); }
-.faq > h2 { margin-top: 0; }
+/* Acordeon nativo con <details>, sin JS. El h3 va DENTRO del <summary>
+   para conservar la jerarquia h2 > h3 que tenia el original (y que es la
+   que lee Google). A todo el ancho, como el resto del texto. */
+.faq { margin: 3.2rem 0; max-width: none; text-align: left; }
+.contenido .faq > h2 { margin-top: 0; text-align: center; }
+.faq__lista { display: grid; gap: .7rem; }
 .faq details {
   border: 1px solid var(--linea); border-radius: var(--radio);
-  padding: 1rem 1.2rem; margin-bottom: .7rem; background: #fff;
+  background: #fff; box-shadow: var(--sombra-fina);
+  transition: border-color .15s, box-shadow .15s;
 }
-.faq details[open] { box-shadow: var(--sombra-fina); border-color: #cfcfca; }
+.faq details:hover { border-color: #cfcfca; }
+.faq details[open] { border-color: var(--ambar); box-shadow: var(--sombra); }
 .faq summary {
-  font-family: var(--titulos); font-size: 1.1rem; font-weight: 700;
-  color: var(--carbon); cursor: pointer; list-style: none;
-  display: flex; justify-content: space-between; gap: 1rem; align-items: start;
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1rem 1.3rem;
 }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after {
-  content: "+"; color: var(--amarillo-oscuro); font-size: 1.5rem;
-  line-height: 1; flex-shrink: 0;
+.contenido .faq summary h3 {
+  margin: 0; font-size: 1.12rem; line-height: 1.3; text-align: left;
+  font-family: var(--titulos); font-weight: 600; color: var(--carbon-medio);
 }
-.faq details[open] summary::after { content: "–"; }
-.faq p { margin: .8rem 0 0; }
+.faq details[open] summary h3 { color: var(--verde-oscuro); }
+/* el icono: circulo ambar con un "+" que gira a "x" al abrir */
+.faq summary::after {
+  content: "+"; flex-shrink: 0;
+  width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--amarillo-tenue); color: var(--amarillo-oscuro);
+  font-size: 1.4rem; font-weight: 600; line-height: 1;
+  transition: transform .2s, background .15s, color .15s;
+}
+.faq details[open] summary::after { transform: rotate(45deg); background: var(--ambar); color: #fff; }
+.faq__respuesta { padding: 0 1.3rem 1.2rem; }
+.contenido .faq__respuesta p { margin: 0; color: var(--tinta-suave); line-height: 1.65; }
+@media (max-width: 640px) {
+  .faq summary { padding: .85rem 1rem; }
+  .contenido .faq summary h3 { font-size: 1.02rem; }
+  .faq__respuesta { padding: 0 1rem 1rem; }
+}
 
 /* -------------------------------------------------------------------- pie */
 

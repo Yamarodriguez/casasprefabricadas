@@ -475,8 +475,14 @@ export function destacarSecciones(html) {
 
     const inicio = m.index;
     const finTitulo = m.index + m[0].length;
+    /* el cuerpo llega hasta el siguiente h2, o hasta la marca de las
+       preguntas frecuentes (src/utils/faq.js) si viene antes: en la
+       portada iba justo detrás de "Presupuesto" y se colaba dentro de
+       esa caja */
     const siguienteH2 = html.indexOf('<h2', finTitulo);
-    const limite = siguienteH2 < 0 ? Math.min(html.length, finTitulo + 2000) : siguienteH2;
+    const marcaFaq = html.indexOf('<aside data-faq', finTitulo);
+    const cortes = [siguienteH2, marcaFaq].filter((x) => x >= 0);
+    const limite = cortes.length ? Math.min(...cortes) : Math.min(html.length, finTitulo + 2000);
     let cuerpo = html.slice(finTitulo, limite);
 
     /* Si debajo del título hay una rejilla o un directorio, ese <h2> no
