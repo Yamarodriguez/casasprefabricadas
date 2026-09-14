@@ -413,7 +413,12 @@ export function agruparDirectorios(html) {
   let salida = html;
   for (const s of series.reverse()) {
     const items = s.flatMap((x) => x.items);
-    const lista = `<ul class="zonas">${items.map((it) => `<li>${it}</li>`).join('')}</ul>`;
+    /* en un <details> abierto: en escritorio es la nube de siempre; en
+       móvil un guion de Base.astro lo pliega, porque 100 localidades una
+       debajo de otra eran 5.000 px de pastillas */
+    const lista =
+      `<details class="zonas-caja" open><summary>Ver las ${items.length} localidades</summary>` +
+      `<ul class="zonas">${items.map((it) => `<li>${it}</li>`).join('')}</ul></details>`;
     salida = salida.slice(0, s[0].inicio) + lista + salida.slice(s[s.length - 1].fin);
   }
   return salida;

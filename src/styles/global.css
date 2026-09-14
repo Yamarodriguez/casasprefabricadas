@@ -675,6 +675,25 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   text-decoration: none; font-size: .95rem;
 }
 .zonas a:hover { background: var(--amarillo); border-color: var(--amarillo-oscuro); }
+/* el <details> que envuelve la nube: en escritorio pasa desapercibido
+   (abierto, resumen discreto); en movil se pliega y es dos columnas */
+.zonas-caja { text-align: left; }
+.zonas-caja > summary {
+  cursor: pointer; list-style: none; display: inline-block;
+  font-family: var(--titulos); font-weight: 600; font-size: .95rem; color: var(--tinta-suave);
+  padding: .3rem 0; margin-bottom: .2rem;
+}
+.zonas-caja > summary::-webkit-details-marker { display: none; }
+.zonas-caja > summary::after { content: " ▾"; color: var(--amarillo-oscuro); }
+.zonas-caja[open] > summary::after { content: " ▴"; }
+@media (max-width: 700px) {
+  .zonas-caja > summary {
+    display: block; padding: .8rem 1rem; border: 1px solid var(--linea); border-radius: var(--radio-s);
+    background: var(--fondo-alt); color: var(--carbon-medio); font-size: 1rem;
+  }
+  .zonas { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; margin: .8rem 0; }
+  .zonas a { display: block; text-align: center; font-size: .85rem; padding: .45rem .5rem; overflow-wrap: anywhere; }
+}
 
 /* etiquetas: mismo aire que .zonas pero sin enlace (filtros por tamaño,
    plantas, habitaciones...). Gris apagado en vez de verde para que se
@@ -853,6 +872,48 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* ------------------------------------------------------------------- movil */
+/* Ajustes de movil vistos en el telefono: letra mas contenida (18px con
+   interlineado 1.7 era demasiado en 390px), la barra superior en una
+   sola linea, el boton del correo que se salia de la caja, la portada del
+   catalogo recortada y las tarjetas de modelos mas cortas. */
+.formulario__correo { max-width: 100%; white-space: normal; text-align: center; overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  body { font-size: 1rem; line-height: 1.6; }
+  .barra__fila > span { display: none; }
+  .barra__fila { justify-content: center; }
+  .contenido p { margin-bottom: 1rem; }
+  .contenido h2 { margin-top: 2.2rem; }
+  .formulario { padding: 1.3rem 1.1rem; }
+  .formulario__correo-dir { display: block; font-size: .9rem; font-weight: 500; }
+  /* la portada del catalogo es cuadrada: entera, sin recortar */
+  .destacado--banda.destacado--claro .destacado__foto { aspect-ratio: 1 / 1; max-height: 320px; }
+  .contenido .destacado--banda.destacado--claro .destacado__foto img,
+  .contenido .destacado--banda.destacado--claro .destacado__foto > a > img:only-child { object-fit: contain; }
+  .contenido .modelo__texto { -webkit-line-clamp: 3; }
+  .contenido .modelo__titulo { font-size: .98rem; }
+  .cierre__fila { text-align: center; justify-content: center; }
+}
+
+/* ---------------------------------------------------------------- anuncios */
+/* Los anuncios automaticos de AdSense insertan <ins> donde les parece,
+   tambien DENTRO de las rejillas y de las cajas flex: ahi se convertian
+   en una celda mas y descuadraban la fila. Dentro de cualquier rejilla o
+   caja, el anuncio ocupa la fila entera y va al final; entre bloques,
+   con aire arriba y abajo. */
+ins.adsbygoogle { display: block; margin: 1.6rem auto; max-width: 100%; text-align: center; }
+.modelos > ins.adsbygoogle, .destacados > ins.adsbygoogle, .rejilla > ins.adsbygoogle,
+.galeria > ins.adsbygoogle, .faq__lista > ins.adsbygoogle, .zonas > ins.adsbygoogle,
+.peticion > ins.adsbygoogle {
+  grid-column: 1 / -1; order: 100; margin: .4rem 0;
+}
+.destacado > ins.adsbygoogle, .destacado__caja > ins.adsbygoogle, .destacado__cuerpo > ins.adsbygoogle,
+.modelo > ins.adsbygoogle, .modelo__enlace > ins.adsbygoogle, .modelo__cuerpo > ins.adsbygoogle,
+.formulario > ins.adsbygoogle, .hermanas > ins.adsbygoogle, .etiquetas > ins.adsbygoogle {
+  flex-basis: 100%; width: 100%; order: 100; margin: .6rem 0 0;
+}
+/* (no se oculta ninguno con display:none: AdSense lo penaliza) */
 
 /* ---------------------------------------------------------------- whatsapp */
 /* Boton flotante abajo a la derecha, verde de WhatsApp, como en el

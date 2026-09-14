@@ -57,6 +57,6 @@ const configurado = Boolean(accessKey);
       </div>
     </form>
   ) : (
-    <a class="boton" href={`mailto:${site.email}`}>Escríbenos a {site.email}</a>
+    <a class="boton formulario__correo" href={`mailto:${site.email}`}>Escríbenos a <span class="formulario__correo-dir">{site.email}</span></a>
   )}
 </section>

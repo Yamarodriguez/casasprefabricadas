@@ -189,5 +189,11 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graf
 
     <Footer />
     <WhatsApp />
+    {/* en movil el directorio de localidades (100 pastillas) va plegado */}
+    <script is:inline>
+      if (window.matchMedia('(max-width: 700px)').matches) {
+        document.querySelectorAll('details.zonas-caja[open]').forEach((d) => d.removeAttribute('open'));
+      }
+    </script>
   </body>
 </html>
