@@ -913,7 +913,15 @@ ins.adsbygoogle { display: block; margin: 1.6rem auto; max-width: 100%; text-ali
 .formulario > ins.adsbygoogle, .hermanas > ins.adsbygoogle, .etiquetas > ins.adsbygoogle {
   flex-basis: 100%; width: 100%; order: 100; margin: .6rem 0 0;
 }
-/* (no se oculta ninguno con display:none: AdSense lo penaliza) */
+/* Dentro de la cabecera, la barra, el heroe, el formulario, el cierre y
+   el pie no cabe un anuncio sin romperlos (la cabecera es una fila fija
+   sin salto): ahi el hueco queda a 0 y AdSense no lo rellena, asi que no
+   cuenta ninguna impresion. */
+.barra ins.adsbygoogle, .cabecera ins.adsbygoogle, .hero ins.adsbygoogle,
+.formulario ins.adsbygoogle, .cierre ins.adsbygoogle, .pie ins.adsbygoogle { display: none; }
+/* con el anuncio ancla de abajo desplegado, el boton de WhatsApp sube
+   para que no quede tapado */
+body:has(ins.adsbygoogle[data-anchor-status="displayed"]) .whatsapp { bottom: 6.5rem; }
 
 /* ---------------------------------------------------------------- whatsapp */
 /* Boton flotante abajo a la derecha, verde de WhatsApp, como en el

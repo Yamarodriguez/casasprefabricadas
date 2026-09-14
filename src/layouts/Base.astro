@@ -127,7 +127,10 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graf
         async
         src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsense}`}
         crossorigin="anonymous"
+        data-overlays="bottom"
       ></script>
+      {/* data-overlays="bottom" (parametro oficial de AdSense): los anuncios
+          ancla solo abajo, nunca encima de la cabecera fija */}
     )}
 
     {ga4 && (
