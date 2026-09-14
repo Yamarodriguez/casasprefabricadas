@@ -5,3 +5,25 @@
 # .netlify.app al dominio bueno, para que nunca compitan entre si.
 #
 # https://NOMBRE-DEL-SITIO.netlify.app/*  https://prefabricadascasas.es/:splat  301!
+
+# ---------------------------------------------------------------------------
+# URLs de WordPress que dejan de existir. Google y los enlaces antiguos las
+# siguen pidiendo durante meses: se mandan a su equivalente con 301.
+# ---------------------------------------------------------------------------
+# el sitemap del plugin SEO (comprobado en la web actual: sitemap_index.xml)
+/sitemap_index.xml   /sitemap-index.xml  301
+/sitemap.xml         /sitemap-index.xml  301
+/page-sitemap.xml    /sitemap-index.xml  301
+/post-sitemap.xml    /sitemap-index.xml  301
+# feeds, archivos y paginas de sistema de WordPress
+/feed/               /                   301
+/feed                /                   301
+/comments/feed/      /                   301
+/category/*          /                   301
+/tag/*               /                   301
+/author/*            /                   301
+/page/*              /                   301
+/wp-login.php        /                   301
+/wp-admin/*          /                   301
+/wp-json/*           /                   404
+/xmlrpc.php          /                   404
