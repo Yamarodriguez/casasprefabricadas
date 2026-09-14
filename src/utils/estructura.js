@@ -582,6 +582,7 @@ export function destacarSecciones(html) {
       inicio,
       fin: limite,
       tipo: seccion.vista,
+      clave: seccion.clave, // precios, planos, fabricantes... (clase CSS propia)
       grupo: seccion.grupo,
       titulo,
       fotoTag,
@@ -619,7 +620,7 @@ export function destacarSecciones(html) {
      texto va sobre fondo limpio. */
   function unaPieza(s, variante, etiqueta = 'article') {
     return (
-      `<${etiqueta} class="destacado destacado--${variante}">` +
+      `<${etiqueta} class="destacado destacado--${variante}${s.clave ? ` destacado--${s.clave}` : ''}">` +
       `<div class="destacado__foto">${enlazarFoto(s.fotoTag, destinoDe(s.boton))}</div>` +
       `<div class="destacado__caja"${fondoDe(s.fotoTag)}>${marcarLema(tarjetaDestacado(s))}</div>` +
       `</${etiqueta}>`
@@ -841,7 +842,8 @@ export function armarBanners(html) {
       inicio: previos.length ? previos[0].ini : h.inicio,
       fin: finBanner,
       html:
-        `<section class="destacado destacado--banda">` +
+        // el catálogo (portada + "Descarga GRATIS") va en claro, como en el original
+        `<section class="destacado destacado--banda${/catalogo/i.test(destinoDe(h.boton)) ? ' destacado--claro' : ''}">` +
         `<div class="destacado__foto">${enlazarFoto(h.foto, destinoDe(h.boton))}</div>` +
         caja +
         `</section>`,

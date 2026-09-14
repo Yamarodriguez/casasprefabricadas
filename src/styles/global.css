@@ -383,22 +383,21 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 }
 
 /* Rejilla de ventajas (Ecologicas / Tiempo de construccion / Economicas /
-   Versatilidad / Movilidad). El original la pinta como franja verde
-   solida a sangre; aqui va como panel claro con tarjetas blancas y un
-   filete ambar sobre cada titulo: el verde a toda pantalla con texto
-   encima pesaba mucho y bajaba el contraste del texto. */
+   Versatilidad / Movilidad). Como en el original, va sobre la franja
+   verde de la marca (#159E00); el texto no va directamente sobre el
+   verde sino en tarjetas blancas, para que se lea bien. */
 .rejilla {
   display: grid; gap: 1.1rem; max-width: none;
   /* 225px para que las 5 ventajas quepan en una fila a 1293px de ancho
      (con 235 la quinta caia sola a una segunda fila) */
   grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
-  background: var(--fondo-alt); border: 1px solid var(--linea);
+  background: var(--verde); border: 0;
   border-radius: var(--radio);
   margin: 2.8rem 0; padding: 1.7rem;
   text-align: left;
 }
 .rejilla .tarjeta {
-  background: #fff; border: 1px solid var(--linea); box-shadow: none;
+  background: #fff; border: 0; box-shadow: 0 2px 8px rgba(0, 0, 0, .14);
   border-radius: var(--radio-s); padding: 1.1rem 1.2rem 1.2rem;
 }
 /* el titulo conserva la etiqueta del original (h3 en la portada, h2 en
@@ -504,8 +503,8 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 }
 .contenido .destacado__titulo::after { content: none; }
 /* el titulo y la foto llevan al mismo sitio que el boton */
-.contenido .destacado__titulo a { color: inherit; text-decoration: none; }
-.contenido .destacado__titulo a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.contenido .destacado .destacado__caja .destacado__titulo a { color: inherit; text-decoration: none; }
+.contenido .destacado .destacado__caja .destacado__titulo a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .contenido .destacado__titulo::before {
   content: ""; position: absolute; top: 0; left: 0;
   width: 38px; height: 3px; background: var(--ambar); border-radius: 2px;
@@ -523,9 +522,51 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 .destacado__caja a:not(.boton) { color: var(--verde-oscuro); }
 .destacado__caja .cta { margin: .35rem 0 0; padding: 0; }
 
-/* tarjeta: foto arriba con proporcion fija y el texto debajo, en pareja */
+/* tarjeta (Ofertas/Llave en mano, Planos/Venta): en pareja, con el
+   texto a la izquierda y la foto a la derecha, como en el original. En
+   movil la foto pasa arriba. */
 .destacado--tarjeta .destacado__foto { aspect-ratio: 16 / 10; }
-.destacado--tarjeta .destacado__caja { flex: 1; }
+.destacado--tarjeta .destacado__caja { flex: 1; justify-content: center; }
+@media (min-width: 701px) {
+  .destacado--tarjeta { flex-direction: row; align-items: stretch; }
+  .destacado--tarjeta .destacado__foto { flex: 0 0 45%; order: 2; aspect-ratio: auto; min-height: 250px; }
+  .destacado--tarjeta .destacado__caja { padding: 1.4rem 1.5rem; }
+}
+
+/* Fabricantes / Financiacion: la foto de fondo con capa oscura y una
+   barra de titulo de color (navy / granate), tal cual en el original;
+   texto en blanco centrado y boton verde. */
+.destacado--fabricantes, .destacado--financiacion {
+  position: relative; isolation: isolate; color: #fff; min-height: 330px;
+  flex-direction: column; border-color: #1d1d1d;
+}
+.destacado--fabricantes .destacado__foto, .destacado--financiacion .destacado__foto {
+  position: absolute; inset: 0; z-index: -2; order: 0; flex: none; min-height: 0; aspect-ratio: auto;
+}
+.destacado--fabricantes::before, .destacado--financiacion::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(10, 10, 10, .68), rgba(10, 10, 10, .84));
+}
+.destacado--fabricantes .destacado__caja, .destacado--financiacion .destacado__caja {
+  flex: 1; padding: 0; gap: 0; text-align: center; align-items: center; justify-content: flex-start;
+}
+.contenido .destacado--fabricantes .destacado__caja .destacado__titulo,
+.contenido .destacado--financiacion .destacado__caja .destacado__titulo {
+  align-self: stretch; margin: 0; padding: .7rem 1.2rem; text-align: center;
+  color: #fff; font-size: clamp(1.35rem, 1.1rem + 1vw, 1.9rem); line-height: 1.15;
+  background: rgba(4, 23, 118, .62); /* navy del original */
+}
+.contenido .destacado--financiacion .destacado__caja .destacado__titulo { background: rgba(104, 35, 35, .72); } /* granate */
+.contenido .destacado--fabricantes .destacado__caja .destacado__titulo::before,
+.contenido .destacado--financiacion .destacado__caja .destacado__titulo::before { display: none; }
+.destacado--fabricantes .destacado__cuerpo, .destacado--financiacion .destacado__cuerpo {
+  padding: 1.3rem 1.5rem .4rem; margin: auto 0; max-width: 46ch;
+}
+.contenido .destacado--fabricantes .destacado__caja p,
+.contenido .destacado--financiacion .destacado__caja p { color: #f3f3ef; text-align: center; font-size: 1rem; }
+.contenido .destacado--fabricantes .destacado__caja strong,
+.contenido .destacado--financiacion .destacado__caja strong { color: #fff; }
+.destacado--fabricantes .destacado__caja .cta, .destacado--financiacion .destacado__caja .cta { padding: 0 1.5rem 1.5rem; margin: 0; }
 
 /* banda: va sola, foto a un lado y texto al otro. El lado del texto es
    como en el original (el banner "Diseño 3D" que gusta): la misma foto
@@ -568,11 +609,32 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 .destacado--banda .destacado__caja .cta { margin-top: .4rem; }
 .destacado--banda:nth-of-type(even) { flex-direction: row-reverse; }
 
-/* horizontal: mismo reparto que la banda pero compacto, en lista */
+/* horizontal (Imagenes / Construccion): franja gris clara en lista, con
+   el texto a la izquierda y la foto a la derecha (en el original eran
+   franjas grises con la foto a la derecha) */
 .destacados--horizontal { grid-template-columns: 1fr; gap: 1.2rem; }
-.destacado--horizontal { flex-direction: row; align-items: stretch; }
-.destacado--horizontal .destacado__foto { flex: 0 0 34%; min-height: 215px; }
-.destacado--horizontal .destacado__caja { flex: 1; justify-content: center; padding: 1.3rem 1.6rem; }
+.destacado--horizontal { flex-direction: row; align-items: stretch; background: var(--fondo-alt); }
+.destacado--horizontal .destacado__foto { flex: 0 0 36%; min-height: 215px; order: 2; }
+.destacado--horizontal .destacado__caja { flex: 1; justify-content: center; padding: 1.4rem 1.8rem; }
+
+/* catalogo: la portada del PDF a la derecha sobre blanco, titulo en
+   cursiva y boton perfilado, como el bloque del original */
+.destacado--banda.destacado--claro { border-color: var(--linea); }
+.destacado--banda.destacado--claro .destacado__foto { background: #fff; }
+.destacado--banda.destacado--claro .destacado__caja { background: #fff; color: var(--tinta); }
+.destacado--banda.destacado--claro .destacado__caja::before { display: none; }
+.contenido .destacado--banda.destacado--claro .destacado__caja .destacado__titulo,
+.contenido .destacado--banda.destacado--claro:not(:has(.destacado__lema)) .destacado__caja .destacado__titulo {
+  color: var(--carbon-medio); font-family: var(--titulos); font-style: italic; font-weight: 600;
+  font-size: clamp(1.5rem, 1.15rem + 1.3vw, 2.3rem); line-height: 1.15;
+}
+.contenido .destacado--banda.destacado--claro .destacado__caja .destacado__lema { color: var(--carbon-medio); }
+.contenido .destacado--banda.destacado--claro .destacado__caja p { color: var(--tinta-suave); }
+.contenido .destacado--banda.destacado--claro .destacado__caja strong { color: var(--carbon-medio); }
+.destacado--banda.destacado--claro .boton {
+  background: #fff; color: var(--verde-oscuro); border: 2px solid var(--verde); box-shadow: none;
+}
+.destacado--banda.destacado--claro .boton:hover { background: var(--verde); color: #fff; }
 
 @media (max-width: 700px) {
   .destacado--banda, .destacado--horizontal,
