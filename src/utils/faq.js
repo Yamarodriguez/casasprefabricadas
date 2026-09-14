@@ -24,7 +24,7 @@
  *   {T} plazo de la línea   ("entre 6 y 9 meses")
  */
 
-const LINEAS = {
+export const LINEAS = {
   generica: {
     N: 'casas prefabricadas',
     n: 'casa prefabricada',
@@ -1351,7 +1351,7 @@ export function clasificar(pagina) {
   return { linea, tema, lugar };
 }
 
-function rellenar(texto, datos) {
+export function rellenar(texto, datos) {
   const salida = texto.replace(/\{(N|n|L|P|T)\}/g, (_, k) => datos[k] ?? '');
   return salida[0].toUpperCase() + salida.slice(1);
 }

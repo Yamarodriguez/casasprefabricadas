@@ -4,6 +4,7 @@ import Formulario from '../components/Formulario.astro';
 import { sanearImagenes } from '../utils/imagenes.js';
 import { reconstruir } from '../utils/estructura.js';
 import { generarFaq, tituloFaq, renderFaq, marcarFaqAntiguo, colocarFaq } from '../utils/faq.js';
+import { generarExtras, renderExtras } from '../utils/extras.js';
 
 export async function getStaticPaths() {
   const modulos = import.meta.glob('../content/pages/*.json', { eager: true });
@@ -22,11 +23,14 @@ const { pagina } = Astro.props;
    pares título+foto vuelven a ser una rejilla de tarjetas, los enlaces
    sueltos de llamada a la acción vuelven a ser botones, y los directorios
    de localidades vuelven a ser una nube de enlaces en vez de viñetas. */
-/* Preguntas frecuentes propias de cada página (línea de producto, tema
-   y localidad), en acordeón y en el sitio donde iban en el original. */
+/* Al final del contenido se AÑADEN (sin tocar lo que había) dos secciones
+   nuevas h2 + texto propias de cada página, y detrás las preguntas
+   frecuentes en acordeón, en el sitio donde iban en el original. La
+   clasificación (línea, tema, localidad) es la misma para las dos. */
 const faq = generarFaq(pagina);
+const extras = renderExtras(generarExtras(pagina));
 const { html: saneado } = sanearImagenes(pagina.cuerpo);
-const cuerpo = colocarFaq(reconstruir(marcarFaqAntiguo(saneado)), renderFaq(faq, tituloFaq(pagina)));
+const cuerpo = colocarFaq(reconstruir(marcarFaqAntiguo(saneado)), extras + renderFaq(faq, tituloFaq(pagina)));
 
 /* El cuerpo trae <aside data-formulario="1"></aside> donde estaba el
    Contact Form 7. Se parte por ahí para intercalar el componente. */
