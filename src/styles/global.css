@@ -318,14 +318,17 @@ a.modelo__enlace:hover {
   display: flex; flex-direction: column; gap: .4rem; flex: 1;
   padding: .8rem .85rem 1rem; text-align: center;
 }
-.modelo__titulo {
-  display: block;
+/* el titulo es un h3 de verdad (la estructura del original): se anulan
+   los margenes y el tamano de encabezado suelto de .contenido */
+.contenido .modelo__titulo {
+  display: block; margin: 0;
   font-family: var(--titulos); font-size: 1.02rem; font-weight: 600;
-  line-height: 1.25; color: var(--carbon-medio);
+  line-height: 1.25; color: var(--carbon-medio); text-align: center;
 }
 /* En móvil el texto se recorta a 5 líneas para que la tarjeta no se dispare.
    Se recorta solo en pantalla: el texto completo sigue en el HTML. */
-.modelo__texto {
+.contenido .modelo__texto {
+  margin: 0; text-align: center;
   font-size: .88rem; line-height: 1.5; color: var(--tinta-suave);
   display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;
   overflow: hidden;
@@ -334,8 +337,8 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 
 @media (min-width: 760px) {
   .modelo__cuerpo { padding: .95rem 1.1rem 1.15rem; gap: .45rem; }
-  .modelo__titulo { font-size: 1.12rem; }
-  .modelo__texto { font-size: .92rem; display: block; -webkit-line-clamp: unset; overflow: visible; }
+  .contenido .modelo__titulo { font-size: 1.12rem; }
+  .contenido .modelo__texto { font-size: .92rem; display: block; -webkit-line-clamp: unset; overflow: visible; }
 }
 
 /* tablas */
@@ -374,12 +377,16 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   background: #fff; border: 1px solid var(--linea); box-shadow: none;
   border-radius: var(--radio-s); padding: 1.1rem 1.2rem 1.2rem;
 }
-.rejilla .tarjeta h3 {
+/* el titulo conserva la etiqueta del original (h3 en la portada, h2 en
+   algunas paginas); la clase manda sobre los estilos de encabezado
+   suelto de .contenido, incluida la raya centrada del h2 */
+.contenido .rejilla .tarjeta__titulo {
   color: var(--carbon-medio); font-family: var(--titulos);
-  font-size: 1.08rem; font-weight: 600; font-style: normal;
-  margin: 0 0 .55rem; padding-top: .7rem; position: relative;
+  font-size: 1.08rem; font-weight: 600; font-style: normal; line-height: 1.25;
+  margin: 0 0 .55rem; padding: .7rem 0 0; position: relative; text-align: left;
 }
-.rejilla .tarjeta h3::before {
+.contenido .rejilla .tarjeta__titulo::after { content: none; }
+.contenido .rejilla .tarjeta__titulo::before {
   content: ""; position: absolute; top: 0; left: 0;
   width: 32px; height: 3px; background: var(--ambar); border-radius: 2px;
 }
@@ -462,12 +469,17 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   display: flex; flex-direction: column; gap: .6rem;
   padding: 1.15rem 1.3rem 1.35rem; text-align: left;
 }
-.destacado__caja h3 {
+/* el titulo de la caja es un h2 (Precios, Planos, Venta... eran
+   secciones h2 del original) o un <p> cuando sale de una frase suelta;
+   la clase fija el mismo aspecto para los dos y anula la raya centrada y
+   el tamano de los h2 sueltos de .contenido */
+.contenido .destacado__titulo {
   font-family: var(--titulos); font-size: 1.18rem; font-weight: 600;
   line-height: 1.25; margin: 0; color: var(--carbon-medio);
-  padding-top: .75rem; position: relative;
+  padding: .75rem 0 0; position: relative; text-align: left; text-wrap: balance;
 }
-.destacado__caja h3::before {
+.contenido .destacado__titulo::after { content: none; }
+.contenido .destacado__titulo::before {
   content: ""; position: absolute; top: 0; left: 0;
   width: 38px; height: 3px; background: var(--ambar); border-radius: 2px;
 }
@@ -495,7 +507,7 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 .destacado--banda .destacado__caja {
   flex: 1; justify-content: center; gap: .8rem; padding: 2rem 2.2rem;
 }
-.destacado--banda .destacado__caja h3 { font-size: clamp(1.35rem, 1.1rem + .9vw, 1.95rem); }
+.contenido .destacado--banda .destacado__titulo { font-size: clamp(1.35rem, 1.1rem + .9vw, 1.95rem); }
 .destacado--banda .destacado__caja p { font-size: 1rem; }
 .destacado--banda:nth-of-type(even) { flex-direction: row-reverse; }
 
@@ -569,8 +581,13 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   border-radius: var(--radio); padding: 1.6rem 2rem;
   margin: 2.4rem 0; max-width: none; /* mismo ancho que el resto del contenido */
 }
-.formulario h2 { margin-top: 0; border: 0; padding-top: 0; }
-.formulario > p:first-of-type { color: var(--tinta-suave); }
+/* el titulo del formulario es un <p> con aspecto de titular: no forma
+   parte de la estructura h1 > h2 > h3 del contenido */
+.contenido .formulario__titulo, .formulario__titulo {
+  font-family: var(--titulos); font-size: var(--escala-2); font-weight: 600;
+  line-height: 1.15; color: var(--carbon-medio); margin: 0 0 .5rem; text-align: left;
+}
+.formulario > .formulario__titulo + p { color: var(--tinta-suave); }
 .formulario__campos {
   display: grid; gap: 1rem; margin-top: 1.2rem;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -639,7 +656,7 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 .pie a { color: #fff; text-decoration: none; }
 .pie a:hover { color: var(--amarillo); }
 .pie__rejilla { display: grid; gap: 2.2rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-.pie h2 {
+.pie__titulo {
   font-family: var(--titulos); font-size: 1.05rem; text-transform: uppercase;
   letter-spacing: .06em; color: #fff; margin: 0 0 .9rem;
   padding-bottom: .5rem; border-bottom: 2px solid var(--amarillo); display: inline-block;
@@ -659,7 +676,9 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem;
   justify-content: space-between;
 }
-.cierre h2 {
+/* es un <p> con aspecto de titular (el cierre no es una seccion del
+   contenido); va con .cierre delante para ganar a la regla ".cierre p" */
+.cierre .cierre__titulo {
   font-family: var(--titulos); font-size: clamp(1.3rem, 1rem + 1.2vw, 1.9rem);
   font-weight: 700; margin: 0; max-width: 24ch; line-height: 1.2;
 }

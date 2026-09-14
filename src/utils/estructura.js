@@ -184,12 +184,19 @@ function escapar(s) {
 function descripcion(url) {
   if (!url) return '';
   const texto = textos[url] || textos[url.replace(/\/?$/, '/')];
-  return texto ? `<span class="modelo__texto">${escapar(texto)}</span>` : '';
+  return texto ? `<p class="modelo__texto">${escapar(texto)}</p>` : '';
 }
 
-function tarjeta({ url, titulo, img }) {
-  const foto = `<span class="modelo__foto">${afinarImagen(img)}</span>`;
-  const cuerpo = `<span class="modelo__cuerpo"><span class="modelo__titulo">${titulo}</span>${descripcion(url)}</span>`;
+/* El título conserva el nivel que traía (h3 en la portada: "Casa
+   prefabricada de Madera", "Casa prefabricada Hormigón"...): es la
+   estructura h1 > h2 > h3 que ya tenía el original y que Google conoce.
+   Todo el marcado es de bloque (div/h3/p), porque un encabezado dentro
+   de un <span> no es HTML válido. */
+function tarjeta({ url, titulo, img, etiqueta }) {
+  const foto = `<div class="modelo__foto">${afinarImagen(img)}</div>`;
+  const cuerpo =
+    `<div class="modelo__cuerpo"><${etiqueta} class="modelo__titulo">${titulo}</${etiqueta}>` +
+    `${descripcion(url)}</div>`;
   return url
     ? `<article class="modelo"><a class="modelo__enlace" href="${escapar(url)}">${foto}${cuerpo}</a></article>`
     : `<article class="modelo"><div class="modelo__enlace">${foto}${cuerpo}</div></article>`;
@@ -214,6 +221,7 @@ export function agruparModelos(html, minimo = 3) {
       url: g.urlTitulo || g.urlImgP || g.urlImgSuelta || '',
       titulo,
       img: g.imgP || g.imgSuelta,
+      etiqueta: g.etiqueta.toLowerCase(),
     });
   }
   if (encontrados.length < minimo) return html;
@@ -321,9 +329,10 @@ export function agruparVentajas(html) {
 
   const encontrados = [];
   for (const m of html.matchAll(VENTAJA)) {
-    const titulo = m[2].trim(); // m[1] es el nivel del encabezado (h2/h3)
+    const titulo = m[2].trim();
     if (TITULOS_VENTAJAS.includes(titulo)) {
-      encontrados.push({ inicio: m.index, fin: m.index + m[0].length, titulo, texto: m[3] });
+      // m[1] es el nivel del encabezado (h2/h3): se conserva en la tarjeta
+      encontrados.push({ inicio: m.index, fin: m.index + m[0].length, titulo, texto: m[3], etiqueta: m[1].toLowerCase() });
     }
   }
   if (encontrados.length < 3) return html;
@@ -341,7 +350,7 @@ export function agruparVentajas(html) {
   for (const s of series.reverse()) {
     if (s.length < 3) continue;
     const tarjetas = s
-      .map((v) => `<div class="tarjeta"><h3>${v.titulo}</h3><p>${v.texto}</p></div>`)
+      .map((v) => `<div class="tarjeta"><${v.etiqueta} class="tarjeta__titulo">${v.titulo}</${v.etiqueta}><p>${v.texto}</p></div>`)
       .join('');
     salida = salida.slice(0, s[0].inicio) + `<div class="rejilla">${tarjetas}</div>` + salida.slice(s[s.length - 1].fin);
   }
@@ -455,9 +464,13 @@ export function agruparEtiquetas(html, minimo = 3) {
    trozo de texto se convertía en un elemento flex y caía en su propia
    línea, partiendo la frase. Dentro de este bloque el texto fluye
    normal, venga envuelto o no. */
+/* El título sigue siendo <h2>: en el original "Casas Prefabricadas
+   Precios", "Planos de casas prefabricadas"... eran secciones h2 de la
+   página, y meterlas en una caja no cambia lo que son. La clase es la
+   que fija el tamaño, no la etiqueta. */
 function tarjetaDestacado({ titulo, resto, boton }) {
   return (
-    `<h3>${titulo}</h3>` +
+    `<h2 class="destacado__titulo">${titulo}</h2>` +
     `<div class="destacado__cuerpo">${resto}</div>` +
     (boton || '')
   );
@@ -665,11 +678,17 @@ export function armarBanners(html) {
        corto de una sola frase */
     let titulo = '';
     let cuerpo = previos;
+    /* la etiqueta del título se conserva: si era un h2/h3 en el original
+       sigue siéndolo; si el título sale de un párrafo o de una frase
+       suelta, va como <p> para no inventar encabezados que el original
+       no tenía (la estructura h1 > h2 > h3 de cada página es la suya) */
+    let etiquetaTitulo = 'p';
     if (previos.length) {
       const p = previos[0];
       const t = soloTexto(p.html);
       if (p.etiqueta !== 'p' || (t.length <= 90 && !/<(?:strong|b|a)\b/i.test(p.html))) {
         titulo = t;
+        etiquetaTitulo = p.etiqueta;
         cuerpo = previos.slice(1);
       }
     }
@@ -689,7 +708,7 @@ export function armarBanners(html) {
        propia línea) */
     const caja =
       `<div class="destacado__caja">` +
-      (titulo ? `<h3>${escapar(titulo)}</h3>` : '') +
+      (titulo ? `<${etiquetaTitulo} class="destacado__titulo">${escapar(titulo)}</${etiquetaTitulo}>` : '') +
       `<div class="destacado__cuerpo">` +
       cuerpo.map((b) => b.html).join('') +
       (h.textoPropio || '') +
