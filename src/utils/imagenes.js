@@ -33,13 +33,30 @@ function escapar(s) {
  * y limpia del srcset las variantes que falten. Las rutas que SÍ existen no
  * se tocan jamás: /wp-content/uploads/ está indexado en Google Imágenes.
  */
+/* Los 5 archivos que faltan en la biblioteca (2021/09) tienen su misma
+   foto subida de nuevo en 2022/02 con otro nombre: es la que usan las
+   tarjetas de todas las páginas de provincia. Solo se sustituyen estas
+   rutas concretas, comprobadas una a una; el resto no se toca. */
+const EQUIVALENTES = {
+  '/wp-content/uploads/2021/09/casa-prefabricada-hormigon.jpg': '/wp-content/uploads/2022/02/casas-prefabricadas-de-hormigon-1024x576.jpg',
+  '/wp-content/uploads/2021/09/casa-prefabricada-mediterraneas.jpg': '/wp-content/uploads/2022/02/casa-prefabricada-mediterraneas-1024x576.jpg',
+  '/wp-content/uploads/2021/09/casa-prefabricadas-Modernas.jpg': '/wp-content/uploads/2022/02/casa-prefabricadas-Modernas-1024x576.jpg',
+  '/wp-content/uploads/2021/09/casa-prefabricadas-modulares.jpg': '/wp-content/uploads/2022/02/casa-prefabricadas-modulares-1024x576.jpg',
+  'https://prefabricadas.casa/wp-content/uploads/2021/09/catalogos-casa-prefabricadas.jpg': '/wp-content/uploads/2022/02/catalogos-casa-prefabricadas-1024x1024.jpg',
+};
+
 export function sanearImagenes(html) {
   if (!html) return { html: '', faltan: [] };
   const faltan = [];
 
   const salida = html.replace(/<img\b[^>]*>/gi, (tag) => {
-    const src = (tag.match(/\ssrc="([^"]*)"/i) || [])[1];
+    let src = (tag.match(/\ssrc="([^"]*)"/i) || [])[1];
     if (!src) return tag;
+
+    if (EQUIVALENTES[src] && existe(EQUIVALENTES[src])) {
+      tag = tag.replace(/\ssrc="[^"]*"/i, ` src="${EQUIVALENTES[src]}"`).replace(/\ssrcset="[^"]*"/i, '').replace(/\ssizes="[^"]*"/i, '');
+      src = EQUIVALENTES[src];
+    }
 
     if (!existe(src)) {
       faltan.push(src);

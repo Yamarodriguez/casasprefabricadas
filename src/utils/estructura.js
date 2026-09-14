@@ -17,6 +17,7 @@
 
 import textos from '../data/modelos.json' with { type: 'json' };
 import { resolverSeccion } from '../data/secciones-destacadas.js';
+import { enlaceDeModelo } from '../data/enlaces-modelos.js';
 
 /**
  * Quita el logo de la empresa cuando aparece metido en el cuerpo del
@@ -153,16 +154,22 @@ export function envolverTextoSuelto(html) {
    dentro del mismo <p>) se deja intacta en vez de partir el HTML y dejar
    un </p> huérfano. */
 const PAR = new RegExp(
-  // el título puede venir en <h2> o <h3> según la página (\\k referencia el
-  // mismo nivel capturado en la apertura, para no cerrar un <h2> con </h3>)
-  '<(?<etiqueta>h[23])\\b[^>]*>\\s*' +
+  // el título puede venir en <h2>, <h3> o <h4> según la página: en 11
+  // páginas de casetas las tarjetas van en h4 (62 pares) y sin esto se
+  // quedaban como una torre de fotos sueltas (\\k referencia el mismo
+  // nivel capturado en la apertura, para no cerrar un <h2> con </h3>)
+  '<(?<etiqueta>h[234])\\b[^>]*>\\s*' +
     '(?:<a\\b[^>]*href="(?<urlTitulo>[^"]*)"[^>]*>)?' +
     // texto del título: no puede cruzar otro encabezado, o se traga los
     // <h2>/<h3> intermedios y pierde contenido.
     '\\s*(?<titulo>(?:(?!<\\/\\k<etiqueta>>)(?!<h[1-6]\\b)[\\s\\S])*?)\\s*' +
     '(?:<\\/a>)?\\s*<\\/\\k<etiqueta>>\\s*' +
     '(?:' +
-      '<p\\b[^>]*>\\s*(?:<a\\b[^>]*href="(?<urlImgP>[^"]*)"[^>]*>)?\\s*(?<imgP><img\\b[^>]*>)\\s*(?:<\\/a>)?\\s*<\\/p>' +
+      // en 224 páginas el <p> de la última tarjeta lleva detrás de la foto
+      // el enlace "Todos los modelos Viviendas prefabricadas": se admite
+      // (cola) y se saca fuera de la rejilla como botón
+      '<p\\b[^>]*>\\s*(?:<a\\b[^>]*href="(?<urlImgP>[^"]*)"[^>]*>)?\\s*(?<imgP><img\\b[^>]*>)\\s*(?:<\\/a>)?\\s*' +
+        '(?<cola><a\\b[^>]*href="[^"]*"[^>]*>\\s*[^<]{1,45}?\\s*<\\/a>)?\\s*<\\/p>' +
       '|' +
       '(?:<a\\b[^>]*href="(?<urlImgSuelta>[^"]*)"[^>]*>)?\\s*(?<imgSuelta><img\\b[^>]*>)\\s*(?:<\\/a>)?' +
     ')',
@@ -206,7 +213,10 @@ function tarjeta({ url, titulo, img, etiqueta }) {
  * Agrupa en rejillas los pares consecutivos. Solo se agrupan las series de
  * `minimo` o más: un par suelto se deja tal cual estaba.
  */
-export function agruparModelos(html, minimo = 3) {
+/* mínimo 2: la única serie de dos en todo el sitio es "Casas Steel
+   Framing" + "Perfiles Steel Framing" (108 páginas), que se quedaba
+   como dos fotos enormes apiladas */
+export function agruparModelos(html, minimo = 2) {
   if (!html) return html;
 
   // 1. localizar todos los pares con su posición
@@ -218,10 +228,13 @@ export function agruparModelos(html, minimo = 3) {
     encontrados.push({
       inicio: m.index,
       fin: m.index + m[0].length,
-      url: g.urlTitulo || g.urlImgP || g.urlImgSuelta || '',
+      // las tarjetas que llegaron sin enlace, o con el equivocado del
+      // original (tres casetas apuntaban a /modernas/), se corrigen por título
+      url: enlaceDeModelo(titulo, g.urlTitulo || g.urlImgP || g.urlImgSuelta || ''),
       titulo,
       img: g.imgP || g.imgSuelta,
       etiqueta: g.etiqueta.toLowerCase(),
+      cola: g.cola || '',
     });
   }
   if (encontrados.length < minimo) return html;
@@ -246,7 +259,11 @@ export function agruparModelos(html, minimo = 3) {
   let salida = html;
   for (const s of series.reverse()) {
     if (s.length < minimo) continue;
-    const rejilla = `<div class="modelos">${s.map(tarjeta).join('')}</div>`;
+    // el enlace que venía pegado a la última foto sale detrás de la
+    // rejilla en su propio <p>: convertirEnBotones lo hace botón después
+    const colas = s.filter((x) => x.cola).map((x) => `<p>${x.cola}</p>`).join('');
+    const clase = s.length === 2 ? 'modelos modelos--pareja' : 'modelos';
+    const rejilla = `<div class="${clase}">${s.map(tarjeta).join('')}</div>${colas}`;
     salida = salida.slice(0, s[0].inicio) + rejilla + salida.slice(s[s.length - 1].fin);
   }
   return salida;
@@ -264,7 +281,10 @@ export function agruparModelos(html, minimo = 3) {
  * El amarillo queda reservado para las llamadas a la acción principales
  * (las del héroe: "Pedir presupuesto").
  */
-const CTA = /<p\b[^>]*>\s*<a\b([^>]*href="[^"]*"[^>]*)>\s*([^<]{1,30}?)\s*<\/a>\s*<\/p>/gi;
+/* hasta 45 letras: "Todos los modelos Viviendas prefabricadas" (320
+   enlaces sueltos bajo la rejilla de modelos) tiene 41 y se quedaba como
+   un enlace perdido a la izquierda */
+const CTA = /<p\b[^>]*>\s*<a\b([^>]*href="[^"]*"[^>]*)>\s*([^<]{1,45}?)\s*<\/a>\s*<\/p>/gi;
 
 /* Y la otra mitad del mismo caso: el enlace va PEGADO al final del
    párrafo, con texto delante, en vez de en un párrafo propio
@@ -407,15 +427,18 @@ export function agruparDirectorios(html) {
  * apilados. Se repite en 17 páginas (25 series, poco frecuente pero muy
  * visible donde aparece: hasta 8 seguidos).
  */
-const H3_PLANO = /<h3\b[^>]*>((?:(?!<\/h3>)(?!<a\b)[\s\S])*?)<\/h3>/gi;
+const H3_PLANO = /<(h[34])\b[^>]*>((?:(?!<\/h[34]>)(?!<a\b)[\s\S])*?)<\/\1>/gi;
 
 export function agruparEtiquetas(html, minimo = 3) {
   if (!html) return html;
 
   const encontrados = [];
   for (const m of html.matchAll(H3_PLANO)) {
-    const texto = m[1].replace(/<[^>]+>/g, '').trim();
-    if (texto) encontrados.push({ inicio: m.index, fin: m.index + m[0].length, texto });
+    const texto = m[2].replace(/<[^>]+>/g, '').trim();
+    // se conserva la etiqueta (h3/h4): en el original eran encabezados y
+    // la estructura de la página sigue siendo la suya; el CSS los pinta
+    // como chips
+    if (texto) encontrados.push({ inicio: m.index, fin: m.index + m[0].length, texto, etiqueta: m[1].toLowerCase() });
   }
   if (encontrados.length < minimo) return html;
 
@@ -431,7 +454,10 @@ export function agruparEtiquetas(html, minimo = 3) {
   let salida = html;
   for (const s of series.reverse()) {
     if (s.length < minimo) continue;
-    const chips = `<div class="etiquetas">${s.map((x) => `<span>${escapar(x.texto)}</span>`).join('')}</div>`;
+    const chips =
+      `<div class="etiquetas">` +
+      s.map((x) => `<${x.etiqueta} class="etiqueta">${escapar(x.texto)}</${x.etiqueta}>`).join('') +
+      `</div>`;
     salida = salida.slice(0, s[0].inicio) + chips + salida.slice(s[s.length - 1].fin);
   }
   return salida;
@@ -505,9 +531,12 @@ export function destacarSecciones(html) {
        dentro de una tarjeta con foto. Son 11 casos en 11 páginas. */
     if (/class="(?:modelos|rejilla|zonas|destacados)"/.test(cuerpo)) continue;
 
-    // si la sección trae su propia foto, se usa esa en vez de la recuperada
+    // si la sección trae su propia foto, se usa esa en vez de la recuperada;
+    // si la propia es el marcador "imagen no disponible" (el archivo no
+    // existe), se quita y se usa la recuperada
     const imgPropia = cuerpo.match(/<img\b[^>]*>/i);
-    const fotoTag = imgPropia
+    const propiaValida = imgPropia && !/src="data:/i.test(imgPropia[0]);
+    const fotoTag = propiaValida
       ? imgPropia[0]
       : `<img src="${seccion.src}" alt="${escapar(seccion.alt)}" loading="lazy" width="820" height="460" />`;
     if (imgPropia) cuerpo = cuerpo.replace(imgPropia[0], '');
@@ -569,8 +598,13 @@ export function destacarSecciones(html) {
     if (b.tipo === 'banda') return unaPieza(b.items[0], 'banda', 'section');
 
     const variante = b.tipo === 'horizontal' ? 'horizontal' : 'tarjeta';
+    /* una tarjeta sin pareja va sola a todo el ancho: como banda (foto
+       al lado del texto), no como tarjeta suelta con la foto encima a
+       1293px de ancho, que salía gigante (Financiación en /modelos/) */
+    if (b.items.length < 2) {
+      return unaPieza(b.items[0], variante === 'horizontal' ? 'horizontal' : 'banda', 'section');
+    }
     const piezas = b.items.map((s) => unaPieza(s, variante)).join('');
-    if (b.items.length < 2) return piezas;
     const clase = variante === 'horizontal' ? 'destacados destacados--horizontal' : 'destacados';
     return `<div class="${clase}">${piezas}</div>`;
   }
@@ -610,6 +644,13 @@ const BANNER_A =
 const BANNER_B =
   /<p class="cta">((?:(?!<\/p>)[\s\S])*?)<\/p>\s*(?:(<a\b[^>]*>)\s*)?(<img\b[^>]*>)(?:\s*<\/a>)?/gi;
 
+/* C: la foto enlazada y, en el mismo <p>, el enlace detrás. Es el
+   catálogo en 210 páginas (título en el <p> de delante, la descripción
+   en el de detrás) y "Modelos de casetas" en 5. Como el texto va DETRÁS
+   de la foto, este tipo también mira hacia delante. */
+const BANNER_C =
+  /<p\b[^>]*>\s*(<a\b[^>]*>)\s*(<img\b[^>]*>)\s*<\/a>\s*<a\b([^>]*href="[^"]*"[^>]*)>\s*([^<]{1,45}?)\s*<\/a>\s*<\/p>/gi;
+
 /* Bloques de texto de primer nivel, para recoger lo que va delante. */
 const BLOQUE_TEXTO = /<(p|h2|h3)\b[^>]*>(?:(?!<\/\1>)[\s\S])*?<\/\1>/gi;
 
@@ -619,6 +660,14 @@ function soloTexto(s) {
     .replace(/&(?:nbsp|#160|#xa0);/gi, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/* Un bloque hace de título del banner si es un encabezado o un párrafo
+   corto de una sola frase, sin negritas ni enlaces. */
+function esTitulo(b) {
+  if (b.etiqueta !== 'p') return true;
+  const t = soloTexto(b.html);
+  return t.length <= 90 && !/<(?:strong|b|a)\b/i.test(b.html);
 }
 
 export function armarBanners(html) {
@@ -643,6 +692,15 @@ export function armarBanners(html) {
       boton: `<p class="cta">${m[1]}</p>`,
     });
   }
+  for (const m of html.matchAll(BANNER_C)) {
+    hallados.push({
+      inicio: m.index,
+      fin: m.index + m[0].length,
+      foto: `${m[1]}${m[2]}</a>`,
+      boton: `<p class="cta"><a class="boton boton--verde boton--pequeno"${m[3]}>${m[4].trim()}</a></p>`,
+      haciaDelante: true,
+    });
+  }
   if (!hallados.length) return html;
   hallados.sort((a, b) => a.inicio - b.inicio);
 
@@ -662,13 +720,20 @@ export function armarBanners(html) {
        marcado de tarjeta— para no morder una sección vecina. */
     const previos = [];
     let limite = h.inicio;
-    while (previos.length < 3) {
+    // el tipo C solo toma de delante el título; su texto va detrás
+    while (previos.length < (h.haciaDelante ? 1 : 3)) {
       const b = bloques.find(
         (x) => !usados.has(x.ini) && x.fin <= limite && html.slice(x.fin, limite).trim() === ''
       );
       if (!b) break;
       if (/class="cta"|<img|class="(?:modelo|destacado|rejilla|zonas)/.test(b.html)) break;
       if (!soloTexto(b.html)) break;
+      /* si lo recogido ya empieza por un título (encabezado o frase
+         corta) y lo que viene antes es un párrafo largo, ese párrafo es
+         de otra cosa: no se sigue. Sin esto el título del catálogo
+         quedaba perdido en medio del texto en 8 páginas. Una pila de
+         frases cortas seguidas sí se recoge entera (Diseño 3D). */
+      if (previos.length && esTitulo(previos[0]) && !esTitulo(b)) break;
       previos.unshift(b);
       usados.add(b.ini);
       limite = b.ini;
@@ -683,15 +748,33 @@ export function armarBanners(html) {
        suelta, va como <p> para no inventar encabezados que el original
        no tenía (la estructura h1 > h2 > h3 de cada página es la suya) */
     let etiquetaTitulo = 'p';
-    if (previos.length) {
-      const p = previos[0];
-      const t = soloTexto(p.html);
-      if (p.etiqueta !== 'p' || (t.length <= 90 && !/<(?:strong|b|a)\b/i.test(p.html))) {
-        titulo = t;
-        etiquetaTitulo = p.etiqueta;
-        cuerpo = previos.slice(1);
+    if (previos.length && esTitulo(previos[0])) {
+      titulo = soloTexto(previos[0].html);
+      etiquetaTitulo = previos[0].etiqueta;
+      cuerpo = previos.slice(1);
+    }
+    /* hacia delante (tipo C): hasta 2 párrafos de texto pegados detrás
+       de la foto, que son la descripción del catálogo. Se para en un
+       encabezado, una foto, un botón o una tarjeta. */
+    let finBanner = h.fin;
+    if (h.haciaDelante) {
+      const siguientes = [];
+      let desde = h.fin;
+      while (siguientes.length < 2) {
+        const b = bloques.find((x) => !usados.has(x.ini) && x.ini >= desde && html.slice(desde, x.ini).trim() === '');
+        if (!b || b.etiqueta !== 'p') break;
+        if (/class="cta"|<img|class="(?:modelo|destacado|rejilla|zonas)/.test(b.html)) break;
+        if (!soloTexto(b.html)) break;
+        siguientes.push(b);
+        usados.add(b.ini);
+        desde = b.fin;
+      }
+      if (siguientes.length) {
+        cuerpo = cuerpo.concat(siguientes);
+        finBanner = siguientes[siguientes.length - 1].fin;
       }
     }
+
     /* sin título y con el texto metido en el propio <p> del enlace (la
        portada): si arranca con una frase corta acabada en "!" o ".", esa
        frase pasa a título y el resto se queda de cuerpo. */
@@ -718,7 +801,7 @@ export function armarBanners(html) {
 
     reemplazos.push({
       inicio: previos.length ? previos[0].ini : h.inicio,
-      fin: h.fin,
+      fin: finBanner,
       html:
         `<section class="destacado destacado--banda">` +
         `<div class="destacado__foto">${h.foto}</div>` +
@@ -739,8 +822,17 @@ export function armarBanners(html) {
 }
 
 /** Aplica las reconstrucciones en el orden correcto. */
+/* Estilos en línea que dejó el editor de WordPress (224 <strong
+   style="font-size: 21px">, en 87 páginas): palabras sueltas en tamaño
+   grande en mitad de un párrafo. El tamaño lo pone la hoja de estilos. */
+const ESTILO_EN_LINEA = /(<(?:strong|b|em|i|span|a|li|p)\b[^>]*?)\s+style="[^"]*"/gi;
+
+export function quitarEstilosEnLinea(html) {
+  return html ? html.replace(ESTILO_EN_LINEA, '$1') : html;
+}
+
 export function reconstruir(html) {
-  const envuelto = envolverTextoSuelto(html); // primero: el resto necesita los <p>
+  const envuelto = envolverTextoSuelto(quitarEstilosEnLinea(html)); // primero: el resto necesita los <p>
   const limpio = quitarLogoDuplicado(envuelto);
   const modelos = agruparModelos(limpio);
   const botones = convertirEnBotones(modelos); // deja class="cta" para destacarSecciones

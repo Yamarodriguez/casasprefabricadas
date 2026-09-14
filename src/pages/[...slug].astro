@@ -38,7 +38,9 @@ const trozos = cuerpo.split(/<aside[^>]*data-formulario="1"[^>]*>\s*<\/aside>/i)
    520x520 flotando en medio de un hueco blanco. Aquí se saca del trozo
    siguiente para ponerla AL LADO del formulario, que es justo la
    llamada a la acción para pedir el catálogo. */
-const PORTADA = /^\s*<p\b[^>]*>\s*<a\b[^>]*href="[^"]*"[^>]*>\s*<img\b[^>]*>\s*<\/a>\s*<\/p>/i;
+/* enlazada y en su <p> (portada y provincias) o suelta y sin enlace (las
+   propias páginas de catálogo, que no enlazan a sí mismas) */
+const PORTADA = /^\s*(?:<p\b[^>]*>\s*<a\b[^>]*href="[^"]*"[^>]*>\s*<img\b[^>]*>\s*<\/a>\s*<\/p>|<img\b[^>]*>)/i;
 const piezas = trozos.map((t, i) => {
   if (i === 0) return { html: t, portada: '' };
   const m = t.match(PORTADA);
