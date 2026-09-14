@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Formulario from '../components/Formulario.astro';
 import { sanearImagenes } from '../utils/imagenes.js';
 import { reconstruir } from '../utils/estructura.js';
-import { generarFaq, tituloFaq, renderFaq, marcarFaqAntiguo, colocarFaq } from '../utils/faq.js';
+import { generarFaq, tituloFaq, renderFaq, marcarFaqAntiguo, colocarFaq, clasificar, LINEAS } from '../utils/faq.js';
 import { generarExtras, renderExtras } from '../utils/extras.js';
 
 export async function getStaticPaths() {
@@ -52,6 +52,16 @@ const piezas = trozos.map((t, i) => {
 });
 
 const entradilla = pagina.descripcion || '';
+
+/* El alt de la foto principal llegaba como el nombre del archivo
+   ("casas-prefabricadas-Alava"). Se describe con la palabra clave de la
+   página: "Casas prefabricadas de madera en Madrid". */
+const { linea, lugar } = clasificar(pagina);
+const capitalizar = (s) => (s ? s[0].toUpperCase() + s.slice(1) : s);
+const heroAlt = lugar
+  ? `${capitalizar(LINEAS[linea].titulo)} en ${lugar}`
+  : capitalizar(pagina.palabraClave || pagina.h1 || '');
+const hero = pagina.hero ? { ...pagina.hero, alt: heroAlt } : pagina.hero;
 ---
 
 <Base
@@ -60,7 +70,7 @@ const entradilla = pagina.descripcion || '';
   descripcion={pagina.descripcion}
   encabezado={pagina.h1}
   entradilla={entradilla}
-  hero={pagina.hero}
+  hero={hero}
   faq={faq}
   noindex={pagina.noindex}
 >

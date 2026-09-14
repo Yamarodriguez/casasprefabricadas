@@ -8,11 +8,11 @@
  "palabraClave": "Casas Prefabricadas Soria",
  "noindex": false,
  "hero": {
-  "src": "/wp-content/uploads/2021/09/casas-prefabricadas-madera.jpg",
-  "alt": "casas-prefabricadas-madera",
-  "ancho": 810,
-  "alto": 450,
-  "srcset": "/wp-content/uploads/2021/09/casas-prefabricadas-madera.jpg 810w, /wp-content/uploads/2021/09/casas-prefabricadas-madera-300x167.jpg 300w, /wp-content/uploads/2021/09/casas-prefabricadas-madera-768x427.jpg 768w"
+  "src": "/wp-content/uploads/2021/12/casas-de-madera-Soria-1024x379.png",
+  "alt": "casas-de-madera-Soria",
+  "ancho": 1024,
+  "alto": 379,
+  "srcset": "/wp-content/uploads/2021/12/casas-de-madera-Soria-1024x379.png 1024w, /wp-content/uploads/2021/12/casas-de-madera-Soria-300x111.png 300w, /wp-content/uploads/2021/12/casas-de-madera-Soria-768x284.png 768w, /wp-content/uploads/2021/12/casas-de-madera-Soria.png 1350w"
  },
  "faq": [
   {
