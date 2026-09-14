@@ -732,7 +732,28 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
 
+/* ---------------------------------------------------------------- whatsapp */
+/* Boton flotante abajo a la derecha, verde de WhatsApp, como en el
+   original: icono + "¿Como podemos ayudarte?" en escritorio, solo el
+   icono en movil para no tapar el contenido. */
+.whatsapp {
+  position: fixed; right: 1.1rem; bottom: 1.1rem; z-index: 60;
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .7rem 1.2rem .7rem .9rem; border-radius: 999px;
+  background: #25d366; color: #fff; text-decoration: none;
+  font-family: var(--titulos); font-weight: 600; font-size: 1rem; line-height: 1;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, .45), 0 2px 6px rgba(0, 0, 0, .18);
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.whatsapp:hover { background: #1ebe5b; color: #fff; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(37, 211, 102, .5), 0 2px 6px rgba(0, 0, 0, .2); }
+.whatsapp__icono { flex-shrink: 0; }
+@media (max-width: 640px) {
+  .whatsapp { padding: .8rem; right: .9rem; bottom: .9rem; }
+  .whatsapp__texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .whatsapp__icono { width: 30px; height: 30px; }
+}
+
 @media print {
-  .cabecera, .barra, .menu, .pie, .cierre, .formulario { display: none; }
+  .cabecera, .barra, .menu, .pie, .cierre, .formulario, .whatsapp { display: none; }
   body { font-size: 11pt; }
 }

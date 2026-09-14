@@ -3,6 +3,7 @@ import '../styles/global.css';
 import site from '../data/site.json';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import WhatsApp from '../components/WhatsApp.astro';
 import Migas from '../components/Migas.astro';
 import { existe, marcador } from '../utils/imagenes.js';
 
@@ -187,5 +188,6 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graf
     </section>
 
     <Footer />
+    <WhatsApp />
   </body>
 </html>

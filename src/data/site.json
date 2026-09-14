@@ -9,6 +9,11 @@
   "direccion": ""
  },
  "telefono": "",
+ "whatsapp": {
+  "numero": "34666171391",
+  "texto": "¿Cómo podemos ayudarte?",
+  "mensaje": "Prefabricadascasas.es ¡Hola! Dinos en qué podemos ayudarte:"
+ },
  "logo": "/wp-content/uploads/2021/09/cropped-casa-prefabricadas-32x32.png",
  "analytics": {
   "ga4": ""
