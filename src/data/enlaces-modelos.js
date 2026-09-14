@@ -70,8 +70,13 @@ export function normalizarTitulo(titulo) {
     .trim();
 }
 
+/* prefabricadas.casa no resuelve (dominio muerto): las 10 tarjetas que
+   apuntaban a prefabricadas.casa/ar/X/ van a la página X de aquí. */
+const DOMINIO_MUERTO = /^https?:\/\/(?:www\.)?prefabricadas\.casa\/(?:ar\/)?/i;
+
 /** Devuelve el enlace bueno para una tarjeta, o el que traía. */
 export function enlaceDeModelo(titulo, url) {
+  if (DOMINIO_MUERTO.test(url)) url = '/' + url.replace(DOMINIO_MUERTO, '');
   const propuesto = ENLACES_POR_TITULO[normalizarTitulo(titulo)];
   if (!propuesto) return url;
   if (!url || url === EQUIVOCADO) return propuesto;

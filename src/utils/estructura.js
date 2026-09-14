@@ -490,13 +490,45 @@ export function agruparEtiquetas(html, minimo = 3) {
    trozo de texto se convertía en un elemento flex y caía en su propia
    línea, partiendo la frase. Dentro de este bloque el texto fluye
    normal, venga envuelto o no. */
+/* Las bandas (a todo el ancho) llevan el texto sobre la MISMA foto
+   oscurecida y desenfocada, como en el original (foto de fondo + capa
+   oscura + título en blanco). La ruta va en una variable CSS y solo la
+   usa la banda; las tarjetas la ignoran. */
+function fondoDe(fotoHtml) {
+  const src = (String(fotoHtml || '').match(/\ssrc="([^"]*)"/i) || [])[1];
+  return src ? ` style="--fondo:url('${src.replace(/'/g, '%27')}')"` : '';
+}
+
+/* En el original la banda tiene un rótulo pequeño en ámbar (el título de
+   la sección) y una FRASE GRANDE en blanco ("¿Te gustaría ver tu casa en
+   3D antes de construirla?"). Esa frase es el primer párrafo del cuerpo
+   cuando es corto y sin negritas: se marca para que el CSS lo agrande. */
+const PRIMER_P = /(<div class="destacado__cuerpo">\s*)<p>([^<]{8,110})<\/p>/i;
+
+function marcarLema(cajaHtml) {
+  return cajaHtml.replace(PRIMER_P, '$1<p class="destacado__lema">$2</p>');
+}
+
 /* El título sigue siendo <h2>: en el original "Casas Prefabricadas
    Precios", "Planos de casas prefabricadas"... eran secciones h2 de la
    página, y meterlas en una caja no cambia lo que son. La clase es la
    que fija el tamaño, no la etiqueta. */
+/* El destino del botón de la caja ("Precios!", "Haz clic aquí"...), para
+   que el título y la foto lleven al mismo sitio y no solo el botón. */
+function destinoDe(botonHtml) {
+  return (String(botonHtml || '').match(/\shref="([^"]*)"/i) || [])[1] || '';
+}
+
+function enlazarFoto(fotoTag, href) {
+  if (!href || /^<a\b/i.test(fotoTag.trim())) return fotoTag; // ya enlazada
+  return `<a href="${href}">${fotoTag}</a>`;
+}
+
 function tarjetaDestacado({ titulo, resto, boton }) {
+  const href = destinoDe(boton);
+  const titular = href ? `<a href="${href}">${titulo}</a>` : titulo;
   return (
-    `<h2 class="destacado__titulo">${titulo}</h2>` +
+    `<h2 class="destacado__titulo">${titular}</h2>` +
     `<div class="destacado__cuerpo">${resto}</div>` +
     (boton || '')
   );
@@ -588,8 +620,8 @@ export function destacarSecciones(html) {
   function unaPieza(s, variante, etiqueta = 'article') {
     return (
       `<${etiqueta} class="destacado destacado--${variante}">` +
-      `<div class="destacado__foto">${s.fotoTag}</div>` +
-      `<div class="destacado__caja">${tarjetaDestacado(s)}</div>` +
+      `<div class="destacado__foto">${enlazarFoto(s.fotoTag, destinoDe(s.boton))}</div>` +
+      `<div class="destacado__caja"${fondoDe(s.fotoTag)}>${marcarLema(tarjetaDestacado(s))}</div>` +
       `</${etiqueta}>`
     );
   }
@@ -790,12 +822,18 @@ export function armarBanners(html) {
        sin <p> (si fuera hijo directo del flex, cada <strong> iría a su
        propia línea) */
     const caja =
-      `<div class="destacado__caja">` +
-      (titulo ? `<${etiquetaTitulo} class="destacado__titulo">${escapar(titulo)}</${etiquetaTitulo}>` : '') +
-      `<div class="destacado__cuerpo">` +
-      cuerpo.map((b) => b.html).join('') +
-      (h.textoPropio || '') +
-      `</div>` +
+      `<div class="destacado__caja"${fondoDe(h.foto)}>` +
+      (titulo
+        ? `<${etiquetaTitulo} class="destacado__titulo">` +
+          (destinoDe(h.boton) ? `<a href="${destinoDe(h.boton)}">${escapar(titulo)}</a>` : escapar(titulo)) +
+          `</${etiquetaTitulo}>`
+        : '') +
+      marcarLema(
+        `<div class="destacado__cuerpo">` +
+          cuerpo.map((b) => b.html).join('') +
+          (h.textoPropio || '') +
+          `</div>`,
+      ) +
       h.boton +
       `</div>`;
 
@@ -804,7 +842,7 @@ export function armarBanners(html) {
       fin: finBanner,
       html:
         `<section class="destacado destacado--banda">` +
-        `<div class="destacado__foto">${h.foto}</div>` +
+        `<div class="destacado__foto">${enlazarFoto(h.foto, destinoDe(h.boton))}</div>` +
         caja +
         `</section>`,
     });
@@ -831,8 +869,30 @@ export function quitarEstilosEnLinea(html) {
   return html ? html.replace(ESTILO_EN_LINEA, '$1') : html;
 }
 
+/* Viñetas escritas a mano: en 30 páginas (192 casos) las listas llegan
+   como párrafos que empiezan por "●". Se convierten en <ul> de verdad. */
+const VINETA = /<p\b[^>]*>\s*(?:<strong>\s*)?[●•▪■◦]\s*([\s\S]*?)<\/p>/gi;
+const TIRADA_VINETAS = /(?:<p\b[^>]*>\s*(?:<strong>\s*)?[●•▪■◦]\s*[\s\S]*?<\/p>\s*){2,}/gi;
+
+export function agruparVinetas(html) {
+  if (!html) return html;
+  return html.replace(TIRADA_VINETAS, (tirada) => {
+    const items = [...tirada.matchAll(VINETA)].map((m) => `<li>${m[1].trim()}</li>`);
+    return `<ul>${items.join('')}</ul>`;
+  });
+}
+
+/* Galería de WordPress (/render/, 30 fotos): las <figure class="gallery-item">
+   llegan una detrás de otra; se envuelven en una rejilla. */
+const GALERIA = /(?:<figure class="gallery-item">[\s\S]*?<\/figure>\s*){2,}/gi;
+
+export function agruparGalerias(html) {
+  if (!html) return html;
+  return html.replace(GALERIA, (g) => `<div class="galeria">${g}</div>`);
+}
+
 export function reconstruir(html) {
-  const envuelto = envolverTextoSuelto(quitarEstilosEnLinea(html)); // primero: el resto necesita los <p>
+  const envuelto = agruparGalerias(agruparVinetas(envolverTextoSuelto(quitarEstilosEnLinea(html)))); // primero: el resto necesita los <p>
   const limpio = quitarLogoDuplicado(envuelto);
   const modelos = agruparModelos(limpio);
   const botones = convertirEnBotones(modelos); // deja class="cta" para destacarSecciones
