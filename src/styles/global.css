@@ -903,22 +903,29 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
    caja, el anuncio ocupa la fila entera y va al final; entre bloques,
    con aire arriba y abajo. */
 ins.adsbygoogle { display: block; margin: 1.6rem auto; max-width: 100%; text-align: center; }
+/* AdSense escribe sus estilos EN LINEA sobre el <ins> (display, ancho,
+   alto, margen): sin !important estas reglas no ganaban */
 .modelos > ins.adsbygoogle, .destacados > ins.adsbygoogle, .rejilla > ins.adsbygoogle,
 .galeria > ins.adsbygoogle, .faq__lista > ins.adsbygoogle, .zonas > ins.adsbygoogle,
 .peticion > ins.adsbygoogle {
-  grid-column: 1 / -1; order: 100; margin: .4rem 0;
+  grid-column: 1 / -1 !important; order: 100 !important; margin: .4rem 0 !important;
+  justify-self: center; max-width: 100% !important;
 }
 .destacado > ins.adsbygoogle, .destacado__caja > ins.adsbygoogle, .destacado__cuerpo > ins.adsbygoogle,
 .modelo > ins.adsbygoogle, .modelo__enlace > ins.adsbygoogle, .modelo__cuerpo > ins.adsbygoogle,
-.formulario > ins.adsbygoogle, .hermanas > ins.adsbygoogle, .etiquetas > ins.adsbygoogle {
-  flex-basis: 100%; width: 100%; order: 100; margin: .6rem 0 0;
+.hermanas > ins.adsbygoogle, .etiquetas > ins.adsbygoogle {
+  flex-basis: 100% !important; width: 100% !important; order: 100 !important; margin: .6rem 0 0 !important;
 }
 /* Dentro de la cabecera, la barra, el heroe, el formulario, el cierre y
    el pie no cabe un anuncio sin romperlos (la cabecera es una fila fija
-   sin salto): ahi el hueco queda a 0 y AdSense no lo rellena, asi que no
-   cuenta ninguna impresion. */
-.barra ins.adsbygoogle, .cabecera ins.adsbygoogle, .hero ins.adsbygoogle,
-.formulario ins.adsbygoogle, .cierre ins.adsbygoogle, .pie ins.adsbygoogle { display: none; }
+   sin salto, y en la captura del cliente el anuncio se habia metido ahi
+   dentro, entre el menu y el boton): ahi el hueco queda a 0 y AdSense
+   no lo rellena, asi que no cuenta ninguna impresion. */
+.barra ins.adsbygoogle, .cabecera ins.adsbygoogle, .hero ins.adsbygoogle, .migas ins.adsbygoogle,
+.formulario ins.adsbygoogle, .cierre ins.adsbygoogle, .pie ins.adsbygoogle,
+.cabecera__fila > ins, .barra__fila > ins { display: none !important; }
+/* por si el bloque que cuela es un <div> que envuelve el anuncio */
+.cabecera__fila > :not(a):not(nav):not(button), .barra__fila > :not(a):not(span) { display: none !important; }
 /* con el anuncio ancla de abajo desplegado, el boton de WhatsApp sube
    para que no quede tapado */
 body:has(ins.adsbygoogle[data-anchor-status="displayed"]) .whatsapp { bottom: 6.5rem; }
