@@ -3,6 +3,11 @@
  "dominio": "https://prefabricadascasas.es",
  "descripcion": "Construcción de casas prefabricadas de madera, hormigón y steel framing en toda España. Precios, modelos, planos y presupuesto sin compromiso.",
  "email": "casasprefabricadas@prefabricadascasas.es",
+ "titular": {
+  "nombre": "",
+  "nif": "",
+  "direccion": ""
+ },
  "telefono": "",
  "logo": "/wp-content/uploads/2021/09/cropped-casa-prefabricadas-32x32.png",
  "analytics": {
