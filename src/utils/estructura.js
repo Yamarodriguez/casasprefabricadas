@@ -226,6 +226,12 @@ export function agruparModelos(html, minimo = 2) {
     const g = m.groups;
     const titulo = g.titulo.replace(/<[^>]+>/g, '').trim();
     if (!titulo) continue;
+    /* un <h2> de sección (Precios, Planos, Presupuesto...) seguido de su
+       foto no es una tarjeta de modelo: es la caja que monta
+       destacarSecciones. Tomarlo como tarjeta metía la caja DENTRO de la
+       tarjeta (8 páginas: /contenedores/, /pasivas/, /render/...) y el
+       título acababa enlazando a /modelos/. */
+    if (g.etiqueta.toLowerCase() === 'h2' && resolverSeccion(titulo)) continue;
     encontrados.push({
       inicio: m.index,
       fin: m.index + m[0].length,
@@ -558,8 +564,20 @@ export function destacarSecciones(html) {
        esa caja */
     const siguienteH2 = html.indexOf('<h2', finTitulo);
     const marcaFaq = html.indexOf('<aside data-faq', finTitulo);
-    const cortes = [siguienteH2, marcaFaq].filter((x) => x >= 0);
-    const limite = cortes.length ? Math.min(...cortes) : Math.min(html.length, finTitulo + 2000);
+    const marcaFormulario = html.indexOf('<aside', finTitulo); // el formulario nunca va dentro de una caja
+    const cortes = [siguienteH2, marcaFaq, marcaFormulario].filter((x) => x >= 0);
+    let limite = cortes.length ? Math.min(...cortes) : Math.min(html.length, finTitulo + 2000);
+    /* La sección acaba en su botón: título + texto + botón (+ su foto,
+       si va pegada al botón). Lo que viene detrás del botón ya es otro
+       bloque (el banner de Diseño 3D, el catálogo...) y, si se dejaba
+       dentro, acababa como banner anidado en la caja (/modelos-de-casetas/). */
+    const hastaAhi = html.slice(finTitulo, limite);
+    const cta = hastaAhi.match(/<p class="cta">[\s\S]*?<\/p>/i);
+    if (cta) {
+      const finCta = cta.index + cta[0].length;
+      const pegada = hastaAhi.slice(finCta).match(/^\s*(?:<p\b[^>]*>)?\s*(?:<a\b[^>]*>)?\s*<img\b[^>]*>\s*(?:<\/a>)?\s*(?:<\/p>)?/i);
+      limite = finTitulo + finCta + (pegada ? pegada[0].length : 0);
+    }
     let cuerpo = html.slice(finTitulo, limite);
 
     /* Si debajo del título hay una rejilla o un directorio, ese <h2> no
@@ -568,6 +586,11 @@ export function destacarSecciones(html) {
        llave en mano"...). Envolverlo metía las tarjetas de modelos
        dentro de una tarjeta con foto. Son 11 casos en 11 páginas. */
     if (/class="(?:modelos|rejilla|zonas|destacados)"/.test(cuerpo)) continue;
+    /* Y si el texto es largo, tampoco es una caja: es el titular de la
+       introducción de la página ("Casetas, Construcción, alquiler y Venta
+       de casetas" abre /modelos-de-casetas/ y contiene "venta"). Las cajas
+       reales llevan un párrafo o dos y un botón. */
+    if (!cta && textoVisible(cuerpo).length > 800) continue;
 
     // si la sección trae su propia foto, se usa esa en vez de la recuperada;
     // si la propia es el marcador "imagen no disponible" (el archivo no
