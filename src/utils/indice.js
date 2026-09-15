@@ -66,6 +66,16 @@ export function hermanasDe(pagina) {
   // una por línea, en el orden fijo, sin repetir destino
   const vistas = new Set();
   const enlaces = [];
+  // primero, siempre, la portada con su palabra clave (menos en la portada)
+  if (pagina.ruta !== '/') {
+    vistas.add('/');
+    enlaces.push({ url: '/', texto: 'Casas prefabricadas' });
+  }
+  // y la portada de su tipo (madera, hormigon...) desde sus localidades y temas
+  if (yo.linea !== 'generica' && (yo.lugar || yo.tema)) {
+    const raiz = paginas.find((p) => p.linea === yo.linea && !p.tema && !p.lugar);
+    if (raiz && !vistas.has(raiz.ruta)) { vistas.add(raiz.ruta); enlaces.push({ url: raiz.ruta, texto: NOMBRE_LINEA[yo.linea] }); }
+  }
   for (const l of ORDEN_LINEA) {
     for (const c of candidatas) {
       if (c.linea !== l || vistas.has(c.url)) continue;
@@ -73,6 +83,8 @@ export function hermanasDe(pagina) {
       enlaces.push({ url: c.url, texto: c.texto });
     }
   }
+  // sin hermanas de verdad (solo la portada y el tipo), el rotulo no promete nada
+  if (!titulo || !candidatas.length) titulo = 'También te puede interesar';
   return { titulo, enlaces };
 }
 
@@ -104,12 +116,24 @@ function listaDirectorio(items) {
   );
 }
 
-/** Sustituye el directorio que traiga la página por el completo, o lo
-    añade al final si no lo traía. Los enlaces del antiguo que no sean
-    páginas de localidad de la línea (hay alguno a otra línea) se conservan
-    detrás. */
-export function completarDirectorio(html, { titulo, items }) {
+/* El directorio completo va SOLO en la portada de cada tipo (/, /madera/,
+   /hormigon/, /steel-framing/, /casetas/). En las páginas de localidad y
+   de tema se quita el que trajeran (con su titular), y su enlace a la
+   portada y a la portada del tipo va en el bloque "Más opciones". */
+const DIRECTORIO_CON_TITULO = /(?:<h2\b[^>]*>(?:(?!<\/h2>)[\s\S])*<\/h2>\s*)?<details class="zonas-caja"[^>]*>[\s\S]*?<\/details>/i;
+
+export function esRaiz(pagina) {
+  const yo = clasificar(pagina);
+  return Boolean(pagina.palabraClave) && !yo.tema && !yo.lugar;
+}
+
+/** En la portada del tipo: sustituye el directorio que traiga la página
+    por el completo, o lo añade al final. En el resto: lo quita. Los
+    enlaces del antiguo que no sean páginas de localidad de la línea se
+    conservan detrás. */
+export function completarDirectorio(html, { titulo, items }, pagina) {
   if (!items.length) return html;
+  if (pagina && !esRaiz(pagina)) return html.replace(DIRECTORIO_CON_TITULO, '');
   const m = html.match(DIRECTORIO);
   if (m) {
     const conocidos = new Set(items.map((i) => i.url));

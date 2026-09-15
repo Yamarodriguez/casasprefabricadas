@@ -697,6 +697,13 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 .zonas-caja > summary::-webkit-details-marker { display: none; }
 .zonas-caja > summary::after { content: " ▾"; color: var(--amarillo-oscuro); }
 .zonas-caja[open] > summary::after { content: " ▴"; }
+/* el directorio generico de "Casas prefabricadas" en las otras lineas va
+   plegado tambien en escritorio: resumen como boton, para que se vea */
+.zonas-caja--cerrada > summary {
+  display: block; padding: .8rem 1rem; border: 1px solid var(--linea); border-radius: var(--radio-s);
+  background: var(--fondo-alt); color: var(--carbon-medio); font-size: 1rem;
+}
+.zonas-caja--cerrada[open] > summary { margin-bottom: .8rem; }
 @media (max-width: 700px) {
   .zonas-caja > summary {
     display: block; padding: .8rem 1rem; border: 1px solid var(--linea); border-radius: var(--radio-s);

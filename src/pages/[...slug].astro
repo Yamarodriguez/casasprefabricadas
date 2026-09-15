@@ -34,14 +34,15 @@ const extras = renderExtras(generarExtras(pagina));
 /* enlaces a la misma localidad o al mismo tema en las otras lineas */
 const hermanas = renderHermanas(hermanasDe(pagina));
 const { html: saneado } = sanearImagenes(pagina.cuerpo);
-/* el directorio de localidades de la linea, completo (sustituye al que
-   traia la pagina o se añade al final) */
+/* el directorio de localidades de la linea, completo, solo en la portada
+   de cada tipo; en el resto se quita el que trajera la pagina */
 const cuerpo = completarDirectorio(
   colocarFaq(
     trasPrimerParrafo(reconstruir(marcarFaqAntiguo(saneado)), tablaPrecios(pagina)), // tabla en las paginas de precios
     extras + hermanas + renderFaq(faq, tituloFaq(pagina)),
   ),
   directorioDe(pagina),
+  pagina, // solo la portada de cada tipo lleva el directorio completo
 );
 
 /* El cuerpo trae <aside data-formulario="1"></aside> donde estaba el
