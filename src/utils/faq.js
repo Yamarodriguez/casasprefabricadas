@@ -1420,6 +1420,17 @@ const NOMBRES = {
   'pais vasco': 'el País Vasco',
   'país vasco': 'el País Vasco',
   catalunya: 'Cataluña',
+  /* la misma localidad con dos nombres según la línea: se unifica para
+     que "Más opciones en…" y el directorio las reconozcan como una */
+  vizcaya: 'Bizkaia',
+  gipuzkoa: 'Guipúzcoa',
+  vitoria: 'Vitoria-Gasteiz',
+  chiclana: 'Chiclana de la Frontera',
+  /* erratas del original: /de-madera-palancia/ y /hormigon-alarcon/ son
+     Palencia y Alcorcón (las demás líneas los tienen con su nombre) */
+  palancia: 'Palencia',
+  alarcon: 'Alcorcón',
+  alarcón: 'Alcorcón',
 };
 
 const MINUSCULAS = new Set(['de', 'del', 'la', 'las', 'el', 'los', 'y']);
