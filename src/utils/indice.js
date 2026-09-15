@@ -80,6 +80,48 @@ function escapar(t) {
   return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/* ------------------------------------------------------------ directorio */
+/* Todas las localidades de la línea de la página, ordenadas, menos ella
+   misma. Es la nube "por localización" del original, pero completa: la de
+   WordPress se quedó con 76 de las 129 localidades genéricas, y dos
+   páginas (/arganda-del-rey/, /santa-fe/) no tenían ni un enlace. */
+export function directorioDe(pagina) {
+  if (!pagina.palabraClave) return { titulo: '', items: [] };
+  const yo = clasificar(pagina);
+  const items = paginas
+    .filter((p) => p.linea === yo.linea && p.lugar && p.ruta !== pagina.ruta)
+    .map((p) => ({ url: p.ruta, texto: `${NOMBRE_LINEA[p.linea]} en ${p.lugar}`, orden: p.lugarClave }))
+    .sort((a, b) => a.orden.localeCompare(b.orden, 'es'));
+  return { titulo: `${NOMBRE_LINEA[yo.linea]} por localidad`, items };
+}
+
+const DIRECTORIO = /<details class="zonas-caja"[^>]*>[\s\S]*?<\/details>/i;
+
+function listaDirectorio(items) {
+  return (
+    `<details class="zonas-caja" open><summary>Ver las ${items.length} localidades</summary>` +
+    `<ul class="zonas">${items.map((i) => `<li><a href="${escapar(i.url)}">${escapar(i.texto)}</a></li>`).join('')}</ul></details>`
+  );
+}
+
+/** Sustituye el directorio que traiga la página por el completo, o lo
+    añade al final si no lo traía. Los enlaces del antiguo que no sean
+    páginas de localidad de la línea (hay alguno a otra línea) se conservan
+    detrás. */
+export function completarDirectorio(html, { titulo, items }) {
+  if (!items.length) return html;
+  const m = html.match(DIRECTORIO);
+  if (m) {
+    const conocidos = new Set(items.map((i) => i.url));
+    const extra = [...m[0].matchAll(/<li>(<a\b[^>]*href="([^"]*)"[^>]*>[\s\S]*?<\/a>)<\/li>/g)]
+      .filter((x) => !conocidos.has(x[2].replace(/\/?$/, '/')))
+      .map((x) => x[1]);
+    const lista = listaDirectorio(items).replace('</ul>', extra.map((e) => `<li>${e}</li>`).join('') + '</ul>');
+    return html.replace(DIRECTORIO, lista.replace(/Ver las \d+ localidades/, `Ver las ${items.length + extra.length} localidades`));
+  }
+  return html + `<h2>${escapar(titulo)}</h2>` + listaDirectorio(items);
+}
+
 export function renderHermanas({ titulo, enlaces }) {
   if (!enlaces?.length) return '';
   const items = enlaces.map((e) => `<li><a href="${escapar(e.url)}">${escapar(e.texto)}</a></li>`).join('');

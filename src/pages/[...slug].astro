@@ -4,9 +4,9 @@ import Formulario from '../components/Formulario.astro';
 import { sanearImagenes } from '../utils/imagenes.js';
 import { reconstruir } from '../utils/estructura.js';
 import { generarFaq, tituloFaq, renderFaq, marcarFaqAntiguo, colocarFaq, clasificar, LINEAS } from '../utils/faq.js';
-import { generarExtras, renderExtras } from '../utils/extras.js';
-import { descripcionSeo } from '../utils/seo.js';
-import { hermanasDe, renderHermanas } from '../utils/indice.js';
+import { generarExtras, renderExtras, tablaPrecios, trasPrimerParrafo } from '../utils/extras.js';
+import { descripcionSeo, tituloSeo } from '../utils/seo.js';
+import { hermanasDe, renderHermanas, directorioDe, completarDirectorio } from '../utils/indice.js';
 
 export async function getStaticPaths() {
   const modulos = import.meta.glob('../content/pages/*.json', { eager: true });
@@ -34,7 +34,15 @@ const extras = renderExtras(generarExtras(pagina));
 /* enlaces a la misma localidad o al mismo tema en las otras lineas */
 const hermanas = renderHermanas(hermanasDe(pagina));
 const { html: saneado } = sanearImagenes(pagina.cuerpo);
-const cuerpo = colocarFaq(reconstruir(marcarFaqAntiguo(saneado)), extras + hermanas + renderFaq(faq, tituloFaq(pagina)));
+/* el directorio de localidades de la linea, completo (sustituye al que
+   traia la pagina o se añade al final) */
+const cuerpo = completarDirectorio(
+  colocarFaq(
+    trasPrimerParrafo(reconstruir(marcarFaqAntiguo(saneado)), tablaPrecios(pagina)), // tabla en las paginas de precios
+    extras + hermanas + renderFaq(faq, tituloFaq(pagina)),
+  ),
+  directorioDe(pagina),
+);
 
 /* El cuerpo trae <aside data-formulario="1"></aside> donde estaba el
    Contact Form 7. Se parte por ahí para intercalar el componente. */
@@ -73,7 +81,7 @@ const hero = pagina.hero ? { ...pagina.hero, alt: heroAlt } : pagina.hero;
 
 <Base
   ruta={pagina.ruta}
-  titulo={pagina.tituloSeo || pagina.titulo}
+  titulo={tituloSeo(pagina)}
   descripcion={descripcion}
   encabezado={pagina.h1}
   entradilla={entradilla}

@@ -69,21 +69,35 @@ export function sanearImagenes(html) {
         .replace(/\ssizes="[^"]*"/i, '');
     }
 
-    // el src existe: se podan del srcset solo las variantes que falten
-    return tag.replace(/\ssrcset="([^"]*)"/i, (todo, valor) => {
-      const buenas = valor
-        .split(',')
-        .map((t) => t.trim())
-        .filter(Boolean)
-        .filter((t) => {
-          const u = t.split(/\s+/)[0];
-          const ok = existe(u);
-          if (!ok) faltan.push(u);
-          return ok;
-        });
-      return buenas.length ? ` srcset="${buenas.join(', ')}"` : '';
-    });
+    // el src existe: se sirve la copia .webp si la hay (scripts/webp.mjs,
+    // un 69 % menos de peso) y se podan del srcset las variantes que falten
+    return tag
+      .replace(/\ssrc="([^"]*)"/i, (todo, u) => ` src="${aWebp(u)}"`)
+      .replace(/\ssrcset="([^"]*)"/i, (todo, valor) => {
+        const buenas = valor
+          .split(',')
+          .map((t) => t.trim())
+          .filter(Boolean)
+          .filter((t) => {
+            const u = t.split(/\s+/)[0];
+            const ok = existe(u);
+            if (!ok) faltan.push(u);
+            return ok;
+          })
+          .map((t) => {
+            const [u, ...resto] = t.split(/\s+/);
+            return [aWebp(u), ...resto].join(' ');
+          });
+        return buenas.length ? ` srcset="${buenas.join(', ')}"` : '';
+      });
   });
 
   return { html: salida, faltan };
+}
+
+/** La ruta .webp equivalente si existe en public/; si no, la original. */
+export function aWebp(ruta) {
+  if (!/\.(jpe?g|png)$/i.test(ruta)) return ruta;
+  const webp = ruta.replace(/\.(jpe?g|png)$/i, '.webp');
+  return existe(webp) ? webp : ruta;
 }

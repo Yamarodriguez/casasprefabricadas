@@ -14,6 +14,7 @@
   "texto": "¿Cómo podemos ayudarte?",
   "mensaje": "Prefabricadascasas.es ¡Hola! Dinos en qué podemos ayudarte:"
  },
+ "redes": [],
  "logo": "/wp-content/uploads/2021/09/cropped-casa-prefabricadas-32x32.png",
  "analytics": {
   "ga4": ""
@@ -120,6 +121,18 @@
      {
       "texto": "Financiación",
       "url": "/financiacion/"
+     },
+     {
+      "texto": "Casa de 100 m²: precio",
+      "url": "/casas-prefabricadas-100-m2-precio/"
+     },
+     {
+      "texto": "Por menos de 100.000 €",
+      "url": "/casas-prefabricadas-menos-100000-euros/"
+     },
+     {
+      "texto": "Segunda mano",
+      "url": "/casas-prefabricadas-segunda-mano/"
      }
     ]
    },
@@ -1348,6 +1361,18 @@
      {
       "texto": "Precios casas de madera",
       "url": "/precios-casas-de-madera-prefabricadas/"
+     },
+     {
+      "texto": "Casa de 100 m²: precio",
+      "url": "/casas-prefabricadas-100-m2-precio/"
+     },
+     {
+      "texto": "Por menos de 100.000 €",
+      "url": "/casas-prefabricadas-menos-100000-euros/"
+     },
+     {
+      "texto": "Segunda mano",
+      "url": "/casas-prefabricadas-segunda-mano/"
      }
     ]
    },
@@ -1944,6 +1969,18 @@
      {
       "texto": "Precios casas Hormigón",
       "url": "/hormigon-precios/"
+     },
+     {
+      "texto": "Casa de 100 m²: precio",
+      "url": "/casas-prefabricadas-100-m2-precio/"
+     },
+     {
+      "texto": "Por menos de 100.000 €",
+      "url": "/casas-prefabricadas-menos-100000-euros/"
+     },
+     {
+      "texto": "Segunda mano",
+      "url": "/casas-prefabricadas-segunda-mano/"
      }
     ]
    },
@@ -2502,6 +2539,18 @@
      {
       "texto": "Financiación",
       "url": "/financiacion/"
+     },
+     {
+      "texto": "Casa de 100 m²: precio",
+      "url": "/casas-prefabricadas-100-m2-precio/"
+     },
+     {
+      "texto": "Por menos de 100.000 €",
+      "url": "/casas-prefabricadas-menos-100000-euros/"
+     },
+     {
+      "texto": "Segunda mano",
+      "url": "/casas-prefabricadas-segunda-mano/"
      }
     ]
    },
@@ -2886,6 +2935,18 @@
      {
       "texto": "Precios Steel Framing",
       "url": "/steel-framing-precios/"
+     },
+     {
+      "texto": "Casa de 100 m²: precio",
+      "url": "/casas-prefabricadas-100-m2-precio/"
+     },
+     {
+      "texto": "Por menos de 100.000 €",
+      "url": "/casas-prefabricadas-menos-100000-euros/"
+     },
+     {
+      "texto": "Segunda mano",
+      "url": "/casas-prefabricadas-segunda-mano/"
      }
     ]
    },
@@ -3500,6 +3561,18 @@
      {
       "texto": "Precios de Casetas",
       "url": "/precios-de-casetas/"
+     },
+     {
+      "texto": "Casa de 100 m²: precio",
+      "url": "/casas-prefabricadas-100-m2-precio/"
+     },
+     {
+      "texto": "Por menos de 100.000 €",
+      "url": "/casas-prefabricadas-menos-100000-euros/"
+     },
+     {
+      "texto": "Segunda mano",
+      "url": "/casas-prefabricadas-segunda-mano/"
      }
     ]
    },
@@ -3808,6 +3881,18 @@
      {
       "texto": "Precios casas de madera",
       "url": "/precios-casas-de-madera-prefabricadas/"
+     },
+     {
+      "texto": "Casa de 100 m²: precio",
+      "url": "/casas-prefabricadas-100-m2-precio/"
+     },
+     {
+      "texto": "Por menos de 100.000 €",
+      "url": "/casas-prefabricadas-menos-100000-euros/"
+     },
+     {
+      "texto": "Segunda mano",
+      "url": "/casas-prefabricadas-segunda-mano/"
      }
     ]
    },
@@ -4060,6 +4145,30 @@
      {
       "texto": "Financiación",
       "url": "/financiacion/"
+     },
+     {
+      "texto": "Casa de 100 m²: precio",
+      "url": "/casas-prefabricadas-100-m2-precio/"
+     },
+     {
+      "texto": "Por menos de 100.000 €",
+      "url": "/casas-prefabricadas-menos-100000-euros/"
+     },
+     {
+      "texto": "Segunda mano",
+      "url": "/casas-prefabricadas-segunda-mano/"
+     },
+     {
+      "texto": "Tiny houses",
+      "url": "/tiny-houses/"
+     },
+     {
+      "texto": "Opiniones",
+      "url": "/opiniones/"
+     },
+     {
+      "texto": "Licencia en terreno rústico",
+      "url": "/licencia-casa-prefabricada-terreno-rustico/"
      }
     ]
    },

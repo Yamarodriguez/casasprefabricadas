@@ -1266,9 +1266,123 @@ const TEMAS = {
   },
 };
 
+/* Páginas nuevas (auditoría SEO, septiembre 2026): cada una con sus
+   preguntas propias. */
+Object.assign(TEMAS, {
+  segundamano: {
+    ancla: /segunda-mano/,
+    evita: ['precio'],
+    lista: [
+      {
+        p: '¿Cuánto cuesta una casa prefabricada de segunda mano?',
+        r: 'Entre un 30 % y un 60 % menos que nueva: una casa móvil usada de 30–40 m² se encuentra por 8.000–18.000 €, una mobile home de 60–90 m² por 20.000–45.000 € y una casa modular de madera desmontable de 60–100 m² por 25.000–55.000 €, más el traslado (1.000–6.000 €) y la base en la parcela nueva.',
+      },
+      {
+        p: '¿Se puede trasladar una casa prefabricada de segunda mano?',
+        r: 'Solo las móviles y las modulares desmontables. Una casa de hormigón con cimentación no se mueve. Antes de comprar, pide presupuesto de transporte y comprueba el acceso a tu parcela: una casa de 100 m² puede necesitar dos camiones y una grúa.',
+      },
+      {
+        p: '¿Qué documentación debe tener una casa prefabricada usada?',
+        r: 'Ficha técnica del fabricante, certificado de conformidad (marcado CE en casas móviles), facturas y, si estaba instalada legalmente, la licencia o autorización que tenía. Sin esa documentación es difícil obtener licencia en la parcela de destino.',
+      },
+    ],
+  },
+  menos100k: {
+    ancla: /menos-100000/,
+    evita: ['precio'],
+    lista: [
+      {
+        p: '¿Qué casa prefabricada se puede comprar por menos de 100.000 euros?',
+        r: 'Una casa de madera de hasta 150 m², una de Steel Framing de hasta 140 m² o una de hormigón prefabricado de 80–100 m², todas llave en mano. Con menos de 50.000 € se compra una casa de madera de 50–80 m² o una tiny house completa.',
+      },
+      {
+        p: '¿Los 100.000 euros incluyen el terreno?',
+        r: 'No. El precio es de la casa terminada sobre cimentación. Hay que sumar el terreno, la cimentación (5–10 %), las acometidas, el proyecto (4–8 %), la licencia y los impuestos: un 20–30 % más sobre el precio de la casa.',
+      },
+      {
+        p: '¿Cómo financiar una casa prefabricada de menos de 100.000 euros?',
+        r: 'Con hipoteca si la casa es fija y tiene proyecto y licencia (hasta el 80 % de la tasación de terreno y casa), con hipoteca autopromotor durante la obra, o con préstamo personal y financiación del fabricante en el caso de casas móviles.',
+      },
+    ],
+  },
+  tamano: {
+    ancla: /100-m2-precio/,
+    evita: ['precio'],
+    lista: [
+      {
+        p: '¿Cuánto cuesta una casa prefabricada de 100 m² llave en mano?',
+        r: 'Entre 47.000 y 60.000 € en madera, entre 45.000 y 70.000 € en Steel Framing y entre 90.000 y 120.000 € en hormigón prefabricado, sin terreno, cimentación ni licencias. Sumando todo lo demás, el coste total sin terreno queda entre 68.000 y 135.000 € según el sistema.',
+      },
+      {
+        p: '¿Sale más barata por metro cuadrado una casa más grande?',
+        r: 'Sí: cocina, baños e instalaciones cuestan lo mismo en 50 m² que en 150 m², así que el precio por m² baja al crecer la casa. Una casa de madera de 50 m² ronda los 500 €/m² de coste total y una de 150 m² baja a 600–900 €/m² con más dormitorios y calidades.',
+      },
+      {
+        p: '¿Qué distribución tiene una casa prefabricada de 100 m²?',
+        r: 'La más habitual: tres dormitorios, dos baños, salón-cocina abierto de 30–35 m² y porche, en una sola planta. En dos plantas se gana un dormitorio o un despacho, con un 10–15 % más de precio por la estructura y la escalera.',
+      },
+    ],
+  },
+  tiny: {
+    ancla: /tiny-house/,
+    evita: ['precio', 'licencia'],
+    lista: [
+      {
+        p: '¿Cuánto cuesta una tiny house en España?',
+        r: 'Entre 25.000 y 60.000 € terminada: desde 12.000–18.000 € en kit de 15–20 m², 30.000–45.000 € sobre remolque de 20–25 m² y 35.000–60.000 € fija de 25–40 m² con acabados de vivienda. Los diseños a medida llegan a 60.000–90.000 €.',
+      },
+      {
+        p: '¿Se puede vivir legalmente en una tiny house?',
+        r: 'Fija, sí, con proyecto y licencia y cumpliendo la superficie mínima de vivienda de tu comunidad (25–40 m² útiles según la zona). Sobre remolque es un vehículo: la estancia temporal en parcela privada suele permitirse, pero el uso residencial permanente, sobre todo en suelo rústico, no.',
+      },
+      {
+        p: '¿Necesita cimentación una tiny house?',
+        r: 'La de remolque no: apoya sobre losas o pilotes nivelados. La fija necesita una base ligera (solera o pilotes de hormigón) y las acometidas, o sistemas autónomos: placas solares, depósito de agua y fosa séptica homologada.',
+      },
+    ],
+  },
+  opiniones: {
+    ancla: /\bopiniones\b/,
+    evita: ['calidad'],
+    lista: [
+      {
+        p: '¿Merece la pena comprar una casa prefabricada?',
+        r: 'Para la mayoría de compradores, sí: precio y plazo cerrados, mejor aislamiento que una casa de ladrillo y entrega en 4–9 meses. Las malas experiencias vienen casi siempre de comprar por precio a fabricantes sin taller propio o sin contrato cerrado.',
+      },
+      {
+        p: '¿Cuáles son los problemas más frecuentes de las casas prefabricadas?',
+        r: 'Humedades en casas de madera con muros finos o mal instaladas, retrasos por la licencia municipal, sobrecostes por lo que el presupuesto no incluía (cimentación, acometidas, transporte) y ruido en casas ligeras mal aisladas acústicamente. Todos se evitan eligiendo bien al fabricante y leyendo el contrato.',
+      },
+      {
+        p: '¿Es fácil revender una casa prefabricada?',
+        r: 'Una casa fija, con proyecto, licencia y escritura, se vende como cualquier vivienda; las de hormigón conservan el valor de una casa de obra. Las que se revenden con dificultad son las casas móviles antiguas sin documentación.',
+      },
+    ],
+  },
+  rustico: {
+    ancla: /terreno-rustico/,
+    evita: ['licencia'],
+    lista: [
+      {
+        p: '¿Se puede poner una casa prefabricada en terreno rústico?',
+        r: 'Una vivienda fija, en general no: el suelo rústico está protegido para uso agrícola o natural. Sí se permiten casetas de aperos vinculadas a la explotación, la rehabilitación de edificaciones existentes y, en varias comunidades, viviendas ligadas a una explotación agraria en parcelas de superficie mínima. Las casas móviles pueden admitirse de forma temporal según el municipio.',
+      },
+      {
+        p: '¿Qué pasa si instalo una casa prefabricada en rústico sin licencia?',
+        r: 'Es una infracción urbanística: el ayuntamiento puede ordenar la retirada o demolición e imponer una multa, y en suelo especialmente protegido la infracción no prescribe. Además, sin licencia no hay primera ocupación, ni suministros legales, ni escritura.',
+      },
+      {
+        p: '¿Cómo saber si mi parcela es rústica o urbanizable?',
+        r: 'Pide en el ayuntamiento la cédula urbanística o consulta el planeamiento municipal y el catastro: indican la clasificación del suelo y los usos permitidos. Es el primer paso antes de comprar cualquier parcela o de encargar una casa.',
+      },
+    ],
+  },
+});
+
 /* Orden de comprobación: los específicos antes que los genéricos, para
    que "/casetas-hormigon-prefabricadas/" no caiga en otro tema. */
 const ORDEN_TEMAS = [
+  'segundamano', 'menos100k', 'tamano', 'tiny', 'opiniones', 'rustico',
   'casetasmadera', 'casetashormigon',
   'precios', 'planos', 'baratas', 'llave', 'venta', 'fabricantes', 'financiacion',
   'catalogo', 'imagenes', 'construccion', 'presupuesto', 'modelos', 'amedida',

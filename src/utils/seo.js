@@ -83,7 +83,47 @@ const TEMA = {
   metalicas: 'Casetas metálicas de acero galvanizado: económicas y resistentes para almacén, garaje o taller. Modelos, precios e instalación.',
   casetasmadera: 'Casetas de madera para jardín: grosores de 16 a 70 mm, modelos, precios desde 600 € y cómo protegerlas. Fabricantes de toda España.',
   casetashormigon: 'Casetas de hormigón prefabricado: las más resistentes para aperos, obra y fincas. Modelos, precios, solera e instalación con grúa.',
+  segundamano: 'Casas prefabricadas de segunda mano: dónde comprarlas, precios reales, qué revisar antes de pagar y cómo trasladarlas. Guía práctica 2026.',
+  menos100k: 'Casas prefabricadas por menos de 100.000 €: qué se compra en cada tramo de presupuesto, en madera, Steel Framing y hormigón, y cómo financiarlas.',
+  tamano: 'Cuánto cuesta una casa prefabricada de 100 m² en 2026: precio por sistema (madera, Steel Framing, hormigón) y por tamaño, de 50 a 150 m².',
+  tiny: 'Tiny houses y mini casas prefabricadas en España: tipos, precios desde 25.000 €, aislamiento y qué dice la normativa para vivir en una.',
+  opiniones: 'Opiniones sobre casas prefabricadas: lo que valoran los compradores, los problemas más frecuentes, mitos y cómo elegir bien al fabricante.',
+  rustico: 'Casa prefabricada en terreno rústico: qué se puede instalar, qué está prohibido, diferencias por comunidad y cómo tramitar la licencia paso a paso.',
 };
+
+/* ------------------------------------------------------------- títulos */
+/* Los títulos de WordPress eran "A - B" con la palabra clave repetida
+   ("Casas Prefabricadas Álava - Casa prefabricada Álava"): 110 pasaban de
+   60 caracteres y Google los recorta. Los que caben se dejan tal cual
+   (son los que Google tiene indexados); los largos se reescriben con un
+   patrón corto que conserva la palabra clave. */
+const MAX_TITULO = 60;
+const SUFIJO_TEMA = {
+  precios: ' 2026: tabla por m²',
+  catalogo: ' en PDF gratis',
+  imagenes: ': fotos reales',
+  planos: ': distribuciones y medidas',
+  fabricantes: ' en España',
+  empresas: ' en España',
+};
+const cap = (s) => (s ? s[0].toUpperCase() + s.slice(1) : s);
+
+export function tituloSeo(pagina) {
+  const base = pagina.tituloSeo || pagina.titulo || '';
+  if (base.length <= MAX_TITULO || !pagina.palabraClave) return base;
+  const { linea, tema, lugar } = clasificar(pagina);
+  const N = cap(LINEAS[linea].titulo);
+  if (lugar) {
+    for (const t of [`${N} en ${lugar}: precios y fabricantes`, `${N} en ${lugar}: precios`, `${N} en ${lugar}`, `${cap(LINEAS[linea].N)} en ${lugar}`]) {
+      if (t.length <= MAX_TITULO) return t;
+    }
+    return `${cap(LINEAS[linea].N)} ${lugar}`;
+  }
+  const primero = base.split(/\s[-|–]\s/)[0].trim();
+  const sufijo = SUFIJO_TEMA[tema] ?? ': precios y modelos';
+  const conSufijo = primero + sufijo;
+  return conSufijo.length <= MAX_TITULO ? conSufijo : primero.slice(0, MAX_TITULO);
+}
 
 /** Descripción de la página (o la que ya tenía, si no hay plantilla). */
 export function descripcionSeo(pagina) {

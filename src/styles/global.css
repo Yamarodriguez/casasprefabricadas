@@ -17,6 +17,17 @@
      tanto en titulares como en párrafos.
    ========================================================================= */
 
+/* Fuentes variables alojadas en /fonts (subconjunto latin, el que usa el
+   castellano). font-display: swap pinta con la de respaldo mientras cargan. */
+@font-face {
+  font-family: "Roboto"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("/fonts/roboto-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Roboto Condensed"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("/fonts/roboto-condensed-latin.woff2") format("woff2");
+}
+
 :root {
   /* marca — del CSS de Elementor del original */
   --verde: #159e00;
@@ -42,7 +53,7 @@
   /* tipografía */
   --titulos: "Roboto Condensed", "Arial Narrow", system-ui, sans-serif;
   --texto: "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  --acento: "Mukta", "Roboto", system-ui, sans-serif;
+  --acento: "Roboto Condensed", "Roboto", system-ui, sans-serif; /* antes Mukta: una familia menos que cargar */
   --escala-1: clamp(2rem, 1.3rem + 2.9vw, 3.5rem);
   --escala-2: clamp(1.6rem, 1.2rem + 1.6vw, 2.55rem); /* ~41px arriba */
   --escala-3: clamp(1.2rem, 1.05rem + .7vw, 1.65rem);
@@ -715,8 +726,19 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   font-family: var(--titulos); font-size: .9rem; font-weight: 600; line-height: 1.3;
 }
 
-.tarifas { width: 100%; }
-.tarifas td:last-child, .tarifas th:last-child { text-align: right; white-space: nowrap; }
+/* tabla de precios generada en las paginas de precios (src/utils/extras.js) */
+.tarifas-caja { overflow-x: auto; margin: 1.6rem 0 2.2rem; border: 1px solid var(--linea); border-radius: var(--radio); background: #fff; }
+.contenido .tarifas { width: 100%; margin: 0; font-size: .95rem; }
+.contenido .tarifas caption {
+  caption-side: top; text-align: left; font-family: var(--titulos); font-weight: 700;
+  font-size: 1.15rem; color: var(--carbon-medio); padding: .9rem 1rem .6rem;
+}
+.contenido .tarifas th, .contenido .tarifas td { border: 0; border-top: 1px solid var(--linea); padding: .6rem 1rem; }
+.contenido .tarifas thead th { background: var(--fondo-alt); color: var(--carbon-medio); font-size: .85rem; text-transform: uppercase; letter-spacing: .03em; }
+.contenido .tarifas tbody th { font-family: var(--texto); font-weight: 600; background: transparent; color: var(--carbon-medio); }
+.contenido .tarifas tbody td:nth-child(2) { font-weight: 600; color: var(--verde-oscuro); white-space: nowrap; }
+.contenido .tarifas tbody tr:nth-child(even) { background: transparent; }
+.contenido .tarifas__nota { font-size: .88rem; color: var(--tinta-suave); margin: 0; padding: .7rem 1rem .9rem; border-top: 1px solid var(--linea); }
 
 .boton {
   display: inline-block; background: var(--amarillo); color: #1a1a1a;

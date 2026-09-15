@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsApp from '../components/WhatsApp.astro';
 import Migas from '../components/Migas.astro';
-import { existe, marcador } from '../utils/imagenes.js';
+import { existe, marcador, aWebp } from '../utils/imagenes.js';
 
 const {
   ruta = '/',
@@ -23,7 +23,18 @@ const ga4 = site.analytics?.ga4;
 const adsense = site.adsense;
 
 const heroOk = hero?.src && existe(hero.src);
-const heroSrc = heroOk ? hero.src : hero?.src ? marcador(hero.ancho || 1600, hero.alto || 700, '') : null;
+/* la foto principal en .webp (un 69 % mas ligera) con sus variantes para
+   que el movil no descargue la grande; el original .png/.jpg sigue
+   existiendo en su URL y es el que va a redes (og:image) */
+const heroSrc = heroOk ? aWebp(hero.src) : hero?.src ? marcador(hero.ancho || 1600, hero.alto || 700, '') : null;
+const heroSrcset = heroOk && hero.srcset
+  ? hero.srcset
+      .split(',')
+      .map((t) => t.trim())
+      .filter((t) => existe(t.split(/\s+/)[0]))
+      .map((t) => { const [u, ...r] = t.split(/\s+/); return [aWebp(u), ...r].join(' '); })
+      .join(', ')
+  : '';
 const imagenSocial = heroOk ? new URL(hero.src, site.dominio).href : null;
 
 /* ---------------------------------------------------------------- JSON-LD */
@@ -41,6 +52,17 @@ const grafo = [
     name: site.nombre,
     url: `${site.dominio}/`,
     email: site.email,
+    logo: `${site.dominio}/wp-content/uploads/2021/09/casas-prefabricadas--1024x450.png`,
+    ...(site.whatsapp?.numero && { telephone: `+${site.whatsapp.numero}` }),
+    ...(site.redes?.length && { sameAs: site.redes }),
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: site.email,
+      ...(site.whatsapp?.numero && { telephone: `+${site.whatsapp.numero}` }),
+      availableLanguage: 'es',
+      areaServed: 'ES',
+    },
     areaServed: { '@type': 'Country', name: 'España' },
   },
   {
@@ -107,17 +129,17 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graf
     {imagenSocial && <meta property="og:image" content={imagenSocial} />}
     <meta name="twitter:card" content={imagenSocial ? 'summary_large_image' : 'summary'} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Mukta:wght@400;600&display=swap"
-    />
+    {/* fuentes alojadas aqui (dos archivos variables, latin): sin ir a Google
+        Fonts se ahorran dos conexiones y el bloqueo del primer pintado */}
+    <link rel="preload" href="/fonts/roboto-condensed-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/roboto-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    {heroOk && <link rel="preload" as="image" href={heroSrc} imagesrcset={heroSrcset || undefined} imagesizes={heroSrcset ? '100vw' : undefined} fetchpriority="high" />}
 
     <script type="application/ld+json" is:inline set:html={jsonLd} />
 
@@ -156,6 +178,8 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graf
         <figure class="hero__fondo">
           <img
             src={heroSrc}
+            srcset={heroSrcset || undefined}
+            sizes={heroSrcset ? '100vw' : undefined}
             alt={hero.alt || encabezado}
             width={hero.ancho || undefined}
             height={hero.alto || undefined}

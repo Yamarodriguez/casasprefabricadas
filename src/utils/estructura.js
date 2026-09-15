@@ -18,6 +18,7 @@
 import textos from '../data/modelos.json' with { type: 'json' };
 import { resolverSeccion } from '../data/secciones-destacadas.js';
 import { enlaceDeModelo } from '../data/enlaces-modelos.js';
+import { aWebp } from './imagenes.js';
 
 /**
  * Quita el logo de la empresa cuando aparece metido en el cuerpo del
@@ -575,7 +576,7 @@ export function destacarSecciones(html) {
     const propiaValida = imgPropia && !/src="data:/i.test(imgPropia[0]);
     const fotoTag = propiaValida
       ? imgPropia[0]
-      : `<img src="${seccion.src}" alt="${escapar(seccion.alt)}" loading="lazy" width="820" height="460" />`;
+      : `<img src="${aWebp(seccion.src)}" alt="${escapar(seccion.alt)}" loading="lazy" width="820" height="460" />`;
     if (imgPropia) cuerpo = cuerpo.replace(imgPropia[0], '');
 
     // el botón ya viene marcado con class="cta" por convertirEnBotones,
@@ -898,8 +899,17 @@ export function agruparGalerias(html) {
   return html.replace(GALERIA, (g) => `<div class="galeria">${g}</div>`);
 }
 
+/* Aviso de obras que se quedó en 73 páginas: "Estamos realizando
+   modificaciones en la web para brindarle un mejor servicio...". Era el
+   primer párrafo de /precios/ y de otras 72; fuera. */
+const AVISO_OBRAS = /<p\b[^>]*>\s*(?:PROXIMAMENTE,?\s*)?Estamos realizando modificaciones en la web(?:(?!<\/p>)[\s\S])*<\/p>/gi;
+
+export function quitarAvisoObras(html) {
+  return html ? html.replace(AVISO_OBRAS, '') : html;
+}
+
 export function reconstruir(html) {
-  const envuelto = agruparGalerias(agruparVinetas(envolverTextoSuelto(quitarEstilosEnLinea(html)))); // primero: el resto necesita los <p>
+  const envuelto = agruparGalerias(agruparVinetas(envolverTextoSuelto(quitarEstilosEnLinea(quitarAvisoObras(html))))); // primero: el resto necesita los <p>
   const limpio = quitarLogoDuplicado(envuelto);
   const modelos = agruparModelos(limpio);
   const botones = convertirEnBotones(modelos); // deja class="cta" para destacarSecciones
