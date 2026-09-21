@@ -20,12 +20,34 @@
 /* Fuentes variables alojadas en /fonts (subconjunto latin, el que usa el
    castellano). font-display: swap pinta con la de respaldo mientras cargan. */
 @font-face {
-  font-family: "Roboto"; font-style: normal; font-weight: 100 900; font-display: swap;
+  font-family: "Roboto"; font-style: normal; font-weight: 400 700; font-display: swap;
   src: url("/fonts/roboto-latin.woff2") format("woff2");
 }
 @font-face {
-  font-family: "Roboto Condensed"; font-style: normal; font-weight: 100 900; font-display: swap;
+  font-family: "Roboto Condensed"; font-style: normal; font-weight: 400 700; font-display: swap;
   src: url("/fonts/roboto-condensed-latin.woff2") format("woff2");
+}
+/* Respaldo con las metricas de Roboto: Arial (y Arial Bold para los
+   titulares) ajustada para ocupar el mismo sitio. Asi, cuando llega la
+   fuente buena, ni el titular ni los parrafos cambian de alto y la pagina
+   no da el salto (CLS) que mide Lighthouse. Los porcentajes salen de medir
+   en Chromium la misma frase en Roboto y en Arial (scripts de esta
+   migracion); asc/desc = 1900/2048 y 500/2048 de Roboto entre el ajuste. */
+@font-face {
+  font-family: "Roboto Respaldo"; font-weight: 100 500; src: local("Arial"), local("Liberation Sans");
+  size-adjust: 98.9%; ascent-override: 93.8%; descent-override: 24.68%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Roboto Respaldo"; font-weight: 600 900; src: local("Arial Bold"), local("Arial-BoldMT"), local("Arial");
+  size-adjust: 94.3%; ascent-override: 98.38%; descent-override: 25.89%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Roboto Condensed Respaldo"; font-weight: 100 500; src: local("Arial"), local("Liberation Sans");
+  size-adjust: 87.8%; ascent-override: 105.66%; descent-override: 27.8%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Roboto Condensed Respaldo"; font-weight: 600 900; src: local("Arial Bold"), local("Arial-BoldMT"), local("Arial");
+  size-adjust: 83.9%; ascent-override: 110.57%; descent-override: 29.1%; line-gap-override: 0%;
 }
 
 :root {
@@ -51,9 +73,9 @@
   --velo: rgba(0, 0, 0, .48); /* el overlay real del original */
 
   /* tipografía */
-  --titulos: "Roboto Condensed", "Arial Narrow", system-ui, sans-serif;
-  --texto: "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  --acento: "Roboto Condensed", "Roboto", system-ui, sans-serif; /* antes Mukta: una familia menos que cargar */
+  --titulos: "Roboto Condensed", "Roboto Condensed Respaldo", "Arial Narrow", system-ui, sans-serif;
+  --texto: "Roboto", "Roboto Respaldo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --acento: "Roboto Condensed", "Roboto Condensed Respaldo", "Roboto", system-ui, sans-serif; /* antes Mukta: una familia menos que cargar */
   --escala-1: clamp(2rem, 1.3rem + 2.9vw, 3.5rem);
   --escala-2: clamp(1.6rem, 1.2rem + 1.6vw, 2.55rem); /* ~41px arriba */
   --escala-3: clamp(1.2rem, 1.05rem + .7vw, 1.65rem);
@@ -955,6 +977,14 @@ ins.adsbygoogle { display: block; margin: 1.6rem auto; max-width: 100%; text-ali
 .cabecera__fila > ins, .barra__fila > ins { display: none !important; }
 /* por si el bloque que cuela es un <div> que envuelve el anuncio */
 .cabecera__fila > :not(a):not(nav):not(button), .barra__fila > :not(a):not(span) { display: none !important; }
+/* AdSense envuelve cada anuncio automatico en <div class="google-auto-placed">.
+   Lo hemos visto colarse como PRIMER hijo del heroe: el heroe es una
+   rejilla, el div vacio se convertia en una fila mas y empujaba el titular
+   hacia abajo cuando se rellenaba (el salto de diseno de Lighthouse).
+   Fuera del contenido (antes de <main>) no hay hueco: nada se mueve. */
+.barra .google-auto-placed, .cabecera .google-auto-placed, .hero .google-auto-placed,
+.migas .google-auto-placed, .formulario .google-auto-placed, .cierre .google-auto-placed,
+.pie .google-auto-placed, body > .google-auto-placed:has(~ main) { display: none !important; }
 /* con el anuncio ancla de abajo desplegado, el boton de WhatsApp sube
    para que no quede tapado */
 body:has(ins.adsbygoogle[data-anchor-status="displayed"]) .whatsapp { bottom: 6.5rem; }

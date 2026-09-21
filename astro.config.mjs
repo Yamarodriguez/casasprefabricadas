@@ -4,7 +4,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://prefabricadascasas.es',
   trailingSlash: 'always',
-  build: { format: 'directory' },
+  // el CSS (7 KB comprimido) va dentro de cada HTML: se ahorra una peticion
+  // que bloqueaba el primer pintado en movil
+  build: { format: 'directory', inlineStylesheets: 'always' },
   integrations: [
     sitemap({
       // fecha de la compilacion como lastmod: Google prioriza lo que cambia

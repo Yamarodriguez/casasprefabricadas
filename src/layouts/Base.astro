@@ -143,16 +143,34 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graf
 
     <script type="application/ld+json" is:inline set:html={jsonLd} />
 
-    {/* data-overlays="bottom" (parametro oficial de AdSense): los anuncios
+    {/* AdSense y su aviso de cookies son 375 KB de JavaScript de Google:
+        cargados en la cabecera, el movil se pasaba 1,9 s ejecutandolos antes
+        de pintar la foto y el titular (Lighthouse: rendimiento 46). Ahora se
+        piden cuando la pagina ya esta pintada (evento load + 1,5 s) o al
+        primer toque o scroll del usuario, lo que antes ocurra. Los anuncios
+        automaticos funcionan igual: solo aparecen un poco despues.
+        data-overlays="bottom" (parametro oficial de AdSense): los anuncios
         ancla solo abajo, nunca encima de la cabecera fija */}
     {adsense && (
-      <script
-        is:inline
-        async
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsense}`}
-        crossorigin="anonymous"
-        data-overlays="bottom"
-      ></script>
+      <script is:inline define:vars={{ adsense }}>
+        (function () {
+          var cargado = false;
+          function cargar() {
+            if (cargado) return;
+            cargado = true;
+            var s = document.createElement('script');
+            s.async = true;
+            s.crossOrigin = 'anonymous';
+            s.setAttribute('data-overlays', 'bottom');
+            s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + adsense;
+            document.head.appendChild(s);
+          }
+          ['scroll', 'touchstart', 'keydown', 'pointerdown'].forEach(function (e) {
+            addEventListener(e, cargar, { once: true, passive: true });
+          });
+          addEventListener('load', function () { setTimeout(cargar, 1500); });
+        })();
+      </script>
     )}
 
     {ga4 && (
