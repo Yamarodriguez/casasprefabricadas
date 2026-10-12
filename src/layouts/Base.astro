@@ -16,6 +16,9 @@ const {
   hero = null,
   faq = [],
   noindex = false,
+  migas = null, // [{ texto, url }] de Inicio a la pagina; sin ellas, dos niveles
+  servicio = null, // nodo Service del JSON-LD (src/utils/aeo.js)
+  fecha = null, // { publicado, modificado } de src/data/fechas.json
 } = Astro.props;
 
 const canonica = new URL(ruta, site.dominio).href;
@@ -73,19 +76,31 @@ const grafo = [
     description: descripcion,
     isPartOf: { '@id': `${site.dominio}/#sitio` },
     inLanguage: 'es-ES',
+    ...(fecha && { datePublished: fecha.publicado, dateModified: fecha.modificado }),
+    ...(imagenSocial && { primaryImageOfPage: { '@type': 'ImageObject', url: imagenSocial } }),
+    ...(ruta !== '/' && { breadcrumb: { '@id': `${canonica}#migas` } }),
+    ...(servicio && { mainEntity: { '@id': servicio['@id'] } }),
   },
 ];
 
+const listaMigas = migas ?? [
+  { texto: 'Inicio', url: '/' },
+  { texto: encabezado || titulo, url: ruta },
+];
 if (ruta !== '/') {
   grafo.push({
     '@type': 'BreadcrumbList',
     '@id': `${canonica}#migas`,
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${site.dominio}/` },
-      { '@type': 'ListItem', position: 2, name: encabezado || titulo, item: canonica },
-    ],
+    itemListElement: listaMigas.map((m, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: m.texto,
+      item: new URL(m.url, site.dominio).href,
+    })),
   });
 }
+
+if (servicio) grafo.push(servicio);
 
 if (faq.length) {
   grafo.push({
@@ -126,6 +141,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graf
     <meta property="og:title" content={titulo} />
     <meta property="og:description" content={descripcion} />
     <meta property="og:url" content={canonica} />
+    {fecha && <meta property="article:modified_time" content={fecha.modificado} />}
     {imagenSocial && <meta property="og:image" content={imagenSocial} />}
     <meta name="twitter:card" content={imagenSocial ? 'summary_large_image' : 'summary'} />
 
@@ -216,7 +232,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graf
       </div>
     </section>
 
-    <Migas ruta={ruta} titulo={encabezado || titulo} />
+    <Migas migas={listaMigas} fecha={fecha?.modificado} />
 
     <main id="principal">
       <slot />

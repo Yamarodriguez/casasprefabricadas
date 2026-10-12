@@ -242,6 +242,9 @@ a:hover { color: var(--carbon); }
 .migas li:last-child::after { content: ""; }
 .migas a { color: var(--tinta-suave); }
 .migas a:hover { color: var(--carbon); }
+/* fecha real del ultimo cambio, a la derecha de las migas (debajo en movil) */
+.migas__fila { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .3rem 1.2rem; }
+.migas__fecha { margin: 0; font-size: .82rem; }
 
 /* ---------------------------------------------------------------- contenido */
 
@@ -1013,4 +1016,17 @@ body:has(ins.adsbygoogle[data-anchor-status="displayed"]) .whatsapp { bottom: 6.
 @media print {
   .cabecera, .barra, .menu, .pie, .cierre, .formulario, .whatsapp { display: none; }
   body { font-size: 11pt; }
+}
+
+/* -------------------------------------------------------- respuesta rapida */
+/* "En resumen" bajo el H1: el dato (precio, plazo, licencia) en las
+   primeras lineas, que es lo que extraen los buscadores de IA */
+.contenido .resumen {
+  margin: 0 0 2rem; padding: 1rem 1.2rem; background: var(--fondo-alt);
+  border-left: 4px solid var(--amarillo); border-radius: var(--radio-s);
+}
+.contenido .resumen p { margin: 0; }
+.contenido .resumen .resumen__titulo {
+  font-family: var(--titulos); font-weight: 600; color: var(--carbon-medio);
+  text-transform: uppercase; letter-spacing: .04em; font-size: .85rem; margin-bottom: .35rem;
 }

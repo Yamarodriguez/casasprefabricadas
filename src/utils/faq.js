@@ -103,7 +103,7 @@ const BASE = {
     {
       clave: 'precio',
       p: '¿Cuánto cuesta una casa de madera prefabricada?',
-      r: 'Según la Asociación Española de Casas de Madera (AECA), el precio medio está entre 600 y 900 €/m². Una casa de madera de 68 m² con dos dormitorios ronda los 34.000–38.000 €, una de 50 m² con un dormitorio unos 21.000 €, y una mini casa de 36 m² puede salir desde 8.000 €. Los modelos de gama alta, con maderas nobles y grandes ventanales, llegan a 1.200–1.500 €/m². Todo ello sin contar terreno, cimentación ni licencias.',
+      r: 'El precio medio está entre 600 y 900 €/m². Una casa de madera de 68 m² con dos dormitorios ronda los 34.000–38.000 €, una de 50 m² con un dormitorio unos 21.000 €, y una mini casa de 36 m² puede salir desde 8.000 €. Los modelos de gama alta, con maderas nobles y grandes ventanales, llegan a 1.200–1.500 €/m². Todo ello sin contar terreno, cimentación ni licencias.',
     },
     {
       clave: 'calidad',

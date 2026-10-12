@@ -1,28 +1,33 @@
 ---
-const { ruta = '/', titulo = '' } = Astro.props;
+/* migas: [{ texto, url }] de Inicio a la página actual (Base.astro).
+   fecha: último cambio real de la página (src/data/fechas.json), visible
+   porque buscadores e IA priorizan lo actualizado y lo comprueban en la
+   página, no solo en el JSON-LD. */
+const { migas = [], fecha = null } = Astro.props;
 
-const trozos = ruta.split('/').filter(Boolean);
-const migas = [{ texto: 'Inicio', url: '/' }];
-let acumulada = '';
-trozos.forEach((t, i) => {
-  acumulada += `/${t}`;
-  migas.push({
-    texto: i === trozos.length - 1 ? titulo : t.replace(/-/g, ' '),
-    url: `${acumulada}/`,
-  });
-});
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const legible = fecha
+  ? (() => { const [a, m, d] = fecha.split('-').map(Number); return `${d} de ${MESES[m - 1]} de ${a}`; })()
+  : '';
 ---
 
-{migas.length > 1 && (
-  <nav class="migas contenedor" aria-label="Migas de pan">
-    <ol>
-      {migas.map((m, i) => (
-        <li>
-          {i === migas.length - 1
-            ? <span aria-current="page">{m.texto}</span>
-            : <a href={m.url}>{m.texto}</a>}
-        </li>
-      ))}
-    </ol>
-  </nav>
+{(migas.length > 1 || fecha) && (
+  <div class="migas">
+    <div class="contenedor migas__fila">
+      {migas.length > 1 && (
+        <nav aria-label="Migas de pan">
+          <ol>
+            {migas.map((m, i) => (
+              <li>
+                {i === migas.length - 1
+                  ? <span aria-current="page">{m.texto}</span>
+                  : <a href={m.url}>{m.texto}</a>}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+      {fecha && <p class="migas__fecha">Actualizado el <time datetime={fecha}>{legible}</time></p>}
+    </div>
+  </div>
 )}

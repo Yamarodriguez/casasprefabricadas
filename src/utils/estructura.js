@@ -931,8 +931,25 @@ export function quitarAvisoObras(html) {
   return html ? html.replace(AVISO_OBRAS, '') : html;
 }
 
+/* Erratas del original que restan credibilidad ante buscadores e IA:
+   - /precios-casas-de-madera-prefabricadas/: la tabla de materiales trae
+     los saltos de línea escritos como texto ("&lt;br&gt;" a la vista).
+   - la misma página atribuye el rango de 600–900 €/m² a "un estudio de la
+     Asociación Española de Casas de Madera (AECA)" sin enlace ni fuente
+     comprobable. El rango es el que da todo el sitio; se quita solo la
+     atribución. */
+const BR_ESCRITO = /&lt;br\s*\/?&gt;/gi;
+const CITA_AECA = /Según un estudio de la Asociación Española de Casas de Madera \(AECA\), el precio medio/g;
+
+export function corregirErratas(html) {
+  if (!html) return html;
+  return html
+    .replace(/<td\b[^>]*>(?:(?!<\/td>)[\s\S])*<\/td>/gi, (celda) => celda.replace(BR_ESCRITO, '<br>'))
+    .replace(CITA_AECA, 'El precio medio');
+}
+
 export function reconstruir(html) {
-  const envuelto = agruparGalerias(agruparVinetas(envolverTextoSuelto(quitarEstilosEnLinea(quitarAvisoObras(html))))); // primero: el resto necesita los <p>
+  const envuelto = agruparGalerias(agruparVinetas(envolverTextoSuelto(quitarEstilosEnLinea(quitarAvisoObras(corregirErratas(html)))))); // primero: el resto necesita los <p>
   const limpio = quitarLogoDuplicado(envuelto);
   const modelos = agruparModelos(limpio);
   const botones = convertirEnBotones(modelos); // deja class="cta" para destacarSecciones

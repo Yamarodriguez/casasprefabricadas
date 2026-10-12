@@ -9,8 +9,9 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const RAIZ = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(RAIZ, 'dist');
 const PUBLICO = path.join(RAIZ, 'public');
 

@@ -1,4 +1,45 @@
+# Todo el sitio abierto a buscadores y a asistentes de IA.
+#
+# Los bots de IA se nombran uno a uno para dejar clara la decision: si
+# algun dia se quiere cerrar uno (por ejemplo los de entrenamiento, GPTBot,
+# CCBot, Google-Extended), basta con cambiar su "Allow: /" por "Disallow: /"
+# sin tocar los demas. Los de busqueda y los que leen la pagina cuando un
+# usuario pregunta (OAI-SearchBot, ChatGPT-User, Claude-SearchBot,
+# Claude-User, PerplexityBot, Perplexity-User) son los que traen citas y
+# visitas: no conviene cerrarlos.
+
 User-agent: *
+Allow: /
+
+# OpenAI (ChatGPT)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+Allow: /
+
+# Anthropic (Claude)
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+
+# Google (Gemini y AI Overviews), Apple, Microsoft (Copilot usa Bingbot)
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bingbot
+Allow: /
+
+# Otros asistentes
+User-agent: DuckAssistBot
+User-agent: MistralAI-User
+User-agent: meta-externalagent
+User-agent: Amazonbot
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://prefabricadascasas.es/sitemap-index.xml

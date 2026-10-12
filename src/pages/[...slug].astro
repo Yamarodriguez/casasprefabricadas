@@ -7,6 +7,9 @@ import { generarFaq, tituloFaq, renderFaq, marcarFaqAntiguo, colocarFaq, clasifi
 import { generarExtras, renderExtras, tablaPrecios, trasPrimerParrafo } from '../utils/extras.js';
 import { descripcionSeo, tituloSeo } from '../utils/seo.js';
 import { hermanasDe, renderHermanas, directorioDe, completarDirectorio } from '../utils/indice.js';
+import { resumen, renderResumen, tablaComparativa, migasDe, servicioDe } from '../utils/aeo.js';
+import fechas from '../data/fechas.json';
+import site from '../data/site.json';
 
 export async function getStaticPaths() {
   const modulos = import.meta.glob('../content/pages/*.json', { eager: true });
@@ -38,7 +41,9 @@ const { html: saneado } = sanearImagenes(pagina.cuerpo);
    de cada tipo; en el resto se quita el que trajera la pagina */
 const cuerpo = completarDirectorio(
   colocarFaq(
-    trasPrimerParrafo(reconstruir(marcarFaqAntiguo(saneado)), tablaPrecios(pagina)), // tabla en las paginas de precios
+    // tabla de precios en las paginas de precios; comparativa de sistemas
+    // en la portada, las raices de cada tipo de casa y las provincias
+    trasPrimerParrafo(reconstruir(marcarFaqAntiguo(saneado)), tablaPrecios(pagina) + tablaComparativa(pagina)),
     extras + hermanas + renderFaq(faq, tituloFaq(pagina)),
   ),
   directorioDe(pagina),
@@ -78,6 +83,15 @@ const heroAlt = lugar
   ? `${capitalizar(LINEAS[linea].titulo)} en ${lugar}`
   : capitalizar(pagina.palabraClave || pagina.h1 || '');
 const hero = pagina.hero ? { ...pagina.hero, alt: heroAlt } : pagina.hero;
+
+/* Para los buscadores de IA (src/utils/aeo.js): la respuesta con el dato
+   arriba del todo, migas por linea (Inicio > Casas de madera > Madrid),
+   la oferta como Service y la fecha real de la pagina */
+const enResumen = renderResumen(resumen(pagina));
+const migas = migasDe(pagina, pagina.h1 || pagina.titulo);
+const canonica = new URL(pagina.ruta, site.dominio).href;
+const servicio = servicioDe(pagina, { dominio: site.dominio, canonica });
+const fecha = fechas[pagina.ruta];
 ---
 
 <Base
@@ -89,8 +103,12 @@ const hero = pagina.hero ? { ...pagina.hero, alt: heroAlt } : pagina.hero;
   hero={hero}
   faq={faq}
   noindex={pagina.noindex}
+  migas={migas}
+  servicio={servicio}
+  fecha={fecha}
 >
   <div class="contenido contenedor">
+    {enResumen && <Fragment set:html={enResumen} />}
     {piezas.map((pieza, i) => (
       <>
         <Fragment set:html={pieza.html} />
