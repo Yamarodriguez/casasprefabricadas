@@ -817,6 +817,9 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
   width: 100%; padding: .7rem .85rem; font: inherit; font-size: 1rem;
   border: 1px solid #cfcfca; border-radius: var(--radio-s); background: #fff;
 }
+/* la casilla trampa antispam: la regla de arriba le daba width 100% y
+   padding, y al ir en position absolute ensanchaba la pagina (scroll lateral) */
+.formulario input.visualmente-oculto { width: 1px; padding: 0; }
 .formulario input:focus, .formulario textarea:focus {
   outline: 3px solid var(--amarillo); outline-offset: 0; border-color: var(--amarillo-oscuro);
 }
