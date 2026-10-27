@@ -1,0 +1,180 @@
+---
+/* Guía «qué incluye y qué no»: página nueva escrita a mano, no sale de un
+   JSON de WordPress. Por eso no pasa por [...slug].astro y el motor no le
+   añade secciones de plantilla ni preguntas genéricas.
+   Regla: ni una cifra sin fuente. Las únicas cifras (IVA 10/21 %, ICIO
+   máximo 4 %) llevan su norma o consulta en «Fuentes»; los costes que
+   dependen de cada parcela no se dan en euros. */
+import Base from '../layouts/Base.astro';
+import Formulario from '../components/Formulario.astro';
+import { renderFaq } from '../utils/faq.js';
+import site from '../data/site.json';
+
+const ruta = '/que-incluye-una-casa-prefabricada/';
+const canonica = new URL(ruta, site.dominio).href;
+const fecha = { publicado: '2026-10-27', modificado: '2026-10-27' };
+
+/* hero: la foto de /llave-en-mano/, que ya existe */
+const hero = {
+  src: '/wp-content/uploads/2021/09/casas-prefabricadas-llave-en-mano.jpg',
+  alt: 'Qué incluye una casa prefabricada llave en mano',
+  ancho: 820,
+  alto: 312,
+  srcset:
+    '/wp-content/uploads/2021/09/casas-prefabricadas-llave-en-mano.jpg 820w, /wp-content/uploads/2021/09/casas-prefabricadas-llave-en-mano-300x114.jpg 300w, /wp-content/uploads/2021/09/casas-prefabricadas-llave-en-mano-768x292.jpg 768w',
+};
+
+const migas = [
+  { texto: 'Inicio', url: '/' },
+  { texto: 'Precios', url: '/precios/' },
+  { texto: 'Qué incluye y qué no', url: ruta },
+];
+
+/* Sí = suele entrar · No = casi nunca entra · Depende = mira el contrato */
+const conceptos = [
+  ['Estructura, fachada y cubierta', 'Sí', 'Sí', 'Es el núcleo de cualquier oferta, se llame como se llame.'],
+  ['Ventanas y puertas exteriores', 'Sí', 'Depende', 'En muchas ofertas de obra gris van incluidas; en un kit, no siempre.'],
+  ['Instalaciones de agua, luz y saneamiento interiores', 'Sí', 'No', 'En obra gris suelen quedar sin hacer o solo con tubos.'],
+  ['Baños, cocina, suelos y pintura', 'Sí', 'No', 'Es lo que separa una casa para entrar a vivir de una casa para terminar.'],
+  ['Transporte y grúa', 'Depende', 'Depende', 'Pregunta si el precio es en fábrica o puesto en tu parcela, y quién paga la grúa.'],
+  ['Montaje', 'Sí', 'Depende', 'En un kit para autoconstrucción el montaje es tuyo.'],
+  ['Proyecto de arquitecto y dirección de obra', 'Depende', 'Depende', 'Algunos fabricantes lo incluyen; otros te dan los planos y el proyecto lo firma tu arquitecto.'],
+  ['Estudio geotécnico', 'No', 'No', 'Lo encargas tú antes de proyectar la cimentación.'],
+  ['Cimentación o solera', 'No', 'No', 'Depende del terreno; la mayoría de precios por m² la dejan fuera.'],
+  ['Acometidas (agua, luz, saneamiento) hasta la parcela', 'No', 'No', 'Se contratan con las compañías y el ayuntamiento de tu zona.'],
+  ['Licencia de obra, tasas e ICIO', 'No', 'No', 'Los fija tu ayuntamiento.'],
+  ['IVA', 'Depende', 'Depende', 'Comprueba si el precio publicado lo lleva. Puede ser del 10 % o del 21 % (ver abajo).'],
+  ['Terreno', 'No', 'No', 'Nunca entra en el precio de la casa.'],
+];
+
+const faq = [
+  {
+    pregunta: '¿El precio de una casa prefabricada incluye la cimentación?',
+    respuesta:
+      'Casi nunca. La cimentación depende del terreno de cada parcela y del estudio geotécnico, así que la mayoría de fabricantes la presupuestan aparte o te piden que la haga un constructor local. Antes de firmar, pide por escrito si tu presupuesto la incluye.',
+  },
+  {
+    pregunta: '¿Qué IVA paga una casa prefabricada?',
+    respuesta:
+      'Según la Dirección General de Tributos (consulta V5259-26, de 24 de julio de 2026), tributa al 10 % si queda unida de forma permanente al suelo y es apta como vivienda, y al 21 % si se puede trasladar sin romperla. Comprueba si el precio que te dan ya lleva el IVA.',
+  },
+  {
+    pregunta: '¿Una casa prefabricada necesita proyecto y licencia de obra?',
+    respuesta:
+      'Sí, si va a ser una vivienda fija. La Ley de Ordenación de la Edificación exige proyecto para los edificios de vivienda y que lo firme un arquitecto. Con ese proyecto se pide la licencia de obra al ayuntamiento, que cobra sus tasas y el ICIO.',
+  },
+  {
+    pregunta: '¿Es obligatorio el seguro decenal en una casa prefabricada?',
+    respuesta:
+      'No si eres autopromotor individual de una única vivienda unifamiliar para uso propio: la Ley de Ordenación de la Edificación te exime. Pero si la vendes antes de que pasen diez años, tendrás que contratarlo por el tiempo que falte, salvo que el comprador te exonere expresamente.',
+  },
+  {
+    pregunta: '¿Está incluido el transporte de la casa hasta la parcela?',
+    respuesta:
+      'Depende del fabricante. Unos dan el precio puesto en tu parcela y otros en fábrica. Pregunta también quién paga la grúa y si el camión puede llegar hasta el terreno, porque un acceso difícil cambia el coste.',
+  },
+  {
+    pregunta: '¿Qué diferencia hay entre kit, obra gris y llave en mano?',
+    respuesta:
+      'Un kit son las piezas para que las montes tú o tu constructor. Obra gris es la casa montada y cerrada, pero sin acabados interiores. Llave en mano es la casa terminada para entrar a vivir. Cada fabricante los define a su manera, así que mira siempre la lista de partidas del contrato.',
+  },
+];
+
+const fuentes = [
+  ['Ley 37/1992 del IVA (artículos 6 y 91)', 'https://www.boe.es/buscar/act.php?id=BOE-A-1992-28740'],
+  ['Ley 38/1999 de Ordenación de la Edificación (artículos 2 y 10, y disposición adicional segunda)', 'https://www.boe.es/buscar/act.php?id=BOE-A-1999-21567'],
+  ['Real Decreto Legislativo 2/2004, Ley Reguladora de las Haciendas Locales (artículo 102.3, ICIO)', 'https://www.boe.es/buscar/act.php?id=BOE-A-2004-4214'],
+  ['Real Decreto 390/2021, certificación de la eficiencia energética de los edificios', 'https://www.boe.es/buscar/act.php?id=BOE-A-2021-9176'],
+  ['Código Técnico de la Edificación, DB SE-C Cimientos (estudio geotécnico)', 'https://www.codigotecnico.org/'],
+];
+
+const tabla =
+  '<div class="tarifas-caja"><table class="tarifas"><caption>Qué suele entrar en el precio de una casa prefabricada</caption>' +
+  '<thead><tr><th scope="col">Partida</th><th scope="col">Llave en mano</th><th scope="col">Kit u obra gris</th><th scope="col">Qué comprobar</th></tr></thead><tbody>' +
+  conceptos.map(([c, l, k, n]) => `<tr><th scope="row">${c}</th><td>${l}</td><td>${k}</td><td>${n}</td></tr>`).join('') +
+  '</tbody></table>' +
+  '<p class="tarifas__nota">«Sí» quiere decir que suele entrar; «Depende», que cambia de un fabricante a otro. Lo que vale es la lista de partidas de tu contrato.</p></div>';
+---
+
+<Base
+  ruta={ruta}
+  titulo="Qué incluye una casa prefabricada y qué se paga aparte"
+  descripcion="Qué entra en el precio de una casa prefabricada y qué pagas aparte: cimentación, acometidas, proyecto, licencia, ICIO, IVA y transporte, con tabla y fuentes."
+  encabezado="Qué incluye una casa prefabricada y qué se paga aparte"
+  entradilla="Lo que entra en el precio de la casa, lo que se presupuesta aparte y lo que conviene preguntar antes de firmar."
+  hero={hero}
+  faq={faq}
+  migas={migas}
+  fecha={fecha}
+>
+  <div class="contenido contenedor">
+    <div class="resumen">
+      <p class="resumen__titulo">En resumen</p>
+      <p>El precio de una casa prefabricada llave en mano suele incluir la casa terminada: estructura, cubierta, ventanas, instalaciones interiores, baños, cocina y acabados. Casi nunca incluye el terreno, el estudio geotécnico, la cimentación, las acometidas hasta la parcela, la licencia de obra ni el ICIO. El transporte, el proyecto y el IVA dependen de cada fabricante, así que pide que te lo pongan por escrito.</p>
+    </div>
+
+    <p>Cuando comparas precios de <strong>casas prefabricadas</strong> es fácil comparar cosas distintas. Un fabricante anuncia la casa en kit, otro en obra gris y otro llave en mano; unos ponen el precio con IVA y otros sin él; unos lo dan puesto en tu parcela y otros en fábrica. Esta guía reúne en un solo sitio lo que suele entrar en el precio y lo que pagas aparte, para que compares presupuestos con la misma vara de medir.</p>
+
+    <h2>Kit, obra gris y llave en mano: tres precios que no se pueden comparar</h2>
+    <p>Antes de mirar cifras, mira qué grado de terminación te están ofreciendo:</p>
+    <ul>
+      <li><strong>Kit:</strong> las piezas de la casa para que las montes tú o un constructor. Es el precio más bajo porque deja fuera casi todo lo demás.</li>
+      <li><strong>Obra gris:</strong> la casa montada y cerrada, con estructura, fachada, cubierta y normalmente las ventanas, pero sin acabados interiores. Te queda terminar tú baños, cocina, suelos e instalaciones.</li>
+      <li><strong>Llave en mano:</strong> la casa terminada para entrar a vivir. Es lo que más se parece a comprar una vivienda hecha, y lo explicamos con detalle en <a href="/llave-en-mano/">casas prefabricadas llave en mano</a>.</li>
+    </ul>
+    <p>No hay una definición legal de estos tres términos. Cada fabricante decide qué mete en cada uno, y por eso lo único fiable es la lista de partidas del presupuesto.</p>
+
+    <h2>Qué entra en el precio y qué se paga aparte</h2>
+    <p>Esta tabla resume lo habitual. Úsala como lista de comprobación cuando tengas un presupuesto delante.</p>
+    <Fragment set:html={tabla} />
+
+    <h2>Lo que casi nunca entra en el precio</h2>
+    <h3>El terreno y el estudio geotécnico</h3>
+    <p>El terreno siempre va aparte. Antes de calcular la cimentación hace falta conocer el suelo: el Código Técnico de la Edificación (documento DB SE-C) define el estudio geotécnico como la información del terreno necesaria para dimensionar la cimentación, y pide hacerlo al principio del proyecto. Lo encargas tú o tu arquitecto a un laboratorio.</p>
+    <h3>La cimentación</h3>
+    <p>Una casa prefabricada fija se apoya sobre una cimentación o una solera de hormigón hecha en tu parcela. Como depende del terreno, la pendiente y el tamaño de la casa, la mayoría de fabricantes no la incluyen en su precio por m² o la presupuestan cuando conocen la parcela.</p>
+    <h3>Las acometidas hasta la parcela</h3>
+    <p>Llevar el agua, la luz y el saneamiento desde la red pública hasta tu terreno es cosa de las compañías suministradoras y del ayuntamiento. Si la parcela está lejos de la red, puede ser una de las partidas más caras, así que pregunta en el ayuntamiento antes de comprar el terreno.</p>
+    <h3>La licencia de obra, las tasas y el ICIO</h3>
+    <p>Para levantar una vivienda fija hace falta licencia de obra del ayuntamiento. Además de la tasa por tramitarla, el ayuntamiento cobra el Impuesto sobre Construcciones, Instalaciones y Obras (ICIO). Cada municipio fija su tipo, pero la ley no le deja pasar del 4 % del coste de la obra. Si tu parcela es rústica, mira primero lo que explicamos en <a href="/licencia-casa-prefabricada-terreno-rustico/">licencia de casa prefabricada en terreno rústico</a>.</p>
+
+    <h2>Lo que depende del fabricante</h2>
+    <h3>El proyecto de arquitecto</h3>
+    <p>Una casa prefabricada que vaya a ser vivienda necesita proyecto, igual que una de obra tradicional. La Ley de Ordenación de la Edificación lo exige para los edificios de uso residencial y pide que lo firme un arquitecto. Algunos fabricantes lo incluyen en su precio; otros te entregan los planos y el proyecto lo firma un arquitecto que contratas tú. Al terminar la obra, el edificio también necesita su certificado de eficiencia energética.</p>
+    <h3>El transporte, la grúa y el montaje</h3>
+    <p>Pregunta si el precio es <em>en fábrica</em> o <em>puesto en obra</em>. El transporte cambia con la distancia, y la grúa con el peso de los módulos y con lo fácil que sea llegar a la parcela: un camino estrecho o una cuesta pueden obligar a usar medios especiales. En un kit, el montaje lo haces tú o tu constructor.</p>
+    <h3>El IVA: 10 % o 21 %</h3>
+    <p>La Dirección General de Tributos aclaró en su consulta V5259-26, de 24 de julio de 2026, cuándo una casa prefabricada paga el IVA reducido de la vivienda:</p>
+    <ul>
+      <li><strong>10 %</strong> si la casa queda unida de forma permanente al suelo, de manera que no se pueda separar sin romperla, y es apta legal y materialmente para vivir.</li>
+      <li><strong>21 %</strong> si se puede trasladar a otro sitio sin quebranto: en ese caso Hacienda no la considera una edificación.</li>
+    </ul>
+    <p>Comprueba siempre si el precio que te dan lleva el IVA incluido: no todos los fabricantes lo publican igual, y una diferencia de once puntos cambia mucho la comparación.</p>
+
+    <h2>¿Hace falta seguro decenal?</h2>
+    <p>Si construyes tu propia casa para vivir en ella, normalmente no. La Ley de Ordenación de la Edificación exime del seguro decenal al <strong>autopromotor individual de una única vivienda unifamiliar para uso propio</strong>. Ojo: si vendes la casa antes de que pasen diez años, tendrás que contratar el seguro por el tiempo que falte, salvo que el comprador te exonere de forma expresa.</p>
+
+    <h2>Preguntas para hacer al fabricante antes de firmar</h2>
+    <ul>
+      <li>¿El precio es kit, obra gris o llave en mano? ¿Me das la lista completa de partidas?</li>
+      <li>¿Lleva el IVA incluido? ¿Al 10 % o al 21 %?</li>
+      <li>¿El precio es en fábrica o puesto en mi parcela? ¿Quién paga la grúa?</li>
+      <li>¿Está incluido el proyecto de arquitecto y la dirección de obra?</li>
+      <li>¿Qué cimentación necesita la casa y quién la hace?</li>
+      <li>¿Qué plazo de entrega me garantizas por contrato, y desde cuándo cuenta?</li>
+      <li>¿Qué garantías da el fabricante sobre la estructura y los acabados?</li>
+    </ul>
+    <p>Con las respuestas por escrito ya puedes comparar presupuestos de verdad. Para ver precios orientativos por sistema, entra en <a href="/precios/">precios de casas prefabricadas</a>; si necesitas hipoteca, en <a href="/financiacion/">financiación</a>.</p>
+
+    <Fragment set:html={renderFaq(faq, 'Preguntas frecuentes sobre qué incluye una casa prefabricada')} />
+
+    <h2>Fuentes</h2>
+    <p>Datos legales y fiscales comprobados el 27 de octubre de 2026:</p>
+    <ul>
+      {fuentes.map(([texto, url]) => <li><a href={url} rel="noopener">{texto}</a></li>)}
+      <li>Dirección General de Tributos, consulta vinculante V5259-26, de 24 de julio de 2026 (IVA de las casas prefabricadas)</li>
+    </ul>
+
+    <Formulario asunto={`Consulta desde ${ruta}`} />
+  </div>
+</Base>

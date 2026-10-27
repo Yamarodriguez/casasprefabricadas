@@ -100,7 +100,7 @@ export function tablaComparativa(pagina) {
     `<div class="tarifas-caja"><table class="tarifas"><caption>${escapar(titulo)}</caption>` +
     `<thead><tr>${COMPARATIVA.cabecera.map((c) => `<th scope="col">${escapar(c)}</th>`).join('')}</tr></thead>` +
     `<tbody>${filas}</tbody></table>` +
-    `<p class="tarifas__nota">Precios orientativos de 2026, sin terreno, cimentación, acometidas ni licencias (un 20–30 % más). ` +
+    `<p class="tarifas__nota">Precios orientativos de 2026, sin terreno, cimentación, acometidas ni licencias (un 20–30 % más): <a href="/que-incluye-una-casa-prefabricada/">qué incluye el precio y qué se paga aparte</a>. ` +
     `Las tres necesitan proyecto y licencia de obra y se hipotecan como cualquier vivienda. ` +
     `<a href="/precios/">Ver todos los precios</a> o <a href="/presupuesto/">pedir presupuesto gratis</a>.</p></div>`
   );

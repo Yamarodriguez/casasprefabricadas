@@ -24,6 +24,14 @@ const NOMBRE_LINEA = {
 };
 const ORDEN = ['generica', 'madera', 'hormigon', 'steel', 'casetas'];
 
+const GUIAS = [
+  {
+    ruta: '/que-incluye-una-casa-prefabricada/',
+    h1: 'Qué incluye una casa prefabricada y qué se paga aparte',
+    descripcion: 'Qué entra en el precio de una casa prefabricada y qué pagas aparte: cimentación, acometidas, proyecto, licencia, ICIO, IVA y transporte, con tabla y fuentes.',
+  },
+];
+
 const enlace = (p) => `- [${p.h1 || p.titulo}](${new URL(p.ruta, site.dominio).href}): ${descripcionSeo(p)}`;
 const porRuta = (a, b) => a.ruta.localeCompare(b.ruta);
 
@@ -42,7 +50,9 @@ export function GET() {
     if (!deLinea.length) continue;
     const raiz = deLinea.filter((p) => !p.tema).sort(porRuta);
     const temas = deLinea.filter((p) => p.tema).sort(porRuta);
-    lineas.push(`## ${NOMBRE_LINEA[linea]}`, '', ...raiz.map(enlace), ...temas.map(enlace), '');
+    /* las guías escritas a mano (src/pages/*.astro) no tienen JSON */
+    const guias = linea === 'generica' ? GUIAS.map(enlace) : [];
+    lineas.push(`## ${NOMBRE_LINEA[linea]}`, '', ...raiz.map(enlace), ...guias, ...temas.map(enlace), '');
   }
 
   const provincias = paginas.filter((p) => p.linea === 'generica' && p.lugar).sort(porRuta);
