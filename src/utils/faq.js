@@ -50,7 +50,7 @@ export const LINEAS = {
     N: 'casas de Steel Framing',
     n: 'casa de Steel Framing',
     titulo: 'casas prefabricadas Steel Framing',
-    P: 'Como referencia, el Steel Framing cuesta desde 360 €/m² en obra gris y desde 450 €/m² terminado: unos 45.000–70.000 € para una casa de 100 m², sin contar terreno, cimentación ni licencias.',
+    P: 'Según los precios publicados en 2026 por fabricantes y portales, una casa de Steel Framing llave en mano cuesta entre 900 y 1.300 €/m², y solo la estructura en kit, entre 280 y 420 €/m²: unos 90.000–130.000 € para una casa de 100 m² terminada, sin contar terreno ni licencias.',
     T: 'entre 3 y 5 meses',
   },
   casetas: {
@@ -71,7 +71,7 @@ const BASE = {
     {
       clave: 'precio',
       p: '¿Cuánto cuesta una casa prefabricada en España?',
-      r: 'El precio de una casa prefabricada depende sobre todo del sistema constructivo y de los acabados. Como referencia, una casa de madera ronda los 600–900 €/m², una de Steel Framing parte de unos 450 €/m² terminada y una de hormigón se mueve entre 900 y 1.500 €/m². Así, una casa prefabricada de 100 m² cuesta entre 47.000 y 60.000 € en madera y puede llegar a los 100.000 € en hormigón. A eso hay que sumar el terreno, la cimentación, las acometidas y las licencias.',
+      r: 'El precio de una casa prefabricada depende sobre todo del sistema constructivo y de los acabados. Como referencia, una casa de madera ronda los 600–900 €/m², una de Steel Framing llave en mano, entre 900 y 1.300 €/m² según los precios de mercado de 2026, y una de hormigón se mueve entre 900 y 1.500 €/m². Así, una casa prefabricada de 100 m² cuesta entre 47.000 y 60.000 € en madera y puede llegar a los 100.000 € en hormigón. A eso hay que sumar el terreno, la cimentación, las acometidas y las licencias.',
     },
     {
       clave: 'plazo',
@@ -172,7 +172,7 @@ const BASE = {
     {
       clave: 'precio',
       p: '¿Cuánto cuesta una casa de Steel Framing por metro cuadrado?',
-      r: 'Los precios del Steel Framing rondan desde 360 €/m² en obra gris (estructura y cerramientos) y desde 450 €/m² con terminaciones. Una casa de Steel Framing de 100 m² completa se mueve así entre 45.000 y 70.000 € según acabados, sin contar terreno, cimentación ni licencias. Es algo más cara que la madera y bastante más económica que el hormigón.',
+      r: 'Según los precios publicados en 2026 por fabricantes y portales, solo la estructura en kit cuesta 280–420 €/m², la obra gris 360–700 €/m² según lo que incluya, y la casa llave en mano con calidades estándar 900–1.300 €/m². Una casa de Steel Framing de 100 m² terminada se mueve así entre 90.000 y 130.000 €, sin contar terreno ni licencias. Lo que más cambia el precio es el nivel de acabados y si el presupuesto incluye cimentación y proyecto.',
     },
     {
       clave: 'plazo',
@@ -334,7 +334,7 @@ const TEMAS = {
     lista: [
       {
         p: '¿Cuánto cuesta una {n} barata?',
-        r: '{P} Las opciones más económicas son los modelos de catálogo de planta compacta, con acabados estándar y entregados en obra gris o en kit para terminar por tu cuenta. Con un presupuesto ajustado, la madera y el Steel Framing suelen ser los sistemas más baratos por metro cuadrado.',
+        r: '{P} Las opciones más económicas son los modelos de catálogo de planta compacta, con acabados estándar y entregados en obra gris o en kit para terminar por tu cuenta. Con un presupuesto ajustado, comprar en kit u obra gris y terminar por tu cuenta es lo que más baja el precio por metro cuadrado.',
       },
       {
         p: '¿Es posible una {n} barata sin perder calidad?',
@@ -1293,7 +1293,7 @@ Object.assign(TEMAS, {
     lista: [
       {
         p: '¿Qué casa prefabricada se puede comprar por menos de 100.000 euros?',
-        r: 'Una casa de madera de hasta 150 m², una de Steel Framing de hasta 140 m² o una de hormigón prefabricado de 80–100 m², todas llave en mano. Con menos de 50.000 € se compra una casa de madera de 50–80 m² o una tiny house completa.',
+        r: 'Una casa de madera de hasta 150 m², una de Steel Framing de unos 75–110 m² o una de hormigón prefabricado de 80–100 m², todas llave en mano. Con menos de 50.000 € se compra una casa de madera de 50–80 m² o una tiny house completa.',
       },
       {
         p: '¿Los 100.000 euros incluyen el terreno?',
@@ -1311,7 +1311,7 @@ Object.assign(TEMAS, {
     lista: [
       {
         p: '¿Cuánto cuesta una casa prefabricada de 100 m² llave en mano?',
-        r: 'Entre 47.000 y 60.000 € en madera, entre 45.000 y 70.000 € en Steel Framing y entre 90.000 y 120.000 € en hormigón prefabricado, sin terreno, cimentación ni licencias. Sumando todo lo demás, el coste total sin terreno queda entre 68.000 y 135.000 € según el sistema.',
+        r: 'Entre 47.000 y 60.000 € en madera, entre 90.000 y 130.000 € en Steel Framing y entre 90.000 y 120.000 € en hormigón prefabricado, sin terreno, cimentación ni licencias. A eso hay que sumar la cimentación, las acometidas, el proyecto, la licencia y los impuestos, que dependen de cada parcela y ayuntamiento.',
       },
       {
         p: '¿Sale más barata por metro cuadrado una casa más grande?',

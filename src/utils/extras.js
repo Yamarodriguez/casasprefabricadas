@@ -56,7 +56,7 @@ const TABLAS = {
     cabecera: ['Sistema', 'Precio por m² terminada', 'Casa de 100 m²', 'Plazo desde la licencia'],
     filas: [
       ['Casa de madera', '600–900 €', '47.000–60.000 €', '3–6 meses'],
-      ['Steel Framing', '450–700 € (360 € en obra gris)', '45.000–70.000 €', '3–5 meses'],
+      ['Steel Framing', '900–1.300 € (280–420 € solo la estructura)', '90.000–130.000 €', '3–5 meses'],
       ['Hormigón prefabricado', '900–1.500 €', '90.000–120.000 €', '4–9 meses'],
       ['Modular (módulos completos)', '1.000–1.500 €', '100.000–150.000 €', '4–6 meses'],
       ['Contenedores marítimos', '500–900 €', '50.000–90.000 €', '3–5 meses'],
@@ -90,14 +90,28 @@ const TABLAS = {
     ],
   },
   steel: {
-    titulo: 'Precios de Steel Framing en 2026 (orientativos)',
+    titulo: 'Precio del Steel Framing por m² en España (2026)',
     cabecera: ['Fase o tamaño', 'Precio', 'Qué incluye'],
+    /* precios de mercado, no del sitio: rangos que publican fabricantes y
+       portales (fuentes en la nota). Los tamaños son m² × 900–1.300 €. */
     filas: [
-      ['Obra gris', 'desde 360 €/m²', 'Estructura de acero galvanizado y cerramientos'],
-      ['Casa terminada', '450–700 €/m²', 'Aislamiento, instalaciones, carpinterías y acabados'],
-      ['Casa de 100 m²', '45.000–70.000 €', 'Llave en mano'],
-      ['Casa de 150 m², 2 plantas', '68.000–105.000 €', 'Llave en mano'],
+      ['Solo estructura (kit)', '280–420 €/m²', 'Perfiles de acero galvanizado, paneles estructurales y cubierta'],
+      ['Obra gris', '360–700 €/m²', 'Estructura y cerramientos; según el fabricante, también ventanas e instalaciones básicas'],
+      ['Llave en mano, calidades estándar', '900–1.300 €/m²', 'Casa terminada: acabados, cocina y baños'],
+      ['Gama alta', 'más de 1.500 €/m²', 'Domótica, aerotermia, suelo radiante o diseños complejos'],
+      ['Casa de 60 m²', '54.000–78.000 €', 'Llave en mano, calidades estándar'],
+      ['Casa de 80 m²', '72.000–104.000 €', 'Llave en mano, calidades estándar'],
+      ['Casa de 100 m²', '90.000–130.000 €', 'Llave en mano, calidades estándar'],
+      ['Casa de 150 m², 2 plantas', '135.000–195.000 €', 'Llave en mano, calidades estándar'],
     ],
+    nota:
+      'Precios de mercado publicados por fabricantes y portales, consultados el 27 de octubre de 2026: ' +
+      '<a href="https://caasa.es/casas-prefabricadas-con-steel-framing/" rel="nofollow noopener">Caasa</a> (actualizado el 30 de septiembre de 2026: kit, obra gris y llave en mano), ' +
+      '<a href="https://construccioneslaragab.com/precio-casas-steel-framing/" rel="nofollow noopener">Construcciones Laragab</a> (mayo de 2026: 950–1.300 €/m² llave en mano), ' +
+      '<a href="https://www.cronoshare.com/servicios/construccion-steel-framing" rel="nofollow noopener">Cronoshare</a> (media de 950 €/m², de 360 a 1.300 €/m²) y ' +
+      '<a href="https://www.albertanorweg.com/blog/cuanto-cuesta-una-casa-con-steel-framing/" rel="nofollow noopener">Alberta Norweg</a> (1.500–1.800 €/m² en gama alta). ' +
+      'Sin terreno ni licencias; pregunta si el presupuesto incluye cimentación, proyecto e IVA, porque cada fabricante lo cuenta distinto. ' +
+      '<a href="/que-incluye-una-casa-prefabricada/">Qué incluye el precio y qué se paga aparte</a> o <a href="/presupuesto/">pedir presupuesto gratis</a>.',
   },
   casetas: {
     titulo: 'Precios de casetas prefabricadas en 2026 (orientativos)',
@@ -125,8 +139,9 @@ export function tablaPrecios(pagina) {
     `<div class="tarifas-caja"><table class="tarifas"><caption>${escapar(t.titulo)}</caption>` +
     `<thead><tr>${t.cabecera.map((c) => `<th scope="col">${escapar(c)}</th>`).join('')}</tr></thead>` +
     `<tbody>${filas}</tbody></table>` +
+    (t.nota ? `<p class="tarifas__nota">${t.nota}</p></div>` :
     `<p class="tarifas__nota">Precios sin terreno, cimentación, acometidas ni licencias (un 20–30 % más). Actualizado en septiembre de 2026. <a href="/que-incluye-una-casa-prefabricada/">Qué incluye el precio y qué se paga aparte</a>. ` +
-    `<a href="/casas-prefabricadas-100-m2-precio/">Ver el precio por tamaño</a> o <a href="/presupuesto/">pedir presupuesto gratis</a>.</p></div>`
+    `<a href="/casas-prefabricadas-100-m2-precio/">Ver el precio por tamaño</a> o <a href="/presupuesto/">pedir presupuesto gratis</a>.</p></div>`)
   );
 }
 

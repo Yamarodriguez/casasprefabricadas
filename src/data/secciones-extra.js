@@ -266,7 +266,7 @@ export const RAIZ = {
     {
       h2: 'Cómo elegir tu casa prefabricada: madera, hormigón o Steel Framing',
       p: [
-        'La madera es la más económica, cálida y rápida de montar (600–900 €/m², 3–6 meses); el hormigón, la más robusta y la que menos mantenimiento pide (900–1.500 €/m², 4–9 meses); el Steel Framing, la estructura ligera de acero galvanizado que combina rapidez, resistencia y un aislamiento excelente (desde 450 €/m² terminada).',
+        'La madera es la más económica, cálida y rápida de montar (600–900 €/m², 3–6 meses); el hormigón, la más robusta y la que menos mantenimiento pide (900–1.500 €/m², 4–9 meses); el Steel Framing, la estructura ligera de acero galvanizado que combina rapidez, resistencia y un aislamiento excelente (900–1.300 €/m² llave en mano).',
         'Los tres sistemas cumplen el Código Técnico de la Edificación, se escrituran y se hipotecan como cualquier vivienda, y se entregan con garantía decenal. La elección depende del presupuesto, del clima de tu parcela y del estilo que buscas; en esta web puedes comparar modelos, precios y fabricantes de los tres.',
       ],
     },
@@ -315,7 +315,7 @@ export const RAIZ = {
       h2: 'Steel Framing: la construcción en seco con estructura de acero',
       p: [
         'El Steel Framing sustituye el ladrillo y el hormigón por una estructura de perfiles de acero galvanizado ligero, ensamblados en paneles que forman muros, forjados y cubierta. Sobre ella van el aislamiento, las placas y los revestimientos. Se usa desde hace décadas en Estados Unidos, Australia y el norte de Europa, y en España está homologado bajo el CTE.',
-        'Cuesta desde 360 €/m² en obra gris y desde 450 €/m² terminada, y se construye en 3–5 meses: la estructura se fabrica en taller a partir de los planos y se levanta en la parcela en una o dos semanas, sin tiempos de fraguado ni esperas por lluvia.',
+        'Cuesta 900–1.300 €/m² llave en mano según los precios de mercado de 2026 (solo la estructura, 280–420 €/m²), y se construye en 3–5 meses: la estructura se fabrica en taller a partir de los planos y se levanta en la parcela en una o dos semanas, sin tiempos de fraguado ni esperas por lluvia.',
       ],
     },
     {
@@ -348,6 +348,32 @@ export const RAIZ = {
    hay una versión propia (casetas:x) se usa esa. Si un tema no tiene
    entrada, la página recibe las secciones de la portada de su línea. */
 export const TEMA = {
+  /* precios de mercado con fuente (tabla y nota en extras.js): explica la
+     distancia entre los 280 €/m² de un kit y los 1.300 de una casa
+     terminada, que es lo que confunde al comparar anuncios */
+  'steel:precios': [
+    {
+      h2: 'Por qué ves casas de Steel Framing a 280 €/m² y a 1.300 €/m²',
+      p: [
+        'Porque no se anuncia lo mismo. Los precios más bajos, de 280 a 420 €/m², son solo la estructura en kit: perfiles de acero galvanizado, paneles y cubierta, sin cimentación, instalaciones ni acabados. La obra gris, de 360 a 700 €/m² según el fabricante, añade los cerramientos y a veces las ventanas y las instalaciones básicas. La casa terminada para entrar a vivir, con cocina, baños y acabados estándar, está entre 900 y 1.300 €/m².',
+        'Por encima de 1.500 €/m² están los proyectos de gama alta: domótica, aerotermia, suelo radiante, grandes ventanales o diseños complejos. Antes de comparar dos anuncios, comprueba que hablan del mismo nivel de terminación y que los dos dicen si incluyen cimentación, proyecto, transporte e IVA.',
+      ],
+    },
+    {
+      h2: 'Cuánto cuesta una casa de Steel Framing según su tamaño',
+      p: [
+        'Con el rango de mercado de 900 a 1.300 €/m² llave en mano, una casa de 60 m² sale por 54.000–78.000 €, una de 80 m² por 72.000–104.000 €, una de 100 m² por 90.000–130.000 € y una de 150 m² en dos plantas por 135.000–195.000 €, siempre sin terreno ni licencias.',
+        'Las casas pequeñas suelen salir algo más caras por metro cuadrado, porque la cocina, los baños y las instalaciones cuestan casi lo mismo en 60 m² que en 100 m². Una planta compacta y rectangular, un modelo de catálogo y los acabados de serie son lo que más ayuda a quedarse en la parte baja del rango.',
+      ],
+    },
+    {
+      h2: 'Cómo comparar precios de {N} sin equivocarte',
+      p: [
+        'Pide siempre presupuestos con el mismo programa de necesidades (metros, dormitorios, plantas y nivel de acabados) y exige el desglose por escrito: dos ofertas con el mismo precio pueden diferir mucho en aislamiento, carpinterías, instalaciones o equipamiento de cocina y baños.',
+        'Fíjate en si el precio es en obra gris o llave en mano, si incluye transporte y montaje, y qué garantías ofrece el fabricante. Con la parcela ya localizada, el presupuesto será mucho más ajustado, porque el transporte y la cimentación dejan de ser una estimación.',
+      ],
+    },
+  ],
   precios: [
     {
       h2: 'Cuánto cuesta una {n} en 2026: guía de precios',

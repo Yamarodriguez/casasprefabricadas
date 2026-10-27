@@ -41,7 +41,7 @@ export function GET() {
     '',
     `> ${site.descripcion} Guía en español sobre casas prefabricadas en España: precios orientativos por m², plazos, licencias, financiación y comparativa de sistemas constructivos, con páginas por provincia y ciudad.`,
     '',
-    'Datos de referencia que usa todo el sitio (2026, sin terreno, cimentación ni licencias): madera 600–900 €/m² y 3–6 meses; Steel Framing desde 450 €/m² terminada y 3–5 meses; hormigón prefabricado 900–1.500 €/m² y 4–9 meses. Toda casa prefabricada fija necesita proyecto y licencia de obra y se puede hipotecar.',
+    'Datos de referencia que usa todo el sitio (2026, sin terreno, cimentación ni licencias): madera 600–900 €/m² y 3–6 meses; Steel Framing 900–1.300 €/m² llave en mano (precios de mercado publicados en 2026; solo la estructura, 280–420 €/m²) y 3–5 meses; hormigón prefabricado 900–1.500 €/m² y 4–9 meses. Toda casa prefabricada fija necesita proyecto y licencia de obra y se puede hipotecar.',
     '',
   ];
 

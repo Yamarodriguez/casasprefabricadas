@@ -17,7 +17,7 @@ const LUGAR = {
   hormigon:
     'Casas prefabricadas de hormigón en {L}: modelos, precios por m², plazos de 4 a 9 meses y fabricantes que entregan en tu zona. Presupuesto gratis.',
   steel:
-    'Casas de Steel Framing en {L}: precios desde 450 €/m², modelos, plazos de 3 a 5 meses y fabricantes que entregan en tu zona. Presupuesto gratis.',
+    'Steel Framing en {L}: casas de 900 a 1.300 €/m² llave en mano, plazos de 3 a 5 meses y fabricantes en tu zona. Presupuesto gratis.',
   casetas:
     'Casetas prefabricadas en {L}: de jardín, aperos, obra, madera, resina y hormigón, con precios y fabricantes que entregan en tu zona. Presupuesto gratis.',
 };
@@ -30,7 +30,7 @@ const RAIZ = {
   hormigon:
     'Casas prefabricadas de hormigón: modelos, precios por m², planos, catálogo y fabricantes de toda España. Entrega llave en mano en 4-9 meses. Presupuesto gratis.',
   steel:
-    'Casas de Steel Framing: qué es, precios desde 450 €/m², modelos, planos y fabricantes en toda España. Construcción en seco en 3-5 meses. Presupuesto gratis.',
+    'Casas de Steel Framing: qué es, de 900 a 1.300 €/m² llave en mano, modelos, planos y fabricantes en España. Construcción en seco en 3-5 meses.',
   casetas:
     'Casetas prefabricadas: de jardín, aperos, obra, madera, resina, metálicas y de hormigón. Modelos, medidas, precios y fabricantes de toda España.',
 };
@@ -108,7 +108,15 @@ const SUFIJO_TEMA = {
 };
 const cap = (s) => (s ? s[0].toUpperCase() + s.slice(1) : s);
 
+/* títulos escritos a mano donde el original no servía aunque cupiera:
+   "Steel Framing Precios - steel farming precios" (errata y sin el m² ni
+   España de la búsqueda que más impresiones da) */
+const TITULO_RUTA = {
+  '/steel-framing-precios/': 'Precio del Steel Framing por m² en España (2026)',
+};
+
 export function tituloSeo(pagina) {
+  if (TITULO_RUTA[pagina.ruta]) return TITULO_RUTA[pagina.ruta];
   const base = pagina.tituloSeo || pagina.titulo || '';
   if (base.length <= MAX_TITULO || !pagina.palabraClave) return base;
   const { linea, tema, lugar } = clasificar(pagina);
