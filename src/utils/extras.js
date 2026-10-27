@@ -55,39 +55,64 @@ const TABLAS = {
     titulo: 'Precios de casas prefabricadas en 2026 (orientativos)',
     cabecera: ['Sistema', 'Precio por m² terminada', 'Casa de 100 m²', 'Plazo desde la licencia'],
     filas: [
-      ['Casa de madera', '600–900 €', '47.000–60.000 €', '3–6 meses'],
-      ['Steel Framing', '900–1.300 € (280–420 € solo la estructura)', '90.000–130.000 €', '3–5 meses'],
-      ['Hormigón prefabricado', '900–1.500 €', '90.000–120.000 €', '4–9 meses'],
+      ['Casa de madera', '800–1.550 €', '90.000–150.000 €', '2–4 meses'],
+      ['Steel Framing', '900–1.300 € (280–420 € solo la estructura)', '90.000–130.000 €', '4–6 meses'],
+      ['Hormigón prefabricado', '1.200–1.900 €', '120.000–180.000 €', '3–6 meses'],
       ['Modular (módulos completos)', '1.000–1.500 €', '100.000–150.000 €', '4–6 meses'],
       ['Contenedores marítimos', '500–900 €', '50.000–90.000 €', '3–5 meses'],
       ['Casa móvil (sin cimentación)', '—', '20.000–80.000 € (30–100 m²)', '1–2 meses'],
     ],
+    nota:
+      'Madera, Steel Framing y hormigón: precios de mercado publicados en 2026 por Cronoshare, idealista, habitissimo, Caasa y Construcciones Laragab, llave en mano y sin terreno ni licencias; ' +
+      'las fuentes, con su fecha, están en los precios de <a href="/precios-casas-de-madera-prefabricadas/">casas de madera</a>, ' +
+      '<a href="/steel-framing-precios/">Steel Framing</a> y <a href="/hormigon-precios/">hormigón</a>. ' +
+      '<a href="/que-incluye-una-casa-prefabricada/">Qué incluye el precio y qué se paga aparte</a> o <a href="/presupuesto/">pedir presupuesto gratis</a>.',
   },
+  /* precios de mercado, no del sitio: rangos que publican portales de
+     presupuestos (fuentes en la nota); los tamaños son los de Cronoshare */
   madera: {
-    titulo: 'Precios de casas de madera en 2026 (orientativos)',
-    cabecera: ['Sistema o tamaño', 'Precio', 'Qué incluye'],
+    titulo: 'Precio de las casas de madera por m² en España (2026)',
+    cabecera: ['Nivel o tamaño', 'Precio', 'Qué incluye'],
     filas: [
-      ['Entramado ligero', '600–800 €/m²', 'Estructura, aislamiento en cámara, acabados de serie'],
-      ['Paneles SIP', '750–950 €/m²', 'Máximo aislamiento, montaje muy rápido'],
-      ['Madera maciza o troncos', '800–1.200 €/m²', 'Aspecto rústico, muros de 70 mm o más'],
-      ['Gama alta (maderas nobles, grandes ventanales)', '1.200–1.500 €/m²', 'Diseño a medida'],
-      ['Casa de 36 m²', 'desde 8.000 € en kit · 20.000–25.000 € montada', 'Vivienda mínima o estudio'],
-      ['Casa de 68 m², 2 dormitorios', '34.000–38.000 €', 'Llave en mano'],
-      ['Casa de 100 m², 3 dormitorios', '47.000–60.000 €', 'Llave en mano'],
-      ['Casa de 150 m², 2 plantas', '90.000–135.000 €', 'Llave en mano'],
+      ['Casa de catálogo, precio de fábrica', '180–660 €/m² (media de 420 €/m²)', 'La casa; montaje, transporte, base e IVA suelen ir aparte'],
+      ['Estructura básica', '400–800 €/m²', 'Estructura de madera sin acabados completos'],
+      ['Llave en mano', '800–1.550 €/m²', 'Casa terminada para entrar a vivir'],
+      ['Llave en mano, calidades medias-altas', '1.200–1.900 €/m²', 'Entramado ligero o madera contralaminada (CLT)'],
+      ['Casa de 50 m²', '45.000–75.000 €', 'Llave en mano'],
+      ['Casa de 80 m²', '70.000–120.000 €', 'Llave en mano'],
+      ['Casa de 100 m²', '90.000–150.000 €', 'Llave en mano'],
+      ['Casa de 120 m²', '110.000–185.000 €', 'Llave en mano'],
+      ['Casa de 150 m²', '140.000–230.000 €', 'Llave en mano'],
     ],
+    nota:
+      'Precios de mercado publicados por portales de presupuestos, consultados el 27 de octubre de 2026: ' +
+      '<a href="https://www.cronoshare.com/cuanto-cuesta/casa-prefabricada" rel="nofollow noopener">Cronoshare</a> (3 de enero de 2026: estructura, llave en mano y tamaños), ' +
+      '<a href="https://www.idealista.com/news/inmobiliario/vivienda/2025/12/02/874777-casas-prefabricadas-llave-en-mano-opciones-listas-para-entrar-a-vivir" rel="nofollow noopener">idealista</a> (2 de diciembre de 2025: calidades medias-altas) y ' +
+      '<a href="https://www.habitissimo.es/presupuestos/construir-casa-prefabricada-madera" rel="nofollow noopener">habitissimo</a> (16 de septiembre de 2026: precio de fábrica, con datos de sus presupuestos). ' +
+      'Sin terreno ni licencias; pregunta si el presupuesto incluye cimentación, transporte, montaje e IVA. ' +
+      '<a href="/que-incluye-una-casa-prefabricada/">Qué incluye el precio y qué se paga aparte</a> o <a href="/presupuesto/">pedir presupuesto gratis</a>.',
   },
   hormigon: {
-    titulo: 'Precios de casas prefabricadas de hormigón en 2026 (orientativos)',
-    cabecera: ['Sistema o tamaño', 'Precio', 'Qué incluye'],
+    titulo: 'Precio de las casas prefabricadas de hormigón por m² en España (2026)',
+    cabecera: ['Nivel o tamaño', 'Precio', 'Qué incluye'],
     filas: [
-      ['Paneles de hormigón', '900–1.200 €/m²', 'Muros y forjados prefabricados, aislamiento integrado'],
-      ['Módulos completos (3D)', '1.100–1.500 €/m²', 'Módulos con instalaciones y acabados de fábrica'],
-      ['Gama alta', '1.500–2.200 €/m²', 'Diseño de autor, grandes voladizos, domótica'],
-      ['Casa de 80 m²', '72.000–96.000 €', 'Llave en mano'],
-      ['Casa de 100 m²', '90.000–120.000 €', 'Llave en mano'],
-      ['Casa de 150 m², 2 plantas', '135.000–190.000 €', 'Llave en mano'],
+      ['Proyecto y construcción', '700–1.800 €/m² (media de 1.230 €/m²)', 'Licencias, acometidas y certificados aparte'],
+      ['Llave en mano', '1.200–1.900 €/m²', 'Casa terminada para entrar a vivir'],
+      ['Llave en mano, calidades medias-altas', '1.300–2.000 €/m²', 'Paneles o módulos de hormigón'],
+      ['Casa de 50 m²', '60.000–90.000 €', 'Llave en mano'],
+      ['Casa de 80 m²', '96.000–144.000 €', 'Llave en mano'],
+      ['Casa de 100 m²', '120.000–180.000 €', 'Llave en mano'],
+      ['Casa de 120 m²', '144.000–216.000 €', 'Llave en mano'],
+      ['Casa de 150 m²', '180.000–270.000 €', 'Llave en mano'],
+      ['Casa de 150 m², alta gama', '230.000–300.000 €', 'Presupuesto completo'],
     ],
+    nota:
+      'Precios de mercado publicados por portales de presupuestos, consultados el 27 de octubre de 2026: ' +
+      '<a href="https://www.cronoshare.com/cuanto-cuesta/casa-prefabricada" rel="nofollow noopener">Cronoshare</a> (3 de enero de 2026: llave en mano, tamaños y alta gama), ' +
+      '<a href="https://www.idealista.com/news/inmobiliario/vivienda/2025/12/02/874777-casas-prefabricadas-llave-en-mano-opciones-listas-para-entrar-a-vivir" rel="nofollow noopener">idealista</a> (2 de diciembre de 2025: calidades medias-altas, plazo de 3 a 6 meses) y ' +
+      '<a href="https://www.habitissimo.es/presupuestos/construir-casa-prefabricada-de-hormigon" rel="nofollow noopener">habitissimo</a> (10 de junio de 2026: proyecto y construcción, con datos de sus presupuestos; de 4 a 6 meses de la firma a las llaves). ' +
+      'Sin terreno ni licencias; pregunta si el presupuesto incluye cimentación, transporte e IVA. ' +
+      '<a href="/que-incluye-una-casa-prefabricada/">Qué incluye el precio y qué se paga aparte</a> o <a href="/presupuesto/">pedir presupuesto gratis</a>.',
   },
   steel: {
     titulo: 'Precio del Steel Framing por m² en España (2026)',

@@ -29,29 +29,29 @@ export const LINEAS = {
     N: 'casas prefabricadas',
     n: 'casa prefabricada',
     titulo: 'casas prefabricadas',
-    P: 'Como referencia, una casa prefabricada de 100 m² cuesta entre 47.000 y 60.000 € en madera y puede llegar a los 100.000 € en hormigón, sin contar terreno, cimentación ni licencias.',
-    T: 'entre 6 y 9 meses',
+    P: 'Según los precios de mercado de 2026, una casa prefabricada de 100 m² llave en mano cuesta entre 90.000 y 150.000 € en madera y entre 120.000 y 180.000 € en hormigón, sin contar terreno ni licencias.',
+    T: 'entre 3 y 7 meses',
   },
   madera: {
     N: 'casas de madera',
     n: 'casa de madera',
     titulo: 'casas prefabricadas de madera',
-    P: 'Como referencia, una casa de madera ronda los 600–900 €/m²: unos 34.000–38.000 € para 68 m² con dos dormitorios, sin contar terreno, cimentación ni licencias.',
-    T: 'entre 3 y 6 meses',
+    P: 'Según los precios de mercado de 2026, una casa de madera llave en mano cuesta entre 800 y 1.550 €/m²: unos 90.000–150.000 € para 100 m², sin contar terreno ni licencias.',
+    T: 'entre 2 y 4 meses',
   },
   hormigon: {
     N: 'casas prefabricadas de hormigón',
     n: 'casa prefabricada de hormigón',
     titulo: 'casas prefabricadas de hormigón',
-    P: 'Como referencia, una casa prefabricada de hormigón cuesta entre 900 y 1.500 €/m² terminada: unos 90.000–100.000 € para 100 m² llave en mano, sin contar terreno, cimentación ni licencias.',
-    T: 'entre 4 y 9 meses',
+    P: 'Según los precios de mercado de 2026, una casa prefabricada de hormigón llave en mano cuesta entre 1.200 y 1.900 €/m²: unos 120.000–180.000 € para 100 m², sin contar terreno ni licencias.',
+    T: 'entre 3 y 6 meses',
   },
   steel: {
     N: 'casas de Steel Framing',
     n: 'casa de Steel Framing',
     titulo: 'casas prefabricadas Steel Framing',
     P: 'Según los precios publicados en 2026 por fabricantes y portales, una casa de Steel Framing llave en mano cuesta entre 900 y 1.300 €/m², y solo la estructura en kit, entre 280 y 420 €/m²: unos 90.000–130.000 € para una casa de 100 m² terminada, sin contar terreno ni licencias.',
-    T: 'entre 3 y 5 meses',
+    T: 'entre 4 y 6 meses',
   },
   casetas: {
     N: 'casetas prefabricadas',
@@ -71,12 +71,12 @@ const BASE = {
     {
       clave: 'precio',
       p: '¿Cuánto cuesta una casa prefabricada en España?',
-      r: 'El precio de una casa prefabricada depende sobre todo del sistema constructivo y de los acabados. Como referencia, una casa de madera ronda los 600–900 €/m², una de Steel Framing llave en mano, entre 900 y 1.300 €/m² según los precios de mercado de 2026, y una de hormigón se mueve entre 900 y 1.500 €/m². Así, una casa prefabricada de 100 m² cuesta entre 47.000 y 60.000 € en madera y puede llegar a los 100.000 € en hormigón. A eso hay que sumar el terreno, la cimentación, las acometidas y las licencias.',
+      r: 'El precio de una casa prefabricada depende sobre todo del sistema constructivo y de los acabados. Según los precios de mercado de 2026, una casa llave en mano cuesta entre 800 y 1.550 €/m² en madera, entre 900 y 1.300 €/m² en Steel Framing y entre 1.200 y 1.900 €/m² en hormigón. Así, una casa prefabricada de 100 m² cuesta entre 90.000 y 150.000 € en madera y entre 120.000 y 180.000 € en hormigón. A eso hay que sumar el terreno, la cimentación, las acometidas y las licencias.',
     },
     {
       clave: 'plazo',
       p: '¿Cuánto tarda en construirse una casa prefabricada?',
-      r: 'Entre 6 y 9 meses llave en mano, frente a los 12–18 meses de una vivienda tradicional. La clave es que la casa se fabrica en taller mientras se prepara la cimentación en el terreno, y el montaje en la parcela se resuelve en pocos días o semanas. El plazo real depende del modelo, de los acabados y, sobre todo, de lo que tarde el ayuntamiento en conceder la licencia.',
+      r: 'La obra dura entre 3 y 7 meses, frente a los 12–18 meses de una vivienda tradicional. La clave es que la casa se fabrica en taller mientras se prepara la cimentación en el terreno, y el montaje en la parcela se resuelve en pocos días o semanas. El plazo real depende del modelo, de los acabados y, sobre todo, de lo que tarde el ayuntamiento en conceder la licencia.',
     },
     {
       clave: 'licencia',
@@ -103,7 +103,7 @@ const BASE = {
     {
       clave: 'precio',
       p: '¿Cuánto cuesta una casa de madera prefabricada?',
-      r: 'El precio medio está entre 600 y 900 €/m². Una casa de madera de 68 m² con dos dormitorios ronda los 34.000–38.000 €, una de 50 m² con un dormitorio unos 21.000 €, y una mini casa de 36 m² puede salir desde 8.000 €. Los modelos de gama alta, con maderas nobles y grandes ventanales, llegan a 1.200–1.500 €/m². Todo ello sin contar terreno, cimentación ni licencias.',
+      r: 'Según los precios de mercado de 2026, entre 800 y 1.550 €/m² llave en mano, y solo la estructura básica, 400–800 €/m². Una casa de madera de 50 m² ronda los 45.000–75.000 € y una de 100 m² los 90.000–150.000 €; en calidades medias-altas se llega a 1.200–1.900 €/m². En kit, sin montaje, hay modelos pequeños desde poco más de 10.000 €. Todo ello sin contar terreno ni licencias.',
     },
     {
       clave: 'calidad',
@@ -128,19 +128,19 @@ const BASE = {
     {
       clave: 'plazo',
       p: '¿Cuánto tarda en construirse una casa de madera?',
-      r: 'Es uno de los sistemas más rápidos: la fabricación en taller lleva de 6 a 10 semanas y el montaje en la parcela, de una a tres semanas. Contando cimentación, instalaciones y acabados, una casa de madera prefabricada está lista para entrar a vivir en 3–6 meses desde que se obtiene la licencia.',
+      r: 'Es uno de los sistemas más rápidos: la fabricación en taller lleva de 6 a 10 semanas y el montaje en la parcela, de una a tres semanas. Contando cimentación, instalaciones y acabados, una casa de madera prefabricada está lista para entrar a vivir en 2–4 meses desde que se obtiene la licencia.',
     },
   ],
   hormigon: [
     {
       clave: 'precio',
       p: '¿Cuánto cuesta una casa prefabricada de hormigón?',
-      r: 'Entre 900 y 1.500 €/m² terminada, según acabados y nivel de equipamiento. Una casa prefabricada de hormigón de 100 m² se mueve así entre 90.000 y 100.000 € llave en mano, sin contar terreno, cimentación ni licencias. Es más cara que la madera, pero a cambio no necesita prácticamente mantenimiento y su valor de reventa es el de una vivienda de obra.',
+      r: 'Según los precios de mercado de 2026, entre 1.200 y 1.900 €/m² llave en mano, según acabados y nivel de equipamiento. Una casa prefabricada de hormigón de 100 m² se mueve así entre 120.000 y 180.000 €, sin contar terreno ni licencias. Es más cara que la madera, pero a cambio no necesita prácticamente mantenimiento y su valor de reventa es el de una vivienda de obra.',
     },
     {
       clave: 'plazo',
       p: '¿Cuánto tarda en construirse una casa prefabricada de hormigón?',
-      r: 'Entre 4 y 9 meses llave en mano. Los paneles y módulos de hormigón se fabrican en planta en 6–8 semanas mientras se ejecuta la cimentación, y el montaje en la parcela se completa en pocos días con grúa. Después quedan instalaciones y acabados. Frente a los 12–18 meses de una obra tradicional, el ahorro de tiempo es enorme.',
+      r: 'Entre 3 y 6 meses llave en mano. Los paneles y módulos de hormigón se fabrican en planta en 6–8 semanas mientras se ejecuta la cimentación, y el montaje en la parcela se completa en pocos días con grúa. Después quedan instalaciones y acabados. Frente a los 12–18 meses de una obra tradicional, el ahorro de tiempo es enorme.',
     },
     {
       clave: 'calidad',
@@ -177,7 +177,7 @@ const BASE = {
     {
       clave: 'plazo',
       p: '¿Cuánto tarda en construirse una casa de Steel Framing?',
-      r: 'Entre 3 y 5 meses. La estructura de acero se fabrica en taller a partir de los planos y se levanta en la parcela en una o dos semanas; como es una obra en seco no hay tiempos de fraguado ni de secado. El resto del plazo son instalaciones y acabados, además del tiempo que tarde la licencia municipal.',
+      r: 'Entre 4 y 6 meses de obra. La estructura de acero se fabrica en taller a partir de los planos y se levanta en la parcela en una o dos semanas; como es una obra en seco no hay tiempos de fraguado ni de secado. El resto del plazo son instalaciones y acabados, además del tiempo que tarde la licencia municipal.',
     },
     {
       clave: 'calidad',
@@ -842,7 +842,7 @@ const TEMAS = {
       },
       {
         p: '¿Cuánto cuesta una casa de madera grande?',
-        r: 'El precio por metro cuadrado baja al aumentar el tamaño: una casa de madera de 200 m² se mueve entre 130.000 y 180.000 € llave en mano (650–900 €/m²), y una de 300 m² desde unos 190.000 €. Los extras de gama alta (maderas nobles, grandes ventanales) pueden elevar el precio a 1.200 €/m².',
+        r: 'Con el rango de mercado de 2026, de 800 a 1.550 €/m² llave en mano, una casa de madera de 200 m² se mueve entre 160.000 y 310.000 €, sin terreno ni licencias. Las calidades medias-altas (maderas nobles, grandes ventanales) llevan el precio a 1.200–1.900 €/m².',
       },
       {
         p: '¿Cuánto tarda una casa de madera grande?',
@@ -1293,7 +1293,7 @@ Object.assign(TEMAS, {
     lista: [
       {
         p: '¿Qué casa prefabricada se puede comprar por menos de 100.000 euros?',
-        r: 'Una casa de madera de hasta 150 m², una de Steel Framing de unos 75–110 m² o una de hormigón prefabricado de 80–100 m², todas llave en mano. Con menos de 50.000 € se compra una casa de madera de 50–80 m² o una tiny house completa.',
+        r: 'Según los precios de mercado de 2026, una casa de madera de unos 65–125 m², una de Steel Framing de unos 75–110 m² o una de hormigón prefabricado de unos 50–80 m², todas llave en mano. Con menos de 50.000 € entran una tiny house completa o una casa de madera pequeña en kit.',
       },
       {
         p: '¿Los 100.000 euros incluyen el terreno?',
@@ -1311,11 +1311,11 @@ Object.assign(TEMAS, {
     lista: [
       {
         p: '¿Cuánto cuesta una casa prefabricada de 100 m² llave en mano?',
-        r: 'Entre 47.000 y 60.000 € en madera, entre 90.000 y 130.000 € en Steel Framing y entre 90.000 y 120.000 € en hormigón prefabricado, sin terreno, cimentación ni licencias. A eso hay que sumar la cimentación, las acometidas, el proyecto, la licencia y los impuestos, que dependen de cada parcela y ayuntamiento.',
+        r: 'Según los precios de mercado de 2026, entre 90.000 y 150.000 € en madera, entre 90.000 y 130.000 € en Steel Framing y entre 120.000 y 180.000 € en hormigón prefabricado, sin terreno, cimentación ni licencias. A eso hay que sumar la cimentación, las acometidas, el proyecto, la licencia y los impuestos, que dependen de cada parcela y ayuntamiento.',
       },
       {
         p: '¿Sale más barata por metro cuadrado una casa más grande?',
-        r: 'Sí: cocina, baños e instalaciones cuestan lo mismo en 50 m² que en 150 m², así que el precio por m² baja al crecer la casa. Una casa de madera de 50 m² ronda los 500 €/m² de coste total y una de 150 m² baja a 600–900 €/m² con más dormitorios y calidades.',
+        r: 'Algo, porque cocina, baños e instalaciones cuestan casi lo mismo en 50 m² que en 150 m². Pero la diferencia es menor de lo que parece: según Cronoshare, una casa de madera de 50 m² cuesta 45.000–75.000 € llave en mano (900–1.500 €/m²) y una de 150 m², 140.000–230.000 € (930–1.530 €/m²).',
       },
       {
         p: '¿Qué distribución tiene una casa prefabricada de 100 m²?',
@@ -1347,7 +1347,7 @@ Object.assign(TEMAS, {
     lista: [
       {
         p: '¿Merece la pena comprar una casa prefabricada?',
-        r: 'Para la mayoría de compradores, sí: precio y plazo cerrados, mejor aislamiento que una casa de ladrillo y entrega en 4–9 meses. Las malas experiencias vienen casi siempre de comprar por precio a fabricantes sin taller propio o sin contrato cerrado.',
+        r: 'Para la mayoría de compradores, sí: precio y plazo cerrados, mejor aislamiento que una casa de ladrillo y una obra de 3 a 7 meses. Las malas experiencias vienen casi siempre de comprar por precio a fabricantes sin taller propio o sin contrato cerrado.',
       },
       {
         p: '¿Cuáles son los problemas más frecuentes de las casas prefabricadas?',

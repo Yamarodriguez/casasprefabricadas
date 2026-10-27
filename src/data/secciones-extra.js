@@ -266,7 +266,7 @@ export const RAIZ = {
     {
       h2: 'Cómo elegir tu casa prefabricada: madera, hormigón o Steel Framing',
       p: [
-        'La madera es la más económica, cálida y rápida de montar (600–900 €/m², 3–6 meses); el hormigón, la más robusta y la que menos mantenimiento pide (900–1.500 €/m², 4–9 meses); el Steel Framing, la estructura ligera de acero galvanizado que combina rapidez, resistencia y un aislamiento excelente (900–1.300 €/m² llave en mano).',
+        'Con precios de mercado de 2026, llave en mano: la madera es cálida y la más rápida de montar (800–1.550 €/m², 2–4 meses de obra); el hormigón, la más robusta y la que menos mantenimiento pide (1.200–1.900 €/m², 3–6 meses); el Steel Framing, la estructura ligera de acero galvanizado que combina resistencia y un aislamiento excelente (900–1.300 €/m², 4–6 meses).',
         'Los tres sistemas cumplen el Código Técnico de la Edificación, se escrituran y se hipotecan como cualquier vivienda, y se entregan con garantía decenal. La elección depende del presupuesto, del clima de tu parcela y del estilo que buscas; en esta web puedes comparar modelos, precios y fabricantes de los tres.',
       ],
     },
@@ -274,7 +274,7 @@ export const RAIZ = {
       h2: 'Comprar una casa prefabricada en España: el proceso completo',
       p: [
         'Primero la parcela: suelo urbanizable, edificabilidad y distancias a linderos, que se consultan en el ayuntamiento. Después el modelo, de catálogo o a medida, que el arquitecto del fabricante adapta a tu terreno y presenta con el proyecto visado para la licencia de obra.',
-        'Mientras llega la licencia se prepara la cimentación y la casa se fabrica en taller; el montaje en la parcela se resuelve en días o semanas y quedan instalaciones y acabados. El plazo total es de 6 a 9 meses llave en mano, con precio y plazo cerrados por contrato.',
+        'Mientras llega la licencia se prepara la cimentación y la casa se fabrica en taller; el montaje en la parcela se resuelve en días o semanas y quedan instalaciones y acabados. La obra dura de 3 a 7 meses, con precio y plazo cerrados por contrato.',
       ],
     },
   ],
@@ -282,8 +282,8 @@ export const RAIZ = {
     {
       h2: 'Casas de madera prefabricadas: sistemas, precios y plazos',
       p: [
-        'Hay tres formas de construir una casa de madera: entramado ligero (la más económica y la más usada), paneles SIP (máximo aislamiento) y madera maciza o troncos (el aspecto más rústico). Según la Asociación Española de Casas de Madera, el precio medio está entre 600 y 900 €/m².',
-        'Es el sistema prefabricado más rápido: la estructura se fabrica en taller en 6–10 semanas y se monta en la parcela en una a tres semanas; la casa está lista para entrar a vivir en 3–6 meses desde la licencia. Bien tratada y con los detalles constructivos correctos, dura entre 50 y 100 años.',
+        'Hay tres formas de construir una casa de madera: entramado ligero (la más económica y la más usada), paneles SIP (máximo aislamiento) y madera maciza o troncos (el aspecto más rústico). Según los precios de mercado de 2026, la casa terminada cuesta entre 800 y 1.550 €/m², y solo la estructura básica, entre 400 y 800 €/m².',
+        'Es el sistema prefabricado más rápido: la estructura se fabrica en taller en 6–10 semanas y se monta en la parcela en una a tres semanas; la casa está lista para entrar a vivir en 2–4 meses desde la licencia. Bien tratada y con los detalles constructivos correctos, dura entre 50 y 100 años.',
       ],
     },
     {
@@ -298,7 +298,7 @@ export const RAIZ = {
     {
       h2: 'Casas prefabricadas de hormigón: cómo se construyen y qué cuestan',
       p: [
-        'Los muros, forjados y cubierta se moldean en planta como paneles o módulos completos, con el aislamiento y las instalaciones ya integrados, y se montan en la parcela con grúa en dos o tres días. El precio está entre 900 y 1.500 €/m² terminada, y el plazo entre 4 y 9 meses llave en mano.',
+        'Los muros, forjados y cubierta se moldean en planta como paneles o módulos completos, con el aislamiento y las instalaciones ya integrados, y se montan en la parcela con grúa en dos o tres días. Según los precios de mercado de 2026, cuesta entre 1.200 y 1.900 €/m² llave en mano, y el plazo es de 3 a 6 meses.',
         'Es el mismo material que una casa de obra, pero fabricado en condiciones controladas: sin desviaciones de presupuesto, con plazo cerrado por contrato y con una calidad de acabado que no se consigue a pie de obra. La casa se entrega con garantía decenal y se hipoteca como cualquier vivienda.',
       ],
     },
@@ -315,7 +315,7 @@ export const RAIZ = {
       h2: 'Steel Framing: la construcción en seco con estructura de acero',
       p: [
         'El Steel Framing sustituye el ladrillo y el hormigón por una estructura de perfiles de acero galvanizado ligero, ensamblados en paneles que forman muros, forjados y cubierta. Sobre ella van el aislamiento, las placas y los revestimientos. Se usa desde hace décadas en Estados Unidos, Australia y el norte de Europa, y en España está homologado bajo el CTE.',
-        'Cuesta 900–1.300 €/m² llave en mano según los precios de mercado de 2026 (solo la estructura, 280–420 €/m²), y se construye en 3–5 meses: la estructura se fabrica en taller a partir de los planos y se levanta en la parcela en una o dos semanas, sin tiempos de fraguado ni esperas por lluvia.',
+        'Cuesta 900–1.300 €/m² llave en mano según los precios de mercado de 2026 (solo la estructura, 280–420 €/m²), y se construye en 4–6 meses: la estructura se fabrica en taller a partir de los planos y se levanta en la parcela en una o dos semanas, sin tiempos de fraguado ni esperas por lluvia.',
       ],
     },
     {
@@ -763,7 +763,7 @@ export const TEMA = {
       h2: 'Casas de madera grandes: estructura y precio',
       p: [
         'Hay casas de madera de 200, 300 y hasta 500 m² en una o dos plantas, con garaje, porches y distribuciones familiares. Se resuelven con entramado ligero o con madera laminada (CLT y vigas GL), que permite luces de más de 10 metros sin pilares.',
-        'El precio por metro cuadrado baja al aumentar el tamaño: una casa de madera de 200 m² se mueve entre 130.000 y 180.000 € llave en mano (650–900 €/m²), y una de 300 m² desde unos 190.000 €. Los extras de gama alta pueden elevar el precio a 1.200 €/m².',
+        'Con el rango de mercado de 2026, de 800 a 1.550 €/m² llave en mano, una casa de madera de 200 m² se mueve entre 160.000 y 310.000 €, sin terreno ni licencias. Las calidades medias-altas llevan el precio a 1.200–1.900 €/m².',
       ],
     },
     {

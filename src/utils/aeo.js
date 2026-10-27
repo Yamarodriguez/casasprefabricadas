@@ -21,13 +21,13 @@ const escapar = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>
    " en Madrid" en las páginas de localidad y vacío en el resto. */
 const RESUMEN_LINEA = {
   generica:
-    '{N}{en} cuestan entre 600 y 900 €/m² en madera, entre 900 y 1.300 €/m² llave en mano en Steel Framing y entre 900 y 1.500 €/m² en hormigón, sin terreno, cimentación ni licencias. Se entregan llave en mano en 6–9 meses, frente a los 12–18 de una obra tradicional, y como cualquier vivienda fija necesitan proyecto y licencia de obra del ayuntamiento.',
+    '{N}{en} cuestan entre 800 y 1.550 €/m² en madera, entre 900 y 1.300 €/m² en Steel Framing y entre 1.200 y 1.900 €/m² en hormigón, llave en mano y sin terreno ni licencias, según los precios de mercado publicados en 2026. La obra dura de 3 a 7 meses, frente a los 12–18 de una obra tradicional, y como cualquier vivienda fija necesitan proyecto y licencia de obra del ayuntamiento.',
   madera:
-    '{N}{en} cuestan entre 600 y 900 €/m² terminadas: una de 100 m² sale por 47.000–60.000 € llave en mano, sin terreno, cimentación ni licencias. Se montan en 3–6 meses desde la licencia de obra, que es obligatoria como en cualquier vivienda, y duran entre 50 y 100 años con un lasur cada 3–5 años.',
+    '{N}{en} cuestan entre 800 y 1.550 €/m² llave en mano según los precios de mercado de 2026: una de 100 m² sale por 90.000–150.000 €, sin terreno ni licencias. Se montan en 2–4 meses desde la licencia de obra, que es obligatoria como en cualquier vivienda, y duran entre 50 y 100 años con un lasur cada 3–5 años.',
   hormigon:
-    '{N}{en} cuestan entre 900 y 1.500 €/m² terminadas: una de 100 m² llave en mano parte de unos 90.000 €, sin terreno, cimentación ni licencias. Se entregan en 4–9 meses desde la licencia de obra, casi no necesitan mantenimiento y se hipotecan y escrituran como cualquier vivienda.',
+    '{N}{en} cuestan entre 1.200 y 1.900 €/m² llave en mano según los precios de mercado de 2026: una de 100 m² sale por 120.000–180.000 €, sin terreno ni licencias. Se entregan en 3–6 meses desde la licencia de obra, casi no necesitan mantenimiento y se hipotecan y escrituran como cualquier vivienda.',
   steel:
-    '{N}{en} cuestan entre 900 y 1.300 €/m² llave en mano según los precios publicados en 2026 por fabricantes y portales: una de 100 m² sale por 90.000–130.000 €, sin terreno ni licencias. Solo la estructura en kit cuesta 280–420 €/m². Se construyen en seco en 3–5 meses desde la licencia de obra y la estructura de acero galvanizado supera los 100 años de vida útil.',
+    '{N}{en} cuestan entre 900 y 1.300 €/m² llave en mano según los precios publicados en 2026 por fabricantes y portales: una de 100 m² sale por 90.000–130.000 €, sin terreno ni licencias. Solo la estructura en kit cuesta 280–420 €/m². Se construyen en seco en 4–6 meses desde la licencia de obra y la estructura de acero galvanizado supera los 100 años de vida útil.',
   casetas:
     '{N}{en} cuestan desde 200 € en resina, 600–8.000 € en madera y 1.500–15.000 € en hormigón prefabricado, según tamaño y grosor de pared. Se entregan en una a cuatro semanas y se instalan en un día; las pequeñas sin cimentación suelen bastar con declaración responsable u obra menor, según el ayuntamiento.',
 };
@@ -78,9 +78,9 @@ export function renderResumen(texto) {
 const COMPARATIVA = {
   cabecera: ['Sistema', 'Precio por m² terminada', 'Casa de 100 m²', 'Plazo desde la licencia', 'Vida útil', 'Mantenimiento'],
   filas: [
-    ['Madera', '600–900 €', '47.000–60.000 €', '3–6 meses', '50–100 años', 'Lasur exterior cada 3–5 años'],
-    ['Steel Framing', '900–1.300 € (280–420 € solo la estructura)', '90.000–130.000 €', '3–5 meses', 'Más de 100 años', 'Bajo: el acero galvanizado no se pudre'],
-    ['Hormigón prefabricado', '900–1.500 €', '90.000–120.000 €', '4–9 meses', 'Más de 50 años', 'Mínimo: revestimiento cada 8–10 años'],
+    ['Madera', '800–1.550 € (400–800 € solo la estructura)', '90.000–150.000 €', '2–4 meses', '50–100 años', 'Lasur exterior cada 3–5 años'],
+    ['Steel Framing', '900–1.300 € (280–420 € solo la estructura)', '90.000–130.000 €', '4–6 meses', 'Más de 100 años', 'Bajo: el acero galvanizado no se pudre'],
+    ['Hormigón prefabricado', '1.200–1.900 €', '120.000–180.000 €', '3–6 meses', 'Más de 50 años', 'Mínimo: revestimiento cada 8–10 años'],
   ],
 };
 const RAICES_CASA = new Set(['/', '/madera/', '/hormigon/', '/steel-framing/', '/casas-steel-framing/']);
@@ -100,7 +100,7 @@ export function tablaComparativa(pagina) {
     `<div class="tarifas-caja"><table class="tarifas"><caption>${escapar(titulo)}</caption>` +
     `<thead><tr>${COMPARATIVA.cabecera.map((c) => `<th scope="col">${escapar(c)}</th>`).join('')}</tr></thead>` +
     `<tbody>${filas}</tbody></table>` +
-    `<p class="tarifas__nota">Precios orientativos de 2026, sin terreno, cimentación, acometidas ni licencias (un 20–30 % más): <a href="/que-incluye-una-casa-prefabricada/">qué incluye el precio y qué se paga aparte</a>. ` +
+    `<p class="tarifas__nota">Precios de mercado publicados en 2026 por portales y fabricantes (Cronoshare, idealista, habitissimo, Caasa y otros: fuentes en cada página de precios), llave en mano y sin terreno ni licencias: <a href="/que-incluye-una-casa-prefabricada/">qué incluye el precio y qué se paga aparte</a>. ` +
     `Las tres necesitan proyecto y licencia de obra y se hipotecan como cualquier vivienda. ` +
     `<a href="/precios/">Ver todos los precios</a> o <a href="/presupuesto/">pedir presupuesto gratis</a>.</p></div>`
   );
@@ -130,9 +130,9 @@ export function migasDe(pagina, titulo) {
 /* Qué se ofrece, dónde y a qué precio por m²: con WebPage y FAQPage solo,
    el buscador sabe de qué habla la página pero no qué vende. */
 const PRECIO_M2 = {
-  generica: [600, 1500],
-  madera: [600, 900],
-  hormigon: [900, 1500],
+  generica: [800, 1900],
+  madera: [800, 1550],
+  hormigon: [1200, 1900],
   steel: [900, 1300],
 };
 

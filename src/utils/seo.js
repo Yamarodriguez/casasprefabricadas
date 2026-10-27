@@ -13,11 +13,11 @@ const LUGAR = {
   generica:
     'Casas prefabricadas en {L}: modelos de madera, hormigón y Steel Framing con precios, planos y fabricantes que entregan en tu zona. Presupuesto gratis.',
   madera:
-    'Casas de madera en {L}: modelos, precios desde 600 €/m², planos y fabricantes que montan en tu parcela en 3-6 meses. Presupuesto gratis y sin compromiso.',
+    'Casas de madera en {L}: de 800 a 1.550 €/m² llave en mano, modelos, planos y fabricantes que montan en tu parcela en 2-4 meses. Presupuesto gratis.',
   hormigon:
     'Casas prefabricadas de hormigón en {L}: modelos, precios por m², plazos de 4 a 9 meses y fabricantes que entregan en tu zona. Presupuesto gratis.',
   steel:
-    'Steel Framing en {L}: casas de 900 a 1.300 €/m² llave en mano, plazos de 3 a 5 meses y fabricantes en tu zona. Presupuesto gratis.',
+    'Steel Framing en {L}: casas de 900 a 1.300 €/m² llave en mano, plazos de 4 a 6 meses y fabricantes en tu zona. Presupuesto gratis.',
   casetas:
     'Casetas prefabricadas en {L}: de jardín, aperos, obra, madera, resina y hormigón, con precios y fabricantes que entregan en tu zona. Presupuesto gratis.',
 };
@@ -26,11 +26,11 @@ const RAIZ = {
   generica:
     'Casas prefabricadas en España: modelos de madera, hormigón y Steel Framing con precios, planos, catálogo y fabricantes. Pide presupuesto gratis y sin compromiso.',
   madera:
-    'Casas de madera prefabricadas: modelos, precios desde 600 €/m², planos, catálogo y fabricantes de toda España. Montaje en 3-6 meses. Presupuesto gratis.',
+    'Casas de madera prefabricadas: de 800 a 1.550 €/m² llave en mano, modelos, planos, catálogo y fabricantes de toda España. Montaje en 2-4 meses.',
   hormigon:
     'Casas prefabricadas de hormigón: modelos, precios por m², planos, catálogo y fabricantes de toda España. Entrega llave en mano en 4-9 meses. Presupuesto gratis.',
   steel:
-    'Casas de Steel Framing: qué es, de 900 a 1.300 €/m² llave en mano, modelos, planos y fabricantes en España. Construcción en seco en 3-5 meses.',
+    'Casas de Steel Framing: qué es, de 900 a 1.300 €/m² llave en mano, modelos, planos y fabricantes en España. Construcción en seco en 4-6 meses.',
   casetas:
     'Casetas prefabricadas: de jardín, aperos, obra, madera, resina, metálicas y de hormigón. Modelos, medidas, precios y fabricantes de toda España.',
 };
