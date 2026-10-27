@@ -550,8 +550,8 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
    la clase fija el mismo aspecto para los dos y anula la raya centrada y
    el tamano de los h2 sueltos de .contenido */
 .contenido .destacado__titulo {
-  font-family: var(--titulos); font-size: 1.18rem; font-weight: 600;
-  line-height: 1.25; margin: 0; color: var(--carbon-medio);
+  font-family: var(--titulos); font-size: clamp(1.4rem, 1.15rem + .9vw, 1.9rem); font-weight: 600;
+  line-height: 1.2; margin: 0; color: var(--carbon-medio);
   padding: .75rem 0 0; position: relative; text-align: left; text-wrap: balance;
 }
 .contenido .destacado__titulo::after { content: none; }
@@ -641,7 +641,7 @@ a.modelo__enlace:hover .modelo__titulo { color: var(--verde-oscuro); }
 }
 .contenido .destacado--banda .destacado__caja .destacado__titulo {
   color: var(--ambar); font-family: var(--acento); font-weight: 600;
-  font-size: clamp(1.05rem, .95rem + .4vw, 1.3rem); letter-spacing: .01em;
+  font-size: clamp(1.25rem, 1.1rem + .6vw, 1.6rem); letter-spacing: .01em;
   padding: 0; margin: 0; text-align: center;
 }
 .contenido .destacado--banda .destacado__caja .destacado__titulo::before { display: none; }

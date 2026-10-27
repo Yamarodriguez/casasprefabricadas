@@ -546,6 +546,35 @@ function tarjetaDestacado({ titulo, resto, boton }) {
   );
 }
 
+/* En muchas secciones el original ponía la descripción DETRÁS del botón
+   ("Imágenes": título, botón y luego "Te mostramos fotos de casas...").
+   Se quedaba fuera, como párrafo suelto bajo el banner. Devuelve cuántos
+   caracteres de texto pegado al botón pertenecen a la sección: hasta 2
+   párrafos de texto corrido. Si detrás viene otro botón o una foto, esos
+   párrafos son el arranque del bloque siguiente (Diseño 3D, catálogo) y
+   no se tocan; si siguen más párrafos, es texto del artículo. */
+const PARRAFO_PEGADO = /^\s*<p\b[^>]*>(?:(?!<\/p>)[\s\S])*?<\/p>/i;
+
+function textoTrasBoton(s) {
+  let largo = 0;
+  let parrafos = 0;
+  let texto = 0;
+  while (parrafos < 3) {
+    const m = s.slice(largo).match(PARRAFO_PEGADO);
+    if (!m || /<img|class="|<aside/i.test(m[0])) break;
+    largo += m[0].length;
+    const t = textoVisible(m[0]);
+    if (t) {
+      parrafos += 1;
+      texto += t.length;
+    }
+  }
+  if (!parrafos || parrafos > 2 || texto > 700) return 0;
+  const detras = s.slice(largo).trimStart();
+  if (/^(?:<p class="cta"|<img|<a\b|<p\b[^>]*>\s*<a\b[^>]*>\s*<img)/i.test(detras)) return 0;
+  return largo;
+}
+
 export function destacarSecciones(html) {
   if (!html) return html;
 
@@ -576,7 +605,8 @@ export function destacarSecciones(html) {
     if (cta) {
       const finCta = cta.index + cta[0].length;
       const pegada = hastaAhi.slice(finCta).match(/^\s*(?:<p\b[^>]*>)?\s*(?:<a\b[^>]*>)?\s*<img\b[^>]*>\s*(?:<\/a>)?\s*(?:<\/p>)?/i);
-      limite = finTitulo + finCta + (pegada ? pegada[0].length : 0);
+      const finPegada = finCta + (pegada ? pegada[0].length : 0);
+      limite = finTitulo + finPegada + textoTrasBoton(hastaAhi.slice(finPegada));
     }
     let cuerpo = html.slice(finTitulo, limite);
 
