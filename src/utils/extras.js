@@ -165,7 +165,7 @@ export function tablaPrecios(pagina) {
     `<thead><tr>${t.cabecera.map((c) => `<th scope="col">${escapar(c)}</th>`).join('')}</tr></thead>` +
     `<tbody>${filas}</tbody></table>` +
     (t.nota ? `<p class="tarifas__nota">${t.nota}</p></div>` :
-    `<p class="tarifas__nota">Precios sin terreno, cimentación, acometidas ni licencias (un 20–30 % más). Actualizado en septiembre de 2026. <a href="/que-incluye-una-casa-prefabricada/">Qué incluye el precio y qué se paga aparte</a>. ` +
+    `<p class="tarifas__nota">Precios sin terreno, cimentación, acometidas ni licencias. Actualizado en septiembre de 2026. <a href="/que-incluye-una-casa-prefabricada/">Qué incluye el precio y qué se paga aparte</a>. ` +
     `<a href="/casas-prefabricadas-100-m2-precio/">Ver el precio por tamaño</a> o <a href="/presupuesto/">pedir presupuesto gratis</a>.</p></div>`)
   );
 }

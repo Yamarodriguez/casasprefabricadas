@@ -266,7 +266,7 @@ const TEMAS = {
       },
       {
         p: '¿Qué incluye el precio de una {n} y qué hay que sumar aparte?',
-        r: 'Los precios de {N} que verás publicados se refieren normalmente a la casa terminada sobre cimentación. Hay que añadir el terreno, el estudio geotécnico, la cimentación (un 5–10 % del precio), las acometidas, el proyecto de arquitecto (4–8 %), la licencia de obra y los impuestos (ICIO e IVA al 10 % en vivienda nueva). Un cálculo prudente es sumar un 20–30 % al precio de la casa.',
+        r: 'Los precios de {N} que verás publicados se refieren normalmente a la casa terminada. Aparte suelen ir el terreno, el estudio geotécnico (600–2.000 €), la cimentación (150–350 €/m²), las acometidas (3.000–20.000 €), el proyecto y la dirección de obra (6–12 % del presupuesto), la licencia con el ICIO (2–6 %), el transporte con la grúa (2.000–12.000 €) y el IVA (10 % si la casa queda fija al suelo). Son cifras publicadas por Cronoshare y habitissimo en 2026: en una casa de 100 m² pueden sumar de 30.000 a 90.000 €, según la parcela.',
       },
       {
         p: '¿Cómo conseguir el mejor precio en una {n}?',
@@ -1297,7 +1297,7 @@ Object.assign(TEMAS, {
       },
       {
         p: '¿Los 100.000 euros incluyen el terreno?',
-        r: 'No. El precio es de la casa terminada sobre cimentación. Hay que sumar el terreno, la cimentación (5–10 %), las acometidas, el proyecto (4–8 %), la licencia y los impuestos: un 20–30 % más sobre el precio de la casa.',
+        r: 'No. El precio es el de la casa terminada. Aparte van el terreno, la cimentación (150–350 €/m²), las acometidas, el proyecto (6–12 %), la licencia con el ICIO (2–6 %), el transporte y los impuestos: sumando las partidas que publican Cronoshare y habitissimo, en una casa de 100 m² pueden sumar de 30.000 a 90.000 €, según la parcela.',
       },
       {
         p: '¿Cómo financiar una casa prefabricada de menos de 100.000 euros?',

@@ -2,9 +2,10 @@
 /* Guía «qué incluye y qué no»: página nueva escrita a mano, no sale de un
    JSON de WordPress. Por eso no pasa por [...slug].astro y el motor no le
    añade secciones de plantilla ni preguntas genéricas.
-   Regla: ni una cifra sin fuente. Las únicas cifras (IVA 10/21 %, ICIO
-   máximo 4 %) llevan su norma o consulta en «Fuentes»; los costes que
-   dependen de cada parcela no se dan en euros. */
+   Regla: ni una cifra sin fuente. IVA 10/21 % e ICIO máximo 4 % llevan
+   su norma o consulta en «Fuentes»; el coste de cada partida que se paga
+   aparte es el que publican Cronoshare y habitissimo (también en
+   «Fuentes»), y el total de la casa de 100 m² es la suma de esas partidas. */
 import Base from '../layouts/Base.astro';
 import Formulario from '../components/Formulario.astro';
 import { renderFaq } from '../utils/faq.js';
@@ -12,7 +13,7 @@ import site from '../data/site.json';
 
 const ruta = '/que-incluye-una-casa-prefabricada/';
 const canonica = new URL(ruta, site.dominio).href;
-const fecha = { publicado: '2026-10-27', modificado: '2026-10-27' };
+const fecha = { publicado: '2026-10-27', modificado: '2026-10-28' };
 
 /* hero: la foto de /llave-en-mano/, que ya existe */
 const hero = {
@@ -47,7 +48,23 @@ const conceptos = [
   ['Terreno', 'No', 'No', 'Nunca entra en el precio de la casa.'],
 ];
 
+/* lo que cuesta cada partida que se paga aparte (fuentes en la nota) */
+const costes = [
+  ['Estudio geotécnico', '600–2.000 €', 'Cronoshare: 600–1.200 €; habitissimo: 800–2.000 €'],
+  ['Cimentación', '150–350 €/m²', 'Unos 15.000–35.000 € para 100 m², según el terreno'],
+  ['Acometidas y urbanización de la parcela', '3.000–20.000 €', 'Luz, agua, saneamiento y vallado, según la distancia a la red'],
+  ['Proyecto y dirección de obra', '6–12 % del presupuesto de obra', 'Arquitecto e ingeniero o aparejador'],
+  ['Licencia, tasas e ICIO', '2–6 % del presupuesto de obra', 'Según el municipio; el ICIO no puede pasar del 4 %'],
+  ['Transporte y grúa', '2.000–12.000 €', 'Según la distancia y el peso de los módulos'],
+  ['IVA', '10 % o 21 %', '10 % si la casa queda unida al suelo; 21 % si se puede trasladar'],
+];
+
 const faq = [
+  {
+    pregunta: '¿Cuánto hay que sumar al precio de una casa prefabricada?',
+    respuesta:
+      'Depende de la parcela. Sumando las partidas que publican Cronoshare y habitissimo en 2026 (estudio geotécnico, cimentación, acometidas, proyecto, licencia con el ICIO y transporte), una casa de 100 m² de 120.000 € necesita de 30.000 a 90.000 € más, sin contar el terreno. Pide que tu presupuesto diga cuáles de esas partidas incluye.',
+  },
   {
     pregunta: '¿El precio de una casa prefabricada incluye la cimentación?',
     respuesta:
@@ -94,6 +111,17 @@ const tabla =
   conceptos.map(([c, l, k, n]) => `<tr><th scope="row">${c}</th><td>${l}</td><td>${k}</td><td>${n}</td></tr>`).join('') +
   '</tbody></table>' +
   '<p class="tarifas__nota">«Sí» quiere decir que suele entrar; «Depende», que cambia de un fabricante a otro. Lo que vale es la lista de partidas de tu contrato.</p></div>';
+
+const tablaCostes =
+  '<div class="tarifas-caja"><table class="tarifas"><caption>Cuánto cuesta lo que se paga aparte (2026)</caption>' +
+  '<thead><tr><th scope="col">Partida</th><th scope="col">Coste</th><th scope="col">Notas</th></tr></thead><tbody>' +
+  costes.map(([p, c, n]) => `<tr><th scope="row">${p}</th><td>${c}</td><td>${n}</td></tr>`).join('') +
+  '</tbody></table>' +
+  '<p class="tarifas__nota">Cifras publicadas por ' +
+  '<a href="https://www.cronoshare.com/cuanto-cuesta/casa-prefabricada" rel="nofollow noopener">Cronoshare</a> (3 de enero de 2026) y por habitissimo en sus guías de ' +
+  '<a href="https://www.habitissimo.es/presupuestos/cimentacion" rel="nofollow noopener">cimentación</a> y de ' +
+  '<a href="https://www.habitissimo.es/presupuestos/realizar-estudio-geotecnico" rel="nofollow noopener">estudio geotécnico</a> (16 de septiembre de 2026). ' +
+  'Son orientativas: tu parcela y tu ayuntamiento deciden la cifra final.</p></div>';
 ---
 
 <Base
@@ -138,6 +166,11 @@ const tabla =
     <h3>La licencia de obra, las tasas y el ICIO</h3>
     <p>Para levantar una vivienda fija hace falta licencia de obra del ayuntamiento. Además de la tasa por tramitarla, el ayuntamiento cobra el Impuesto sobre Construcciones, Instalaciones y Obras (ICIO). Cada municipio fija su tipo, pero la ley no le deja pasar del 4 % del coste de la obra. Si tu parcela es rústica, mira primero lo que explicamos en <a href="/licencia-casa-prefabricada-terreno-rustico/">licencia de casa prefabricada en terreno rústico</a>.</p>
 
+    <h2>Cuánto cuesta lo que se paga aparte</h2>
+    <p>Estas son las cifras que publican los portales de presupuestos para cada partida que no suele entrar en el precio de la casa. Si tu presupuesto ya incluye alguna, como la cimentación o el transporte, no la sumes dos veces.</p>
+    <Fragment set:html={tablaCostes} />
+    <p>Con estas cifras, una casa de 100 m² de 120.000 € necesita de 30.000 a 90.000 € más, sin contar el terreno: lo que más mueve la cifra es la cimentación, lo lejos que esté la parcela de la red y el transporte.</p>
+
     <h2>Lo que depende del fabricante</h2>
     <h3>El proyecto de arquitecto</h3>
     <p>Una casa prefabricada que vaya a ser vivienda necesita proyecto, igual que una de obra tradicional. La Ley de Ordenación de la Edificación lo exige para los edificios de uso residencial y pide que lo firme un arquitecto. Algunos fabricantes lo incluyen en su precio; otros te entregan los planos y el proyecto lo firma un arquitecto que contratas tú. Al terminar la obra, el edificio también necesita su certificado de eficiencia energética.</p>
@@ -169,10 +202,12 @@ const tabla =
     <Fragment set:html={renderFaq(faq, 'Preguntas frecuentes sobre qué incluye una casa prefabricada')} />
 
     <h2>Fuentes</h2>
-    <p>Datos legales y fiscales comprobados el 27 de octubre de 2026:</p>
+    <p>Datos legales y fiscales comprobados el 27 de octubre de 2026, y costes de las partidas consultados el 28 de octubre de 2026:</p>
     <ul>
       {fuentes.map(([texto, url]) => <li><a href={url} rel="noopener">{texto}</a></li>)}
       <li>Dirección General de Tributos, consulta vinculante V5259-26, de 24 de julio de 2026 (IVA de las casas prefabricadas)</li>
+      <li><a href="https://www.cronoshare.com/cuanto-cuesta/casa-prefabricada" rel="nofollow noopener">Cronoshare, ¿Cuánto cuesta una casa prefabricada? (3 de enero de 2026)</a>: coste de las partidas que se pagan aparte</li>
+      <li><a href="https://www.habitissimo.es/presupuestos/cimentacion" rel="nofollow noopener">habitissimo, precio de la cimentación (16 de septiembre de 2026)</a> y <a href="https://www.habitissimo.es/presupuestos/realizar-estudio-geotecnico" rel="nofollow noopener">del estudio geotécnico (16 de septiembre de 2026)</a></li>
     </ul>
 
     <Formulario asunto={`Consulta desde ${ruta}`} />

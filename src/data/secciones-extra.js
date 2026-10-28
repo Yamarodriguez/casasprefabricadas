@@ -378,8 +378,8 @@ export const TEMA = {
     {
       h2: 'Cuánto cuesta una {n} en 2026: guía de precios',
       p: [
-        '{P} A ese precio hay que sumar lo que no lleva la casa: el terreno, el estudio geotécnico, la cimentación (un 5–10 % del precio), las acometidas de agua y luz, el proyecto de arquitecto (4–8 %), la licencia de obra y los impuestos (ICIO e IVA al 10 % en vivienda nueva).',
-        'Un cálculo prudente es sumar entre un 20 % y un 30 % al precio de la casa para tener el coste total. Los modelos de catálogo, las plantas compactas y los acabados de serie son lo que más abarata; el diseño a medida, las cubiertas complejas y los grandes acristalamientos, lo que más encarece.',
+        '{P} A ese precio hay que sumar lo que no lleva la casa: el terreno, el estudio geotécnico (600–2.000 €), la cimentación (150–350 €/m²), las acometidas de agua y luz (3.000–20.000 € con la urbanización), el proyecto de arquitecto y la dirección de obra (6–12 % del presupuesto), la licencia de obra con el ICIO (2–6 %) y el IVA (10 % si la casa queda fija al suelo).',
+        'Sumando esas partidas, que son las que publican Cronoshare y habitissimo en 2026, una casa de 100 m² necesita de 30.000 a 90.000 € más que su precio, según la parcela. Los modelos de catálogo, las plantas compactas y los acabados de serie son lo que más abarata; el diseño a medida, las cubiertas complejas y los grandes acristalamientos, lo que más encarece.',
       ],
     },
     {
@@ -546,7 +546,7 @@ export const TEMA = {
       h2: 'Cómo leer un presupuesto de {n}',
       p: [
         'Comprueba si el precio es en obra gris o llave en mano, si incluye transporte, montaje, instalaciones y acabados, y qué queda fuera (terreno, cimentación, acometidas, licencia e impuestos). Pide el desglose por partidas y las garantías por escrito.',
-        'Compara al menos tres presupuestos con el mismo programa de necesidades: es la única forma de que sean comparables. Un cálculo prudente para el coste total es sumar entre un 20 % y un 30 % al precio de la casa.',
+        'Compara al menos tres presupuestos con el mismo programa de necesidades: es la única forma de que sean comparables. Y suma lo que no entra en el precio: en una casa de 100 m², de 30.000 a 90.000 € entre cimentación, acometidas, proyecto, licencia y transporte, según la parcela.',
       ],
     },
   ],

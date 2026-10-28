@@ -37,7 +37,7 @@ const RESUMEN_LINEA = {
    llevan, porque ya responden en su primer párrafo */
 const RESUMEN_TEMA = {
   llave:
-    'Una {n} llave en mano incluye estructura, cubierta, carpinterías, instalaciones, baños y cocina montados, suelos y pintura, con precio y plazo cerrados en contrato. Quedan fuera el terreno, la cimentación, las acometidas, la licencia y los impuestos, que suman un 20–30 % más. El plazo es {T} desde la licencia.',
+    'Una {n} llave en mano incluye estructura, cubierta, carpinterías, instalaciones, baños y cocina montados, suelos y pintura, con precio y plazo cerrados en contrato. Suelen quedar fuera el terreno, la cimentación, las acometidas, el proyecto, la licencia y el transporte: sumando las partidas que publican Cronoshare y habitissimo, en una casa de 100 m² pueden sumar de 30.000 a 90.000 €, según la parcela. El plazo es {T} desde la licencia.',
   construccion:
     'Una {n} se construye en cinco fases: proyecto y licencia (2–4 meses), cimentación y acometidas (2–4 semanas), fabricación en taller en paralelo (6–10 semanas), transporte y montaje (de dos días a tres semanas) e instalaciones y acabados (4–8 semanas). En total, {T} desde la licencia.',
   financiacion:
