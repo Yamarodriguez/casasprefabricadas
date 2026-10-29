@@ -57,7 +57,7 @@ export const LINEAS = {
     N: 'casetas prefabricadas',
     n: 'caseta prefabricada',
     titulo: 'casetas prefabricadas',
-    P: 'Como referencia, una caseta cuesta desde 600 € en modelos pequeños de jardín hasta 7.000 € en casetas grandes de madera aisladas, montaje aparte.',
+    P: 'Según habitissimo (junio de 2026), una caseta de jardín cuesta de media unos 1.050 €, entre 670 y 3.600 €: desde 400 € una metálica de 7–8 m² y unos 1.000 € una de resina o de madera de 8–9 m², montaje y solera aparte.',
     T: 'entre una y cuatro semanas',
   },
 };
@@ -204,7 +204,7 @@ const BASE = {
     {
       clave: 'precio',
       p: '¿Cuánto cuesta una caseta prefabricada?',
-      r: 'Los precios de las casetas van desde unos 600 € en modelos de jardín pequeños (2,5 × 2 m, de resina o madera fina) hasta 7.000 € o más en casetas grandes de madera maciza, aisladas y con ventanas. El precio depende del material, del grosor de las paredes, del suelo y de si va montada o en kit.',
+      r: 'Según la guía de habitissimo (junio de 2026), una caseta de jardín cuesta de media unos 1.050 €, entre 670 y 3.600 €: desde 400 € una metálica de 7–8 m², desde unos 1.000 € una de resina de 8 m² y unos 1.000 € una de madera de 9 m². Montaje y solera suben el precio unos 250–400 €, y el material, el tamaño y las ventanas son lo que más lo mueve.',
     },
     {
       clave: 'licencia',
@@ -289,7 +289,7 @@ const TEMAS = {
       },
       {
         p: '¿Qué hay que sumar al precio de una caseta prefabricada?',
-        r: 'La base (losas, rastreles o una solera de hormigón, entre 100 y 600 € según el tamaño), el transporte, el montaje si no lo haces tú (un 10–15 % del precio) y el tratamiento protector en las de madera. Si va a tener luz, la instalación eléctrica certificada.',
+        r: 'La base (losas, rastreles o una solera de hormigón, que según habitissimo ronda los 20 €/m²: unos 270 € para una caseta de 12 m²), el transporte, el montaje si no lo haces tú (con la solera, suma unos 250–400 € a una caseta de 8–9 m²) y el tratamiento protector en las de madera. Si va a tener luz, la instalación eléctrica certificada.',
       },
       {
         p: '¿Cómo conseguir una caseta al mejor precio?',
@@ -357,7 +357,7 @@ const TEMAS = {
     lista: [
       {
         p: '¿Cuánto cuesta una caseta barata?',
-        r: 'Las casetas más económicas parten de 200–400 € en armarios de resina y de 500–800 € en casetas de madera de 19 mm o de chapa galvanizada de 4–6 m². Con 1.000–1.500 € ya tienes una caseta de madera de 28 mm con ventana y suelo, suficiente para herramientas, bicicletas o un pequeño taller.',
+        r: 'Las más económicas son las metálicas: según habitissimo (junio de 2026), una caseta de chapa de 5 m² ronda los 270 € y una de 7–8 m² parte de 400 € (unos 650 € con montaje y solera). Por unos 1.000 € ya tienes una de madera de 9 m² o una de resina de 8 m², suficiente para herramientas, bicicletas o un pequeño taller.',
       },
       {
         p: '¿Merece la pena una caseta barata?',
@@ -887,7 +887,7 @@ const TEMAS = {
       },
       {
         p: '¿Cuánto cuesta una casa de madera de jardín?',
-        r: 'Desde 1.000–2.000 € en modelos de 6–9 m² con paredes de 19–28 mm, hasta 8.000–15.000 € en casas de 20–30 m² con paredes de 44–70 mm, aislamiento y suelo. El montaje en kit es sencillo; muchos fabricantes ofrecen instalación por un pequeño extra.',
+        r: 'Según habitissimo (2026), una caseta de madera de 9 m² cuesta unos 1.000 € (unos 1.400 € con montaje y solera) y una de 12 m² montada, unos 2.200 €; una de 30 m² a medida, de panel sándwich con cubierta imitación teja, ronda los 15.850 €. Las casetas a medida cuestan entre un 30 % y un 60 % más que las de catálogo.',
       },
     ],
   },
@@ -905,7 +905,7 @@ const TEMAS = {
       },
       {
         p: '¿Cuánto cuesta una caseta de jardín?',
-        r: 'Desde 300–600 € en casetas de resina o madera fina de 2–4 m², hasta 2.500–5.000 € en casetas de madera de 28–44 mm de 10–15 m² con ventanas, suelo y porche. Añade la base (100–600 €) y, si no la montas tú, la instalación.',
+        r: 'Según la guía de habitissimo (junio de 2026), desde 400 € una metálica de 7–8 m², unos 1.000 € una de resina de 8 m² o una de madera de 9 m², y 3.390 € una de panel sándwich de 9 m² con suelo y ventana. Añade la solera de hormigón (unos 20 €/m²) y, si no la montas tú, el montaje: con las dos cosas, la de madera sube a unos 1.400 €.',
       },
     ],
   },
@@ -937,7 +937,7 @@ const TEMAS = {
       },
       {
         p: '¿Cuánto cuesta un cobertizo de madera?',
-        r: 'Desde 300–600 € en cobertizos pequeños y leñeros, hasta 2.000–4.000 € en cobertizos de 10–15 m² con puerta y ventana. El grosor de la madera (16, 19 o 28 mm) y la cubierta (tela asfáltica o tejas) marcan la diferencia de precio.',
+        r: 'Según habitissimo (2026), las casetas prefabricadas más sencillas parten de unos 200 €, una de madera de 9 m² ronda los 1.000 € y una de 12 m² montada, unos 2.200 €. El grosor de la madera (16, 19 o 28 mm) y la cubierta (tela asfáltica o tejas) marcan la diferencia de precio.',
       },
       {
         p: '¿Necesito licencia para un cobertizo?',
@@ -1031,7 +1031,7 @@ const TEMAS = {
       },
       {
         p: '¿Cuánto cuesta una caseta de aperos?',
-        r: 'Desde 500–1.000 € en casetas de madera o chapa de 4–6 m², hasta 3.000–6.000 € en casetas de hormigón prefabricado de 10–20 m² instaladas. Las de hormigón requieren solera y transporte con grúa.',
+        r: 'Según habitissimo (2026), desde 400 € una caseta metálica de 7–8 m² y unos 1.000 € una de madera de 9 m², hasta unos 3.500 € una de hormigón prefabricado de 6 m² montada. Las de hormigón requieren solera y transporte con grúa.',
       },
     ],
   },
@@ -1099,7 +1099,7 @@ const TEMAS = {
       },
       {
         p: '¿Cuánto cuesta una caseta de plástico?',
-        r: 'Desde 200–400 € en armarios de resina de 1–2 m², hasta 1.500–2.500 € en casetas de plástico de 6–10 m² con ventana y suelo. Entre medias, las de 4–5 m² rondan los 600–1.000 €.',
+        r: 'Según habitissimo (2026), una caseta de resina o PVC de 8 m² cuesta desde unos 1.000 € (unos 1.250 € con montaje y solera), una de PVC de 6,5 m² con puerta y ventanas ronda los 1.400 € y una de PVC de 20 m² montada, unos 5.000 €.',
       },
       {
         p: '¿Aguanta el viento una caseta de plástico?',
@@ -1117,7 +1117,7 @@ const TEMAS = {
       },
       {
         p: '¿Cuánto cuesta una caseta de resina?',
-        r: 'Desde 400–700 € en modelos de 2–3 m², hasta 2.000–3.500 € en casetas de resina de 8–12 m² con ventanas, claraboya y suelo reforzado. Las marcas de referencia marcan los precios: cuanto más gruesos los paneles, más cara y más duradera.',
+        r: 'Según habitissimo (2026), una caseta de resina de 8 m² cuesta desde unos 1.000 € (unos 1.250 € con montaje y solera) y una de PVC y resina de 9 m² montada, unos 1.800 €. Cuanto más gruesos los paneles, más cara y más duradera.',
       },
       {
         p: '¿Necesita mantenimiento una caseta de resina?',
@@ -1225,7 +1225,7 @@ const TEMAS = {
       },
       {
         p: '¿Cuánto cuesta una caseta de madera?',
-        r: 'Desde 600–1.200 € en casetas de 4–6 m² de 19 mm, hasta 4.000–8.000 € en casetas de 15–25 m² de 44 mm con suelo, ventanas y porche. La instalación por el fabricante suele costar un 10–15 % del precio.',
+        r: 'Según habitissimo (2026), una caseta de madera de 9 m² cuesta unos 1.000 € (unos 1.400 € con montaje y solera) y una de 12 m² montada, unos 2.200 €. Las hechas a medida cuestan entre un 30 % y un 60 % más, y los barnices o tratamientos especiales encarecen la madera entre un 20 % y un 30 %.',
       },
       {
         p: '¿Cómo proteger una caseta de madera?',
@@ -1243,7 +1243,7 @@ const TEMAS = {
       },
       {
         p: '¿Cuánto cuesta una caseta metálica?',
-        r: 'Desde 250–500 € en casetas de chapa de 2–4 m², hasta 1.500–3.000 € en casetas metálicas de 10–15 m² con puerta doble y ventana. Los garajes y naves ligeras de acero para uno o dos coches se mueven entre 3.000 y 8.000 €. Conviene añadir un kit de anclaje y una base nivelada.',
+        r: 'Según habitissimo (2026), una caseta de chapa de 5 m² ronda los 270 €, una de 7–8 m² parte de 400 € (unos 650 € con montaje y solera) y una de aluminio de 13 m² montada, unos 1.200 €. Conviene añadir un kit de anclaje y una base nivelada.',
       },
       {
         p: '¿Se oxida una caseta metálica?',
@@ -1261,7 +1261,7 @@ const TEMAS = {
       },
       {
         p: '¿Cuánto cuesta una caseta de hormigón prefabricado?',
-        r: 'Desde 1.500–3.000 € en casetas de 4–6 m² (cuartos de contadores, aperos), hasta 6.000–15.000 € en casetas de 15–30 m² con puerta metálica, ventanas y acabados. Hay que sumar la solera de hormigón y el transporte con grúa.',
+        r: 'Según habitissimo (2026), una caseta de hormigón prefabricado de 6 m² montada cuesta unos 3.500 €; el precio sube con la superficie y con cada puerta o ventana. Hay que sumar la solera de hormigón (unos 20 €/m²) y el transporte con grúa.',
       },
       {
         p: '¿Qué base necesita una caseta de hormigón?',

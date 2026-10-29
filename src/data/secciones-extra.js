@@ -330,7 +330,7 @@ export const RAIZ = {
     {
       h2: 'Casetas prefabricadas: materiales, precios y usos',
       p: [
-        'Las casetas van desde unos 600 € en modelos de jardín pequeños hasta 7.000 € o más en casetas grandes de madera aisladas, y las hay de madera (las más bonitas y las que mejor aíslan), de resina y plástico (sin mantenimiento), metálicas (económicas y resistentes) y de hormigón prefabricado (las más duraderas y seguras).',
+        'Según habitissimo (junio de 2026), una caseta de jardín cuesta de media unos 1.050 €, entre 670 y 3.600 €, y las hay de madera (las más bonitas y las que mejor aíslan), de resina y plástico (sin mantenimiento), metálicas (las más económicas, desde 400 € para 7–8 m²) y de hormigón prefabricado (las más duraderas: unos 3.500 € una de 6 m² montada).',
         'Sirven como trastero de jardín, taller, despacho, almacén de aperos, garaje de bicicletas, refugio para mascotas, módulo de obra, garita de vigilancia o quiosco para negocio. En esta web encontrarás modelos, medidas, precios y fabricantes de toda España.',
       ],
     },
@@ -825,7 +825,7 @@ export const TEMA = {
       h2: 'Casas de madera para jardín: usos y modelos',
       p: [
         'Construcciones de madera de 5 a 40 m² que se instalan en el jardín como trastero, taller, despacho, casa de invitados o refugio de verano. Van desde casetas sencillas de paredes de 19 mm hasta casas de madera de 44–70 mm aisladas, con ventanas, porche y posibilidad de instalación eléctrica.',
-        'Cuestan desde 1.000–2.000 € en modelos de 6–9 m² con paredes de 19–28 mm, hasta 8.000–15.000 € en casas de 20–30 m² con paredes gruesas, aislamiento y suelo. El montaje en kit es sencillo; muchos fabricantes ofrecen instalación por un pequeño extra.',
+        'Según habitissimo (2026), una caseta de madera de 9 m² cuesta unos 1.000 € (unos 1.400 € con montaje y solera) y una de 12 m² montada, unos 2.200 €; una de 30 m² a medida, de panel sándwich con cubierta imitación teja, ronda los 15.850 €. Las casetas a medida cuestan entre un 30 % y un 60 % más que las de catálogo.',
       ],
     },
     {
@@ -857,7 +857,7 @@ export const TEMA = {
       h2: 'Cobertizos de madera: modelos y precios',
       p: [
         'Cerrados (tipo caseta), abiertos (leñeros, porches) o adosados a la casa, para guardar herramientas, leña, bicicletas, muebles de jardín o maquinaria, o como taller y zona cubierta al aire libre. Se fabrican en madera tratada en autoclave y se montan en kit en unas horas.',
-        'Cuestan desde 300–600 € en cobertizos pequeños y leñeros, hasta 2.000–4.000 € en cobertizos de 10–15 m² con puerta y ventana. El grosor de la madera (16, 19 o 28 mm) y la cubierta (tela asfáltica o tejas) marcan la diferencia de precio.',
+        'Según habitissimo (2026), las casetas prefabricadas más sencillas parten de unos 200 €, una de madera de 9 m² ronda los 1.000 € y una de 12 m² montada, unos 2.200 €. El grosor de la madera (16, 19 o 28 mm) y la cubierta (tela asfáltica o tejas) marcan la diferencia de precio.',
       ],
     },
     {
@@ -937,7 +937,7 @@ export const TEMA = {
       h2: 'Casetas de aperos: materiales y precios',
       p: [
         'Pequeñas construcciones de 4 a 20 m² para guardar herramientas y maquinaria agrícola o de jardín, en madera, chapa u hormigón prefabricado. Las de hormigón son las más duraderas y seguras frente a robos; las de madera, las más económicas y fáciles de montar.',
-        'Cuestan desde 500–1.000 € en casetas de madera o chapa de 4–6 m², hasta 3.000–6.000 € en casetas de hormigón prefabricado de 10–20 m² instaladas. Las de hormigón requieren solera y transporte con grúa.',
+        'Según habitissimo (2026), desde 400 € una caseta metálica de 7–8 m² y unos 1.000 € una de madera de 9 m², hasta unos 3.500 € una de hormigón prefabricado de 6 m² montada. Las de hormigón requieren solera y transporte con grúa.',
       ],
     },
     {
@@ -1001,7 +1001,7 @@ export const TEMA = {
       h2: 'Casetas de plástico: ventajas y límites',
       p: [
         'Para almacenaje en el jardín no se pudren, no se oxidan, resisten la lluvia y los rayos UV y no necesitan mantenimiento; son las más fáciles de montar. Aíslan poco y son menos robustas que la madera o el metal, por lo que no valen como taller o zona de estar.',
-        'Cuestan desde 200–400 € en armarios de resina de 1–2 m², hasta 1.500–2.500 € en casetas de plástico de 6–10 m² con ventana y suelo. Entre medias, las de 4–5 m² rondan los 600–1.000 €.',
+        'Según habitissimo (2026), una caseta de resina o PVC de 8 m² cuesta desde unos 1.000 € (unos 1.250 € con montaje y solera), una de PVC de 6,5 m² con puerta y ventanas ronda los 1.400 € y una de PVC de 20 m² montada, unos 5.000 €.',
       ],
     },
     {
@@ -1017,7 +1017,7 @@ export const TEMA = {
       h2: 'Casetas de resina: la gama alta del plástico',
       p: [
         'La resina (polipropileno o polietileno de alta densidad con tratamiento UV) es más rígida y gruesa que el plástico corriente, con acabado que imita la madera y garantía de hasta 10 años frente a decoloración y grietas. Son las casetas de plástico de mejor calidad.',
-        'Cuestan desde 400–700 € en modelos de 2–3 m², hasta 2.000–3.500 € en casetas de resina de 8–12 m² con ventanas, claraboya y suelo reforzado. Cuanto más gruesos los paneles, más cara y más duradera.',
+        'Según habitissimo (2026), una caseta de resina de 8 m² cuesta desde unos 1.000 € (unos 1.250 € con montaje y solera) y una de PVC y resina de 9 m² montada, unos 1.800 €. Cuanto más gruesos los paneles, más cara y más duradera.',
       ],
     },
     {
@@ -1113,7 +1113,7 @@ export const TEMA = {
       h2: 'Casetas metálicas: ventajas y precios',
       p: [
         'Son las más económicas por metro cuadrado, muy resistentes al fuego, a los insectos y a la pudrición, y se montan en pocas horas. La chapa de acero galvanizado o lacado aguanta décadas a la intemperie. A cambio aíslan poco y suenan con la lluvia, por lo que se usan sobre todo como almacén, garaje o taller.',
-        'Cuestan desde 250–500 € en casetas de chapa de 2–4 m², hasta 1.500–3.000 € en casetas metálicas de 10–15 m² con puerta doble y ventana. Los garajes y naves ligeras de acero para uno o dos coches se mueven entre 3.000 y 8.000 €.',
+        'Según habitissimo (2026), una caseta de chapa de 5 m² ronda los 270 €, una de 7–8 m² parte de 400 € (unos 650 € con montaje y solera) y una de aluminio de 13 m² montada, unos 1.200 €. Conviene añadir un kit de anclaje y una base nivelada.',
       ],
     },
     {
@@ -1129,7 +1129,7 @@ export const TEMA = {
       h2: 'Casetas de madera: grosor de pared y precio',
       p: [
         'Para almacenaje, 16–19 mm bastan. Para taller, despacho o uso frecuente, 28–34 mm. Si quieres una caseta habitable en invierno, 44–70 mm o doble pared con aislamiento. El grosor determina la rigidez, el aislamiento y la durabilidad.',
-        'Cuestan desde 600–1.200 € en casetas de 4–6 m² de 19 mm, hasta 4.000–8.000 € en casetas de 15–25 m² de 44 mm con suelo, ventanas y porche. La instalación por el fabricante suele costar un 10–15 % del precio.',
+        'Según habitissimo (2026), una caseta de madera de 9 m² cuesta unos 1.000 € (unos 1.400 € con montaje y solera) y una de 12 m² montada, unos 2.200 €. Las hechas a medida cuestan entre un 30 % y un 60 % más, y los barnices o tratamientos especiales encarecen la madera entre un 20 % y un 30 %.',
       ],
     },
     {
@@ -1145,7 +1145,7 @@ export const TEMA = {
       h2: 'Casetas de hormigón prefabricado: ventajas y precios',
       p: [
         'Es la caseta más resistente y segura: no se pudre, no arde, no la fuerzan fácilmente y no necesita mantenimiento en décadas. Ideal para casetas de aperos, de obra, de vigilancia, cuartos de bombas, de contadores o trasteros en fincas. Se sirve montada y se coloca con grúa en unas horas.',
-        'Cuestan desde 1.500–3.000 € en casetas de 4–6 m² (cuartos de contadores, aperos), hasta 6.000–15.000 € en casetas de 15–30 m² con puerta metálica, ventanas y acabados. Hay que sumar la solera de hormigón y el transporte con grúa.',
+        'Según habitissimo (2026), una caseta de hormigón prefabricado de 6 m² montada cuesta unos 3.500 €; el precio sube con la superficie y con cada puerta o ventana. Hay que sumar la solera de hormigón (unos 20 €/m²) y el transporte con grúa.',
       ],
     },
     {
@@ -1164,7 +1164,7 @@ TEMA['casetas:precios'] = [
     h2: 'Precios de casetas prefabricadas: de qué dependen',
     p: [
       '{P} Lo que más pesa es el material (resina, chapa, madera u hormigón), el grosor de las paredes (de 16 a 70 mm en madera), la superficie, si lleva suelo, ventanas y aislamiento, y si se entrega en kit o montada.',
-      'A ese precio hay que sumar la base (losas, rastreles o una solera de hormigón, entre 100 y 600 € según el tamaño), el transporte, el montaje si no lo haces tú (un 10–15 %) y el tratamiento protector en las de madera. Si va a tener luz, la instalación eléctrica certificada.',
+      'A ese precio hay que sumar la base (losas, rastreles o una solera de hormigón, que según habitissimo ronda los 20 €/m²: unos 270 € para una caseta de 12 m²), el transporte, el montaje si no lo haces tú (con la solera, suma unos 250–400 € a una caseta de 8–9 m²) y el tratamiento protector en las de madera. Si va a tener luz, la instalación eléctrica certificada.',
     ],
   },
   {
@@ -1195,7 +1195,7 @@ TEMA['casetas:baratas'] = [
   {
     h2: 'Casetas baratas: qué se puede esperar por cada precio',
     p: [
-      'Desde 200–400 € en armarios de resina y 500–800 € en casetas de madera de 19 mm o de chapa de 4–6 m²; con 1.000–1.500 € ya tienes una caseta de madera de 28 mm con ventana y suelo, suficiente para herramientas, bicicletas o un pequeño taller.',
+      'Las más económicas son las metálicas: según habitissimo (junio de 2026), una caseta de chapa de 5 m² ronda los 270 € y una de 7–8 m² parte de 400 € (unos 650 € con montaje y solera). Por unos 1.000 € ya tienes una de madera de 9 m² o una de resina de 8 m², suficiente para herramientas, bicicletas o un pequeño taller.',
       'Las paredes finas (16–19 mm) aíslan poco y se mueven con la humedad, así que no sirven para uso habitable. Si el uso va a ser diario, subir a 28 mm cuesta poco más y la caseta dura el doble.',
     ],
   },

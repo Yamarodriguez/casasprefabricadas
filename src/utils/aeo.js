@@ -29,7 +29,7 @@ const RESUMEN_LINEA = {
   steel:
     '{N}{en} cuestan entre 900 y 1.300 €/m² llave en mano según los precios publicados en 2026 por fabricantes y portales: una de 100 m² sale por 90.000–130.000 €, sin terreno ni licencias. Solo la estructura en kit cuesta 280–420 €/m². Se construyen en seco en 4–6 meses desde la licencia de obra y la estructura de acero galvanizado supera los 100 años de vida útil.',
   casetas:
-    '{N}{en} cuestan desde 200 € en resina, 600–8.000 € en madera y 1.500–15.000 € en hormigón prefabricado, según tamaño y grosor de pared. Se entregan en una a cuatro semanas y se instalan en un día; las pequeñas sin cimentación suelen bastar con declaración responsable u obra menor, según el ayuntamiento.',
+    '{N}{en} cuestan de media unos 1.050 €, entre 670 y 3.600 €, según habitissimo (junio de 2026): desde 400 € una metálica de 7–8 m², unos 1.000 € una de resina de 8 m² o una de madera de 9 m², y unos 3.500 € una de hormigón de 6 m² montada. Se montan en 4–8 horas sobre una base firme; las pequeñas sin cimentación suelen bastar con declaración responsable u obra menor, según el ayuntamiento.',
 };
 
 /* temas con respuesta propia; el resto de temas de casas usa la de su

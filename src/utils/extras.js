@@ -142,16 +142,25 @@ const TABLAS = {
       '<a href="/que-incluye-una-casa-prefabricada/">Qué incluye el precio y qué se paga aparte</a> o <a href="/presupuesto/">pedir presupuesto gratis</a>.',
   },
   casetas: {
-    titulo: 'Precios de casetas prefabricadas en 2026 (orientativos)',
-    cabecera: ['Tipo de caseta', 'Precio', 'Para qué'],
+    /* precios de mercado: guías de habitissimo de junio de 2026 (nota) */
+    titulo: 'Precio de las casetas de jardín en España (2026)',
+    cabecera: ['Tipo de caseta', 'Precio', 'Con montaje y solera'],
     filas: [
-      ['Resina o plástico (1–10 m²)', '200–2.500 €', 'Almacenaje en el jardín, sin mantenimiento'],
-      ['Madera 16–19 mm (3–6 m²)', '600–1.200 €', 'Herramientas, bicicletas'],
-      ['Madera 28–44 mm (6–25 m²)', '1.500–8.000 €', 'Taller, despacho, uso habitable'],
-      ['Metálica (2–15 m²)', '250–3.000 €', 'Almacén, garaje, taller'],
-      ['Hormigón prefabricado (4–30 m²)', '1.500–15.000 €', 'Aperos, fincas, uso profesional'],
-      ['Caseta de obra (módulo de 6 × 2,40 m)', '3.500–5.500 € nueva · alquiler 120–220 €/mes', 'Oficina, vestuario, almacén (precios de Mmodos, 2026)'],
+      ['Metálica de chapa, 5 m²', 'unos 270 €', '—'],
+      ['Metálica, 7–8 m²', 'desde 400 €', 'unos 650 €'],
+      ['Resina o PVC, 8 m²', 'desde unos 1.000 €', 'unos 1.250 €'],
+      ['Madera, 9 m²', 'unos 1.000 €', 'unos 1.400 €'],
+      ['Madera, 12 m²', '—', 'unos 2.200 €, montada'],
+      ['Panel sándwich, 9 m², con suelo y ventana', '3.390 €', 'unos 4.000 €, con transporte'],
+      ['Hormigón prefabricado, 6 m²', '—', 'unos 3.500 €, montada'],
+      ['Caseta de obra, módulo de 6 × 2,40 m', '3.500–5.500 € nueva', 'alquiler 120–220 €/mes'],
     ],
+    nota:
+      'Precios de las guías de habitissimo, con datos de sus presupuestos: ' +
+      '<a href="https://www.habitissimo.es/presupuestos/casetas-de-jardin" rel="nofollow noopener">casetas de jardín</a> (4 de junio de 2026: media de 1.050 €, de 670 a 3.600 €; solera de hormigón, unos 20 €/m²) y ' +
+      '<a href="https://www.habitissimo.es/presupuestos/montar-caseta-prefabricada" rel="nofollow noopener">montaje de casetas prefabricadas</a> (9 de junio de 2026). ' +
+      'Caseta de obra: <a href="https://mmodos.com/caseta-de-obra-tipos-medidas-precios/" rel="nofollow noopener">Mmodos</a> (8 de junio de 2026). ' +
+      'Las casetas a medida cuestan entre un 30 % y un 60 % más que las de catálogo. <a href="/presupuesto/">Pedir presupuesto gratis</a>.',
   },
 };
 
