@@ -347,6 +347,36 @@ export const RAIZ = {
 /* Páginas de tema: dos secciones cada una. Cuando la línea es casetas y
    hay una versión propia (casetas:x) se usa esa. Si un tema no tiene
    entrada, la página recibe las secciones de la portada de su línea. */
+/* Casetas de obra en las páginas de casetas por localidad: es lo que se
+   busca con el nombre de la ciudad ("casetas de obra en Málaga"). Tres
+   variantes, elegidas por el lugar. Cifras con fuente: Mmodos (8-6-2026:
+   compra y alquiler por tipo, segunda mano, punto de equilibrio),
+   Tecnourban (tarifas 2026: fianza, contrato mínimo, transporte) y el
+   Generador de Precios de CYPE (almacén de 5,4 m²). */
+export const CASETAS_OBRA_LUGAR = [
+  {
+    h2: 'Casetas de obra en {L}: comprar o alquilar',
+    p: [
+      'Para una obra en {L} lo habitual es un módulo de 6 × 2,40 m (14,4 m²) de estructura metálica y panel sándwich, que llega montado y se descarga con grúa. Según los precios que publica el fabricante Mmodos en 2026, uno nuevo cuesta 3.500–5.500 € y alquilado, 120–220 € al mes según sea almacén, oficina, vestuario o aseo.',
+      'El alquiler se contrata por meses completos, normalmente con un mínimo de uno a tres meses, una fianza de 200–600 € y el transporte aparte (100–250 € por trayecto, según las tarifas de Tecnourban). Si la obra va a durar más de dos años, suele compensar comprar: el punto de equilibrio está entre los 22 y los 30 meses.',
+    ],
+  },
+  {
+    h2: 'Alquiler y venta de casetas de obra en {L}',
+    p: [
+      'En {L} se alquilan y venden sobre todo módulos de obra de 6 × 2,40 m: almacén (120–160 € al mes), oficina (140–200 €), vestuario (130–190 €) y módulo sanitario (160–220 €), según los precios publicados por Mmodos en 2026. Comprados nuevos cuestan entre 3.500 y 6.000 €, y de segunda mano, entre un 30 % y un 50 % menos.',
+      'Al pedir presupuesto en {L}, pregunta por la fianza, el contrato mínimo y el transporte con grúa, que casi siempre se cobra aparte a la entrega y a la recogida. Para obras de más de dos años, comprar suele salir más barato que alquilar.',
+    ],
+  },
+  {
+    h2: 'Precio de las casetas de obra en {L}',
+    p: [
+      'Los precios de referencia de las casetas de obra son nacionales; en {L} cambia sobre todo el transporte. Una caseta estándar de 6 × 2,40 m cuesta 3.500–5.500 € nueva o 120–220 € al mes de alquiler, según los precios publicados en 2026 por Mmodos, y la base de precios de la construcción de CYPE da 117 € al mes por una caseta de almacén pequeña, de 5,4 m².',
+      'El transporte y la colocación con grúa se facturan aparte (100–250 € por trayecto según Tecnourban), igual que la fianza de 200–600 €. Si necesitas la caseta más de dos años, haz números: a partir de 22–30 meses de alquiler, comprarla suele compensar.',
+    ],
+  },
+];
+
 export const TEMA = {
   /* precios de mercado con fuente (tabla y nota en extras.js): explica la
      distancia entre los 280 €/m² de un kit y los 1.300 de una casa
@@ -890,7 +920,7 @@ export const TEMA = {
     {
       h2: 'Alquiler de casetas: precios y modalidades',
       p: [
-        'El alquiler de casetas de obra o módulos prefabricados ronda los 80–200 € al mes según tamaño y equipamiento (aseos, oficina, almacén), más transporte e instalación. Para eventos y ferias se alquilan por días o semanas. A partir de 18–24 meses suele compensar la compra.',
+        'Según las tarifas publicadas en 2026, alquilar una caseta de obra de 6 × 2,40 m cuesta 120–220 € al mes según sea almacén, oficina, vestuario o aseo, más una fianza de 200–600 € y el transporte (100–250 € por trayecto). Se contrata por meses completos, con un mínimo de uno a tres meses, y para eventos y ferias se alquila por días o semanas. A partir de 22–30 meses suele compensar comprarla.',
         'Se alquilan casetas de obra (oficina, vestuario, almacén), módulos sanitarios, garitas de vigilancia, quioscos y stands para ferias y eventos, y módulos de vivienda temporal, todos entregados montados y listos para conectar.',
       ],
     },
@@ -955,7 +985,7 @@ export const TEMA = {
       h2: 'Casetas de obra: tipos y precios',
       p: [
         'Módulos prefabricados de estructura metálica y panel sándwich, de 3 a 12 m de largo, usados como oficina, vestuario, comedor, almacén o aseo en obras de construcción. Se entregan montados, equipados y listos para conectar; se pueden comprar nuevos, de segunda mano o alquilar.',
-        'Nuevos, desde 3.000–5.000 € un módulo de 6 m sin equipar y 6.000–12.000 € con ventanas, instalación eléctrica y aseo. De segunda mano, desde 1.500 €. En alquiler, 80–200 € al mes más transporte.',
+        'Según los precios publicados por el fabricante Mmodos en 2026, un módulo nuevo de 6 × 2,40 m cuesta 3.500–4.500 € como almacén, 4.200–5.500 € como oficina, 3.800–5.000 € como vestuario y 4.500–6.000 € como módulo sanitario. De segunda mano sale entre un 30 % y un 50 % más barato, y en alquiler, 120–220 € al mes más transporte. La base de precios de la construcción de CYPE da 117 € al mes por una caseta de almacén de 5,4 m².',
       ],
     },
     {

@@ -19,7 +19,7 @@ const LUGAR = {
   steel:
     'Steel Framing en {L}: casas de 900 a 1.300 €/m² llave en mano, plazos de 4 a 6 meses y fabricantes en tu zona. Presupuesto gratis.',
   casetas:
-    'Casetas prefabricadas en {L}: de jardín, aperos, obra, madera, resina y hormigón, con precios y fabricantes que entregan en tu zona. Presupuesto gratis.',
+    'Casetas de obra en {L}: 3.500–5.500 € nuevas o 120–220 €/mes de alquiler, y casetas de jardín, aperos y hormigón. Presupuesto gratis.',
 };
 
 const RAIZ = {
@@ -68,11 +68,11 @@ const TEMA = {
   cocheras: 'Cocheras y garajes de madera: carports abiertos y garajes cerrados para 1 o 2 coches. Modelos, precios y licencia. Presupuesto gratis.',
   pergolas: 'Pérgolas de madera: adosadas, exentas y con cubierta. Modelos, precios desde 400 €, anclaje e instalación. Presupuesto gratis.',
   perfiles: 'Perfiles de Steel Framing: tipos C y U, espesores, galvanizado y dónde comprarlos cortados a medida. Guía técnica y proveedores.',
-  alquiler: 'Alquiler de casetas de obra, módulos, garitas y stands: precios por mes o por evento, qué incluye y cuándo compensa comprar.',
+  alquiler: 'Alquiler de casetas de obra: 120–220 € al mes según el tipo, fianza, contrato mínimo, transporte y cuándo compensa comprar. Precios de 2026.',
   aperos: 'Casetas de aperos de madera, chapa y hormigón: modelos, precios desde 500 €, licencia en suelo rústico e instalación.',
   campo: 'Casetas de campo para fincas: de madera y hormigón, de 10 a 60 m², con precios, licencia y fabricantes. Presupuesto gratis.',
   ferias: 'Casetas de ferias y stands para mercados y eventos: comprar o alquilar, modelos, precios y normativa de seguridad.',
-  obra: 'Casetas de obra nuevas, de segunda mano y en alquiler: oficina, vestuario, almacén y aseo. Precios y fabricantes.',
+  obra: 'Casetas de obra: 3.500–6.000 € nuevas, un 30–50 % menos de segunda mano o 120–220 €/mes de alquiler. Oficina, vestuario, almacén y aseo.',
   plastico: 'Casetas de plástico para jardín: sin mantenimiento, precios desde 200 €, modelos, medidas y consejos de instalación.',
   resina: 'Casetas de resina para jardín: la gama alta del plástico, sin mantenimiento y con garantía. Modelos, medidas y precios.',
   vigilancia: 'Casetas de vigilancia y garitas de seguridad: de hormigón, acero y panel sándwich. Modelos, precios y personalización.',
@@ -113,10 +113,22 @@ const cap = (s) => (s ? s[0].toUpperCase() + s.slice(1) : s);
    España de la búsqueda que más impresiones da) */
 const TITULO_RUTA = {
   '/steel-framing-precios/': 'Precio del Steel Framing por m² en España (2026)',
+  '/casetas-de-obra/': 'Casetas de obra: precio de compra y alquiler (2026)',
+  '/alquiler-casetas/': 'Alquiler de casetas de obra: precios por mes (2026)',
 };
 
 export function tituloSeo(pagina) {
   if (TITULO_RUTA[pagina.ruta]) return TITULO_RUTA[pagina.ruta];
+  /* casetas por localidad: lo que se busca es "casetas de obra en
+     Málaga"; el original era "Casetas Málaga - Especialistas en..." */
+  if (pagina.palabraClave) {
+    const { linea, tema, lugar } = clasificar(pagina);
+    if (linea === 'casetas' && lugar && !tema) {
+      for (const t of [`Casetas de obra y prefabricadas en ${lugar}: precios`, `Casetas de obra y prefabricadas en ${lugar}`, `Casetas de obra en ${lugar}`]) {
+        if (t.length <= MAX_TITULO) return t;
+      }
+    }
+  }
   const base = pagina.tituloSeo || pagina.titulo || '';
   if (base.length <= MAX_TITULO || !pagina.palabraClave) return base;
   const { linea, tema, lugar } = clasificar(pagina);

@@ -43,6 +43,15 @@ const RESUMEN_TEMA = {
   financiacion:
     'Una {n} fija, con proyecto, licencia y escritura, se financia con hipoteca como cualquier vivienda, normalmente hasta el 80 % del valor de tasación de terreno y casa. Las casas móviles o sin anclar no se hipotecan: se pagan con préstamo personal o con la financiación del propio fabricante.',
 };
+/* casetas de obra (Mmodos 8-6-2026, Tecnourban 2026): en las páginas de
+   casetas por localidad y en los temas obra y alquiler */
+const RESUMEN_CASETAS_LUGAR =
+  '{N}{en}: una caseta de obra de 6 × 2,40 m cuesta 3.500–5.500 € nueva o 120–220 € al mes de alquiler según sea almacén, oficina, vestuario o aseo, más transporte, según los precios publicados en 2026. También hay casetas de jardín, de aperos y de hormigón para fincas; las pequeñas sin cimentación suelen bastar con declaración responsable u obra menor, según el ayuntamiento.';
+RESUMEN_TEMA.obra =
+  'Una caseta de obra estándar, de 6 × 2,40 m, cuesta 3.500–5.500 € nueva y 120–220 € al mes de alquiler según sea almacén, oficina, vestuario o aseo, más transporte, según los precios publicados en 2026. De segunda mano sale entre un 30 % y un 50 % más barata, y comprar compensa frente a alquilar a partir de 22–30 meses.';
+RESUMEN_TEMA.alquiler =
+  'Alquilar una caseta de obra cuesta 120–220 € al mes según el tipo (almacén, oficina, vestuario o aseo), más una fianza de 200–600 € y el transporte (100–250 € por trayecto), según las tarifas publicadas en 2026. Se contrata por meses completos, con un mínimo de uno a tres meses; a partir de 22–30 meses suele compensar comprarla.';
+
 const TEMAS_CON_LINEA = new Set([
   'precios', 'baratas', 'venta', 'fabricantes', 'catalogo', 'modelos', 'amedida',
   'empresas', 'presupuesto', 'planos', 'imagenes', 'modernas', 'minimalistas',
@@ -54,7 +63,8 @@ export function resumen(pagina) {
   const { linea, tema, lugar } = clasificar(pagina);
   const datos = LINEAS[linea];
   let plantilla;
-  if (tema && RESUMEN_TEMA[tema]) plantilla = RESUMEN_TEMA[tema];
+  if (linea === 'casetas' && lugar && !tema) plantilla = RESUMEN_CASETAS_LUGAR;
+  else if (tema && RESUMEN_TEMA[tema]) plantilla = RESUMEN_TEMA[tema];
   else if (!tema || TEMAS_CON_LINEA.has(tema)) plantilla = RESUMEN_LINEA[linea];
   if (!plantilla) return '';
   return cap(

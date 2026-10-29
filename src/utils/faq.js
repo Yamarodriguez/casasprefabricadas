@@ -197,6 +197,11 @@ const BASE = {
   ],
   casetas: [
     {
+      clave: 'obra',
+      p: '¿Cuánto cuesta una caseta de obra, comprada o alquilada?',
+      r: 'Según los precios publicados en 2026 por el fabricante Mmodos, un módulo de obra de 6 × 2,40 m cuesta 3.500–5.500 € nuevo y 120–220 € al mes de alquiler, según sea almacén, oficina, vestuario o aseo. El transporte se cobra aparte (100–250 € por trayecto según las tarifas de Tecnourban) y, a partir de 22–30 meses, comprar compensa frente a alquilar.',
+    },
+    {
       clave: 'precio',
       p: '¿Cuánto cuesta una caseta prefabricada?',
       r: 'Los precios de las casetas van desde unos 600 € en modelos de jardín pequeños (2,5 × 2 m, de resina o madera fina) hasta 7.000 € o más en casetas grandes de madera maciza, aisladas y con ventanas. El precio depende del material, del grosor de las paredes, del suelo y de si va montada o en kit.',
@@ -996,11 +1001,11 @@ const TEMAS = {
   },
   alquiler: {
     ancla: /\balquiler\b/,
-    evita: ['precio'],
+    evita: ['precio', 'obra'],
     lista: [
       {
         p: '¿Cuánto cuesta alquilar una caseta?',
-        r: 'El alquiler de casetas de obra o módulos prefabricados ronda los 80–200 € al mes según tamaño y equipamiento (aseos, oficina, almacén), más transporte e instalación. Para eventos y ferias se alquilan por días o semanas. A partir de 18–24 meses suele compensar la compra.',
+        r: 'Según las tarifas publicadas en 2026, alquilar una caseta de obra de 6 × 2,40 m cuesta 120–220 € al mes según sea almacén, oficina, vestuario o aseo, más una fianza de 200–600 € y el transporte (100–250 € por trayecto). Se contrata por meses completos, con un mínimo de uno a tres meses, y para eventos y ferias se alquila por días o semanas. A partir de 22–30 meses suele compensar comprarla.',
       },
       {
         p: '¿Qué tipos de casetas se alquilan?',
@@ -1068,7 +1073,7 @@ const TEMAS = {
   },
   obra: {
     ancla: /\bobra\b/,
-    evita: ['precio', 'usos'],
+    evita: ['precio', 'usos', 'obra'],
     lista: [
       {
         p: '¿Qué es una caseta de obra?',
@@ -1076,7 +1081,7 @@ const TEMAS = {
       },
       {
         p: '¿Cuánto cuesta una caseta de obra?',
-        r: 'Nueva, desde 3.000–5.000 € un módulo de 6 m sin equipar y 6.000–12.000 € con ventanas, instalación eléctrica y aseo. De segunda mano, desde 1.500 €. En alquiler, 80–200 € al mes más transporte.',
+        r: 'Según los precios publicados por el fabricante Mmodos en 2026, un módulo nuevo de 6 × 2,40 m cuesta 3.500–4.500 € como almacén, 4.200–5.500 € como oficina, 3.800–5.000 € como vestuario y 4.500–6.000 € como módulo sanitario. De segunda mano sale entre un 30 % y un 50 % más barato, y en alquiler, 120–220 € al mes más transporte.',
       },
       {
         p: '¿Se puede usar una caseta de obra como vivienda o despacho?',

@@ -8,7 +8,7 @@
  * En las páginas de localidad hay tres variantes por sección y la elige
  * el nombre del lugar, para que dos provincias no repitan el mismo texto.
  */
-import { LUGAR, RAIZ, TEMA } from '../data/secciones-extra.js';
+import { CASETAS_OBRA_LUGAR, LUGAR, RAIZ, TEMA } from '../data/secciones-extra.js';
 import { LINEAS, clasificar, rellenar } from './faq.js';
 
 /* número estable a partir de un texto (para elegir variante) */
@@ -32,6 +32,9 @@ export function generarExtras(pagina) {
     const bloque = LUGAR[linea];
     const s = semilla(lugar);
     secciones = [bloque.a[s % bloque.a.length], bloque.b[Math.floor(s / 7) % bloque.b.length]];
+    /* en casetas, delante, las casetas de obra: es lo que se busca con
+       el nombre de la ciudad */
+    if (linea === 'casetas') secciones.unshift(CASETAS_OBRA_LUGAR[Math.floor(s / 49) % CASETAS_OBRA_LUGAR.length]);
   } else {
     secciones = RAIZ[linea];
   }
@@ -147,15 +150,47 @@ const TABLAS = {
       ['Madera 28–44 mm (6–25 m²)', '1.500–8.000 €', 'Taller, despacho, uso habitable'],
       ['Metálica (2–15 m²)', '250–3.000 €', 'Almacén, garaje, taller'],
       ['Hormigón prefabricado (4–30 m²)', '1.500–15.000 €', 'Aperos, fincas, uso profesional'],
-      ['Caseta de obra (módulo 6 m)', '3.000–12.000 € · alquiler 80–200 €/mes', 'Oficina, vestuario, almacén'],
+      ['Caseta de obra (módulo de 6 × 2,40 m)', '3.500–5.500 € nueva · alquiler 120–220 €/mes', 'Oficina, vestuario, almacén (precios de Mmodos, 2026)'],
     ],
   },
 };
 
+/* Casetas de obra: compra y alquiler por tipo, en las páginas de casetas
+   por localidad, en /casetas-de-obra/ y en /alquiler-casetas/. Precios
+   de mercado con fuente (nota). */
+const OBRA = {
+  cabecera: ['Módulo de 6 × 2,40 m', 'Comprar nuevo', 'Alquilar al mes'],
+  filas: [
+    ['Almacén', '3.500–4.500 €', '120–160 €'],
+    ['Oficina', '4.200–5.500 €', '140–200 €'],
+    ['Vestuario', '3.800–5.000 €', '130–190 €'],
+    ['Módulo sanitario (aseo)', '4.500–6.000 €', '160–220 €'],
+    ['Comedor (7 × 3 m)', '5.500–7.000 €', '180–250 €'],
+    ['De segunda mano', 'entre un 30 % y un 50 % menos que nueva', '—'],
+  ],
+  nota:
+    'Precios publicados por el fabricante <a href="https://mmodos.com/caseta-de-obra-tipos-medidas-precios/" rel="nofollow noopener">Mmodos</a> (8 de junio de 2026), con datos de constructoras de Murcia, Alicante y Madrid. ' +
+    'El alquiler se contrata por meses completos, con un mínimo de uno a tres meses, una fianza de 200–600 € y el transporte aparte (100–250 € por trayecto, sin IVA), según las tarifas de 2026 de ' +
+    '<a href="https://tecnourban.es/precios/" rel="nofollow noopener">Tecnourban</a>; la base de precios de ' +
+    '<a href="https://generadordeprecios.info/obra_nueva/Seguridad_y_salud/YP_Instalaciones_provisionales_de/YPC_Casetas_(alquiler_construccion/YPC040_Alquiler_de_caseta_prefabricada_par.html" rel="nofollow noopener">CYPE</a> da 116,87 € al mes por una caseta de almacén de 5,4 m². ' +
+    'Comprar compensa frente a alquilar a partir de 22–30 meses. <a href="/presupuesto/">Pedir presupuesto gratis</a>.',
+};
+
+function tablaObra(lugar) {
+  const titulo = `Casetas de obra${lugar ? ` en ${lugar}` : ''}: precio de compra y alquiler (2026)`;
+  const filas = OBRA.filas.map((f) => `<tr>${f.map((c, i) => (i === 0 ? `<th scope="row">${escapar(c)}</th>` : `<td>${escapar(c)}</td>`)).join('')}</tr>`).join('');
+  return (
+    `<div class="tarifas-caja"><table class="tarifas"><caption>${escapar(titulo)}</caption>` +
+    `<thead><tr>${OBRA.cabecera.map((c) => `<th scope="col">${escapar(c)}</th>`).join('')}</tr></thead>` +
+    `<tbody>${filas}</tbody></table><p class="tarifas__nota">${OBRA.nota}</p></div>`
+  );
+}
+
 /** Tabla de precios de la línea, para insertar tras el primer párrafo de
     las páginas de precios. */
 export function tablaPrecios(pagina) {
-  const { linea, tema } = clasificar(pagina);
+  const { linea, tema, lugar } = clasificar(pagina);
+  if (linea === 'casetas' && ((lugar && !tema) || tema === 'obra' || tema === 'alquiler')) return tablaObra(lugar);
   if (tema !== 'precios') return '';
   const t = TABLAS[linea];
   if (!t) return '';
